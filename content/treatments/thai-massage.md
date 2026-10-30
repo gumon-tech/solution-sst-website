@@ -36,7 +36,7 @@ Eyebrow: Choose your length
 
 Thai massage is performed with you wearing specially designed loose clothing. If you have a question about what to wear, ask us on WhatsApp when you book.
 
-Your therapist compresses and pulls the body with a series of yogic-style stretches, bringing together traditional Thai, deep tissue and aroma techniques. It is a time-tested bodywork tradition, and it is suitable for the more timid too.
+Your therapist compresses and pulls the body with a series of yogic-style stretches, bringing together traditional Thai, deep tissue and aroma techniques. It is a time-tested bodywork tradition, done with you wearing specially designed loose clothing.
 
 It can feel more active than a classic massage, with the stretching woven through the session, and a chance to step away from the pace of the day.
 
@@ -50,7 +50,7 @@ It can feel more active than a classic massage, with the stretching woven throug
 
 ### Good to know
 - You wear specially designed loose clothing for the treatment
-- Suitable for the more timid too; tell your therapist if anything feels uncomfortable
+- Tell your therapist if anything feels uncomfortable
 - If you are pregnant, or have a health condition, an injury or a recent operation, tell us before you book so the team can confirm the right treatment. If in doubt, ask your doctor first.
 - If you would rather have a gentle full-body massage with essential oils, look at our Aromatherapy Massage
 
@@ -65,7 +65,7 @@ Caption: A calm room, set apart from the day outside.
 Yes. Thai massage is performed with you wearing specially designed loose clothing. Ask us on WhatsApp if you have a question about what to wear.
 
 ### Does Thai massage hurt?
-Thai massage includes deep tissue techniques, and it is suitable for the more timid too. If anything feels uncomfortable at any point, tell your therapist. If you would prefer something gentle, an Aromatherapy Massage may suit you better.
+Thai massage includes deep tissue techniques and stretching. If anything feels uncomfortable at any point, tell your therapist. For something gentler, look at our Aromatherapy Massage.
 
 ### How long is a Thai massage?
 Choose the length that suits you from the options above. Arrive a few minutes early so you have time to settle in.

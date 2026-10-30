@@ -5,7 +5,7 @@ description: "A gentle full-body massage in Greenwich SE8 that combines soothing
 h1: "Aromatherapy Massage in Greenwich"
 card: "A gentle full-body massage combining soothing Swedish techniques with essential oils."
 hero_image: oils-stones
-secondary_image: compress-oils
+secondary_image: room-wood-purple
 also_like: [hot-stone-massage, lymphatic-drainage-massage]
 tag: PA
 ---
@@ -55,8 +55,8 @@ It can feel relaxing and unhurried, a chance to lie still and let the time pass 
 
 ## room-image
 
-[image: compress-oils]
-Caption: Oils, stones and frangipani flowers.
+[image: room-wood-purple]
+Caption: A calm room, softly lit.
 
 ## faq
 

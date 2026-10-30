@@ -288,6 +288,9 @@ Performance guardrails: total JS for motion ≤ 40kB gz (import `motion` from `f
 
 ## 7. Image assignment and alt text
 
+> **Lead update 2026-10-31 (after review):** the `herbal-compress` and `compress-oils` photos were removed from the site (the compress is not a Treatwell menu item). Home "Our roots" uses `room-wood-purple`; `/about/` "Trained at Wat Pho" uses `hands-back-b`; `/about/` "the space" uses `room-wood-purple`; `/treatments/aromatherapy-massage/` secondary is `room-wood-purple`; `/treatments/back-neck-shoulders-massage/` secondary is `purple-stones-candles`. Section 7 below is kept as written for history. The Treatwell group "Reflexology & Lymphatic Massages" is shown as "Lymphatic Massage" (lib/services.ts GROUP_DISPLAY).
+
+
 Files already converted by the lead: `/img/<key>-800.webp` and `/img/<key>-1600.webp`. Use `<picture>`/`srcSet` with both. Decorative uses get `alt=""` and `aria-hidden`. Alt text below is final copy.
 
 | Key | Where | Alt |

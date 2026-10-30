@@ -51,6 +51,7 @@ export function Footer() {
             <h2 className="eyebrow">{f.contactHeading}</h2>
             <div className="mt-3 flex items-center gap-2">
               <WaLink message={MSG.book} tag={TAG.footer} className="link inline-flex min-h-[44px] items-center text-lg">
+                <span className="sr-only">WhatsApp </span>
                 {SITE.phoneDisplay}
               </WaLink>
               <a

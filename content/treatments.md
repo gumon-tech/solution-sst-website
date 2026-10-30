@@ -12,7 +12,7 @@ Eyebrow: Treatments and prices
 
 Lead: Everything below is exactly what is on our booking calendar, in the lengths we offer it. Tap the length you want and WhatsApp opens with the booking message ready to send.
 
-Small line: Menu checked {{menu_checked_date}}. Prices are confirmed when we book you in.
+Small line: Menu checked {{menu_checked_date}}. Prices shown are our current prices.
 
 ## group-chips
 
@@ -39,7 +39,7 @@ Eyebrow: Good to know
 Three cards:
 
 ### Booking
-We book by WhatsApp only. Tap an option above, send the message and we reply with free times. {{booking_terms_lines.deposit}}
+On this website, booking is by WhatsApp. Tap an option above, send the message and we reply with free times. {{booking_terms_lines.deposit}}
 
 ### Paying
 {{booking_terms_lines.paying}}

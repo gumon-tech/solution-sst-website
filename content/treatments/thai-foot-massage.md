@@ -36,7 +36,7 @@ Eyebrow: Choose your length
 
 Your therapist works on your feet using pressure points and gentle stretching, drawing on reflexology.
 
-It is a short treatment that is easy to fit into a day, and a good choice if you spend long hours on your feet. Your feet may feel light and refreshed afterwards.
+It is a short treatment that is easy to fit into a day. Your feet may feel light and refreshed afterwards.
 
 ## focus
 

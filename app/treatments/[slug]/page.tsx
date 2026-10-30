@@ -13,7 +13,7 @@ import { Paras, Rich } from "@/components/Rich";
 import { SectionHead } from "@/components/SectionHead";
 import { fill, plain } from "@/lib/content";
 import { pageMetadata } from "@/lib/seo";
-import { TREATMENTS, formatPrice, getTreatment } from "@/lib/services";
+import { TREATMENTS, getTreatment, priceLabel } from "@/lib/services";
 import { breadcrumbLd, faqLd, serviceLd } from "@/lib/structured-data";
 import { cardLine, genericIntro, imageFor, treatmentCopy } from "@/lib/treatment-content";
 import { TAG_UNKNOWN_TREATMENT, TREATMENT_TAG } from "@/lib/whatsapp";
@@ -212,7 +212,7 @@ export default async function TreatmentPage({ params }: { params: Promise<{ slug
                           <Link href={`/treatments/${a.slug}/`}>{a.name}</Link>
                         </h3>
                         <p className="mt-1 text-sm text-ink-2">{cardLine(a.slug)}</p>
-                        <p className="mt-auto pt-2 font-semibold text-gold-deep">from £{formatPrice(a.fromPrice)}</p>
+                        <p className="mt-auto pt-2 font-semibold text-gold-deep">{priceLabel(a)}</p>
                       </div>
                     </article>
                   </Reveal>

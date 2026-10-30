@@ -41,13 +41,27 @@ export function formatPrice(n: number): string {
   return Number.isInteger(n) ? String(n) : n.toFixed(2);
 }
 
+/** "£39" for a treatment with one length, "from £59" when it has several. */
+export function priceLabel(t: Pick<Treatment, "rows" | "fromPrice">): string {
+  return `${t.rows.length > 1 ? "from " : ""}£${formatPrice(t.fromPrice)}`;
+}
+
+/**
+ * Names shown on the site for Treatwell menu groups, where the Treatwell name would promise
+ * something the group does not hold: "Reflexology & Lymphatic Massages" has no reflexology
+ * treatment in it. data/services.json keeps the exact Treatwell name.
+ */
+const GROUP_DISPLAY: Record<string, string> = {
+  "Reflexology & Lymphatic Massages": "Lymphatic Massage",
+};
+
 /** Distinct slugs in file order, each with its rows. */
 export const TREATMENTS: Treatment[] = (() => {
   const bySlug = new Map<string, Treatment>();
   for (const r of SERVICE_ROWS) {
     let t = bySlug.get(r.slug);
     if (!t) {
-      t = { slug: r.slug, name: r.name, group: r.group, rows: [], fromPrice: r.price_gbp };
+      t = { slug: r.slug, name: r.name, group: GROUP_DISPLAY[r.group] ?? r.group, rows: [], fromPrice: r.price_gbp };
       bySlug.set(r.slug, t);
     }
     t.rows.push(r);

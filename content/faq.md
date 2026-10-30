@@ -70,7 +70,7 @@ In Thai massage the therapist compresses and pulls the body with a series of yog
 Please tell us before you book if you are pregnant, or if you have a health condition, an injury or a recent operation, and the team will confirm the right treatment for you. If you are unsure whether massage is a good idea for you, ask your doctor first. We do not make health claims for any treatment; we can tell you exactly what each one involves.
 
 ### Do you offer couples massage, packages or add-ons?
-Our menu is massage only, booked as single treatments in the lengths shown on the menu. If you would like to come with someone else or combine treatments, message us and the team will tell you what is possible on the day you have in mind.
+Our menu is massage only, booked as single treatments in the lengths shown on the menu. If you have a question about booking, message us on WhatsApp.
 
 ## vouchers-and-contact
 

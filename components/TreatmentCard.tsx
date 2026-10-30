@@ -2,7 +2,7 @@ import Link from "next/link";
 import { Img } from "@/components/Img";
 import { WaButton } from "@/components/Button";
 import { imageFor } from "@/lib/treatment-content";
-import { formatPrice, type Treatment } from "@/lib/services";
+import { priceLabel, type Treatment } from "@/lib/services";
 import { MSG, TAG } from "@/lib/whatsapp";
 
 /** Home-page treatment card: image, name, card line, option chips, from-price, Details + Book (tag H). */
@@ -25,7 +25,7 @@ export function TreatmentCard({ t, card, details, book }: { t: Treatment; card: 
             </li>
           ))}
         </ul>
-        <p className="mt-4 font-semibold text-gold-deep">from £{formatPrice(t.fromPrice)}</p>
+        <p className="mt-4 font-semibold text-gold-deep">{priceLabel(t)}</p>
         <div className="mt-auto flex flex-wrap gap-2 pt-4">
           <Link href={`/treatments/${t.slug}/`} className="btn btn-secondary flex-1">
             {details}

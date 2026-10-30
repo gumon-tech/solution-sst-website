@@ -37,6 +37,8 @@ export const SITE = {
   privacyUpdated: "31 October 2026",
   /** Shown in the footer legal line. */
   builtBy: "Gumon Technology",
+  /** builtBy in the footer links here. */
+  builtByUrl: "https://gumon.io",
 } as const;
 
 export const DEPOSIT_LABEL = `£${SITE.depositGbp}`;

@@ -16,6 +16,21 @@ const PAGE_HREF: Record<string, string> = {
   Privacy: "/privacy/",
 };
 
+/** The legal line with SITE.builtBy linked to the builder's site; plain text if the copy no longer names it. */
+function LegalLine({ text }: { text: string }) {
+  const at = text.indexOf(SITE.builtBy);
+  if (at < 0) return <>{text}</>;
+  return (
+    <>
+      {text.slice(0, at)}
+      <a href={SITE.builtByUrl} target="_blank" rel="noopener" className="link">
+        {SITE.builtBy}
+      </a>
+      {text.slice(at + SITE.builtBy.length)}
+    </>
+  );
+}
+
 export function Footer() {
   const c = sharedCopy();
   const f = c.footer;
@@ -87,7 +102,9 @@ export function Footer() {
 
         <div className="mt-12 flex flex-col items-center gap-4 border-t border-gold-pale/20 pt-8">
           <Ornament tone="pale" />
-          <p className="text-center text-sm text-gold-pale">{fill(f.legal)}</p>
+          <p className="text-center text-sm text-gold-pale">
+            <LegalLine text={fill(f.legal)} />
+          </p>
         </div>
       </div>
     </footer>

@@ -1,11 +1,11 @@
 ---
 slug: back-neck-shoulders-massage
 title: "Back, Neck & Shoulders Massage Greenwich | Sri Siam"
-description: "A short, focused massage for the back, neck and shoulders in Greenwich SE8. Firm, steady work where you hold tension. Book it on WhatsApp."
+description: "A short massage of the back, neck and shoulders in Greenwich SE8, the upper body only. Easy to fit into a busy day. Book it on WhatsApp."
 h1: "Back, Neck & Shoulders Massage in Greenwich"
-card: "Focused, firm work on the back, neck and shoulders. A short treatment that goes exactly where you need it."
+card: "A shorter massage that spends its time on the back, neck and shoulders."
 hero_image: hands-back-b
-secondary_image: hot-stones-spine-a
+secondary_image: purple-stones-candles
 also_like: [thai-massage, thai-foot-massage]
 tag: PB
 ---
@@ -18,7 +18,7 @@ Eyebrow: Treatments · {{group}}
 
 # Back, Neck & Shoulders Massage in Greenwich
 
-Lead: A back, neck and shoulders massage is a shorter, focused treatment that spends its whole time on the upper body: the muscles either side of the spine, across the shoulder blades, up into the neck and out to the tops of the arms.
+Lead: A back, neck and shoulders massage is a shorter treatment for the upper body, spending its time on the back, the neck and the shoulders.
 
 ## options
 
@@ -34,40 +34,38 @@ Eyebrow: Choose your length
 
 ## What to expect
 
-You lie face down with your back uncovered, and the rest of you under a towel. Your therapist begins with broad, warming strokes with oil, then works more specifically: thumbs along the sides of the spine, palms and forearms across the shoulders, slow pressure into the neck and the base of the skull.
+Your therapist massages your back, neck and shoulders. It is the treatment to look at when you do not have time for a full-body massage but would like some time for your upper body.
 
-Tell your therapist where you hold tension and how firm you like it, and the whole treatment goes there. It is the treatment to book when you do not have time for a full body massage but your shoulders are asking for attention.
+Afterwards you may feel relaxed, refreshed and a little lighter.
 
 ## focus
 
 ### What it focuses on
-- Upper and lower back, either side of the spine
-- Shoulders and shoulder blades
-- Neck and the base of the skull
-- Tops of the arms
-- Firm, specific pressure that you set
+- The back
+- The neck
+- The shoulders
+- A short treatment that fits into a busy day
 
 ### Good to know
-- Uses oil; you undress from the waist up and are covered with a towel except the back
 - Tell us about any recent injury or area to avoid before you book
 - If you are pregnant, or have a health condition, an injury or a recent operation, tell us before you book so the team can confirm the right treatment. If in doubt, ask your doctor first.
-- Want the whole body? Look at our Thai Massage or Aromatherapy Massage
+- Want a full-body massage? Look at our Aromatherapy Massage
 
 ## room-image
 
-[image: hot-stones-spine-a]
-Caption: The treatment bed, ready.
+[image: purple-stones-candles]
+Caption: Black stones, tealights and purple orchids.
 
 ## faq
 
 ### What does a back, neck and shoulders massage include?
-It covers the upper and lower back, the shoulders and shoulder blades, the neck up to the base of the skull and the tops of the arms, with oil and firm, specific pressure. The whole time is spent on those areas.
+A massage of the back, the neck and the shoulders. The treatment is spent on the upper body rather than the whole body.
 
-### How firm is it?
-As firm as you like. Your therapist starts with broad strokes and asks how the pressure feels before working more deeply; say "softer" or "deeper" at any point.
+### Is it a full-body massage?
+No. It covers the back, neck and shoulders. For a gentle full-body massage, look at our Aromatherapy Massage.
 
 ### Can I have a back, neck and shoulders massage on a lunch break?
-Yes. It is our shortest treatment alongside the Thai Foot Massage; choose the length from the options above and arrive a few minutes early so your full time is on the bed.
+It is one of the two shortest treatments on our menu, alongside the Thai Foot Massage. Choose the length from the options above and arrive a few minutes early so you have time to settle in.
 
 ## also-like
 

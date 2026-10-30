@@ -1,9 +1,9 @@
 ---
 slug: lymphatic-drainage-massage
 title: "Lymphatic Drainage Massage in Greenwich | Sri Siam"
-description: "Lymphatic drainage massage in Greenwich: light, slow, rhythmic strokes with gentle, precise pressure. A quiet, unhurried treatment. Book on WhatsApp."
+description: "Lymphatic drainage massage in Greenwich: a gentle, rhythmic massage with light, flowing, precise strokes. Choose your length and book on WhatsApp."
 h1: "Lymphatic Drainage Massage in Greenwich"
-card: "Light, slow, rhythmic strokes with gentle, precise pressure. The quietest treatment on our menu."
+card: "A gentle, rhythmic massage with light, flowing strokes and precise, unhurried hands."
 hero_image: orchid-stones
 secondary_image: hands-back-b
 also_like: [aromatherapy-massage, thai-foot-massage]
@@ -18,7 +18,7 @@ Eyebrow: Treatments · {{group}}
 
 # Lymphatic Drainage Massage in Greenwich
 
-Lead: Lymphatic drainage massage is a very gentle treatment made of long, light, rhythmic strokes with precise, feather-light pressure, following the surface of the skin rather than working into the muscle.
+Lead: Lymphatic drainage massage is a gentle, rhythmic massage in which your therapist uses light, flowing, precise strokes.
 
 ## options
 
@@ -34,39 +34,38 @@ Eyebrow: Choose your length
 
 ## What to expect
 
-If you are used to firm massage, this will feel unexpectedly light. The therapist's hands move slowly and repeat each stroke several times, with a soft, pumping rhythm, working section by section across the body and always in the same direction. There is little or no oil, and no kneading.
+If you are used to firmer massage, this may feel unexpectedly light. The strokes are gentle, precise and rhythmic, and they flow lightly from one to the next.
 
-Because the touch is so light and so regular, it is a deeply quiet treatment. You stay covered with a towel, and only the area being worked on is uncovered.
+It can feel calm and unhurried, and you may leave feeling calm and refreshed.
 
 ## focus
 
 ### What it focuses on
-- The surface of the skin, not the muscle beneath
-- Long, light, rhythmic strokes in a set sequence
-- The neck, torso, arms and legs, worked section by section
-- A slow, steady pace from start to finish
+- Gentle and precise strokes
+- A light, flowing touch
+- A steady, rhythmic pace
+- A calm, unhurried treatment
 
 ### Good to know
-- Very light pressure by design; if you want firm work, choose a Thai or Hot Stone Massage instead
-- Little or no oil is used
+- Gentle by design; for deeper work, look at our Thai Massage or Hot Stone Massage
 - If you are pregnant, or have a health condition, an injury or a recent operation, tell us before you book so the team can confirm the right treatment. If in doubt, ask your doctor first.
-- Wear something easy to change out of; you are covered with a towel throughout
+- Ask us on WhatsApp if you would like to know more before you book
 
 ## room-image
 
 [image: hands-back-b]
-Caption: Light, precise hands.
+Caption: Gentle, precise hands.
 
 ## faq
 
 ### What does lymphatic drainage massage feel like?
-Very light and very slow. The strokes are gentle and rhythmic, repeated several times over each area, and they stay on the surface of the skin rather than pressing into muscle. Most people describe it as calm and quiet rather than firm.
+Gentle and rhythmic, with light, flowing strokes. It may feel calm and unhurried rather than firm.
 
 ### Is lymphatic drainage massage suitable for me?
 If you are pregnant, or have a health condition, a recent operation or an injury, please tell us before you book so the team can confirm the right treatment for you, and ask your doctor if you are unsure. We do not make health claims for any treatment; we can tell you exactly what the massage involves.
 
 ### How is lymphatic drainage different from an aromatherapy massage?
-Both are gentle, but aromatherapy massage uses oil and flowing strokes with light to medium pressure, while lymphatic drainage uses far lighter, slower, repeated strokes on the surface of the skin with little or no oil.
+Both are gentle. Aromatherapy massage combines soothing Swedish massage techniques with essential oils, while lymphatic drainage massage uses light, flowing, precise strokes in a gentle rhythm.
 
 ## also-like
 

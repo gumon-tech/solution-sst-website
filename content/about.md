@@ -1,7 +1,7 @@
 ---
 title: "About Sri Siam Thai Therapy & Wellness, Greenwich"
-description: "A small Thai massage room in Greenwich SE8, run by Thai therapists trained at Wat Pho in Bangkok, the temple school of traditional Thai massage."
-h1: "A small Thai therapy room in Greenwich"
+description: "Thai massage in Greenwich SE8 by professional Thai therapists trained at the renowned Wat Pho in Bangkok, the temple school of traditional Thai massage."
+h1: "A calm Thai therapy space in Greenwich"
 ---
 
 ## hero
@@ -10,22 +10,22 @@ h1: "A small Thai therapy room in Greenwich"
 
 Eyebrow: About us
 
-# A small Thai therapy room in *Greenwich*
+# A calm Thai therapy space in *Greenwich*
 
-Lead: Sri Siam Thai Therapy & Wellness is a massage room on Glaisher Street, where Deptford meets Greenwich, run by Thai therapists. We do one thing, massage, and we do it with care.
+Lead: Sri Siam Thai Therapy & Wellness is on Glaisher Street, where Deptford meets Greenwich, with professional Thai therapists. We do one thing, massage, and we do it with care.
 
 ## wat-pho
 
 [image: herbal-compress]
-Caption: The herbal compress is one of the traditional techniques taught at Wat Pho.
+Caption: A traditional Thai herbal compress. It is not a treatment on our menu.
 
 Eyebrow: Our training
 
 ## Trained at Wat Pho, Bangkok
 
-Our therapists trained at Wat Pho in Bangkok, the renowned temple school of traditional Thai massage. Wat Pho is where the tradition has been taught and recorded for generations, and the way of working our therapists bring from there is unhurried and attentive: firm hands, a steady rhythm, and a habit of watching how you respond and adjusting to it.
+Our therapists trained at the renowned Wat Pho in Bangkok, the temple school of traditional Thai massage. They combine the traditional techniques they bring from there with a modern touch.
 
-That training shapes everything on our menu, not only the Thai Massage itself. The same attention goes into an oil massage with essential oils, into placing warm stones, or into a short treatment for the feet or the shoulders.
+Alongside Thai Massage, our menu includes Aromatherapy, Hot Stone and Lymphatic Drainage Massage, a Thai Foot Massage and a Back, Neck & Shoulders Massage, each listed with the lengths we offer.
 
 ## the-space
 
@@ -36,7 +36,7 @@ Eyebrow: The space
 
 ## Quiet, warm and ready for you
 
-The room is small on purpose. Wood-panelled walls, carved Thai ornaments, soft light and a treatment bed made up with fresh towels. We keep the sound low and the welcome warm, so from the moment you arrive the pace slows down.
+A calm, peaceful space, set apart from the rush outside. From the moment you arrive, the pace can slow down.
 
 ## how-we-work
 
@@ -44,8 +44,8 @@ Eyebrow: How we work
 
 ## Three things you can count on
 
-### We listen first
-Before any treatment we ask how you are, where you would like the focus and how firm you like it, and we check in as we go.
+### Massage, and only massage
+Our menu is massage only, and everything on it is exactly what is on our booking calendar, in the lengths we offer.
 
 ### Tell us about your health
 If you are pregnant, or you have a health condition, an injury or a recent operation, tell us before you book so the team can confirm the right treatment for you. If you are unsure, ask your doctor first. We do not make health claims for any treatment; we can tell you exactly what each one involves.

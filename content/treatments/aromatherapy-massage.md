@@ -1,9 +1,9 @@
 ---
 slug: aromatherapy-massage
 title: "Aromatherapy Massage in Greenwich | Sri Siam"
-description: "A gentle full-body oil massage in Greenwich: Swedish techniques with essential oils and long, flowing strokes. Choose your length and book on WhatsApp."
+description: "A gentle full-body massage in Greenwich SE8 that combines soothing Swedish massage techniques with essential oils. Choose your length and book on WhatsApp."
 h1: "Aromatherapy Massage in Greenwich"
-card: "A gentle full-body oil massage with essential oils and long, flowing Swedish strokes."
+card: "A gentle full-body massage combining soothing Swedish techniques with essential oils."
 hero_image: oils-stones
 secondary_image: compress-oils
 also_like: [hot-stone-massage, lymphatic-drainage-massage]
@@ -18,7 +18,7 @@ Eyebrow: Treatments · {{group}}
 
 # Aromatherapy Massage in Greenwich
 
-Lead: Aromatherapy massage is a full-body oil massage that uses Swedish massage techniques with essential oils: long, flowing strokes, gentle kneading and a slow, even rhythm, in a warm and quiet room.
+Lead: Aromatherapy massage is a gentle full-body massage that combines soothing Swedish massage techniques with essential oils.
 
 ## options
 
@@ -34,41 +34,40 @@ Eyebrow: Choose your length
 
 ## What to expect
 
-You undress to your comfort level and lie under a towel on the treatment bed; your therapist uncovers only the area being worked on.
+Your therapist combines soothing Swedish massage techniques with essential oils in a gentle, full-body massage.
 
-The strokes are long and flowing, moving towards the heart, with gentle kneading across the shoulders, back and legs. The pressure is light to medium by default, and you can ask for more or less at any point. The scent of the oil is part of the treatment, so tell us if you have a preference or an allergy and we will choose accordingly.
+If you have an allergy or a sensitivity, for example to essential oils, tell us before you book.
 
-It is the quietest, softest treatment on our menu, and many people choose it when they want to lie still and let the hour pass slowly.
+It can feel relaxing and unhurried, a chance to lie still and let the time pass slowly.
 
 ## focus
 
 ### What it focuses on
-- The whole body: back, shoulders, arms, legs and feet
-- Long, flowing Swedish strokes and gentle kneading
-- A slow, even rhythm from start to finish
-- Light to medium pressure, adjusted to you
+- The whole body
+- Soothing Swedish massage techniques
+- Essential oils
+- A gentle, unhurried pace
 
 ### Good to know
-- Uses oil, so you undress to your comfort level and are covered with a towel throughout
-- Tell us about any allergies or a scent you would rather avoid before you book
+- Tell us about any allergy or sensitivity, for example to essential oils, before you book
 - If you are pregnant, or have a health condition, an injury or a recent operation, tell us before you book so the team can confirm the right treatment. If in doubt, ask your doctor first.
-- If you want firmer work or stretching, look at our Thai Massage
+- If you would like stretching, look at our Thai Massage, with its yogic-style stretches
 
 ## room-image
 
 [image: compress-oils]
-Caption: Oils, stones and flowers laid out before a treatment.
+Caption: Oils, stones and frangipani flowers.
 
 ## faq
 
 ### What oils do you use in an aromatherapy massage?
-We use massage oil blended with essential oils. Tell us when you book if you have an allergy or a scent you prefer or want to avoid, and the therapist will choose with that in mind.
+Essential oils, combined with Swedish massage techniques. If you have an allergy or a sensitivity, tell us before you book.
 
-### Do I need to undress for an aromatherapy massage?
-You undress to the level you are comfortable with and lie under a towel; only the part of the body being massaged is uncovered. You can keep your underwear on.
+### Is aromatherapy massage a full-body massage?
+Yes. It is a gentle full-body massage that combines soothing Swedish massage techniques with essential oils.
 
 ### How is aromatherapy massage different from Thai massage?
-Aromatherapy massage uses oil and long, flowing strokes with light to medium pressure, and you lie still under a towel. Thai massage is done in loose clothing without oil, with firmer pressure and assisted stretches.
+Aromatherapy massage is a gentle full-body massage with Swedish techniques and essential oils. Thai massage combines traditional Thai, deep tissue and aroma techniques with a series of yogic-style stretches, and is performed in specially designed loose clothing.
 
 ## also-like
 

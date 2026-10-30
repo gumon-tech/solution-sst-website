@@ -1,6 +1,6 @@
 ---
 title: "Massage Gift Vouchers in Greenwich | Sri Siam"
-description: "Give someone an hour to themselves at Sri Siam in Greenwich. Message us on WhatsApp with the treatment or amount in mind and we arrange the voucher."
+description: "Give someone time to themselves at Sri Siam in Greenwich. Message us on WhatsApp with what you have in mind and the team arranges the voucher."
 h1: "Gift vouchers"
 ---
 
@@ -10,9 +10,9 @@ h1: "Gift vouchers"
 
 Eyebrow: Gift vouchers
 
-# Give someone an hour to themselves
+# Give someone time to themselves
 
-Lead: A Sri Siam gift voucher can be for a particular treatment or for an amount you choose. Message us on WhatsApp, tell us who it is for and what you have in mind, and the team arranges it with you.
+Lead: Message us on WhatsApp, tell us who the voucher is for and what you have in mind, and the team arranges a Sri Siam gift voucher with you.
 
 - Button (primary, tag G): Buy a voucher on WhatsApp
 
@@ -23,7 +23,7 @@ Eyebrow: How it works
 ## Three steps, all in one chat
 
 ### 1. Message us
-Tap the button and tell us who the voucher is for, and whether you would like it for a treatment from our menu or for an amount.
+Tap the button and tell us who the voucher is for and what you have in mind, such as a treatment from our menu.
 
 ### 2. We arrange it
 The team confirms the details with you, explains how to pay and prepares the voucher.
@@ -40,7 +40,7 @@ Eyebrow: Good to know
 ## A few things to tell us
 
 - Who the voucher is for, and whether you would like a name on it
-- Whether it is for a treatment from our menu or for an amount
+- Which treatment from our menu you have in mind, if you know
 - If there is a date you need it by
 - Anything you would like the team to know, such as a preference for a gentler or firmer treatment
 

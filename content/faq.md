@@ -49,22 +49,22 @@ We are at {{address}}, where Deptford meets Greenwich. Cutty Sark DLR, Greenwich
 {{hours_sentence}} We work by appointment, so please message us before you come.
 
 ### What should I wear?
-For a Thai Massage, wear or bring loose, comfortable clothing that you can stretch in; it is done fully clothed without oil. For oil treatments, such as Aromatherapy, Hot Stone and Back, Neck & Shoulders Massage, you undress to your comfort level and are covered with a towel. For a Thai Foot Massage you stay dressed and only your shoes and socks come off.
+Thai Massage is performed with you wearing specially designed loose clothing. For any treatment, if you have a question about what to wear, ask us on WhatsApp when you book.
 
 ### Should I arrive early?
-A few minutes early is ideal. It gives you time to settle and tell your therapist where you would like the focus and how firm you like it, so your full time is spent on the bed.
+A few minutes early is ideal, so you have time to settle in before your treatment.
 
 ## treatments
 
 ## Treatments
 
 ### Which massage should I choose?
-Choose by how you want it to feel. For firm pressure and stretching with no oil, Thai Massage. For a gentle, flowing oil massage, Aromatherapy. For warmth and medium pressure, Hot Stone. For a very light, slow, rhythmic treatment, Lymphatic Drainage. If you are short of time, the Thai Foot Massage and the Back, Neck & Shoulders Massage focus on one area. Still unsure? Tell us on WhatsApp what you would like from the treatment and the team will suggest one.
+Choose by how you want it to feel. For traditional Thai, deep tissue and aroma techniques with yogic-style stretches, Thai Massage. For a gentle full-body massage with essential oils, Aromatherapy. For massage with gently warmed basalt stones, Hot Stone. For a gentle, rhythmic massage with light, flowing strokes, Lymphatic Drainage. If you are short of time, the Thai Foot Massage and the Back, Neck & Shoulders Massage focus on one area. Still unsure? Tell us on WhatsApp what you would like from the treatment and the team will suggest one.
 
 - Link: See the treatment menu -> /treatments/
 
-### What is the difference between Thai massage and an oil massage?
-Thai massage is done in loose clothing without oil, using firm pressure along the body and assisted, yoga-style stretches. An oil massage, such as our Aromatherapy or Hot Stone Massage, is done on bare skin under a towel with long, flowing strokes and lighter to medium pressure.
+### What is the difference between Thai massage and aromatherapy massage?
+In Thai massage the therapist compresses and pulls the body with a series of yogic-style stretches, combining traditional Thai, deep tissue and aroma techniques, and you wear specially designed loose clothing. Aromatherapy massage is a gentle full-body massage that combines soothing Swedish massage techniques with essential oils.
 
 ### Is massage suitable if I'm pregnant or have a health condition?
 Please tell us before you book if you are pregnant, or if you have a health condition, an injury or a recent operation, and the team will confirm the right treatment for you. If you are unsure whether massage is a good idea for you, ask your doctor first. We do not make health claims for any treatment; we can tell you exactly what each one involves.
@@ -77,7 +77,7 @@ Our menu is massage only, booked as single treatments in the lengths shown on th
 ## Vouchers and contact
 
 ### Do you sell gift vouchers?
-Yes. Message us on WhatsApp with who the voucher is for and whether you would like it for a treatment or an amount, and the team arranges it with you and explains how to pay and how your recipient books.
+Yes. Message us on WhatsApp with who the voucher is for and what you have in mind, and the team arranges it with you and explains how to pay and how your recipient books.
 
 - Link: Gift vouchers -> /gift-vouchers/
 

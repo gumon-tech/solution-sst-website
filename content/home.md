@@ -12,7 +12,7 @@ Eyebrow: Greenwich · London SE8
 
 # Traditional Thai massage in *Greenwich*, booked in a message
 
-Lead: Sri Siam is a small, calm therapy room run by Thai therapists trained at Wat Pho in Bangkok. Tell us what you would like on WhatsApp and we will find you a time.
+Lead: Sri Siam is a calm Thai therapy space in Greenwich, with professional Thai therapists trained at the renowned Wat Pho in Bangkok. Tell us what you would like on WhatsApp and we will find you a time.
 
 - Button (primary, tag O): Book on WhatsApp
 - Button (ghost): See the menu -> /treatments/
@@ -47,7 +47,7 @@ Eyebrow: Our treatments
 
 ## Massage, and only massage
 
-Each treatment comes in the length that suits you. Everything below is exactly what is on our booking calendar.
+Each treatment is listed with the lengths we offer. Everything below is exactly what is on our booking calendar.
 
 Cards render one per treatment slug from `data/services.json`, in file order, using the `card` line from each `treatments/<slug>.md`. Each card: image, name, card line, option chips, "from £{{from_price}}", and:
 - Link: Details -> /treatments/{{slug}}/
@@ -58,15 +58,15 @@ Cards render one per treatment slug from `data/services.json`, in file order, us
 ## our-roots
 
 [image: herbal-compress]
-Caption: A warm herbal compress, one of the traditional Thai techniques our therapists learned at Wat Pho.
+Caption: A traditional Thai herbal compress. It is not a treatment on our menu.
 
 Eyebrow: Our roots
 
 ## From Wat Pho, Bangkok, to Greenwich
 
-Our therapists trained at Wat Pho in Bangkok, the renowned temple school of traditional Thai massage. The way they work comes from there: slow, attentive and unhurried, with firm hands and a clear sense of rhythm.
+Our therapists trained at the renowned Wat Pho in Bangkok, the temple school of traditional Thai massage. They bring traditional techniques to Greenwich with a modern touch.
 
-We keep the room quiet and the welcome warm. Whether you come for a long, slow treatment or a short, focused one between other things, you have our full attention for the whole of it.
+Whether you come for a longer treatment or a short one between other things, the hope is simple: a calm, unhurried escape from the pace of the day.
 
 - Link: More about us -> /about/
 
@@ -76,9 +76,9 @@ We keep the room quiet and the welcome warm. Whether you come for a long, slow t
 
 Eyebrow: Gift vouchers
 
-## Give someone an hour to themselves
+## Give someone time to themselves
 
-Message us with the treatment or the amount you have in mind and who it is for. The team arranges the voucher and tells you how to pay and how they book.
+Message us with who it is for and what you have in mind. The team arranges the voucher with you on WhatsApp and explains how to pay and how they book.
 
 - Button (primary, tag G): Buy a voucher on WhatsApp
 

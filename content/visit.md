@@ -62,7 +62,7 @@ Eyebrow: Before you come
 ## Three small things
 
 ### Arrive a few minutes early
-It gives you time to settle and tell your therapist what you would like, so your full time is spent on the bed.
+It gives you time to settle in before your treatment.
 
 ### Tell us about your health
 If you are pregnant, or have a health condition, an injury or a recent operation, let us know before you book so the team can confirm the right treatment. If in doubt, ask your doctor first.

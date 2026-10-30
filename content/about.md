@@ -16,8 +16,8 @@ Lead: Sri Siam Thai Therapy & Wellness is on Glaisher Street, where Deptford mee
 
 ## wat-pho
 
-[image: herbal-compress]
-Caption: A traditional Thai herbal compress. It is not a treatment on our menu.
+[image: hands-back-b]
+Caption: Skilled hands, traditional techniques, a modern touch.
 
 Eyebrow: Our training
 
@@ -30,7 +30,7 @@ Alongside Thai Massage, our menu includes Aromatherapy, Hot Stone and Lymphatic 
 ## the-space
 
 [image: room-pink-curtains]
-[image: compress-oils]
+[image: room-wood-purple]
 
 Eyebrow: The space
 

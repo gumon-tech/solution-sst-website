@@ -39,8 +39,8 @@ export const IMAGES: Record<ImageKey, ImageMeta> = {
   "orchid-stones": { w: 1076, h: 1600, w800: 538, h800: 800, alt: "Pink orchids, a stack of smooth black stones and a lit candle beside a bowl of water" },
   "purple-stones-still": { w: 1024, h: 1536, w800: 533, h800: 800, alt: "" },
   "purple-stones-candles": { w: 1600, h: 900, w800: 800, h800: 450, alt: "Black stones, tealights and purple orchids on purple silk" },
-  "room-wood-purple": { w: 1200, h: 1600, w800: 600, h800: 800, alt: "The treatment room at Sri Siam: wood-panelled walls with carved Thai ornaments, two beds with rolled towels and orchid petals, lit in soft purple" },
-  "room-pink-curtains": { w: 1600, h: 700, w800: 800, h800: 350, alt: "A treatment bed between pink and lilac curtains in the Sri Siam room" },
+  "room-wood-purple": { w: 1200, h: 1600, w800: 600, h800: 800, alt: "A treatment room with wood-panelled walls, carved Thai ornaments, two beds with rolled towels and orchid petals, lit in soft purple" },
+  "room-pink-curtains": { w: 1600, h: 700, w800: 800, h800: 350, alt: "A treatment bed between pink and lilac curtains" },
 };
 
 /** Per-treatment thumbnail/card image and its alt, DIRECTION.md section 7. */

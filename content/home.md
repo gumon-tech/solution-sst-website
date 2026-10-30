@@ -57,8 +57,8 @@ Cards render one per treatment slug from `data/services.json`, in file order, us
 
 ## our-roots
 
-[image: herbal-compress]
-Caption: A traditional Thai herbal compress. It is not a treatment on our menu.
+[image: room-wood-purple]
+Caption: Warm wood and carved Thai ornaments.
 
 Eyebrow: Our roots
 

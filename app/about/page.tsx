@@ -41,7 +41,7 @@ export default function AboutPage() {
         <div className="container-x grid items-center gap-8 lg:grid-cols-12 lg:gap-12">
           <figure className="lg:col-span-5">
             <div className="overflow-hidden rounded-r-frame shadow-card">
-              <Img k="herbal-compress" sizes="(min-width:1280px) 480px, (min-width:1024px) 40vw, 100vw" className="aspect-square w-full object-cover" />
+              <Img k="hands-back-b" sizes="(min-width:1280px) 480px, (min-width:1024px) 40vw, 100vw" className="aspect-square w-full object-cover" />
             </div>
             <figcaption className="mt-3 text-sm text-ink-2">{wat.caption}</figcaption>
           </figure>
@@ -67,7 +67,7 @@ export default function AboutPage() {
               <Img k="room-pink-curtains" sizes="(min-width:1280px) 730px, (min-width:1024px) 60vw, 100vw" className="aspect-[1600/700] h-full w-full object-cover lg:aspect-auto" />
             </div>
             <div className="overflow-hidden rounded-r-frame shadow-card">
-              <Img k="compress-oils" sizes="(min-width:1280px) 360px, (min-width:1024px) 30vw, 100vw" className="aspect-[4/3] w-full object-cover lg:aspect-[3/4]" />
+              <Img k="room-wood-purple" sizes="(min-width:1280px) 360px, (min-width:1024px) 30vw, 100vw" className="aspect-[4/3] w-full object-cover lg:aspect-[3/4]" />
             </div>
           </div>
         </div>

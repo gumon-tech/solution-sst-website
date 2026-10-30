@@ -1,0 +1,339 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --ease-out: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --gold: #c5a059;
+  --gold-pale: #e8d4a2;
+  --sticky-h: 76px;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 88px;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  @apply bg-cream font-body text-ink antialiased;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+@media (min-width: 1280px) {
+  body {
+    font-size: 17px;
+  }
+}
+
+:focus-visible {
+  outline: 2px solid #5a3a6b;
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+.on-plum :focus-visible {
+  outline-color: #e8d4a2;
+}
+
+@layer components {
+  .container-x {
+    @apply mx-auto w-full max-w-container px-4 md:px-8 xl:px-12;
+  }
+  .section-y {
+    @apply py-14 xl:py-24;
+  }
+
+  .t-display {
+    @apply font-display font-semibold;
+    font-size: 38px;
+    line-height: 1.05;
+  }
+  .t-h2 {
+    @apply font-display font-semibold text-plum;
+    font-size: 30px;
+    line-height: 1.1;
+  }
+  .t-h3 {
+    @apply font-display font-semibold text-plum;
+    font-size: 22px;
+    line-height: 1.2;
+  }
+  .t-lead {
+    font-size: 18px;
+    line-height: 1.5;
+  }
+  .eyebrow {
+    @apply font-body font-semibold uppercase text-gold-deep;
+    font-size: 13px;
+    letter-spacing: 0.18em;
+    line-height: 1.4;
+  }
+  .on-plum .eyebrow {
+    @apply text-gold-pale;
+  }
+  .on-plum .t-h2,
+  .on-plum .t-h3 {
+    @apply text-cream;
+  }
+  @media (min-width: 1280px) {
+    .t-display {
+      font-size: 64px;
+      letter-spacing: -0.01em;
+    }
+    .t-h2 {
+      font-size: 44px;
+    }
+    .t-h3 {
+      font-size: 26px;
+    }
+    .t-lead {
+      font-size: 20px;
+    }
+  }
+
+  /* Buttons ------------------------------------------------------------ */
+  .btn {
+    @apply inline-flex min-h-[44px] items-center justify-center gap-2 rounded-full px-[22px] py-3 text-center font-body text-base font-semibold;
+    transition: transform 160ms ease-out, box-shadow 160ms ease-out, background-color 160ms ease-out;
+  }
+  .btn:active {
+    transform: scale(0.98);
+    transition-duration: 90ms;
+  }
+  .btn-primary {
+    @apply bg-plum text-cream;
+  }
+  .btn-primary .btn-glyph {
+    color: var(--gold-pale);
+  }
+  .btn-secondary {
+    @apply border-[1.5px] border-plum bg-cream text-plum;
+  }
+  .btn-ghost {
+    @apply border-[1.5px] border-gold-pale bg-transparent text-gold-pale;
+  }
+  .btn-light {
+    @apply bg-cream text-plum;
+  }
+  .btn-glyph {
+    transition: transform 160ms ease-out;
+  }
+  @media (hover: hover) {
+    .btn:hover {
+      transform: translateY(-2px);
+      @apply shadow-lift;
+    }
+    .btn:hover .btn-glyph {
+      transform: translateX(2px);
+    }
+    .btn-primary:hover {
+      @apply bg-plum-mid;
+    }
+    .btn-secondary:hover {
+      @apply bg-plum-tint;
+    }
+    .btn-ghost:hover {
+      @apply bg-gold-pale text-plum-deep;
+    }
+  }
+
+  .link {
+    @apply font-semibold text-plum underline decoration-gold decoration-2 underline-offset-4;
+  }
+  .link:hover {
+    @apply text-plum-mid;
+  }
+  .on-plum .link {
+    @apply text-gold-pale;
+  }
+  .on-plum .link:hover {
+    @apply text-cream;
+  }
+
+  .card {
+    @apply rounded-r-md border border-stone bg-cream shadow-card;
+  }
+
+  .prose-sst p + p {
+    margin-top: 1em;
+  }
+}
+
+/* Ornament ---------------------------------------------------------------- */
+.orn path {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 0;
+}
+
+/* Motion (all of it off under reduced motion, see the end of this file) ------ */
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes draw {
+  from {
+    stroke-dashoffset: 1;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+@keyframes bar-up {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: none;
+  }
+}
+@keyframes breathe {
+  0%,
+  100% {
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+@keyframes menu-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.hero-rise {
+  animation: rise 420ms var(--ease-out) both;
+  animation-delay: calc(var(--i, 0) * 60ms);
+}
+
+/* Scroll reveal: only hidden once the inline script has set .js on <html>. */
+.js [data-reveal] {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 480ms var(--ease-out), transform 480ms var(--ease-out);
+  transition-delay: calc(var(--i, 0) * 70ms);
+}
+.js [data-reveal].in {
+  opacity: 1;
+  transform: none;
+}
+.js [data-orn] .orn path {
+  stroke-dashoffset: 1;
+  transition: stroke-dashoffset 600ms ease-out;
+}
+.js [data-orn].in .orn path {
+  stroke-dashoffset: 0;
+}
+
+.sticky-bar {
+  animation: bar-up 320ms ease-out 400ms both;
+}
+
+.candle {
+  background: radial-gradient(600px 400px at 70% 30%, rgba(232, 212, 162, 0.35), transparent 70%);
+  animation: breathe 9s ease-in-out infinite;
+}
+
+.menu-overlay {
+  animation: menu-in 240ms ease-out both;
+}
+.menu-overlay li {
+  animation: rise 240ms var(--ease-out) both;
+  animation-delay: calc(var(--i, 0) * 40ms);
+}
+
+/* Cards: image zoom on hover */
+@media (hover: hover) {
+  .zoom img {
+    transition: transform 600ms ease-out;
+  }
+  .zoom:hover img {
+    transition: transform 600ms ease-out;
+    transform: scale(1.03);
+  }
+  .lift {
+    transition: transform 160ms ease-out, box-shadow 160ms ease-out;
+  }
+  .lift:hover {
+    transform: translateY(-2px);
+    @apply shadow-lift;
+  }
+}
+
+/* Accordion: height animates through grid rows; closed content stays in the DOM. */
+.acc-panel {
+  display: grid;
+  grid-template-rows: 0fr;
+  visibility: hidden;
+  transition: grid-template-rows 240ms ease-in-out, visibility 0s linear 240ms;
+}
+.acc-panel[data-open="true"] {
+  grid-template-rows: 1fr;
+  visibility: visible;
+  transition: grid-template-rows 240ms ease-in-out, visibility 0s;
+}
+.acc-chev {
+  transition: transform 240ms ease-in-out;
+}
+[aria-expanded="true"] .acc-chev {
+  transform: rotate(180deg);
+}
+
+/* Option buttons (menu) */
+.opt {
+  @apply flex min-h-[48px] w-full items-center gap-3 rounded-full bg-plum px-5 py-3 text-left font-body font-semibold text-cream;
+  transition: background-color 160ms ease-out;
+}
+.opt-price {
+  @apply text-gold-pale;
+  transition: transform 160ms ease-out;
+}
+@media (hover: hover) {
+  .opt:hover {
+    @apply bg-plum-mid;
+  }
+  .opt:hover .opt-price {
+    transform: translateX(2px);
+  }
+}
+
+.skip-link {
+  @apply absolute left-4 top-2 z-[100] -translate-y-20 rounded-full bg-plum px-5 py-3 font-semibold text-cream;
+}
+.skip-link:focus {
+  transform: none;
+  outline-color: #e8d4a2;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    animation-delay: 0s !important;
+    transition-duration: 0.001ms !important;
+    transition-delay: 0s !important;
+    scroll-behavior: auto !important;
+  }
+  .js [data-reveal] {
+    opacity: 1;
+    transform: none;
+  }
+  .js [data-orn] .orn path {
+    stroke-dashoffset: 0;
+  }
+  .candle {
+    display: none;
+  }
+}

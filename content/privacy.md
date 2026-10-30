@@ -22,7 +22,9 @@ When you message us, WhatsApp (provided by Meta) handles the message under its o
 
 We use those details to answer you, to book your treatment and to tell you about that booking, for example to confirm the time or to let you know if something changes.
 
-Some replies on WhatsApp may be sent by an automated booking assistant. It is provided by Gumon Technology, which handles your messages on our behalf and only on our instructions. A member of the team can step in at any time; ask in the chat if you would like to speak to a person.
+Some replies on WhatsApp may be sent by an automated booking assistant. It is provided by Gumon Technology, which handles your messages on our behalf. A member of the team can step in at any time; ask in the chat if you would like to speak to a person.
+
+Gumon Technology and the companies it uses to run the assistant may process your messages, including any health details you choose to share, outside the UK, including in Thailand and the United States. You can ask us for details of the safeguards that apply.
 
 ## Your booking
 

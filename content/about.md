@@ -51,7 +51,7 @@ Our menu is massage only, and everything on it is exactly what is on our booking
 If you are pregnant, or you have a health condition, an injury or a recent operation, tell us before you book so the team can confirm the right treatment for you. If you are unsure, ask your doctor first. We do not make health claims for any treatment; we can tell you exactly what each one involves.
 
 ### One simple way to book
-Everything is booked in one WhatsApp chat: you tell us what you would like, we offer free times and confirm. {{booking_terms_lines.deposit}}
+On this website, everything is booked in one WhatsApp chat: you tell us what you would like, we offer free times and confirm. {{booking_terms_lines.deposit}}
 
 - Button (primary, tag A): Book on WhatsApp
 - Link: See the treatment menu -> /treatments/

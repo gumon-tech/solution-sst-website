@@ -28,7 +28,7 @@ lead: data, images, redirects, fixes    Opus 5.5
 
 1. `lib/site.ts`: set `url` to the new origin and `indexable: true` (one switch: robots meta, robots.txt and sitemap follow).
 2. `public/CNAME`: the new domain; Pages settings custom domain; DNS at the registrar.
-3. Old Wix URLs already have redirect stubs (`scripts/build-redirect-stubs.mjs`): `/services`, `/book-online`, `/contact`, `/about-us`, `/gallery` and the Wix system pages go to their new pages; `/service-page/*` and `/booking-calendar/*` are matched by keyword in `404.html`; any other unknown path goes to the home page.
+3. Old Wix URLs already have redirect stubs (`scripts/build-redirect-stubs.mjs`): `/services`, `/book-online`, `/contact`, `/about-us`, `/gallery` and the Wix system pages go to their new pages; `/service-page/*` and `/booking-calendar/*` are matched by keyword in `404.html`; any other unknown path shows the not-found page, which links home.
 4. Update the booking link in Google Business Profile to the site or the wa.me link.
 
 ## Checks done on 31 Oct 2026
@@ -40,7 +40,7 @@ lead: data, images, redirects, fixes    Opus 5.5
 
 ## Open (not blocking)
 
-1. Privacy notice: the shop's legal entity name (if any) should replace the trading name as controller; a retention period once the DPA settles it (proposed 24 months); whether any processor moves data outside the UK.
+1. Privacy notice: the shop's legal entity name (if any) should replace the trading name as controller; a retention period once the DPA settles it (proposed 24 months). It names Gumon Technology as the assistant provider and says data may go to Thailand and the United States; the DPA, IDTA and transfer risk assessment are still drafts and must be signed before real customer chats.
 2. Late arrival: copy says the treatment may be shortened; whether the full price applies is not stated (ask the shop).
 3. The deposit message on WhatsApp should state the deposit terms before the customer pays (for room KSST).
 4. Walking minutes to Cutty Sark DLR, Greenwich and Deptford stations are not stated (only "a short walk"); add if measured.

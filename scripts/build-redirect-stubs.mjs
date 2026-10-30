@@ -8,7 +8,7 @@
 //
 // Wix Bookings pages (/service-page/<slug>, /booking-calendar/<slug>) have slugs we cannot
 // list, so out/404.html gets a small script that sends those to the matching treatment by
-// keyword, and every other unknown path to the home page.
+// keyword. Any other unknown path stays on the not-found page, which links home.
 //
 // Usage: node scripts/build-redirect-stubs.mjs [out-dir]   (default "out")
 
@@ -35,15 +35,15 @@ export const REDIRECTS = {
 const KEYWORDS = [
   ["voucher", "/gift-vouchers/"],
   ["gift", "/gift-vouchers/"],
-  ["foot", "/treatments/thai-foot-massage/"],
-  ["neck", "/treatments/back-neck-shoulders-massage/"],
-  ["shoulder", "/treatments/back-neck-shoulders-massage/"],
-  ["back", "/treatments/back-neck-shoulders-massage/"],
   ["stone", "/treatments/hot-stone-massage/"],
   ["lymph", "/treatments/lymphatic-drainage-massage/"],
   ["detox", "/treatments/lymphatic-drainage-massage/"],
   ["aroma", "/treatments/aromatherapy-massage/"],
   ["swedish", "/treatments/aromatherapy-massage/"],
+  ["foot", "/treatments/thai-foot-massage/"],
+  ["neck", "/treatments/back-neck-shoulders-massage/"],
+  ["shoulder", "/treatments/back-neck-shoulders-massage/"],
+  ["back", "/treatments/back-neck-shoulders-massage/"],
   ["thai", "/treatments/thai-massage/"],
   ["combination", "/treatments/thai-massage/"],
 ];
@@ -80,7 +80,7 @@ ${STUB_MARKER}
 function notFoundScript() {
   const kw = JSON.stringify(KEYWORDS);
   const map = JSON.stringify(REDIRECTS);
-  return `<script id="${SCRIPT_MARKER}">(function(){var p=location.pathname.toLowerCase(),m=${map},k=${kw},t="/";var q=p.replace(/\\/?$/,"/");if(m[q]){t=m[q]}else if(/^\\/(service-page|booking-calendar)\\//.test(p)){t="/treatments/";for(var i=0;i<k.length;i++){if(p.indexOf(k[i][0])>-1){t=k[i][1];break}}}location.replace(t)})();</script>`;
+  return `<script id="${SCRIPT_MARKER}">(function(){var p=location.pathname.toLowerCase(),m=${map},k=${kw},t="";var q=p.replace(/\\/?$/,"/");if(m[q]){t=m[q]}else if(/^\\/(service-page|booking-calendar)\\//.test(p)){t="/treatments/";for(var i=0;i<k.length;i++){if(p.indexOf(k[i][0])>-1){t=k[i][1];break}}}if(t)location.replace(t)})();</script>`;
 }
 
 function main() {

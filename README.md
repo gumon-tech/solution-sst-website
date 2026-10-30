@@ -4,4 +4,5 @@ Website for Sri Siam Thai Therapy & Wellness (London), built and hosted by Gumon
 
 - Live: https://sst.gumon.io (GitHub Pages, custom domain via Cloudflare DNS `sst` CNAME `gumon-tech.github.io`, DNS only)
 - Public repository: never commit customer data, staff personal data or secrets.
-- Bootstrap placeholder in `site/`; the room KSSW replaces it with the real site (keep the custom domain `sst.gumon.io`).
+- Static Next.js 15 export (`out/`). Build: `npm ci && node scripts/validate-services.mjs && npx next build && node scripts/check-site.mjs`.
+- Copy lives in `content/`, prices in `data/services.json`, facts and the indexing switch (`SITE.indexable`) in `lib/site.ts`.

@@ -1,0 +1,88 @@
+{
+  "_about": "Every bookable service, copied from the shop's Treatwell menu (venue 528970). One row per length. Edit prices here on the same day they change in Treatwell; the site and its structured data read only this file.",
+  "source": "Treatwell Connect venue 528970 menu, all offers listed and purchasable",
+  "read_at": "2026-10-30T19:07:05+00:00",
+  "currency": "GBP",
+  "services": [
+    {
+      "group": "Classic Massages",
+      "slug": "back-neck-shoulders-massage",
+      "name": "Back, Neck & Shoulders Massage",
+      "option": "30 minutes",
+      "duration_min": 30,
+      "price_gbp": 39.0
+    },
+    {
+      "group": "Classic Massages",
+      "slug": "hot-stone-massage",
+      "name": "Hot Stone Massage",
+      "option": "1 hour",
+      "duration_min": 60,
+      "price_gbp": 69.0
+    },
+    {
+      "group": "Classic Massages",
+      "slug": "hot-stone-massage",
+      "name": "Hot Stone Massage",
+      "option": "90 minutes",
+      "duration_min": 90,
+      "price_gbp": 89.0
+    },
+    {
+      "group": "Classic Massages",
+      "slug": "aromatherapy-massage",
+      "name": "Aromatherapy Massage",
+      "option": "1 hour",
+      "duration_min": 60,
+      "price_gbp": 59.0
+    },
+    {
+      "group": "Classic Massages",
+      "slug": "aromatherapy-massage",
+      "name": "Aromatherapy Massage",
+      "option": "90 minutes",
+      "duration_min": 90,
+      "price_gbp": 79.0
+    },
+    {
+      "group": "Classic Massages",
+      "slug": "thai-foot-massage",
+      "name": "Thai Foot Massage",
+      "option": "30 minutes",
+      "duration_min": 30,
+      "price_gbp": 39.0
+    },
+    {
+      "group": "Classic Massages",
+      "slug": "thai-massage",
+      "name": "Thai Massage",
+      "option": "1 hour",
+      "duration_min": 60,
+      "price_gbp": 59.0
+    },
+    {
+      "group": "Classic Massages",
+      "slug": "thai-massage",
+      "name": "Thai Massage",
+      "option": "90 minutes",
+      "duration_min": 90,
+      "price_gbp": 79.0
+    },
+    {
+      "group": "Reflexology & Lymphatic Massages",
+      "slug": "lymphatic-drainage-massage",
+      "name": "Lymphatic Drainage Massage",
+      "option": "1 hour",
+      "duration_min": 60,
+      "price_gbp": 69.0
+    },
+    {
+      "group": "Reflexology & Lymphatic Massages",
+      "slug": "lymphatic-drainage-massage",
+      "name": "Lymphatic Drainage Massage",
+      "option": "90 minutes",
+      "duration_min": 90,
+      "price_gbp": 89.0
+    }
+  ]
+}

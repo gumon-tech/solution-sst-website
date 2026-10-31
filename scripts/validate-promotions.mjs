@@ -22,6 +22,9 @@ try {
 const services = JSON.parse(readFileSync(path.join(root, "data/services.json"), "utf8")).services;
 const site = readFileSync(path.join(root, "lib/site.ts"), "utf8");
 const deposit = Number(/depositGbp:\s*(\d+)/.exec(site)?.[1]);
+// The shop's exact display name may use a word the list blocks (Therapy); the same exemption as the shop system.
+const shopName = /\bname:\s*"([^"]+)"/.exec(site)?.[1] ?? "";
+const scrubName = (t) => (shopName ? t.split(new RegExp(shopName.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"), "i")).join(" ") : t);
 const servicePrices = new Set(services.map((s) => s.price_gbp));
 
 const FILE_KEYS = ["updated_at", "note", "promotions"];
@@ -31,7 +34,7 @@ const STATUSES = ["live", "ended", "draft"];
 const EMOJI = /\p{Extended_Pictographic}/u;
 // Same list as HEALTH_CLAIMS in the shop system (website.py): the health and medical claims the UK ASA / CAP code
 // covers for massage (pain, sleep, immunity, tension, recovery, conditions, treatment of illness). The site makes none (HANDOFF rules).
-const HEALTH = /\b(detox\w*|toxins?|circulation|pain\w*|ache\w*|headache\w*|stress\w*|swell\w*|immun\w*|inflammation|cure\w*|heal\w*|relie\w*|tension|sleep\w*|therap\w*|recover\w*|muscle\w*|well-?being|anxiety|depression|insomnia|arthritis|sciatica|migraines?|fatigue|injur\w*|rehab\w*|alleviat\w*|remed\w*|rheumat\w*|fibromyalgia|eczema|asthma|diabet\w*|cancer|covid|stiff\w*|sore\w*|cramp\w*|spasm\w*|chronic|symptom\w*|diagnos\w*|illness|disease|medical|clinical|physio\w*|chiropract\w*|osteo\w*|blood pressure|joint\w*)\b/i;
+const HEALTH = /\b(detox\w*|toxins?|circulation|pain\w*|ache\w*|headache\w*|stress\w*|swell\w*|immun\w*|inflammation|cure\w*|heal\w*|relie\w*|tension|sleep\w*|therap\w*|recover\w*|muscle\w*|well-?being|anxiety|depression|insomnia|arthritis|sciatica|migraines?|fatigue|injur\w*|rehab\w*|alleviat\w*|remed\w*|rheumat\w*|fibromyalgia|eczema|asthma|diabet\w*|cancer|covid|stiff\w*|sore\w*|cramp\w*|spasm\w*|chronic|symptom\w*|diagnos\w*|illness|disease|medical|clinical|physio\w*|chiropract\w*|osteo\w*|blood pressure|joints|posture|knot\w*|back problem\w*|lymph\w*|drainage|weight|slim\w*|digest\w*|energ\w*|hormon\w*|breath\w*|nerve\w*|tight\w*)\b/i;
 // The public text of this shop is English; the shop system refuses Thai script too.
 const THAI = /[\u0E00-\u0E7F]/;
 
@@ -86,7 +89,7 @@ for (const [i, p] of (Array.isArray(data?.promotions) ? data.promotions : []).en
     if (t.includes("07497") || t.includes("7497 493")) fail(`${at}: the old private phone number`);
     if (/\[web-/i.test(t)) fail(`${at}: the [web-X] tag is added by the site, not written in the text`);
     if (THAI.test(t)) fail(`${at}: Thai script in "${t.slice(0, 30)}" (the public text is English)`);
-    if (HEALTH.test(t)) fail(`${at}: health-result wording in "${t.slice(0, 40)}" (the site makes no health claims)`);
+    if (HEALTH.test(scrubName(t))) fail(`${at}: health-result wording in "${t.slice(0, 40)}" (the site makes no health claims)`);
     // Service prices come only from data/services.json. A discount amount ("£5 off") is fine.
     for (const m of t.matchAll(/£(\d+(?:\.\d+)?)/g)) {
       const v = Number(m[1]);

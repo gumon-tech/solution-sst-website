@@ -6,10 +6,12 @@ import { Hero } from "@/components/Hero";
 import { Img } from "@/components/Img";
 import { JsonLd } from "@/components/JsonLd";
 import { Reveal } from "@/components/Reveal";
+import { PromoCards } from "@/components/PromoCards";
 import { Paras, Rich } from "@/components/Rich";
 import { SectionHead } from "@/components/SectionHead";
 import { TreatmentCard } from "@/components/TreatmentCard";
 import { fmString, loadDoc, section, trailingActions } from "@/lib/content";
+import { promotionsForBuild } from "@/lib/promotions-data";
 import { pageMetadata } from "@/lib/seo";
 import { TREATMENTS } from "@/lib/services";
 import { cardLine } from "@/lib/treatment-content";
@@ -27,11 +29,20 @@ const FACT_ICONS = [MapPin, Clock, Award];
 
 export default function HomePage() {
   const hero = section(doc, "hero");
+  const offers = section(doc, "offers");
   const how = section(doc, "how-booking-works");
   const prev = section(doc, "treatments-preview");
   const roots = section(doc, "our-roots");
   const gift = section(doc, "gift-vouchers-strip");
   const visit = section(doc, "visit");
+
+  const { promos, buildDay } = promotionsForBuild();
+  const offerCopy = {
+    eyebrow: offers.eyebrow ?? "",
+    title: offers.h2 ?? "",
+    validUntil: offers.small ?? "",
+    button: offers.actions[0]?.label ?? "",
+  };
 
   const details = prev.actions.find((a) => a.label === "Details")?.label ?? "Details";
   const bookLabel = prev.actions.find((a) => a.tag === "H")?.label ?? "Book";
@@ -73,6 +84,9 @@ export default function HomePage() {
           </ul>
         }
       />
+
+      {/* Current offers: only when data/promotions.json has a live one today. Anchor #promotions. */}
+      <PromoCards promos={promos} buildDay={buildDay} copy={offerCopy} />
 
       {/* How booking works */}
       <section className="on-plum relative overflow-hidden bg-plum text-cream section-y" aria-labelledby="how-h">

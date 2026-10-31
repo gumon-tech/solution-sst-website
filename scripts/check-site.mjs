@@ -242,6 +242,34 @@ if (faqHtml && !/"@type":"FAQPage"/.test(faqHtml)) fail("/faq/: no FAQPage JSON-
 const homeHtml = pageFiles.get("index.html");
 if (homeHtml && !/"@type":"DaySpa"/.test(homeHtml)) fail("/: no DaySpa JSON-LD");
 
+// ---- promotions (data/promotions.json, written by the shop's WhatsApp system) ----
+// What the home page shows must be exactly the offers that are live today in London: nothing ended,
+// nothing that has not started, and no #promotions section at all when there are none.
+{
+  const file = JSON.parse(read(path.join(root, "data/promotions.json")));
+  const today = new Intl.DateTimeFormat("en-CA", { timeZone: "Europe/London", year: "numeric", month: "2-digit", day: "2-digit" }).format(new Date());
+  const shown = file.promotions.filter((p) => p.status === "live" && p.starts <= today && today <= p.ends);
+  const htmlCodes = homeHtml ? [...homeHtml.matchAll(/data-promo="([^"]+)"/g)].map((m) => m[1]) : [];
+  const want = shown.map((p) => p.code).sort().join();
+  if (htmlCodes.slice().sort().join() !== want) fail(`/: offers in the page [${htmlCodes.sort()}] differ from the offers live on ${today} [${want}]`);
+  const hasSection = homeHtml ? /<section[^>]*\sid="promotions"/.test(homeHtml) : false;
+  if (shown.length && !hasSection) fail('/: offers are live but the page has no id="promotions" section');
+  if (!shown.length && hasSection) fail('/: id="promotions" section present while no offer is live');
+  for (const [rel, html] of pageFiles) {
+    if (rel !== "index.html" && /data-promo="|id="promotions"/.test(html)) fail(`${rel}: offer markup outside the home page`);
+  }
+  for (const p of shown) {
+    const from = (homeHtml ?? "").indexOf(`data-promo="${p.code}"`);
+    const rest = from < 0 ? "" : homeHtml.slice(from + 12);
+    const nextCard = rest.indexOf('data-promo="');
+    const card = rest.slice(0, nextCard >= 0 ? nextCard : Math.max(rest.indexOf("</section>"), 0));
+    const href = attr(/<a\b[^>]*wa\.me[^>]*>/.exec(card)?.[0] ?? "", "href");
+    const text = href ? new URL(href).searchParams.get("text") : null;
+    if (text !== `${p.message.trim()} [web-PR]`) fail(`/: offer ${p.code} button message is ${JSON.stringify(text)}, expected its message plus [web-PR]`);
+    if (!card.includes(p.ends_label)) fail(`/: offer ${p.code} does not show its end date "${p.ends_label}"`);
+  }
+}
+
 // ---- result -----------------------------------------------------------------
 if (errors.length) {
   console.error(`check-site: ${errors.length} problem(s)\n- ` + errors.join("\n- "));

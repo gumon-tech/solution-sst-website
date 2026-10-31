@@ -22,6 +22,18 @@ Facts strip (three pills):
 - {{hours_sentence}}
 - Therapists trained at Wat Pho, Bangkok
 
+## offers
+
+Offers from data/promotions.json, written by the shop's WhatsApp system after the shop manager confirms them. The section is not rendered when no offer is live today. Each card shows the offer's own title, detail, points and end date from the data file; only these words come from here.
+
+Eyebrow: Current offers
+
+## Offers at Sri Siam
+
+Small line: Valid until
+
+- Button (primary, tag PR): Book this offer
+
 ## how-booking-works
 
 Eyebrow: How booking works

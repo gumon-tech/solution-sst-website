@@ -8,7 +8,7 @@
     "start": "next start",
     "lint": "eslint . --max-warnings=0",
     "og": "node scripts/make-og.mjs",
-    "check": "node scripts/validate-services.mjs && next build && node scripts/check-site.mjs"
+    "check": "node scripts/validate-services.mjs && node scripts/validate-promotions.mjs && next build && node scripts/check-site.mjs"
   },
   "dependencies": {
     "clsx": "^2.1.1",

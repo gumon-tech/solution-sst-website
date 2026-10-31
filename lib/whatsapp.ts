@@ -19,6 +19,8 @@ export const TAG = {
   closing: "T",
   footer: "F",
   notFound: "E",
+  /** The Book button on an offer card (data/promotions.json). */
+  offer: "PR",
 } as const;
 
 /** Per-treatment tag for the option buttons on a treatment page. */

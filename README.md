@@ -14,6 +14,7 @@ Next.js 15 (App Router) + React 19 + TypeScript + Tailwind 3, static export to `
 
 ```
 data/services.json          every service, length and price, copied from Treatwell (venue 528970); the only source
+data/promotions.json        live offers, written only by the shop's WhatsApp system (see Promotions below); starts empty
 content/*.md                every word of customer-facing copy, read at build time
 content/_booking-terms.md   the only place deposit, paying and changes are worded
 lib/site.ts                 name, address, phone, hours, deposit, Maps link, and the indexable switch
@@ -23,11 +24,21 @@ docs/design/DIRECTION.md    research, design tokens, layouts, motion, WhatsApp r
 public/img/                 the shop's own photos from its Wix site, WebP 800 and 1600 wide
 ```
 
+## Promotions
+
+The shop manager confirms an offer in WhatsApp chat; the shop system (shop-agent, shop id `sst`) then opens a pull request from a branch named `shop-agent/promotions-*` that changes only `data/promotions.json`. `.github/workflows/auto-merge-shop-agent.yml` merges it by itself when the branch prefix, the one-file rule and `npm run check` all hold, then starts `pages.yml` (a merge by `GITHUB_TOKEN` does not trigger it). Anything else stays open for a person.
+
+- The home page shows an offers section, anchor `#promotions`, only for offers with `status: "live"` and today (London) between `starts` and `ends`. No live offer means no section and no anchor. Ended offers are not written into the HTML; the browser also hides an offer whose last day has passed since the build, and `pages.yml` rebuilds every night just after midnight London.
+- Schema (one object per offer, no other keys): `code` (`P-AB12`), `title`, `eyebrow`, `detail`, `points[]`, `offer`, `message`, `image` (`null` for system offers), `illustrative`, `starts`, `ends` (YYYY-MM-DD), `ends_label` (e.g. `Monday 30 November 2026`), `status` (`live`, `ended`, `draft`). File level: `updated_at`, optional `note`. The Book button is `message` plus the tag `[web-PR]`, added by `lib/whatsapp.ts`.
+- `scripts/validate-promotions.mjs` rejects a malformed file, emoji, links, emails, phone numbers, the old private number, health-result wording and invented service prices. `node scripts/test-promotions.mjs` tests the validator. `check-site.mjs` checks the home page shows exactly the offers live today.
+- The shop system may edit offers only by status and end date, plus add new ones at the end. It never edits the wording of an offer already on the site.
+
 ## Build and check
 
 ```bash
 npm ci
 node scripts/validate-services.mjs
+node scripts/validate-promotions.mjs
 npx next build
 node scripts/check-site.mjs
 node scripts/build-redirect-stubs.mjs

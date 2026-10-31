@@ -16,6 +16,12 @@ adversarial review                      executor Opus 5.5    (fresh context: wor
 lead: data, images, redirects, fixes    Opus 5.5
 ```
 
+## Offers from the shop system (added 31 Oct 2026, room KSST)
+
+`data/promotions.json` starts empty and nothing shows. The shop's WhatsApp system writes it by pull request after the manager confirms an offer in chat; `auto-merge-shop-agent.yml` merges it when the branch is `shop-agent/promotions-*`, only `data/promotions.json` changed, and `npm run check` passes, then dispatches `pages.yml`. Details and schema: README, "Promotions". Tag `PR` is registered in DIRECTION.md section 8.
+
+Needs: the shop pod's `WEBSITE_GITHUB_TOKEN` (set by the lead). `main` must not require a pull request review, or the automatic merge waits for a person. The first pull request cannot be merged by the workflow until the workflow file is on `main`.
+
 ## Rules the site follows (keep them)
 
 - Services, lengths and prices come only from `data/services.json`, copied from Treatwell venue 528970 (read via Treatwell Connect by room KSST, 30 Oct 2026 19:07 UTC). When the shop changes a price in Treatwell, change this file the same day. Never type a price into copy.

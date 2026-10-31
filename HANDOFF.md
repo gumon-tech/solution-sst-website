@@ -52,3 +52,13 @@ Needs: the shop pod's `WEBSITE_GITHUB_TOKEN` (set by the lead). `main` must not 
 4. Walking minutes to Cutty Sark DLR, Greenwich and Deptford stations are not stated (only "a short walk"); add if measured.
 5. Facebook page not linked: ownership not verified.
 6. Some photos look like stock or generated images uploaded by the shop; alt text describes them neutrally and does not claim they show the shop's own room.
+
+## Shop bot integration (room KSST, 31 Oct 2026)
+
+Room KSST now holds this repo (KSSW closed). The Sri Siam shop bot (k8s ns shop-sst, release 20261031-0133) publishes promotions here:
+
+- The bot opens one PR at a time on a `shop-agent/promotions-*` branch that changes only `data/promotions.json`. `auto-merge-shop-agent.yml` runs `site-check` (no token, no stored credentials), then merges and dispatches Pages. The bot tells the manager when the card is live or if a stage failed.
+- Main has a ruleset (id 26252392): every change needs a pull request and a passing `site-check`, 0 approvals, nobody can bypass. Human edits go through a PR too.
+- Tested 31 Oct: PR #1 added a TEST card, PR #2 ended it; both merged and deployed.
+- The bot's token is a fine-grained PAT limited to this repo (contents and pull requests write), expiring 30 Oct 2027. Renew it before then.
+- Team publishing is off (`web.team_sync: false` in the bot) until the shop consents to staff names on the site.

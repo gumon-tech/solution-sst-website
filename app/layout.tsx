@@ -22,11 +22,21 @@ const body = Figtree({
   variable: "--font-body",
 });
 
+/** Bump when the icons change: browsers keep a cached favicon (or a cached miss) per URL. */
+const ICON_VERSION = 2;
+
 export const metadata: Metadata = {
   metadataBase: new URL(SITE.url),
   title: `${SITE.name}`,
   robots: ROBOTS,
-  icons: { icon: "/favicon.ico", apple: "/apple-touch-icon.png" },
+  icons: {
+    icon: [
+      { url: `/favicon.ico?v=${ICON_VERSION}`, sizes: "48x48" },
+      { url: `/icon-32.png?v=${ICON_VERSION}`, type: "image/png", sizes: "32x32" },
+      { url: `/icon-192.png?v=${ICON_VERSION}`, type: "image/png", sizes: "192x192" },
+    ],
+    apple: `/apple-touch-icon.png?v=${ICON_VERSION}`,
+  },
 };
 
 export const viewport: Viewport = {

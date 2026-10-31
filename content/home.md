@@ -1,5 +1,5 @@
 ---
-title: "Thai Massage in Greenwich | Sri Siam Thai Therapy"
+title: "Sri Siam Thai Therapy & Wellness | Thai Massage Greenwich"
 description: "Traditional Thai massage, hot stone, aromatherapy and more in Greenwich SE8. Therapists trained at Wat Pho, Bangkok. Book in a WhatsApp message."
 h1: "Traditional Thai massage in Greenwich, booked in a message"
 ---

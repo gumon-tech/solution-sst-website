@@ -44,7 +44,7 @@ Column 3 (contact):
 - Email: {{email}}
 - Link: Read our reviews on Google -> {{maps_url}}
 
-Column 4 (pages): Treatments · About · Gift Vouchers · Visit · FAQ · Privacy
+Column 4 (pages): Treatments · About · Gift Vouchers · Visit · FAQ · Careers · Privacy
 
 Legal line: © {{year}} Sri Siam Thai Therapy & Wellness. Website by Gumon Technology.
 

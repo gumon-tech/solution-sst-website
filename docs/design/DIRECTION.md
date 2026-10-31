@@ -340,6 +340,7 @@ The register is independent of Taitam-D's (different shop, different counts). Th
 | **T** | Closing call-to-action band (every page that has one) | `Hi Sri Siam, I'd like to book a massage please. [web-T]` |
 | **F** | Footer WhatsApp number link (every page) | `Hi Sri Siam, I'd like to book a massage please. [web-F]` |
 | **E** | 404 page button | `Hi Sri Siam, I'd like to book a massage please. [web-E]` |
+| **CR** | `/careers/` buttons (hero and "How to apply") | `Hi Sri Siam, I'd like to apply for a therapist role please. [web-CR]` |
 | **PR** | Book button on an offer card in the home-page offers section (`#promotions`, only when an offer is live; text is the offer's own `message` from `data/promotions.json`) | `<offer message> [web-PR]` e.g. `Hi Sri Siam, I'd like to book with the Autumn offer. [web-PR]` |
 
 Article rule for `{{name}}`: "an" before Aromatherapy Massage, "a" before everything else; implement as a tiny helper (`/^[aeiou]/i`) so a renamed row stays grammatical.

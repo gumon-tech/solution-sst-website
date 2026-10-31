@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-31T01:37:26Z",
+  "updated_at": "2026-10-31T01:41:09Z",
   "promotions": [
     {
       "code": "P-L2GG",
@@ -14,7 +14,7 @@
       "starts": "2026-10-31",
       "ends": "2026-11-01",
       "ends_label": "Sunday 1 November 2026",
-      "status": "live"
+      "status": "ended"
     }
   ]
 }

@@ -8,9 +8,14 @@ name: Merge shop system promotions
 # Anything else stays open for a person, and a comment says which stage failed (the shop system reads it and tells the manager).
 # Uses the built-in GITHUB_TOKEN only.
 #
-# Two jobs, so a write token never meets npm:
-#   check  permissions {}: checkout with no stored credentials, rules 2 and 3 (npm ci, next build). No token in its env or in .git/config.
-#   merge  needs check: no checkout, no npm. contents, pull-requests and actions write, used only by gh in single steps.
+# Jobs, so a write token never meets npm:
+#   check  (check run name: "site-check") runs for EVERY pull request from a branch in this repository, so a ruleset on main can
+#          require it and a person's pull request (the web room) passes it too. permissions {}: checkout with no stored
+#          credentials, npm ci, npm run check. No token in its env or in .git/config. For shop-agent/promotions-* it also
+#          enforces rule 2.
+#   merge  needs check, only for shop-agent/promotions-* pull requests (and not drafts): no checkout, no npm.
+#          contents, pull-requests and actions write, used only by gh in single steps.
+#   report comments on a failed check of a shop-agent/promotions-* pull request.
 #
 # pull_request_target is deliberate: the workflow definition always comes from main, so a pull request cannot edit this
 # file to skip a check. The pull request's own code is never trusted: rule 2 means it can only change a JSON data file,
@@ -36,10 +41,8 @@ permissions: {}
 
 jobs:
   check:
-    if: >-
-      github.event.pull_request.head.repo.full_name == github.repository &&
-      startsWith(github.event.pull_request.head.ref, 'shop-agent/promotions-') &&
-      github.event.pull_request.draft == false
+    name: site-check
+    if: github.event.pull_request.head.repo.full_name == github.repository
     runs-on: ubuntu-latest
     timeout-minutes: 15
     permissions: {}
@@ -53,6 +56,7 @@ jobs:
           persist-credentials: false
 
       - name: Rule 2, only data/promotions.json changes, and this is the head that was reviewed
+        if: startsWith(github.event.pull_request.head.ref, 'shop-agent/promotions-')
         run: |
           changed=$(git diff --name-status HEAD^1 HEAD)
           printf 'Changed against main:\n%s\n' "$changed"
@@ -75,6 +79,9 @@ jobs:
 
   merge:
     needs: check
+    if: >-
+      startsWith(github.event.pull_request.head.ref, 'shop-agent/promotions-') &&
+      github.event.pull_request.draft == false
     runs-on: ubuntu-latest
     timeout-minutes: 10
     permissions:
@@ -117,7 +124,9 @@ jobs:
 
   report:
     needs: check
-    if: always() && needs.check.result == 'failure'
+    if: >-
+      always() && needs.check.result == 'failure' &&
+      startsWith(github.event.pull_request.head.ref, 'shop-agent/promotions-')
     runs-on: ubuntu-latest
     timeout-minutes: 5
     permissions:

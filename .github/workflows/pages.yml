@@ -9,10 +9,9 @@ on:
   schedule:
     - cron: "10 23 * * *"
     - cron: "10 0 * * *"
+# Least privilege: the build job (npm) gets read only; only the deploy job may publish.
 permissions:
   contents: read
-  pages: write
-  id-token: write
 concurrency:
   group: pages
   cancel-in-progress: false
@@ -21,6 +20,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          persist-credentials: false   # no token left in .git/config while npm runs
       - uses: actions/setup-node@v4
         with:
           node-version: "22"
@@ -46,6 +47,9 @@ jobs:
   deploy:
     needs: build
     runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}

@@ -29,8 +29,11 @@ const PROMO_KEYS = ["code", "title", "eyebrow", "detail", "points", "offer", "me
 const LIMITS = { title: 80, eyebrow: 60, detail: 400, offer: 160, message: 200, ends_label: 40 };
 const STATUSES = ["live", "ended", "draft"];
 const EMOJI = /\p{Extended_Pictographic}/u;
-// Same list as HEALTH_CLAIMS in the shop system (website.py). The site makes no health-result claims (HANDOFF rules).
-const HEALTH = /\b(detox\w*|toxins?|circulation|pain|aches?|stress\w*|swell\w*|immun\w*|inflammation|cures?|heal(?:s|ing|ed)?|anxiety|depression|insomnia|arthritis|sciatica|migraines?)\b/i;
+// Same list as HEALTH_CLAIMS in the shop system (website.py): the health and medical claims the UK ASA / CAP code
+// covers for massage (pain, sleep, immunity, tension, recovery, conditions, treatment of illness). The site makes none (HANDOFF rules).
+const HEALTH = /\b(detox\w*|toxins?|circulation|pain\w*|ache\w*|headache\w*|stress\w*|swell\w*|immun\w*|inflammation|cure\w*|heal\w*|relie\w*|tension|sleep\w*|therap\w*|recover\w*|muscle\w*|well-?being|anxiety|depression|insomnia|arthritis|sciatica|migraines?|fatigue|injur\w*|rehab\w*|alleviat\w*|remed\w*|rheumat\w*|fibromyalgia|eczema|asthma|diabet\w*|cancer|covid|stiff\w*|sore\w*|cramp\w*|spasm\w*|chronic|symptom\w*|diagnos\w*|illness|disease|medical|clinical|physio\w*|chiropract\w*|osteo\w*|blood pressure|joint\w*)\b/i;
+// The public text of this shop is English; the shop system refuses Thai script too.
+const THAI = /[\u0E00-\u0E7F]/;
 
 const isDate = (s) => typeof s === "string" && /^\d{4}-\d{2}-\d{2}$/.test(s) && new Date(`${s}T00:00:00Z`).toISOString().startsWith(s);
 const label = (s) => {
@@ -82,6 +85,7 @@ for (const [i, p] of (Array.isArray(data?.promotions) ? data.promotions : []).en
     if (/(?<![\w])\+?\d[\d\s().-]{7,}\d/.test(t) && t.replace(/\D/g, "").length >= 9) fail(`${at}: phone-like number in "${t.slice(0, 30)}"`);
     if (t.includes("07497") || t.includes("7497 493")) fail(`${at}: the old private phone number`);
     if (/\[web-/i.test(t)) fail(`${at}: the [web-X] tag is added by the site, not written in the text`);
+    if (THAI.test(t)) fail(`${at}: Thai script in "${t.slice(0, 30)}" (the public text is English)`);
     if (HEALTH.test(t)) fail(`${at}: health-result wording in "${t.slice(0, 40)}" (the site makes no health claims)`);
     // Service prices come only from data/services.json. A discount amount ("£5 off") is fine.
     for (const m of t.matchAll(/£(\d+(?:\.\d+)?)/g)) {

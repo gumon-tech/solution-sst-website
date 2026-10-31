@@ -1,18 +1,28 @@
 name: Merge shop system promotions
-# The shop's WhatsApp system (shop-agent, shop id sst) opens a pull request when the shop manager has confirmed
-# a promotion in chat, or when one ends. This workflow merges that pull request by itself, and only if ALL hold:
+# The shop's WhatsApp system (shop-agent, shop id sst) keeps at most ONE open pull request from a branch named
+# shop-agent/promotions-*; it rebuilds that branch from main plus every offer the shop manager has confirmed, or closes
+# it if the offers were withdrawn. This workflow merges that pull request by itself, and only if ALL hold:
 #   1. the pull request comes from a branch inside this repository named shop-agent/promotions-*
-#   2. it changes exactly one file, data/promotions.json (modified, not added, renamed or deleted)
+#   2. against main it changes exactly one file, data/promotions.json (M, not added, renamed or deleted)
 #   3. `npm run check` passes on the merged result (services + promotions validation, build, site checks)
-# Anything else stays open for a person. Uses the built-in GITHUB_TOKEN only.
+# Anything else stays open for a person, and a comment says which stage failed (the shop system reads it and tells the manager).
+# Uses the built-in GITHUB_TOKEN only.
 #
-# pull_request_target is deliberate: the workflow definition always comes from main, so a pull request cannot
-# edit this file to skip a check. The pull request's own code is never trusted: rule 2 means it can only change
-# a JSON data file, and the scripts that read that file are the ones on main.
+# Two jobs, so a write token never meets npm:
+#   check  permissions {}: checkout with no stored credentials, rules 2 and 3 (npm ci, next build). No token in its env or in .git/config.
+#   merge  needs check: no checkout, no npm. contents, pull-requests and actions write, used only by gh in single steps.
 #
-# A merge made with GITHUB_TOKEN does not start other workflows, so the last step starts pages.yml by
-# workflow_dispatch (the one event GITHUB_TOKEN may trigger). If main has a branch protection rule that needs
-# a review, the merge step fails and the pull request waits for a person; the offer is then not on the site.
+# pull_request_target is deliberate: the workflow definition always comes from main, so a pull request cannot edit this
+# file to skip a check. The pull request's own code is never trusted: rule 2 means it can only change a JSON data file,
+# and the scripts that read that file are the ones on main.
+#
+# A merge made with GITHUB_TOKEN does not start other workflows, so the merge job starts pages.yml by workflow_dispatch
+# (the one event GITHUB_TOKEN may trigger). If main has a ruleset that needs a review, the merge step fails and the pull
+# request waits for a person; the offer is then not on the site.
+#
+# Failure comments carry a marker line the shop system parses:
+#   shop-agent-merge-failed stage=<check|merge|publish> sha=<pull request head> run=<url>
+# A run that was replaced by a newer commit on the pull request (the system edits its branch) stays silent.
 on:
   pull_request_target:
     types: [opened, reopened, synchronize]
@@ -25,41 +35,32 @@ concurrency:
 permissions: {}
 
 jobs:
-  merge:
+  check:
     if: >-
       github.event.pull_request.head.repo.full_name == github.repository &&
       startsWith(github.event.pull_request.head.ref, 'shop-agent/promotions-') &&
       github.event.pull_request.draft == false
     runs-on: ubuntu-latest
     timeout-minutes: 15
-    permissions:
-      contents: write        # merge the pull request, delete its branch
-      pull-requests: write   # merge, comment
-      actions: write         # start pages.yml
+    permissions: {}
     env:
-      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      REPO: ${{ github.repository }}
-      PR: ${{ github.event.pull_request.number }}
       SHA: ${{ github.event.pull_request.head.sha }}
     steps:
-      - name: Rule 2, only data/promotions.json changes
-        run: |
-          files=$(gh api --paginate "repos/$REPO/pulls/$PR/files" --jq '.[] | [.status, .filename] | @tsv')
-          printf 'Changed files:\n%s\n' "$files"
-          want=$(printf 'modified\tdata/promotions.json')
-          if [ "$files" != "$want" ]; then
-            echo "::error::this pull request must change exactly data/promotions.json and nothing else"
-            exit 1
-          fi
-
       - uses: actions/checkout@v4
         with:
           ref: refs/pull/${{ github.event.pull_request.number }}/merge
-          fetch-depth: 2   # the merge commit and both parents, so HEAD^2 can be compared
+          fetch-depth: 2   # the merge commit and both parents
           persist-credentials: false
 
-      - name: The checked tree is the head that will be merged
+      - name: Rule 2, only data/promotions.json changes, and this is the head that was reviewed
         run: |
+          changed=$(git diff --name-status HEAD^1 HEAD)
+          printf 'Changed against main:\n%s\n' "$changed"
+          want=$(printf 'M\tdata/promotions.json')
+          if [ "$changed" != "$want" ]; then
+            echo "::error::this pull request must change exactly data/promotions.json and nothing else"
+            exit 1
+          fi
           test "$(git rev-parse HEAD^2)" = "$SHA"
 
       - uses: actions/setup-node@v4
@@ -72,13 +73,65 @@ jobs:
       - name: Rule 3, npm run check
         run: npm run check
 
+  merge:
+    needs: check
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: write        # merge the pull request, delete its branch
+      pull-requests: write   # merge, comment
+      actions: write         # start pages.yml
+    env:
+      REPO: ${{ github.repository }}
+      PR: ${{ github.event.pull_request.number }}
+      SHA: ${{ github.event.pull_request.head.sha }}
+      RUN: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+    steps:
       - name: Merge (squash, only if the head is still the one that was checked)
+        id: merge
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: gh pr merge "$PR" --repo "$REPO" --squash --delete-branch --match-head-commit "$SHA"
 
       - name: Publish the site (a GITHUB_TOKEN merge does not trigger pages.yml)
+        id: publish
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: gh workflow run pages.yml --repo "$REPO" --ref main
 
-      - name: Say so on the pull request if anything above failed
-        if: failure()
+      - name: Comment if the merge failed
+        if: failure() && steps.merge.outcome == 'failure'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          gh pr comment "$PR" --repo "$REPO" --body "Automatic merge did not happen, so this offer change is not on the site. See $GITHUB_SERVER_URL/$REPO/actions/runs/$GITHUB_RUN_ID. A person needs to look."
+          head=$(gh pr view "$PR" --repo "$REPO" --json headRefOid --jq .headRefOid)
+          if [ "$head" != "$SHA" ]; then echo "replaced by a newer commit, staying silent"; exit 0; fi
+          gh pr comment "$PR" --repo "$REPO" --body "Automatic merge did not happen: GitHub refused the merge. shop-agent-merge-failed stage=merge sha=$SHA run=$RUN"
+
+      - name: Comment if starting the site publish failed (the merge itself worked)
+        if: failure() && steps.publish.outcome == 'failure'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh pr comment "$PR" --repo "$REPO" --body "Merged, but starting the Pages workflow failed, so the site shows this at the next nightly rebuild or when someone runs the workflow. shop-agent-merge-failed stage=publish sha=$SHA run=$RUN"
+
+  report:
+    needs: check
+    if: always() && needs.check.result == 'failure'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      pull-requests: write   # comment only
+    env:
+      REPO: ${{ github.repository }}
+      PR: ${{ github.event.pull_request.number }}
+      SHA: ${{ github.event.pull_request.head.sha }}
+      RUN: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+    steps:
+      - name: Comment that the checks failed
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          head=$(gh pr view "$PR" --repo "$REPO" --json headRefOid --jq .headRefOid)
+          if [ "$head" != "$SHA" ]; then echo "replaced by a newer commit, staying silent"; exit 0; fi
+          gh pr comment "$PR" --repo "$REPO" --body "Automatic merge did not happen: the checks failed (changed files or npm run check). shop-agent-merge-failed stage=check sha=$SHA run=$RUN"

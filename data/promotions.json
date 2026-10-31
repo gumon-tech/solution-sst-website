@@ -1,4 +1,20 @@
 {
-  "updated_at": "2026-10-31T00:00:00Z",
-  "promotions": []
+  "updated_at": "2026-10-31T01:37:26Z",
+  "promotions": [
+    {
+      "code": "P-L2GG",
+      "title": "TEST offer, please ignore",
+      "eyebrow": "Test",
+      "detail": "TEST card from the shop system, please ignore: 10% off any massage",
+      "points": [],
+      "offer": "Mention this offer on WhatsApp or when you arrive",
+      "message": "Hi Sri Siam, I'd like to book with your offer: TEST card from the shop system, please ignore: 10% off any massage",
+      "image": null,
+      "illustrative": false,
+      "starts": "2026-10-31",
+      "ends": "2026-11-01",
+      "ends_label": "Sunday 1 November 2026",
+      "status": "live"
+    }
+  ]
 }

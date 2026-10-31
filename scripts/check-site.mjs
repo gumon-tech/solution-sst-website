@@ -29,7 +29,7 @@ if (!existsSync(OUT)) {
 }
 
 // ---- routes -----------------------------------------------------------------
-const routes = ["/", "/treatments/", "/gift-vouchers/", "/about/", "/visit/", "/faq/", "/privacy/", ...slugs.map((s) => `/treatments/${s}/`)];
+const routes = ["/", "/treatments/", "/gift-vouchers/", "/about/", "/visit/", "/faq/", "/careers/", "/privacy/", ...slugs.map((s) => `/treatments/${s}/`)];
 const fileFor = (route) => path.join(OUT, route, "index.html");
 for (const r of routes) if (!existsSync(fileFor(r))) fail(`missing page: ${r}`);
 for (const f of ["404.html", "robots.txt", "sitemap.xml"]) if (!existsSync(path.join(OUT, f))) fail(`missing out/${f}`);

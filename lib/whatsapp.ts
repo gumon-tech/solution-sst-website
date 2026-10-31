@@ -19,6 +19,7 @@ export const TAG = {
   closing: "T",
   footer: "F",
   notFound: "E",
+  careers: "CR",
   /** The Book button on an offer card (data/promotions.json). */
   offer: "PR",
 } as const;
@@ -51,6 +52,7 @@ export const MSG = {
   book: "Hi Sri Siam, I'd like to book a massage please.",
   gift: "Hi Sri Siam, I'd like to buy a gift voucher please.",
   question: "Hi Sri Siam, I have a question please.",
+  careers: "Hi Sri Siam, I'd like to apply for a therapist role please.",
   questionAbout: (name: string) => `Hi Sri Siam, I have a question about ${name} please.`,
   service: (name: string) => `Hi Sri Siam, I'd like to book ${withArticle(name)} please.`,
   serviceOption: (name: string, option: string) =>
@@ -62,6 +64,7 @@ export const telHref = `tel:${SITE.phoneE164}`;
 /** The message that goes with a tag when a button comes from the copy files. */
 export function messageForTag(tag: string, name?: string): string {
   if (tag === TAG.gift) return MSG.gift;
+  if (tag === TAG.careers) return MSG.careers;
   if (tag === TAG.question) return name ? MSG.questionAbout(name) : MSG.question;
   return MSG.book;
 }

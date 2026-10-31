@@ -13,6 +13,7 @@ const PAGE_HREF: Record<string, string> = {
   "Gift Vouchers": "/gift-vouchers/",
   Visit: "/visit/",
   FAQ: "/faq/",
+  Careers: "/careers/",
   Privacy: "/privacy/",
 };
 

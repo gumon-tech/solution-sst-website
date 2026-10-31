@@ -34,7 +34,7 @@ on:
     branches: [main]
 
 concurrency:
-  group: shop-agent-merge
+  group: site-check-${{ github.event.pull_request.number }}
   cancel-in-progress: false
 
 permissions: {}
@@ -70,7 +70,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: "22"
-          cache: npm
+          cache: ""
 
       - run: npm ci
 

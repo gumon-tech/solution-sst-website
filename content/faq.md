@@ -41,7 +41,7 @@ We book by appointment through WhatsApp. If you are nearby and would like a trea
 ## Your visit
 
 ### Where are you, and how do I get there?
-We are at {{address}}, where Deptford meets Greenwich. Cutty Sark DLR, Greenwich station (DLR, Southeastern and Thameslink) and Deptford station (Southeastern and Thameslink) are all a short walk away. Directions from wherever you are: open our listing on Google Maps.
+We are at {{address}}, where Deptford meets Greenwich, Cutty Sark. Cutty Sark DLR, Greenwich station (DLR, Southeastern and Thameslink) and Deptford station (Southeastern and Thameslink) are all a short walk away. Directions from wherever you are: open our listing on Google Maps.
 
 - Link: Directions on Google Maps -> {{maps_url}}
 

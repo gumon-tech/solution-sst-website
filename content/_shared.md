@@ -29,7 +29,7 @@ Book an authentic Thai treatment in one WhatsApp chat. Tell us which treatment y
 
 ## footer
 
-Column 1 (brand): logo · Sri Siam Thai Therapy & Wellness · Traditional Thai massage in Greenwich, London SE8.
+Column 1 (brand): logo · Sri Siam Thai Therapy & Wellness · Traditional Thai massage in Greenwich, Cutty Sark, London SE8.
 
 Column 2 (visit):
 - Heading: Visit

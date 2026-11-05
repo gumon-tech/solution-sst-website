@@ -36,7 +36,7 @@ const overlay = Buffer.from(`
   <text x="80" y="372" font-family="Cormorant Garamond, Georgia, 'Times New Roman', serif" font-size="104" font-weight="600" fill="#FDFCF0">Sri Siam</text>
   <text x="84" y="428" font-family="Helvetica Neue, Arial, sans-serif" font-size="25" font-weight="500" letter-spacing="5" fill="#E8D4A2">THAI THERAPY &amp; WELLNESS</text>
   <line x1="84" y1="462" x2="212" y2="462" stroke="#C5A059" stroke-width="2"/>
-  <text x="84" y="510" font-family="Helvetica Neue, Arial, sans-serif" font-size="28" fill="#FDFCF0">Traditional Thai massage in Greenwich, London SE8</text>
+  <text x="84" y="510" font-family="Helvetica Neue, Arial, sans-serif" font-size="28" fill="#FDFCF0">Traditional Thai massage in Greenwich, Cutty Sark, London SE8</text>
 </svg>`);
 
 await sharp(base)

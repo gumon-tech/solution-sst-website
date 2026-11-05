@@ -1,6 +1,6 @@
 ---
-title: "Careers at Sri Siam Thai Therapy, Greenwich"
-description: "Sri Siam in Greenwich SE8 sometimes welcomes Thai massage and spa therapists. Message us on WhatsApp to say hello and tell us about your experience."
+title: "Careers at Sri Siam Thai Therapy, Greenwich, Cutty Sark"
+description: "Sri Siam in Greenwich, Cutty Sark sometimes welcomes Thai massage and spa therapists. Message us on WhatsApp to say hello and tell us about your experience."
 h1: "Careers at Sri Siam"
 ---
 
@@ -10,7 +10,7 @@ Eyebrow: Careers
 
 # Careers at *Sri Siam*
 
-Lead: We sometimes welcome Thai massage and spa therapists to our team in Greenwich. There is no application form: send us a message on WhatsApp and we will take it from there.
+Lead: We sometimes welcome Thai massage and spa therapists to our team in Greenwich, Cutty Sark. There is no application form: send us a message on WhatsApp and we will take it from there.
 
 - Button (primary, tag CR): Message us on WhatsApp
 

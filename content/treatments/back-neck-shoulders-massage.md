@@ -1,8 +1,8 @@
 ---
 slug: back-neck-shoulders-massage
-title: "Back, Neck & Shoulders Massage Greenwich | Sri Siam"
-description: "A short massage of the back, neck and shoulders in Greenwich SE8, the upper body only. Easy to fit into a busy day. Book it on WhatsApp."
-h1: "Back, Neck & Shoulders Massage in Greenwich"
+title: "Back, Neck & Shoulders Massage in Greenwich, Cutty Sark"
+description: "A short massage of the back, neck and shoulders in Greenwich, Cutty Sark, the upper body only. Easy to fit into a busy day. Book it on WhatsApp."
+h1: "Back, Neck & Shoulders Massage in Greenwich, Cutty Sark"
 card: "A shorter massage for the back, neck and shoulders. Afterwards you may feel relaxed, refreshed, lighter and calmer."
 hero_image: hands-back-b
 secondary_image: purple-stones-candles
@@ -16,7 +16,7 @@ tag: PB
 
 Eyebrow: Treatments · {{group}}
 
-# Back, Neck & Shoulders Massage in Greenwich
+# Back, Neck & Shoulders Massage in Greenwich, Cutty Sark
 
 Lead: A back, neck and shoulders massage is a shorter treatment for the upper body, spending its time on the back, the neck and the shoulders.
 

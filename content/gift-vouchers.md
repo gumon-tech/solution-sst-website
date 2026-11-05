@@ -1,6 +1,6 @@
 ---
-title: "Massage Gift Vouchers in Greenwich | Sri Siam"
-description: "Give someone time to themselves at Sri Siam in Greenwich. Message us on WhatsApp with what you have in mind and the team arranges the voucher."
+title: "Massage Gift Vouchers in Greenwich, Cutty Sark | Sri Siam"
+description: "Give someone time to themselves at Sri Siam in Greenwich, Cutty Sark. Message us on WhatsApp with what you have in mind and the team arranges the voucher."
 h1: "Gift vouchers"
 ---
 

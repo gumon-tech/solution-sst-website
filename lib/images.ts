@@ -12,7 +12,6 @@ export type ImageKey =
   | "orchid-stones"
   | "purple-stones-still"
   | "purple-stones-candles"
-  | "room-wood-purple"
   | "room-pink-curtains";
 
 interface ImageMeta {
@@ -33,9 +32,8 @@ export const IMAGES: Record<ImageKey, ImageMeta> = {
   "oils-stones": { w: 1024, h: 1024, w800: 800, h800: 800, alt: "Amber bottles of massage oil, smooth grey stones and white orchids on a wooden table" },
   "foot-massage": { w: 1024, h: 1024, w800: 800, h800: 800, alt: "A therapist massaging a client's foot with both thumbs, orchids on the table" },
   "orchid-stones": { w: 1076, h: 1600, w800: 538, h800: 800, alt: "Pink orchids, a stack of smooth black stones and a lit candle beside a bowl of water" },
-  "purple-stones-still": { w: 1024, h: 1536, w800: 533, h800: 800, alt: "" },
+  "purple-stones-still": { w: 1024, h: 1536, w800: 533, h800: 800, alt: "Black stones on a rolled towel, a lit candle and white flowers against a purple wall" },
   "purple-stones-candles": { w: 1600, h: 900, w800: 800, h800: 450, alt: "Black stones, tealights and purple orchids on purple silk" },
-  "room-wood-purple": { w: 1200, h: 1600, w800: 600, h800: 800, alt: "A treatment room with wood-panelled walls, carved Thai ornaments, rolled towels and orchid petals, lit in soft purple" },
   "room-pink-curtains": { w: 1600, h: 700, w800: 800, h800: 350, alt: "A treatment bed between pink and lilac curtains" },
 };
 

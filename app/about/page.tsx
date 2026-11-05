@@ -30,7 +30,7 @@ export default function AboutPage() {
       <JsonLd data={breadcrumbLd([{ name: "Home", path: "/" }, { name: "About", path: "/about/" }])} />
 
       <Hero
-        imageKey="room-wood-purple"
+        imageKey="hot-stones-spine-b"
         eyebrow={hero.eyebrow}
         h1={<Rich text={hero.h1 ?? ""} />}
         lead={<Rich text={hero.lead ?? ""} />}
@@ -67,7 +67,7 @@ export default function AboutPage() {
               <Img k="room-pink-curtains" sizes="(min-width:1280px) 730px, (min-width:1024px) 60vw, 100vw" className="aspect-[1600/700] h-full w-full object-cover lg:aspect-auto" />
             </div>
             <div className="overflow-hidden rounded-r-frame shadow-card">
-              <Img k="room-wood-purple" sizes="(min-width:1280px) 360px, (min-width:1024px) 30vw, 100vw" className="aspect-[4/3] w-full object-cover lg:aspect-[3/4]" />
+              <Img k="oils-stones" sizes="(min-width:1280px) 360px, (min-width:1024px) 30vw, 100vw" className="aspect-[4/3] w-full object-cover lg:aspect-[3/4]" />
             </div>
           </div>
         </div>

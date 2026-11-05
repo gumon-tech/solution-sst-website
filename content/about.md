@@ -6,7 +6,7 @@ h1: "A calm Thai therapy space in Greenwich"
 
 ## hero
 
-[image: room-wood-purple]
+[image: hot-stones-spine-b]
 
 Eyebrow: About us
 
@@ -30,7 +30,7 @@ Alongside Thai Massage, our menu includes Aromatherapy, Hot Stone and Lymphatic 
 ## the-space
 
 [image: room-pink-curtains]
-[image: room-wood-purple]
+[image: oils-stones]
 
 Eyebrow: The space
 

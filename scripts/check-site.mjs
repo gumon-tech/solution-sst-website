@@ -54,6 +54,7 @@ for (const f of files) {
   if (!TEXT.test(f)) continue;
   const t = read(f);
   if (t.includes("07497") || t.includes("7497 493")) fail(`${path.relative(OUT, f)} contains the old phone number (7497)`);
+  if (t.includes("room-wood-purple")) fail(`${path.relative(OUT, f)} references room-wood-purple (not the shop's room, removed 2026-11-05)`);
 }
 
 // ---- robots.txt and sitemap -------------------------------------------------

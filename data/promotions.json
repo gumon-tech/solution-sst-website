@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-05T17:26:02Z",
+  "updated_at": "2026-11-05T17:27:48Z",
   "promotions": [
     {
       "code": "P-BQTK",
@@ -44,6 +44,21 @@
       "starts": "2026-11-27",
       "ends": "2026-12-31",
       "ends_label": "Thursday 31 December 2026",
+      "status": "live"
+    },
+    {
+      "code": "P-8EV5",
+      "title": "Give a Thai Massage This Christmas, Get a £10 Voucher for You",
+      "eyebrow": "Seasonal offer",
+      "detail": "Buy a £60 gift voucher or more, in the shop or by WhatsApp, and get a free £10 voucher for yourself. You can use it on any treatment from 5 January to 28 February 2027. One bonus voucher for each £60 voucher bought.",
+      "points": [],
+      "offer": "Mention this offer on WhatsApp or when you arrive",
+      "message": "Hi Sri Siam, I would like a gift voucher with the Christmas £10 voucher offer.",
+      "image": null,
+      "illustrative": false,
+      "starts": "2026-11-12",
+      "ends": "2026-12-20",
+      "ends_label": "Sunday 20 December 2026",
       "status": "live"
     }
   ]

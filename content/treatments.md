@@ -1,6 +1,6 @@
 ---
-title: "Massage Menu & Prices in Greenwich | Sri Siam"
-description: "Every treatment we offer in Greenwich with durations and prices, exactly as on our booking calendar. Tap any option to book it on WhatsApp."
+title: "Massage Menu & Prices in Greenwich, Cutty Sark | Sri Siam"
+description: "Every treatment we offer in Greenwich, Cutty Sark with durations and prices, exactly as on our booking calendar. Tap any option to book it on WhatsApp."
 h1: "Our Thai treatments"
 ---
 
@@ -59,4 +59,4 @@ Used only if a slug appears in `data/services.json` without a matching file in `
 
 Card line: A massage from our menu. Choose the length that suits you below.
 
-Intro: {{name}} is one of the treatments on our menu in Greenwich. Choose the length that suits you from the options below and we will confirm your time on WhatsApp. If you would like to know more about it before you book, ask us in the same chat and the team will explain what it involves.
+Intro: {{name}} is one of the treatments on our menu in Greenwich, Cutty Sark. Choose the length that suits you from the options below and we will confirm your time on WhatsApp. If you would like to know more about it before you book, ask us in the same chat and the team will explain what it involves.

@@ -1,8 +1,8 @@
 ---
 slug: hot-stone-massage
-title: "Hot Stone Massage in Greenwich | Sri Siam"
-description: "Hot stone massage in Greenwich SE8: massage with gently warmed basalt stones that let your therapist work deeper. Choose your length and book on WhatsApp."
-h1: "Hot Stone Massage in Greenwich"
+title: "Hot Stone Massage in Greenwich, Cutty Sark | Sri Siam"
+description: "Hot stone massage in Greenwich, Cutty Sark: with gently warmed basalt stones that let your therapist work deeper. Choose your length and book on WhatsApp."
+h1: "Hot Stone Massage in Greenwich, Cutty Sark"
 card: "Warm stones combined with massage to help you unwind, with gently warmed basalt stones."
 hero_image: therapist-hot-stone
 secondary_image: hot-stones-spine-a
@@ -16,7 +16,7 @@ tag: PH
 
 Eyebrow: Treatments · {{group}}
 
-# Hot Stone Massage in Greenwich
+# Hot Stone Massage in Greenwich, Cutty Sark
 
 Lead: Hot stone massage is an indulgent massage that uses gently warmed basalt stones to allow your therapist to work deeper into the areas of concern.
 
@@ -65,7 +65,7 @@ The stones are gently warmed. If anything feels too warm at any point, tell your
 Smooth basalt stones, gently warmed.
 
 ### How is hot stone massage different from other massages?
-It combines massage with gently warmed basalt stones, which allow your therapist to work deeper into the areas of concern. Choose the length that suits you from the options above.
+It combines with gently warmed basalt stones, which allow your therapist to work deeper into the areas of concern. Choose the length that suits you from the options above.
 
 ## also-like
 

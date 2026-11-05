@@ -16,7 +16,7 @@ export const SITE = {
   wixPaylinkBase: "https://srisiamthaitherapy.wixsite.com/sri-siam-thai-therap/_paylink",
   name: "Sri Siam Thai Therapy & Wellness",
   shortName: "Sri Siam",
-  tagline: "Traditional Thai massage in Greenwich, London SE8.",
+  tagline: "Traditional Thai massage in Greenwich, Cutty Sark, London SE8.",
 
   streetAddress: "Unit 89 Corbridge Court, Glaisher Street",
   locality: "London",

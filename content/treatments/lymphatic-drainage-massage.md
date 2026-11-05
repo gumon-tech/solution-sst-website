@@ -1,8 +1,8 @@
 ---
 slug: lymphatic-drainage-massage
-title: "Lymphatic Drainage Massage in Greenwich | Sri Siam"
-description: "Lymphatic drainage massage in Greenwich: a gentle, rhythmic massage with light, flowing, precise strokes. Choose your length and book on WhatsApp."
-h1: "Lymphatic Drainage Massage in Greenwich"
+title: "Lymphatic Drainage Massage in Greenwich, Cutty Sark"
+description: "Lymphatic drainage massage in Greenwich, Cutty Sark: a gentle, rhythmic massage with light, flowing, precise strokes. Choose your length and book on WhatsApp."
+h1: "Lymphatic Drainage Massage in Greenwich, Cutty Sark"
 card: "A gentle, rhythmic massage with light, flowing strokes that may leave you feeling calm and refreshed."
 hero_image: orchid-stones
 secondary_image: hands-back-b
@@ -16,7 +16,7 @@ tag: PL
 
 Eyebrow: Treatments · {{group}}
 
-# Lymphatic Drainage Massage in Greenwich
+# Lymphatic Drainage Massage in Greenwich, Cutty Sark
 
 Lead: Lymphatic drainage massage is a gentle, rhythmic massage with light, flowing strokes, given with precise, unhurried hands.
 
@@ -65,7 +65,7 @@ Gentle and rhythmic, with light, flowing strokes. It may feel calm and unhurried
 If you are pregnant, or have a health condition, a recent operation or an injury, please tell us before you book so the team can confirm the right treatment for you, and ask your doctor if you are unsure. We do not make health claims for any treatment; we can tell you exactly what the massage involves.
 
 ### How is lymphatic drainage different from an aromatherapy massage?
-Both are gentle. Aromatherapy massage combines soothing Swedish massage techniques with essential oils, while lymphatic drainage massage uses light, flowing, precise strokes in a gentle rhythm.
+Both are gentle. Aromatherapy massage combines Swedish massage techniques with essential oils, while lymphatic drainage massage uses light, flowing, precise strokes in a gentle rhythm.
 
 ## also-like
 

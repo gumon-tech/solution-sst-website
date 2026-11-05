@@ -1,8 +1,8 @@
 ---
 slug: aromatherapy-massage
-title: "Aromatherapy Massage in Greenwich | Sri Siam"
-description: "A gentle full-body massage in Greenwich SE8 that combines soothing Swedish massage techniques with essential oils. Choose your length and book on WhatsApp."
-h1: "Aromatherapy Massage in Greenwich"
+title: "Aromatherapy Massage in Greenwich, Cutty Sark | Sri Siam"
+description: "A gentle full-body massage in Greenwich, Cutty Sark that combines Swedish massage techniques with essential oils. Choose your length and book on WhatsApp."
+h1: "Aromatherapy Massage in Greenwich, Cutty Sark"
 card: "A gentle full-body massage using curated essential oils and Swedish techniques to soothe the senses."
 hero_image: oils-stones
 secondary_image: purple-stones-still
@@ -16,7 +16,7 @@ tag: PA
 
 Eyebrow: Treatments · {{group}}
 
-# Aromatherapy Massage in Greenwich
+# Aromatherapy Massage in Greenwich, Cutty Sark
 
 Lead: Aromatherapy massage is a gentle full-body massage using curated essential oils and soothing Swedish massage techniques to soothe the senses.
 
@@ -64,7 +64,7 @@ Caption: Soft candlelight and warm towels.
 Essential oils, combined with Swedish massage techniques. If you have an allergy or a sensitivity, tell us before you book.
 
 ### Is aromatherapy massage a full-body massage?
-Yes. It is a gentle full-body massage that combines soothing Swedish massage techniques with essential oils.
+Yes. It is a gentle full-body massage that combines Swedish massage techniques with essential oils.
 
 ### How is aromatherapy massage different from Thai massage?
 Aromatherapy massage is a gentle full-body massage with Swedish techniques and essential oils. Thai massage combines traditional Thai, deep tissue and aroma techniques with a series of yogic-style stretches, and is performed in specially designed loose clothing.

@@ -380,6 +380,29 @@ if (homeHtml && !/"@type":"DaySpa"/.test(homeHtml)) fail("/: no DaySpa JSON-LD")
   }
 }
 
+// ---- "Greenwich" is never shown alone: always "Greenwich, Cutty Sark" (owner's rule, 6 Nov 2026) --
+// Allowed as-is: the station name "Greenwich station", "Royal Borough of Greenwich", and the
+// postal address line (SITE.address, "Glaisher Street, Greenwich, London SE8 3ET"). JSON-LD and other
+// script blocks are not checked.
+{
+  const ALLOWED = /Greenwich station|Royal Borough of Greenwich|Glaisher Street, Greenwich, London SE8 3ET/g;
+  const alone = (text) => text.replace(ALLOWED, "").match(/Greenwich(?!, Cutty Sark)/g)?.length ?? 0;
+  for (const [rel, html] of pageFiles) {
+    const noScripts = html.replace(/<script[\s\S]*?<\/script>/g, "").replace(/<style[\s\S]*?<\/style>/g, "");
+    const parts = {
+      "visible text": stripTags(noScripts),
+      "<title>": /<title>([\s\S]*?)<\/title>/.exec(html)?.[1] ?? "",
+      "meta description": /<meta name="description" content="([^"]*)"/.exec(html)?.[1] ?? "",
+      "og:title": /<meta property="og:title" content="([^"]*)"/.exec(html)?.[1] ?? "",
+      "og:description": /<meta property="og:description" content="([^"]*)"/.exec(html)?.[1] ?? "",
+      "alt/aria text": [...noScripts.matchAll(/\b(?:alt|aria-label)="([^"]*)"/g)].map((m) => m[1]).join(" | "),
+    };
+    for (const [what, text] of Object.entries(parts)) {
+      if (alone(decodeEntities(text)) > 0) fail(`${rel}: ${what} shows "Greenwich" without ", Cutty Sark"`);
+    }
+  }
+}
+
 // ---- result -----------------------------------------------------------------
 if (errors.length) {
   console.error(`check-site: ${errors.length} problem(s)\n- ` + errors.join("\n- "));

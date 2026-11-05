@@ -32,7 +32,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const c = treatmentCopy(slug);
   if (!c) {
     return pageMetadata({
-      title: `${t.name} in Greenwich | Sri Siam`,
+      title: `${t.name} in Greenwich, Cutty Sark | Sri Siam`,
       description: genericIntro(slug),
       path: `/treatments/${slug}/`,
     });
@@ -59,7 +59,7 @@ export default async function TreatmentPage({ params }: { params: Promise<{ slug
           imageKey={img.key}
           alt={img.alt}
           eyebrow={`Treatments · ${t.group}`}
-          h1={`${t.name} in Greenwich`}
+          h1={`${t.name} in Greenwich, Cutty Sark`}
           lead={genericIntro(slug)}
         />
         <section className="container-x section-y">

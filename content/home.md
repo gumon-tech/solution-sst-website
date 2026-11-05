@@ -1,16 +1,16 @@
 ---
-title: "Thai Massage in Greenwich, near the Cutty Sark | Sri Siam"
-description: "Thai massage, hot stone, aromatherapy and more in Greenwich SE8, a short walk from the Cutty Sark. Therapists trained at Wat Pho. Book on WhatsApp."
-h1: "Traditional Thai massage in Greenwich, booked in a message"
+title: "Thai Massage in Greenwich, Cutty Sark | Sri Siam"
+description: "Thai massage, hot stone, aromatherapy and more in Greenwich, Cutty Sark SE8. Therapists trained at Wat Pho. Book on WhatsApp."
+h1: "Traditional Thai massage in Greenwich, Cutty Sark, booked in a message"
 ---
 
 ## hero
 
 [image: hands-back-b]
 
-Eyebrow: Greenwich · London SE8
+Eyebrow: Greenwich, Cutty Sark · London SE8
 
-# Traditional Thai massage in *Greenwich*, booked in a message
+# Traditional Thai massage in *Greenwich, Cutty Sark*, booked in a message
 
 Lead: At Sri Siam, we bring the authentic art of Thai massage to you. Trained at the renowned Wat Pho in Bangkok, our therapists combine traditional techniques with a modern touch to deliver exceptional care. Experience a tranquil escape in skilled hands, and book it in one WhatsApp message.
 
@@ -74,11 +74,11 @@ Caption: Traditional Thai massage techniques.
 
 Eyebrow: Our roots
 
-## From Wat Pho, Bangkok, to Greenwich
+## From Wat Pho, Bangkok, to Greenwich, Cutty Sark
 
-Deeply rooted in the ancient traditions of Thailand, Sri Siam Thai Therapy & Wellness is a sanctuary dedicated to the art of Thai massage. Our therapists trained at the renowned Wat Pho in Bangkok, the temple school of traditional Thai massage, and bring its traditional techniques to Greenwich with a modern touch.
+Deeply rooted in the ancient traditions of Thailand, Sri Siam Thai Therapy & Wellness is a sanctuary dedicated to the art of Thai massage. Our therapists trained at the renowned Wat Pho in Bangkok, the temple school of traditional Thai massage, and bring its traditional techniques to Greenwich, Cutty Sark, with a modern touch.
 
-We believe in the power of intuitive touch, offering a serene escape in Greenwich, London.
+We believe in the power of intuitive touch, offering a serene escape in Greenwich, Cutty Sark, London.
 
 - Link: Our Thai roots and philosophy -> /about/
 
@@ -100,12 +100,12 @@ Our gift vouchers are the perfect gesture for birthdays, anniversaries or specia
 
 Eyebrow: Get in touch
 
-## Our oasis, where Deptford meets Greenwich
+## Our oasis, where Deptford meets Greenwich, Cutty Sark
 
 Address card:
 - {{address}}
 - {{hours_sentence}}
-- About a 9-minute walk from Cutty Sark DLR and 11 minutes from the Cutty Sark in Greenwich.
+- About a 9-minute walk from Cutty Sark DLR and 11 minutes from the ship itself, in Greenwich, Cutty Sark.
 - Link: Directions -> {{maps_url}}
 - Link: Read our reviews on Google -> {{maps_url}}
 - Link: Getting here by train and DLR -> /visit/

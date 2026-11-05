@@ -1,7 +1,7 @@
 ---
-title: "About Sri Siam Thai Therapy & Wellness, Greenwich"
-description: "Thai massage in Greenwich SE8 by professional Thai therapists trained at the renowned Wat Pho in Bangkok, the temple school of traditional Thai massage."
-h1: "The Thai traditions of Sri Siam, in Greenwich"
+title: "About Sri Siam Thai Therapy, Greenwich, Cutty Sark"
+description: "Thai massage in Greenwich, Cutty Sark by professional Thai therapists trained at the renowned Wat Pho in Bangkok, the temple school of traditional Thai massage."
+h1: "The Thai traditions of Sri Siam, in Greenwich, Cutty Sark"
 ---
 
 ## hero
@@ -10,9 +10,9 @@ h1: "The Thai traditions of Sri Siam, in Greenwich"
 
 Eyebrow: Welcome
 
-# The Thai traditions of Sri Siam, in *Greenwich*
+# The Thai traditions of Sri Siam, in *Greenwich, Cutty Sark*
 
-Lead: Sri Siam Thai Therapy & Wellness is your sanctuary on Glaisher Street, where Deptford meets Greenwich. Founded on the principles of ancient Thai massage, we provide a peaceful escape from the frantic pace of modern life, through intuitive touch.
+Lead: Sri Siam Thai Therapy & Wellness is your sanctuary on Glaisher Street, where Deptford meets Greenwich, Cutty Sark. Founded on the principles of ancient Thai massage, we provide a peaceful escape from the frantic pace of modern life, through intuitive touch.
 
 ## wat-pho
 

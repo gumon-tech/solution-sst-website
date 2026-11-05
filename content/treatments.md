@@ -1,5 +1,5 @@
 ---
-title: "Massage Menu & Prices in Greenwich, Cutty Sark | Sri Siam"
+title: "Massage Menu & Prices in Greenwich, Cutty Sark | Sri Siam Thai Therapy & Wellness"
 description: "Every treatment we offer in Greenwich, Cutty Sark with durations and prices, exactly as on our booking calendar. Tap any option to book it on WhatsApp."
 h1: "Our Thai treatments"
 ---

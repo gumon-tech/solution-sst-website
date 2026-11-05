@@ -10,7 +10,7 @@ const here = path.dirname(fileURLToPath(import.meta.url));
 const dir = mkdtempSync(path.join(os.tmpdir(), "promos-"));
 const good = {
   code: "P-AB12", title: "Second hour half price", eyebrow: "Autumn offer", detail: "Book a one-hour Thai massage and add 30 minutes for £10 off.",
-  points: ["Thai massage", "Greenwich"], offer: "Mention this offer on WhatsApp or when you arrive", message: "Hi Sri Siam, I'd like to book with the Autumn offer.",
+  points: ["Thai massage", "Greenwich"], offer: "Mention this offer on WhatsApp or when you arrive", message: "Hi Sri Siam Thai Therapy & Wellness, I'd like to book with the Autumn offer.",
   image: null, illustrative: false, starts: "2026-11-01", ends: "2026-11-30", ends_label: "Monday 30 November 2026", status: "live",
 };
 const file = (promotions, extra = {}) => ({ updated_at: "2026-10-31T09:00:00Z", promotions, ...extra });

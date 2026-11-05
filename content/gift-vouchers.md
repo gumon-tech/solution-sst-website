@@ -1,6 +1,6 @@
 ---
-title: "Massage Gift Vouchers in Greenwich, Cutty Sark | Sri Siam"
-description: "Give someone time to themselves at Sri Siam in Greenwich, Cutty Sark. Message us on WhatsApp with what you have in mind and the team arranges the voucher."
+title: "Massage Gift Vouchers in Greenwich, Cutty Sark | Sri Siam Thai Therapy & Wellness"
+description: "Give someone time to themselves at Sri Siam Thai Therapy & Wellness in Greenwich, Cutty Sark. Message us on WhatsApp with what you have in mind and the team arranges the voucher."
 h1: "Gift vouchers"
 ---
 
@@ -12,7 +12,7 @@ Eyebrow: Gift vouchers
 
 # Give the gift of absolute *tranquillity*
 
-Lead: Our gift vouchers are the perfect gesture for birthdays, anniversaries or special celebrations. Message us on WhatsApp, tell us who the voucher is for and what you have in mind, and the team arranges a Sri Siam gift voucher with you.
+Lead: Our gift vouchers are the perfect gesture for birthdays, anniversaries or special celebrations. Message us on WhatsApp, tell us who the voucher is for and what you have in mind, and the team arranges a gift voucher with you.
 
 - Button (primary, tag G): Buy a voucher on WhatsApp
 

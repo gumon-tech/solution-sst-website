@@ -1,5 +1,5 @@
 ---
-title: "Privacy Notice | Sri Siam Thai Therapy"
+title: "Privacy Notice | Sri Siam Thai Therapy & Wellness"
 description: "How Sri Siam Thai Therapy & Wellness handles the details you send us on WhatsApp and when you book. No cookies, no tracking on this website."
 h1: "Privacy notice"
 ---

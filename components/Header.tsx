@@ -10,7 +10,7 @@ export function Header() {
   return (
     <header className="sticky top-0 z-50 border-b border-stone bg-cream">
       <div className="container-x flex h-16 items-center justify-between gap-3 xl:h-20">
-        <Link href="/" className="flex min-h-[44px] items-center gap-2.5" aria-label={`${c.wordmark1} ${c.wordmark2}, home`}>
+        <Link href="/" className="flex min-h-[44px] items-center gap-2 min-[400px]:gap-2.5" aria-label={`${c.wordmark1} ${c.wordmark2}, home`}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src="/logo/logo-96h.webp"
@@ -18,11 +18,11 @@ export function Header() {
             height={96}
             alt=""
             aria-hidden="true"
-            className="h-10 w-auto xl:h-12"
+            className="h-9 w-auto min-[400px]:h-10 xl:h-12"
           />
           <span className="flex flex-col leading-none">
             <span className="font-display text-[22px] font-semibold text-plum">{c.wordmark1}</span>
-            <span className="mt-1 hidden text-[11px] font-medium uppercase tracking-[0.2em] text-ink-2 sm:block">
+            <span className="mt-1 whitespace-nowrap text-[9.5px] font-medium text-ink-2 min-[400px]:text-[10.5px] sm:text-[11px] sm:uppercase sm:tracking-[0.2em]">
               {c.wordmark2}
             </span>
           </span>
@@ -41,7 +41,7 @@ export function Header() {
         </nav>
 
         <div className="flex items-center gap-2">
-          <WaButton message={MSG.book} tag={TAG.header} className="!px-4 lg:!px-[22px]">
+          <WaButton message={MSG.book} tag={TAG.header} className="!px-3 min-[400px]:!px-4 lg:!px-[22px]">
             <span aria-hidden="true" className="lg:hidden">
               Book
             </span>

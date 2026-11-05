@@ -1,6 +1,6 @@
 ---
 slug: thai-foot-massage
-title: "Thai Foot Massage in Greenwich, Cutty Sark | Sri Siam"
+title: "Thai Foot Massage in Greenwich, Cutty Sark | Sri Siam Thai Therapy & Wellness"
 description: "A short Thai foot massage in Greenwich, Cutty Sark using pressure points and gentle stretching, drawing on reflexology. Easy to fit in a day. Book on WhatsApp."
 h1: "Thai Foot Massage in Greenwich, Cutty Sark"
 card: "A traditional Thai foot massage using pressure points and gentle stretching. Your feet may feel light and refreshed."

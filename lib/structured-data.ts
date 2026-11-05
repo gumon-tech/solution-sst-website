@@ -86,7 +86,7 @@ export function menuLd() {
   return businessLd({
     hasOfferCatalog: {
       "@type": "OfferCatalog",
-      name: `${SITE.shortName} treatments`,
+      name: `${SITE.name} treatments`,
       itemListElement: GROUPS.map((g) => ({
         "@type": "OfferCatalog",
         name: g.name,

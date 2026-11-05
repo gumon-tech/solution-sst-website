@@ -1,5 +1,5 @@
 ---
-title: "Thai Massage in Greenwich, Cutty Sark | Sri Siam"
+title: "Thai Massage in Greenwich, Cutty Sark | Sri Siam Thai Therapy & Wellness"
 description: "Thai massage, hot stone, aromatherapy and more in Greenwich, Cutty Sark SE8. Therapists trained at Wat Pho. Book on WhatsApp."
 h1: "Traditional Thai massage in Greenwich, Cutty Sark, booked in a message"
 ---
@@ -12,7 +12,7 @@ Eyebrow: Greenwich, Cutty Sark · London SE8
 
 # Traditional Thai massage in *Greenwich, Cutty Sark*, booked in a message
 
-Lead: At Sri Siam, we bring the authentic art of Thai massage to you. Trained at the renowned Wat Pho in Bangkok, our therapists combine traditional techniques with a modern touch to deliver exceptional care. Experience a tranquil escape in skilled hands, and book it in one WhatsApp message.
+Lead: At Sri Siam Thai Therapy & Wellness, we bring the authentic art of Thai massage to you. Trained at the renowned Wat Pho in Bangkok, our therapists combine traditional techniques with a modern touch to deliver exceptional care. Experience a tranquil escape in skilled hands, and book it in one WhatsApp message.
 
 - Button (primary, tag O): Book on WhatsApp
 - Button (ghost): See the menu -> /treatments/
@@ -28,7 +28,7 @@ Offers from data/promotions.json, written by the shop's WhatsApp system after th
 
 Eyebrow: Current offers
 
-## Offers at Sri Siam
+## Offers at Sri Siam Thai Therapy & Wellness
 
 Small line: Valid until
 

@@ -1,6 +1,6 @@
 ---
-title: "Sri Siam Thai Therapy & Wellness | Thai Massage Greenwich"
-description: "Traditional Thai massage, hot stone, aromatherapy and more in Greenwich SE8. Therapists trained at Wat Pho, Bangkok. Book in a WhatsApp message."
+title: "Thai Massage in Greenwich, near the Cutty Sark | Sri Siam"
+description: "Thai massage, hot stone, aromatherapy and more in Greenwich SE8, a short walk from the Cutty Sark. Therapists trained at Wat Pho. Book on WhatsApp."
 h1: "Traditional Thai massage in Greenwich, booked in a message"
 ---
 
@@ -105,6 +105,7 @@ Eyebrow: Visit us
 Address card:
 - {{address}}
 - {{hours_sentence}}
+- About a 9-minute walk from Cutty Sark DLR and 11 minutes from the Cutty Sark in Greenwich.
 - Link: Directions -> {{maps_url}}
 - Link: Read our reviews on Google -> {{maps_url}}
 - Link: Getting here by train and DLR -> /visit/

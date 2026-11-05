@@ -6,6 +6,8 @@ Written 2026-10-31 by KSSW (Lead, Opus 5.5). Read README.md first.
 
 Live at https://srisiamthaitherapyandwellness.co.uk, built from `main`. 14 pages: `/`, `/treatments/`, six `/treatments/<slug>/`, `/gift-vouchers/`, `/about/`, `/visit/`, `/faq/`, `/privacy/`, `/careers/`, plus 404. This is the shop's main site since 5 Nov 2026 and is indexable.
 
+Session of 5–6 Nov 2026 (room KSST): domain switched; palette brightened toward the old Wix site (#16); copy rebuilt from the owner's old-site wording within ASA/CAP rules (#18); "Greenwich, Cutty Sark" wherever the area is named and the address line without a lone "Greenwich" (#20, #21); the full name "Sri Siam Thai Therapy & Wellness" everywhere (#22); chat-editable data for the shop bot: hours, closures, notice, faq-extra, photos, build.json, deploy retry (#9, #17). check-site enforces the Greenwich and full-name rules. sst.gumon.io redirects to the new domain via a Cloudflare rule until about 5 Feb 2027 (room KWHL removes it after that).
+
 How it was made (A19):
 
 ```
@@ -35,7 +37,7 @@ Needs: the shop pod's `WEBSITE_GITHUB_TOKEN` (set by the lead). `main` must not 
 1. Done: `lib/site.ts` url is `https://srisiamthaitherapyandwellness.co.uk` and `indexable: true` (robots meta, robots.txt and sitemap follow).
 2. Done: `public/CNAME` and the Pages custom domain; Cloudflare DNS (Gumon's account): apex A to 185.199.108-111.153, `www` CNAME `gumon-tech.github.io`, DNS only. The Wix site is detached from the domain; sst.gumon.io is no longer served.
 3. Done: `scripts/check-site.mjs` expects the new domain. Old Wix URLs have redirect stubs (`scripts/build-redirect-stubs.mjs`): `/services`, `/book-online`, `/contact`, `/about-us`, `/gallery` and the Wix system pages go to their new pages; `/service-page/*` and `/booking-calendar/*` are matched by keyword in `404.html`; any other unknown path shows the not-found page, which links home.
-4. Open: update the booking link in Google Business Profile to the site or the wa.me link; submit the sitemap in Search Console.
+4. Done 6 Nov 2026: Google Business Profile (verified listing 11701451269298450188, managed from the shop's Google account in the Chrome profile "SST (Sri Siam)"): Website set to https://srisiamthaitherapyandwellness.co.uk/, menu link /treatments/. Two stray listings were handled: the duplicate was already disabled by Google; the unverified one with the old private number was removed by Khun Komphet. Search Console: domain property verified by a TXT record in Cloudflare (keep that record), sitemap submitted (14 pages).
 
 ## Checks done on 31 Oct 2026
 
@@ -53,6 +55,7 @@ Needs: the shop pod's `WEBSITE_GITHUB_TOKEN` (set by the lead). `main` must not 
 5. Facebook page not linked: ownership not verified.
 6. Some photos look like stock or generated images uploaded by the shop; alt text describes them neutrally and does not claim they show the shop's own room. On 5 Nov 2026 the shop said `room-wood-purple` showed another shop's room; it was removed. `room-pink-curtains` is now the only room photo and should be confirmed with the shop; a real photo of the Sri Siam room is wanted.
 7. Deposit links: the shop bot's £15 deposit links are Wix Payment Links on the Wix site's primary domain (https://www.<domain>/_paylink/<id>). Since the switch they no longer open on the shop domain. Plan with room KBOT: make pay.<domain> the Wix primary domain and redirect /_paylink/* there. Meanwhile `out/404.html` forwards any `/_paylink/*` path (with query and hash) to `SITE.wixPaylinkBase` in `lib/site.ts` (the Wix site), so old www links still work; switch that constant to `https://pay.<domain>/_paylink` once pay. is connected.
+8. Not yet run for real: the bot's positive path for hours, closures, notice and photos (promotions already merged through the new workflow, #14 #15). Room KBOT tests with draft/future data, then posts the closure for 24 Dec–4 Jan. A `services` concern (price edits via Treatwell first) waits for KBOT's Treatwell write test.
 
 ## Shop bot integration (room KSST, 31 Oct 2026)
 

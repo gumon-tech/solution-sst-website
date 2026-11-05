@@ -7,6 +7,7 @@ import { ClosingBand } from "@/components/ClosingBand";
 import { Hero } from "@/components/Hero";
 import { Img } from "@/components/Img";
 import { JsonLd } from "@/components/JsonLd";
+import { SITE } from "@/lib/site";
 import { OptionButtons } from "@/components/OptionButtons";
 import { Reveal } from "@/components/Reveal";
 import { Paras, Rich } from "@/components/Rich";
@@ -32,7 +33,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const c = treatmentCopy(slug);
   if (!c) {
     return pageMetadata({
-      title: `${t.name} in Greenwich, Cutty Sark | Sri Siam`,
+      title: `${t.name} in Greenwich, Cutty Sark | ${SITE.name}`,
       description: genericIntro(slug),
       path: `/treatments/${slug}/`,
     });

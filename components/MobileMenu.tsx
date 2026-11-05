@@ -65,7 +65,7 @@ export function MobileMenu({
       <button
         ref={btnRef}
         type="button"
-        className="btn btn-secondary !px-4"
+        className="btn btn-secondary !px-3 min-[400px]:!px-4"
         aria-label="Open menu"
         aria-expanded={open}
         aria-controls="mobile-menu"

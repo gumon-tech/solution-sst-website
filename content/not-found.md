@@ -1,5 +1,5 @@
 ---
-title: "Page Not Found | Sri Siam Thai Therapy"
+title: "Page Not Found | Sri Siam Thai Therapy & Wellness"
 description: ""
 robots: noindex
 h1: "We could not find that page"

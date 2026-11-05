@@ -205,3 +205,13 @@ node scripts/build-redirect-stubs.mjs
 ```
 
 `check-site.mjs` fails the build on: a missing route, wrong CNAME, the old private number, a wa.me link to another number or without a tag, menu prices that differ from `services.json`, missing titles/descriptions, missing noindex while `indexable` is false, emoji, or unparseable JSON-LD. Pushing to `main` runs the same steps in `.github/workflows/pages.yml` and deploys.
+
+## The shop's name
+
+The shop is always named in full, "Sri Siam Thai Therapy & Wellness" (owner's rule, 6 Nov 2026). "Sri Siam" alone is never the shop's name on the site, in a title, in OG/JSON-LD, in alt text or in a WhatsApp message (`lib/whatsapp.ts`, `data/promotions.json` `message`s). `check-site.mjs` fails the build when any built page's visible text, `<title>`, meta description, `og:title`, `og:site_name`, `og:description`, `alt`/`aria-label` text, a wa.me link's `text=` parameter or a JSON-LD `name` matches, case-sensitively:
+
+```
+/Sri Siam(?! Thai Therapy (?:&|&amp;) Wellness)|SriSiam/
+```
+
+That is: "Sri Siam" not followed by " Thai Therapy & Wellness" (HTML-escaped `&amp;` also accepted), or "SriSiam". The email address and domain are lowercase and are not affected. The same regex is `SHORT_NAME` in `scripts/lib/public-text.mjs`, exported as `short_name` in `scripts/lib/public-text.json`, and `checkPublicText` refuses it in any text the shop system writes. In the header the name is shown on two lines on phones ("Sri Siam" over "Thai Therapy & Wellness"), and the OG image carries it the same way.

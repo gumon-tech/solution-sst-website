@@ -1,6 +1,6 @@
 ---
-title: "Find Us in Greenwich, Cutty Sark | Sri Siam"
-description: "Sri Siam, Greenwich, Cutty Sark: Unit 89 Corbridge Court, Glaisher Street SE8 3ET, 9 minutes on foot from Cutty Sark DLR, 16 from Greenwich station. Hours."
+title: "Find Us in Greenwich, Cutty Sark | Sri Siam Thai Therapy & Wellness"
+description: "Sri Siam Thai Therapy & Wellness, Greenwich, Cutty Sark: Unit 89 Corbridge Court, Glaisher Street SE8 3ET, 9 minutes on foot from Cutty Sark DLR, 16 from Greenwich station. Hours."
 h1: "Visit us in Greenwich, Cutty Sark"
 ---
 

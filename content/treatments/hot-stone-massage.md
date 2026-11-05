@@ -1,6 +1,6 @@
 ---
 slug: hot-stone-massage
-title: "Hot Stone Massage in Greenwich, Cutty Sark | Sri Siam"
+title: "Hot Stone Massage in Greenwich, Cutty Sark | Sri Siam Thai Therapy & Wellness"
 description: "Hot stone massage in Greenwich, Cutty Sark: with gently warmed basalt stones that let your therapist work deeper. Choose your length and book on WhatsApp."
 h1: "Hot Stone Massage in Greenwich, Cutty Sark"
 card: "Warm stones combined with massage to help you unwind, with gently warmed basalt stones."

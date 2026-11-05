@@ -1,5 +1,5 @@
 ---
-title: "Questions & Answers | Sri Siam Thai Therapy"
+title: "Questions & Answers | Sri Siam Thai Therapy & Wellness"
 description: "How to book, the deposit, paying on the day, moving a booking, what to wear and who should check with a doctor first. Ask us anything else on WhatsApp."
 h1: "Questions and answers"
 ---
@@ -18,7 +18,7 @@ Lead: Everything people usually ask before a first visit. If your question is no
 
 ## Booking and paying
 
-### How do I book a massage at Sri Siam?
+### How do I book a massage at Sri Siam Thai Therapy & Wellness?
 Book by sending us a WhatsApp message. Tap any Book button on this site, or message {{phone_display}}, tell us the treatment and the length you would like and when suits you, and we reply with free times and confirm your booking in the same chat. We do not take bookings through a website form.
 
 ### Do I need to pay a deposit?

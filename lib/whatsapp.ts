@@ -49,14 +49,14 @@ export function buildWhatsAppLink(message: string, tag: string): string {
 }
 
 export const MSG = {
-  book: "Hi Sri Siam, I'd like to book a massage please.",
-  gift: "Hi Sri Siam, I'd like to buy a gift voucher please.",
-  question: "Hi Sri Siam, I have a question please.",
-  careers: "Hi Sri Siam, I'd like to apply for a therapist role please.",
-  questionAbout: (name: string) => `Hi Sri Siam, I have a question about ${name} please.`,
-  service: (name: string) => `Hi Sri Siam, I'd like to book ${withArticle(name)} please.`,
+  book: "Hi Sri Siam Thai Therapy & Wellness, I'd like to book a massage please.",
+  gift: "Hi Sri Siam Thai Therapy & Wellness, I'd like to buy a gift voucher please.",
+  question: "Hi Sri Siam Thai Therapy & Wellness, I have a question please.",
+  careers: "Hi Sri Siam Thai Therapy & Wellness, I'd like to apply for a therapist role please.",
+  questionAbout: (name: string) => `Hi Sri Siam Thai Therapy & Wellness, I have a question about ${name} please.`,
+  service: (name: string) => `Hi Sri Siam Thai Therapy & Wellness, I'd like to book ${withArticle(name)} please.`,
   serviceOption: (name: string, option: string) =>
-    `Hi Sri Siam, I'd like to book ${withArticle(name)} (${option}) please.`,
+    `Hi Sri Siam Thai Therapy & Wellness, I'd like to book ${withArticle(name)} (${option}) please.`,
 };
 
 export const telHref = `tel:${SITE.phoneE164}`;

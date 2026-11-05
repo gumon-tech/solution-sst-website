@@ -1,6 +1,6 @@
 ---
 slug: aromatherapy-massage
-title: "Aromatherapy Massage in Greenwich, Cutty Sark | Sri Siam"
+title: "Aromatherapy Massage in Greenwich, Cutty Sark | Sri Siam Thai Therapy & Wellness"
 description: "A gentle full-body massage in Greenwich, Cutty Sark that combines Swedish massage techniques with essential oils. Choose your length and book on WhatsApp."
 h1: "Aromatherapy Massage in Greenwich, Cutty Sark"
 card: "A gentle full-body massage using curated essential oils and Swedish techniques to soothe the senses."

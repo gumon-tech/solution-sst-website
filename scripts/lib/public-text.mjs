@@ -23,6 +23,11 @@ export const HEALTH = /\b(detox\w*|toxins?|circulation|pain\w*|ache\w*|headache\
 // No review claims: the site quotes no reviews, ratings or stars (DMCC Act 2024, HANDOFF rules).
 export const REVIEW_WORDS = /(\breviews?\b|\breviewed\b|\brated\b|\bratings?\b|\bstars?\b|★|⭐|\b5[- ]?stars?\b|\btestimonials?\b|\btrustpilot\b|\bgoogle reviews?\b)/i;
 
+// The shop is always named in full: "Sri Siam Thai Therapy & Wellness" (owner's rule, 6 Nov 2026). "Sri Siam" not followed by
+// " Thai Therapy & Wellness" (or its HTML-escaped "&amp;" form) is refused, and so is "SriSiam" (lowercase srisiam in the email
+// address and domain is fine: the match is case-sensitive).
+export const SHORT_NAME = /Sri Siam(?! Thai Therapy (?:&|&amp;) Wellness)|SriSiam/;
+
 /** Facts from the repo the rules depend on: service prices, the deposit and the shop's exact display name. */
 export function loadFacts(root = ROOT) {
   const services = JSON.parse(readFileSync(path.join(root, "data/services.json"), "utf8")).services;
@@ -63,6 +68,7 @@ export function checkPublicText(t, facts, { money = "discount", allowTherapist =
   if (PHONE_LIKE.test(t) && t.replace(/\D/g, "").length >= PHONE_MIN_DIGITS) out.push(`phone-like number in ${head}`);
   if (OLD_NUMBER_FRAGMENTS.some((f) => t.includes(f))) out.push("the old private phone number");
   if (WEB_TAG.test(t)) out.push("the [web-X] tag is added by the site, not written in the text");
+  if (SHORT_NAME.test(t)) out.push(`the shop's short name in ${head} (always write "Sri Siam Thai Therapy & Wellness" in full)`);
   if (THAI.test(t)) out.push(`Thai script in ${head} (the public text is English)`);
   let healthText = scrubName(t, facts.shopName);
   if (allowTherapist) healthText = healthText.replace(/\btherapists?\b/gi, " ");

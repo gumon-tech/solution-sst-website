@@ -202,7 +202,7 @@ if (menuHtml) {
     const g = got[i];
     if (!g) return;
     if (g.option !== r.option || g.price !== fmt(r.price_gbp)) fail(`/treatments/: row ${i} is "${g.label}", expected "${r.option} · £${fmt(r.price_gbp)}"`);
-    const want = `Hi Sri Siam, I'd like to book ${article(r.name)} ${r.name} (${r.option}) please. [web-M]`;
+    const want = `Hi Sri Siam Thai Therapy & Wellness, I'd like to book ${article(r.name)} ${r.name} (${r.option}) please. [web-M]`;
     if (g.text !== want) fail(`/treatments/: row ${i} message is "${g.text}", expected "${want}"`);
   });
   const gotSet = new Set(got.map((g) => g.price));
@@ -399,6 +399,50 @@ if (homeHtml && !/"@type":"DaySpa"/.test(homeHtml)) fail("/: no DaySpa JSON-LD")
     };
     for (const [what, text] of Object.entries(parts)) {
       if (alone(decodeEntities(text)) > 0) fail(`${rel}: ${what} shows "Greenwich" without ", Cutty Sark"`);
+    }
+  }
+}
+
+// ---- the shop's name is always the full "Sri Siam Thai Therapy & Wellness" (owner's rule, 6 Nov 2026) --
+// Rule (README "The shop's name"): in every built page's visible text, <title>, meta description, og:title,
+// og:site_name, og:description, alt/aria-label text, wa.me links' text= parameter and JSON-LD "name" values,
+// "Sri Siam" must be followed by " Thai Therapy & Wellness" (HTML-escaped &amp; also accepted), and "SriSiam" never appears.
+// Email addresses and the domain are lowercase srisiam..., so the case-sensitive match leaves them alone.
+{
+  const BAD = /Sri Siam(?! Thai Therapy (?:&|&amp;) Wellness)|SriSiam/g;
+  const metaContent = (html, key, val) => new RegExp(`<meta ${key}="${val}" content="([^"]*)"`).exec(html)?.[1] ?? "";
+  for (const [rel, html] of pageFiles) {
+    const noScripts = html.replace(/<script[\s\S]*?<\/script>/g, "").replace(/<style[\s\S]*?<\/style>/g, "");
+    const waTexts = [...html.matchAll(/href="(https:\/\/wa\.me\/[^"]*)"/g)].map((m) => {
+      try {
+        return new URL(decodeEntities(m[1])).searchParams.get("text") ?? "";
+      } catch {
+        return "";
+      }
+    });
+    const ldNames = [...html.matchAll(/<script type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/g)].flatMap((m) => {
+      const names = [];
+      try {
+        JSON.parse(decodeEntities(m[1]).replace(/\\u0026/g, "&"), (k, v) => (k === "name" && typeof v === "string" && names.push(v), v));
+      } catch {
+        names.push(m[1]);
+      }
+      return names;
+    });
+    const parts = {
+      "visible text": stripTags(noScripts),
+      "<title>": /<title>([\s\S]*?)<\/title>/.exec(html)?.[1] ?? "",
+      "meta description": metaContent(html, "name", "description"),
+      "og:title": metaContent(html, "property", "og:title"),
+      "og:site_name": metaContent(html, "property", "og:site_name"),
+      "og:description": metaContent(html, "property", "og:description"),
+      "alt/aria text": [...noScripts.matchAll(/\b(?:alt|aria-label)="([^"]*)"/g)].map((m) => m[1]).join(" | "),
+      "wa.me text=": waTexts.join(" | "),
+      "JSON-LD name": ldNames.join(" | "),
+    };
+    for (const [what, text] of Object.entries(parts)) {
+      const bad = decodeEntities(text).match(BAD);
+      if (bad) fail(`${rel}: ${what} names the shop without the full "Sri Siam Thai Therapy & Wellness" (${bad.length}x)`);
     }
   }
 }

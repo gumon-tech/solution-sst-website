@@ -82,6 +82,20 @@ Put these in `tailwind.config.ts` under `theme.extend.colors` (names as given) a
 
 ### 3.1 Colour
 
+> **Lead update 2026-11-06: palette brightened on the owner's feedback** ("the colours are not as vivid as the old site"). The old Wix site (still at srisiamthaitherapy.wixsite.com) used a vivid magenta-purple #740C7C for whole sections, #5E1A74 and #744887 as its second purples, #4A3152 for its darkest band, and metallic gold #D4AF37 for headings, on the same cream #FDFCF0 / #F5F2DF. The plum and gold tokens below were moved towards those values; cream, sand, stone and ink are unchanged, and the layout, light/dark rhythm and every use of each token stay as written. Old → new (contrast recomputed 2026-11-06, all pairs still AA):
+>
+> | Token | Old | New | Key pairs after |
+> |---|---|---|---|
+> | `plum` | #362140 | #5B1E70 | cream on plum 10.92:1; plum on cream 10.92:1; plum on sand 10.00:1; gold on plum 5.36:1 |
+> | `plum-deep` | #2D1B36 | #44125A | cream on plum-deep 13.76:1; gold-pale on plum-deep 10.18:1 |
+> | `plum-mid` | #5A3A6B | #7A3A94 | cream on plum-mid 7.12:1; plum-mid on cream 7.12:1; gold-pale on plum-mid 5.27:1 |
+> | `plum-tint` | #EEE6F1 | #F3E3F7 | plum on plum-tint 9.19:1 |
+> | `gold` | #C5A059 | #D4AF37 | gold on plum 5.36:1, on plum-deep 6.75:1; on cream 2.04:1 (still never text on cream) |
+> | `gold-pale` | #E8D4A2 | #F2D98A | gold-pale on plum 8.08:1; plum-deep on gold-pale 10.18:1 |
+> | `gold-deep` | #7A5F2A | #8A6318 | gold-deep on cream 5.25:1, on sand 4.81:1 |
+>
+> Derived values changed with them: shadows and the hero overlay use plum-deep's channels (`rgba(68,18,90,…)`, `--plum-deep-rgb` in `globals.css`); the candle glow uses gold-pale's (`rgba(242,217,138,.35)`); the focus ring uses `--plum-mid`. The table below is kept as the original spec; the token values in `tailwind.config.ts` are the live ones.
+
 | Token | Hex | Use | Contrast notes (computed 2026-10-31) |
 |---|---|---|---|
 | `cream` | #FDFCF0 | page background | — |

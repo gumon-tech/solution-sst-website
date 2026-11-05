@@ -68,7 +68,7 @@ export function Hero({
             aria-hidden="true"
             style={{
               background:
-                "linear-gradient(180deg, rgba(45,27,54,0) 16%, rgba(45,27,54,.9) 40%, rgba(45,27,54,.96) 100%)",
+                "linear-gradient(180deg, rgba(var(--plum-deep-rgb),0) 16%, rgba(var(--plum-deep-rgb),.9) 40%, rgba(var(--plum-deep-rgb),.96) 100%)",
             }}
           />
         )}

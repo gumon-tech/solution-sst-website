@@ -4,8 +4,11 @@
 
 :root {
   --ease-out: cubic-bezier(0.2, 0.7, 0.2, 1);
-  --gold: #c5a059;
-  --gold-pale: #e8d4a2;
+  --gold: #d4af37;
+  --gold-pale: #f2d98a;
+  --plum-mid: #7a3a94;
+  /* plum-deep as channels, for the hero overlay and other rgba() uses */
+  --plum-deep-rgb: 68, 18, 90;
   --sticky-h: 76px;
 }
 
@@ -28,12 +31,12 @@ body {
 }
 
 :focus-visible {
-  outline: 2px solid #5a3a6b;
+  outline: 2px solid var(--plum-mid);
   outline-offset: 2px;
   border-radius: 4px;
 }
 .on-plum :focus-visible {
-  outline-color: #e8d4a2;
+  outline-color: var(--gold-pale);
 }
 
 @layer components {
@@ -240,7 +243,7 @@ body {
 }
 
 .candle {
-  background: radial-gradient(600px 400px at 70% 30%, rgba(232, 212, 162, 0.35), transparent 70%);
+  background: radial-gradient(600px 400px at 70% 30%, rgba(242, 217, 138, 0.35), transparent 70%);
   animation: breathe 9s ease-in-out infinite;
 }
 
@@ -312,7 +315,7 @@ body {
 }
 .skip-link:focus {
   transform: none;
-  outline-color: #e8d4a2;
+  outline-color: var(--gold-pale);
 }
 
 @media (prefers-reduced-motion: reduce) {

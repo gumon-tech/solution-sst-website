@@ -205,6 +205,11 @@ export default function HomePage() {
               <p className="mt-1 text-ink-2">
                 <Rich text={visit.bullets[1]} />
               </p>
+              {visit.bullets[2] && (
+                <p className="mt-1 text-ink-2">
+                  <Rich text={visit.bullets[2]} />
+                </p>
+              )}
               <ul className="mt-2">
                 {visit.actions.map((a) => (
                   <li key={a.label}>

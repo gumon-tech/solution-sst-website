@@ -381,11 +381,11 @@ if (homeHtml && !/"@type":"DaySpa"/.test(homeHtml)) fail("/: no DaySpa JSON-LD")
 }
 
 // ---- "Greenwich" is never shown alone: always "Greenwich, Cutty Sark" (owner's rule, 6 Nov 2026) --
-// Allowed as-is: the station name "Greenwich station", "Royal Borough of Greenwich", and the
-// postal address line (SITE.address, "Glaisher Street, Greenwich, London SE8 3ET"). JSON-LD and other
+// Allowed as-is: the station name "Greenwich station" and "Royal Borough of Greenwich"
+// (no address exception: the postal address no longer contains Greenwich). JSON-LD and other
 // script blocks are not checked.
 {
-  const ALLOWED = /Greenwich station|Royal Borough of Greenwich|Glaisher Street, Greenwich, London SE8 3ET/g;
+  const ALLOWED = /Greenwich station|Royal Borough of Greenwich/g;
   const alone = (text) => text.replace(ALLOWED, "").match(/Greenwich(?!, Cutty Sark)/g)?.length ?? 0;
   for (const [rel, html] of pageFiles) {
     const noScripts = html.replace(/<script[\s\S]*?<\/script>/g, "").replace(/<style[\s\S]*?<\/style>/g, "");

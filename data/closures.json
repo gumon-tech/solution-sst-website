@@ -1,4 +1,13 @@
 {
-  "updated_at": "2026-11-06T09:00:00Z",
-  "closures": []
+  "updated_at": "2026-11-05T22:19:19Z",
+  "closures": [
+    {
+      "code": "C-T052219",
+      "label": "Test entry",
+      "from": "2027-12-10",
+      "to": "2027-12-11",
+      "hours": null,
+      "status": "withdrawn"
+    }
+  ]
 }

@@ -1,10 +1,10 @@
-# HANDOFF · Sri Siam website (room KSSW)
+# HANDOFF · Sri Siam website (room KSSW, now held by KSST)
 
 Written 2026-10-31 by KSSW (Lead, Opus 5.5). Read README.md first.
 
 ## State
 
-Live at https://sst.gumon.io, built from `main`. 13 pages: `/`, `/treatments/`, six `/treatments/<slug>/`, `/gift-vouchers/`, `/about/`, `/visit/`, `/faq/`, `/privacy/`, plus 404. The shop's own Wix site at its own domain is still the main site; this one is **noindex** on KWS's ruling so the two do not compete in Google.
+Live at https://sst.gumon.io, built from `main`. 14 pages: `/`, `/treatments/`, six `/treatments/<slug>/`, `/gift-vouchers/`, `/about/`, `/visit/`, `/faq/`, `/privacy/`, `/careers/`, plus 404. The shop's own Wix site at its own domain is still the main site; this one is **noindex** on KWS's ruling so the two do not compete in Google.
 
 How it was made (A19):
 
@@ -51,7 +51,7 @@ Needs: the shop pod's `WEBSITE_GITHUB_TOKEN` (set by the lead). `main` must not 
 3. The deposit message on WhatsApp should state the deposit terms before the customer pays (for room KSST).
 4. Walking minutes to Cutty Sark DLR, Greenwich and Deptford stations are not stated (only "a short walk"); add if measured.
 5. Facebook page not linked: ownership not verified.
-6. Some photos look like stock or generated images uploaded by the shop; alt text describes them neutrally and does not claim they show the shop's own room.
+6. Some photos look like stock or generated images uploaded by the shop; alt text describes them neutrally and does not claim they show the shop's own room. On 5 Nov 2026 the shop said `room-wood-purple` showed another shop's room; it was removed. `room-pink-curtains` is now the only room photo and should be confirmed with the shop; a real photo of the Sri Siam room is wanted.
 
 ## Shop bot integration (room KSST, 31 Oct 2026)
 

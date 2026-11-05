@@ -151,7 +151,7 @@ export default function HomePage() {
         <div className="container-x grid items-center gap-8 lg:grid-cols-12 lg:gap-12">
           <figure className="lg:col-span-5">
             <div className="overflow-hidden rounded-r-frame shadow-card">
-              <Img k="room-wood-purple" sizes="(min-width:1280px) 480px, (min-width:1024px) 40vw, 100vw" className="aspect-square w-full object-cover" />
+              <Img k="hands-back-a" sizes="(min-width:1280px) 480px, (min-width:1024px) 40vw, 100vw" className="aspect-square w-full object-cover" />
             </div>
             <figcaption className="mt-3 text-sm text-ink-2">{roots.caption}</figcaption>
           </figure>

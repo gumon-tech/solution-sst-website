@@ -164,6 +164,7 @@ export default async function TreatmentPage({ params }: { params: Promise<{ slug
                 k={c.secondaryImage as ImageKey}
                 alt={c.secondaryAlt}
                 sizes="(min-width:1280px) 1104px, 100vw"
+                position={c.secondaryImage === "purple-stones-still" ? "50% 90%" : undefined}
                 className="aspect-[4/3] w-full object-cover sm:aspect-[16/9] xl:aspect-[16/7]"
               />
             </div>

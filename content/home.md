@@ -69,8 +69,8 @@ Cards render one per treatment slug from `data/services.json`, in file order, us
 
 ## our-roots
 
-[image: room-wood-purple]
-Caption: Warm wood and carved Thai ornaments.
+[image: hands-back-a]
+Caption: Traditional Thai massage techniques.
 
 Eyebrow: Our roots
 

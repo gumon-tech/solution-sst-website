@@ -289,6 +289,8 @@ Performance guardrails: total JS for motion ≤ 40kB gz (import `motion` from `f
 ## 7. Image assignment and alt text
 
 > **Lead update 2026-10-31 (after review):** the `herbal-compress` and `compress-oils` photos were removed from the site (the compress is not a Treatwell menu item). Home "Our roots" uses `room-wood-purple`; `/about/` "Trained at Wat Pho" uses `hands-back-b`; `/about/` "the space" uses `room-wood-purple`; `/treatments/aromatherapy-massage/` secondary is `room-wood-purple`; `/treatments/back-neck-shoulders-massage/` secondary is `purple-stones-candles`. Section 7 below is kept as written for history. The Treatwell group "Reflexology & Lymphatic Massages" is shown as "Lymphatic Massage" (lib/services.ts GROUP_DISPLAY).
+>
+> **Lead update 2026-11-05:** `room-wood-purple` was removed (the shop says it shows another shop's room, not Sri Siam). Home "Our roots" is now `hands-back-a`; `/about/` hero is `hot-stones-spine-b`; `/about/` "the space" second image is `oils-stones`; `/treatments/aromatherapy-massage/` secondary is `purple-stones-still` (alt now set). `check-site` fails the build if any built HTML references the key.
 
 
 Files already converted by the lead: `/img/<key>-800.webp` and `/img/<key>-1600.webp`. Use `<picture>`/`srcSet` with both. Decorative uses get `alt=""` and `aria-hidden`. Alt text below is final copy.
@@ -307,7 +309,7 @@ Files already converted by the lead: `/img/<key>-800.webp` and `/img/<key>-1600.
 | orchid-stones | `/treatments/lymphatic-drainage-massage/` hero (portrait); menu thumbnail; home card; `/faq/` aside | "Pink orchids, a stack of smooth black stones and a lit candle beside a bowl of water" |
 | purple-stones-still | "How booking works" band texture (decorative, `alt=""`); 404 background (decorative); closing band texture (decorative) | "" |
 | purple-stones-candles | `/gift-vouchers/` hero; home vouchers strip; OG image source | "Black stones, tealights and purple orchids on purple silk" |
-| room-wood-purple | `/about/` hero; home "Visit" alternative on 390 | "The treatment room at Sri Siam: wood-panelled walls with carved Thai ornaments, two beds with rolled towels and orchid petals, lit in soft purple" |
+| room-wood-purple (removed 2026-11-05, not the shop's room) | `/about/` hero; home "Visit" alternative on 390 | "The treatment room at Sri Siam: wood-panelled walls with carved Thai ornaments, two beds with rolled towels and orchid petals, lit in soft purple" |
 | room-pink-curtains | Home "Visit"; `/visit/` "The room"; `/about/` "the space" | "A treatment bed between pink and lilac curtains in the Sri Siam room" |
 
 Reflexology: the Treatwell group is "Reflexology & Lymphatic Massages" but only lymphatic drainage sits in it today. If a reflexology row appears in the JSON later, use `foot-massage` for it until the shop supplies a photo (**OPEN**).

@@ -8,7 +8,8 @@
 //
 // Wix Bookings pages (/service-page/<slug>, /booking-calendar/<slug>) have slugs we cannot
 // list, so out/404.html gets a small script that sends those to the matching treatment by
-// keyword. Any other unknown path stays on the not-found page, which links home.
+// keyword. /_paylink/* (Wix Payment Links for the deposit) is sent to SITE.wixPaylinkBase with
+// the rest of the path, query and hash. Any other unknown path stays on the not-found page, which links home.
 //
 // Usage: node scripts/build-redirect-stubs.mjs [out-dir]   (default "out")
 

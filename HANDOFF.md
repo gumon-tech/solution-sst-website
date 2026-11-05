@@ -52,7 +52,7 @@ Needs: the shop pod's `WEBSITE_GITHUB_TOKEN` (set by the lead). `main` must not 
 4. Walking minutes to Cutty Sark DLR, Greenwich and Deptford stations are not stated (only "a short walk"); add if measured.
 5. Facebook page not linked: ownership not verified.
 6. Some photos look like stock or generated images uploaded by the shop; alt text describes them neutrally and does not claim they show the shop's own room. On 5 Nov 2026 the shop said `room-wood-purple` showed another shop's room; it was removed. `room-pink-curtains` is now the only room photo and should be confirmed with the shop; a real photo of the Sri Siam room is wanted.
-7. Deposit links: the shop bot's £15 deposit links are Wix Payment Links on the Wix site's primary domain (https://www.<domain>/_paylink/<id>). Since the switch they no longer open on the shop domain. Plan with room KBOT: make pay.<domain> the Wix primary domain and redirect /_paylink/* there.
+7. Deposit links: the shop bot's £15 deposit links are Wix Payment Links on the Wix site's primary domain (https://www.<domain>/_paylink/<id>). Since the switch they no longer open on the shop domain. Plan with room KBOT: make pay.<domain> the Wix primary domain and redirect /_paylink/* there. Meanwhile `out/404.html` forwards any `/_paylink/*` path (with query and hash) to `SITE.wixPaylinkBase` in `lib/site.ts` (the Wix site), so old www links still work; switch that constant to `https://pay.<domain>/_paylink` once pay. is connected.
 
 ## Shop bot integration (room KSST, 31 Oct 2026)
 

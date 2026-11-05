@@ -34,6 +34,13 @@ const fileFor = (route) => path.join(OUT, route, "index.html");
 for (const r of routes) if (!existsSync(fileFor(r))) fail(`missing page: ${r}`);
 for (const f of ["404.html", "robots.txt", "sitemap.xml"]) if (!existsSync(path.join(OUT, f))) fail(`missing out/${f}`);
 
+// ---- Wix deposit links (the redirect script is added later by build-redirect-stubs.mjs) --
+if (!/wixPaylinkBase:\s*"https:\/\/[^"]+\/_paylink"/.test(site)) fail("lib/site.ts: SITE.wixPaylinkBase missing or not an https .../_paylink URL");
+{
+  const nf404 = read(path.join(OUT, "404.html"));
+  if (nf404.includes("sst-404-redirect") && !nf404.includes('indexOf("/_paylink/")===0')) fail("out/404.html lacks the /_paylink/ redirect");
+}
+
 // ---- CNAME ------------------------------------------------------------------
 const cname = path.join(OUT, "CNAME");
 if (!existsSync(cname)) fail("out/CNAME is missing");

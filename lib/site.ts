@@ -24,7 +24,7 @@ export const SITE = {
   postalCode: "SE8 3ET",
   country: "GB",
   /** Rendered everywhere the address is shown in one line. */
-  address: "Unit 89 Corbridge Court, Glaisher Street, Greenwich, London SE8 3ET",
+  address: "Unit 89 Corbridge Court, Glaisher Street, London SE8 3ET",
   geo: { latitude: 51.48263, longitude: -0.01891 },
 
   phoneDisplay: "07903 653786",

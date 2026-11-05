@@ -9,8 +9,8 @@ const config: Config = {
         sand: "#F5F2DF",
         stone: "#DCD7C0",
         ink: { DEFAULT: "#2C2C2C", 2: "#4A4A4A" },
-        plum: { DEFAULT: "#362140", deep: "#2D1B36", mid: "#5A3A6B", tint: "#EEE6F1" },
-        gold: { DEFAULT: "#C5A059", pale: "#E8D4A2", deep: "#7A5F2A" },
+        plum: { DEFAULT: "#5B1E70", deep: "#44125A", mid: "#7A3A94", tint: "#F3E3F7" },
+        gold: { DEFAULT: "#D4AF37", pale: "#F2D98A", deep: "#8A6318" },
         whatsapp: "#25D366",
       },
       fontFamily: {
@@ -23,9 +23,9 @@ const config: Config = {
         "r-frame": "24px",
       },
       boxShadow: {
-        card: "0 1px 2px rgba(45,27,54,.06), 0 12px 32px -12px rgba(45,27,54,.18)",
-        lift: "0 18px 40px -16px rgba(45,27,54,.28)",
-        bar: "0 -8px 24px rgba(45,27,54,.14)",
+        card: "0 1px 2px rgba(68,18,90,.06), 0 12px 32px -12px rgba(68,18,90,.18)",
+        lift: "0 18px 40px -16px rgba(68,18,90,.28)",
+        bar: "0 -8px 24px rgba(68,18,90,.14)",
       },
       maxWidth: { container: "1200px" },
     },

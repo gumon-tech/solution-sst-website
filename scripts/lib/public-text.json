@@ -1,0 +1,47 @@
+{
+  "_generated": "by scripts/lib/export-public-text.mjs from scripts/lib/public-text.mjs. Do not edit by hand.",
+  "shop_name": "Sri Siam Thai Therapy & Wellness",
+  "deposit_gbp": 15,
+  "emoji": {
+    "source": "\\p{Extended_Pictographic}",
+    "flags": "u"
+  },
+  "thai": {
+    "source": "[฀-๿]",
+    "flags": ""
+  },
+  "link": {
+    "source": "https?:\\/\\/|www\\.",
+    "flags": "i"
+  },
+  "email": {
+    "source": "[\\w.+-]+@[\\w-]+\\.[\\w.-]+",
+    "flags": ""
+  },
+  "phone_like": {
+    "source": "(?<![\\w])\\+?\\d[\\d\\s().-]{7,}\\d",
+    "flags": ""
+  },
+  "phone_min_digits": 9,
+  "old_number_fragments": [
+    "07497",
+    "7497 493"
+  ],
+  "web_tag": {
+    "source": "\\[web-",
+    "flags": "i"
+  },
+  "health": {
+    "source": "\\b(detox\\w*|toxins?|circulation|pain\\w*|ache\\w*|headache\\w*|stress\\w*|swell\\w*|immun\\w*|inflammation|cure\\w*|heal\\w*|relie\\w*|tension|sleep\\w*|therap\\w*|recover\\w*|muscle\\w*|well-?being|anxiety|depression|insomnia|arthritis|sciatica|migraines?|fatigue|injur\\w*|rehab\\w*|alleviat\\w*|remed\\w*|rheumat\\w*|fibromyalgia|eczema|asthma|diabet\\w*|cancer|covid|stiff\\w*|sore\\w*|cramp\\w*|spasm\\w*|chronic|symptom\\w*|diagnos\\w*|illness|disease|medical|clinical|physio\\w*|chiropract\\w*|osteo\\w*|blood pressure|joints|posture|knot\\w*|back problem\\w*|lymph\\w*|drainage|weight|slim\\w*|digest\\w*|energ\\w*|hormon\\w*|breath\\w*|nerve\\w*|tight\\w*)\\b",
+    "flags": "i"
+  },
+  "review_words": {
+    "source": "(\\breviews?\\b|\\breviewed\\b|\\brated\\b|\\bratings?\\b|\\bstars?\\b|★|⭐|\\b5[- ]?stars?\\b|\\btestimonials?\\b|\\btrustpilot\\b|\\bgoogle reviews?\\b)",
+    "flags": "i"
+  },
+  "rules": {
+    "shop_name_exempt_from_health": "remove the shop's exact display name (case-insensitive) from the text before testing health",
+    "money": "a £ amount must be a discount ('£5 off'), the deposit, or a price in data/services.json; notice and faq-extra allow none",
+    "alt_text_only": "the word therapist(s) is allowed in photo alt text (it describes the photo) and is removed before the health test"
+  }
+}

@@ -1,6 +1,6 @@
 # Content files
 
-Final customer-facing copy for sst.gumon.io, one file per page, UK English. The developer pastes from these files; the design and structure are in `docs/design/DIRECTION.md`.
+Final customer-facing copy for srisiamthaitherapyandwellness.co.uk, one file per page, UK English. The developer pastes from these files; the design and structure are in `docs/design/DIRECTION.md`.
 
 Conventions
 

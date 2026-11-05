@@ -15,7 +15,7 @@ const site = read(path.join(root, "lib/site.ts"));
 const indexable = /indexable:\s*(true|false)/.exec(site)?.[1] === "true";
 const deposit = Number(/depositGbp:\s*(\d+)/.exec(site)?.[1]);
 const WA_NUMBER = "447903653786";
-const SITE_URL = "https://sst.gumon.io";
+const SITE_URL = "https://srisiamthaitherapyandwellness.co.uk";
 
 const data = JSON.parse(read(path.join(root, "data/services.json")));
 const rows = data.services;
@@ -37,7 +37,7 @@ for (const f of ["404.html", "robots.txt", "sitemap.xml"]) if (!existsSync(path.
 // ---- CNAME ------------------------------------------------------------------
 const cname = path.join(OUT, "CNAME");
 if (!existsSync(cname)) fail("out/CNAME is missing");
-else if (read(cname).trim() !== "sst.gumon.io") fail(`out/CNAME is "${read(cname).trim()}", expected sst.gumon.io`);
+else if (read(cname).trim() !== "srisiamthaitherapyandwellness.co.uk") fail(`out/CNAME is "${read(cname).trim()}", expected srisiamthaitherapyandwellness.co.uk`);
 
 // ---- walk out/ --------------------------------------------------------------
 const files = [];

@@ -7,9 +7,9 @@ export const SITE = {
    * disallows everything. true: pages are indexable, robots.txt allows
    * crawling and points at the sitemap. sitemap.xml is generated either way.
    */
-  indexable: false,
+  indexable: true,
 
-  url: "https://sst.gumon.io",
+  url: "https://srisiamthaitherapyandwellness.co.uk",
   name: "Sri Siam Thai Therapy & Wellness",
   shortName: "Sri Siam",
   tagline: "Traditional Thai massage in Greenwich, London SE8.",

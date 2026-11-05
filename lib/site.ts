@@ -10,6 +10,8 @@ export const SITE = {
   indexable: true,
 
   url: "https://srisiamthaitherapyandwellness.co.uk",
+  /** Wix Payment Links for the £15 deposit; switch to https://pay.<domain>/_paylink once pay. is connected to the Wix site. */
+  wixPaylinkBase: "https://srisiamthaitherapy.wixsite.com/sri-siam-thai-therap/_paylink",
   name: "Sri Siam Thai Therapy & Wellness",
   shortName: "Sri Siam",
   tagline: "Traditional Thai massage in Greenwich, London SE8.",

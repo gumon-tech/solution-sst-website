@@ -48,6 +48,12 @@ const KEYWORDS = [
   ["combination", "/treatments/thai-massage/"],
 ];
 
+function paylinkBase() {
+  const m = readFileSync("lib/site.ts", "utf8").match(/wixPaylinkBase:\s*"(https:\/\/[^"]+)"/);
+  if (!m) throw new Error("lib/site.ts: SITE.wixPaylinkBase not found");
+  return m[1].replace(/\/+$/, "");
+}
+
 function siteOrigin() {
   const m = readFileSync("lib/site.ts", "utf8").match(/url:\s*"(https:\/\/[^"]+)"/);
   if (!m) throw new Error("lib/site.ts: SITE.url not found");
@@ -78,9 +84,10 @@ ${STUB_MARKER}
 }
 
 function notFoundScript() {
+  const pay = JSON.stringify(paylinkBase());
   const kw = JSON.stringify(KEYWORDS);
   const map = JSON.stringify(REDIRECTS);
-  return `<script id="${SCRIPT_MARKER}">(function(){var p=location.pathname.toLowerCase(),m=${map},k=${kw},t="";var q=p.replace(/\\/?$/,"/");if(m[q]){t=m[q]}else if(/^\\/(service-page|booking-calendar)\\//.test(p)){t="/treatments/";for(var i=0;i<k.length;i++){if(p.indexOf(k[i][0])>-1){t=k[i][1];break}}}if(t)location.replace(t)})();</script>`;
+  return `<script id="${SCRIPT_MARKER}">(function(){if(location.pathname.indexOf("/_paylink/")===0){location.replace(${pay}+location.pathname.slice(9)+location.search+location.hash);return}var p=location.pathname.toLowerCase(),m=${map},k=${kw},t="";var q=p.replace(/\\/?$/,"/");if(m[q]){t=m[q]}else if(/^\\/(service-page|booking-calendar)\\//.test(p)){t="/treatments/";for(var i=0;i<k.length;i++){if(p.indexOf(k[i][0])>-1){t=k[i][1];break}}}if(t)location.replace(t)})();</script>`;
 }
 
 function main() {
@@ -118,6 +125,10 @@ function main() {
       process.exit(1);
     }
     writeFileSync(nf, html);
+  }
+  if (!readFileSync(nf, "utf8").includes('indexOf("/_paylink/")===0')) {
+    console.error(`${nf}: the _paylink redirect is missing`);
+    process.exit(1);
   }
   // trailingSlash also exports /404/ as a page that answers 200 with a canonical to itself;
   // GitHub Pages only needs 404.html.

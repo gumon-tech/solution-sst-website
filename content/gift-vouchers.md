@@ -10,9 +10,9 @@ h1: "Gift vouchers"
 
 Eyebrow: Gift vouchers
 
-# Give someone time to themselves
+# Give the gift of absolute *tranquillity*
 
-Lead: Message us on WhatsApp, tell us who the voucher is for and what you have in mind, and the team arranges a Sri Siam gift voucher with you.
+Lead: Our gift vouchers are the perfect gesture for birthdays, anniversaries or special celebrations. Message us on WhatsApp, tell us who the voucher is for and what you have in mind, and the team arranges a Sri Siam gift voucher with you.
 
 - Button (primary, tag G): Buy a voucher on WhatsApp
 
@@ -39,12 +39,12 @@ Eyebrow: Good to know
 
 ## A few things to tell us
 
-- Who the voucher is for, and whether you would like a name on it
-- Which treatment from our menu you have in mind, if you know
+- Who the voucher is to and from, and any personal message you would like on it
+- Which treatment and length from our menu you have in mind, if you know
 - If there is a date you need it by
 - Anything you would like the team to know, such as a preference for a gentler or firmer treatment
 
-The team confirms how to pay, how the voucher reaches you or your recipient, and how they book. If you have a question before you decide, ask in the same chat.
+Advance booking required: your recipient messages us on WhatsApp to book a time before they come. The team confirms how to pay, how the voucher reaches you or your recipient, and how they book. If you have a question before you decide, ask in the same chat.
 
 - Link: See the treatment menu -> /treatments/
 

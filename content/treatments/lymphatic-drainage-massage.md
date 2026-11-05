@@ -3,7 +3,7 @@ slug: lymphatic-drainage-massage
 title: "Lymphatic Drainage Massage in Greenwich | Sri Siam"
 description: "Lymphatic drainage massage in Greenwich: a gentle, rhythmic massage with light, flowing, precise strokes. Choose your length and book on WhatsApp."
 h1: "Lymphatic Drainage Massage in Greenwich"
-card: "A gentle, rhythmic massage with light, flowing strokes and precise, unhurried hands."
+card: "A gentle, rhythmic massage with light, flowing strokes that may leave you feeling calm and refreshed."
 hero_image: orchid-stones
 secondary_image: hands-back-b
 also_like: [aromatherapy-massage, thai-foot-massage]
@@ -18,7 +18,7 @@ Eyebrow: Treatments · {{group}}
 
 # Lymphatic Drainage Massage in Greenwich
 
-Lead: Lymphatic drainage massage is a gentle, rhythmic massage in which your therapist uses light, flowing, precise strokes.
+Lead: Lymphatic drainage massage is a gentle, rhythmic massage with light, flowing strokes, given with precise, unhurried hands.
 
 ## options
 

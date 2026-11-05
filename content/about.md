@@ -1,18 +1,18 @@
 ---
 title: "About Sri Siam Thai Therapy & Wellness, Greenwich"
 description: "Thai massage in Greenwich SE8 by professional Thai therapists trained at the renowned Wat Pho in Bangkok, the temple school of traditional Thai massage."
-h1: "A calm Thai therapy space in Greenwich"
+h1: "The Thai traditions of Sri Siam, in Greenwich"
 ---
 
 ## hero
 
 [image: hot-stones-spine-b]
 
-Eyebrow: About us
+Eyebrow: Welcome
 
-# A calm Thai therapy space in *Greenwich*
+# The Thai traditions of Sri Siam, in *Greenwich*
 
-Lead: Sri Siam Thai Therapy & Wellness is on Glaisher Street, where Deptford meets Greenwich, with professional Thai therapists. We do one thing, massage, and we do it with care.
+Lead: Sri Siam Thai Therapy & Wellness is your sanctuary on Glaisher Street, where Deptford meets Greenwich. Founded on the principles of ancient Thai massage, we provide a peaceful escape from the frantic pace of modern life, through intuitive touch.
 
 ## wat-pho
 
@@ -23,20 +23,22 @@ Eyebrow: Our training
 
 ## Trained at Wat Pho, Bangkok
 
-Our therapists trained at the renowned Wat Pho in Bangkok, the temple school of traditional Thai massage. They combine the traditional techniques they bring from there with a modern touch.
+Our professional Thai therapists trained at the renowned Wat Pho in Bangkok, the temple school of traditional Thai massage. They combine traditional techniques with a modern touch to deliver exceptional care, and our traditional treatments follow the time-honoured techniques of Thai massage.
 
-Alongside Thai Massage, our menu includes Aromatherapy, Hot Stone and Lymphatic Drainage Massage, a Thai Foot Massage and a Back, Neck & Shoulders Massage, each listed with the lengths we offer.
+Whether you want to unwind or simply take some time for yourself, we welcome you to our modern sanctuary of peace to experience the art of traditional wellness. Alongside Thai Massage, our menu includes Aromatherapy, Hot Stone and Lymphatic Drainage Massage, a Thai Foot Massage and a Back, Neck & Shoulders Massage, each listed with the lengths we offer.
 
 ## the-space
 
 [image: room-pink-curtains]
 [image: oils-stones]
 
-Eyebrow: The space
+Eyebrow: Our philosophy
 
-## Quiet, warm and ready for you
+## More than a spa
 
-A calm, peaceful space, set apart from the rush outside. From the moment you arrive, the pace can slow down.
+Our philosophy is rooted in the ancient wisdom of Thai massage traditions, where every touch is intentional and every treatment is a journey toward tranquillity.
+
+Our sanctuary is a calm, peaceful space to slow down, set apart from the rush outside. With high-quality service, we combine intuitive wisdom with modern wellness practices in our Thai sanctuary.
 
 ## how-we-work
 

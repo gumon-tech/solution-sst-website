@@ -18,14 +18,14 @@
 
 Used on every page except Privacy and 404.
 
-Eyebrow: Ready when you are
+Eyebrow: Begin your journey of serenity
 
-### Book your massage in a message
+### Book your treatment in a message
 
-Tell us which treatment you would like and when suits you. We reply on WhatsApp and confirm your time.
+Book an authentic Thai treatment in one WhatsApp chat. Tell us which treatment you would like and when suits you, and we reply and confirm your time.
 
 - Button (primary, tag T): Book on WhatsApp
-- Line under the button: Prefer to talk? Call {{phone_display}} as a normal phone call. WhatsApp voice and video calls do not connect on this number.
+- Line under the button: Questions? Call {{phone_display}}: phone calls or WhatsApp messages, no WhatsApp calls.
 
 ## footer
 
@@ -39,8 +39,8 @@ Column 2 (visit):
 
 Column 3 (contact):
 - Heading: Contact
-- WhatsApp: {{phone_display}} (link, tag F)
-- Line: Call it as a normal phone call. WhatsApp voice and video calls do not connect on this number.
+- Call or WhatsApp: {{phone_display}} (link, tag F)
+- Line: Phone calls or WhatsApp messages, no WhatsApp calls.
 - Email: {{email}}
 - Link: Read our reviews on Google -> {{maps_url}}
 
@@ -60,4 +60,4 @@ Table form (`{{hours_table}}`): seven rows, Monday first, Monday reads "Closed".
 
 ## phone line (used wherever the number is offered for calling)
 
-Call {{phone_display}} as a normal phone call, or message the same number on WhatsApp. WhatsApp voice and video calls do not connect on this number.
+Call or WhatsApp {{phone_display}}: phone calls or WhatsApp messages, but no WhatsApp calls. WhatsApp voice and video calls do not connect on this number.

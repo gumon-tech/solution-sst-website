@@ -1,7 +1,10 @@
 // Image keys, intrinsic sizes (of the -1600 file; the -800 file has the same
 // ratio) and alt text. Alt strings are final copy from DIRECTION.md section 7.
 
-export type ImageKey =
+import photos from "@/data/photos.json";
+import slotList from "@/scripts/lib/photo-slots.json";
+
+type BuiltInKey =
   | "hands-back-b"
   | "hands-back-a"
   | "therapist-hot-stone"
@@ -14,6 +17,9 @@ export type ImageKey =
   | "purple-stones-candles"
   | "room-pink-curtains";
 
+/** A built-in photo, or one the shop system added (key sp-<slug>, data/photos.json). */
+export type ImageKey = BuiltInKey | `sp-${string}`;
+
 interface ImageMeta {
   w: number;
   h: number;
@@ -23,7 +29,7 @@ interface ImageMeta {
   alt: string;
 }
 
-export const IMAGES: Record<ImageKey, ImageMeta> = {
+const BUILT_IN: Record<BuiltInKey, ImageMeta> = {
   "hands-back-b": { w: 1200, h: 1600, w800: 600, h800: 800, alt: "A therapist in white pressing along a client's back" },
   "hands-back-a": { w: 1200, h: 1600, w800: 600, h800: 800, alt: "Close-up of a therapist's hands pressing along a client's back during a Thai massage" },
   "therapist-hot-stone": { w: 722, h: 546, w800: 722, h800: 546, alt: "A therapist in a beige uniform placing warm stones along a client's back, with candles lit beside the bed" },
@@ -36,6 +42,34 @@ export const IMAGES: Record<ImageKey, ImageMeta> = {
   "purple-stones-candles": { w: 1600, h: 900, w800: 800, h800: 450, alt: "Black stones, tealights and purple orchids on purple silk" },
   "room-pink-curtains": { w: 1600, h: 700, w800: 800, h800: 350, alt: "A treatment bed between pink and lilac curtains" },
 };
+
+interface PhotoEntry extends ImageMeta {
+  key: string;
+  added: string;
+  status: "live" | "retired";
+}
+const PHOTOS = photos as unknown as { images: PhotoEntry[]; slots: Record<string, string | null> };
+
+/** Built-in photos plus the live ones from data/photos.json. A retired photo is not in the map. */
+export const IMAGES: Record<string, ImageMeta> = {
+  ...BUILT_IN,
+  ...Object.fromEntries(PHOTOS.images.filter((i) => i.status === "live").map((i) => [i.key, { w: i.w, h: i.h, w800: i.w800, h800: i.h800, alt: i.alt }])),
+};
+
+export type SlotId = string;
+const SLOT_IDS = new Set(slotList.slots.map((s) => s.id));
+
+/**
+ * A named place on the site that data/photos.json may point at a bot-added photo. Unset (null): the built-in photo and alt the
+ * caller passes. Set: the photo's own key and alt. An unknown slot id is a build error, so a typo cannot silently do nothing.
+ */
+export function applySlot(slot: SlotId | undefined, key: ImageKey, alt?: string): { key: ImageKey; alt: string | undefined } {
+  if (!slot) return { key, alt };
+  if (!SLOT_IDS.has(slot)) throw new Error(`unknown photo slot "${slot}" (scripts/lib/photo-slots.json)`);
+  const k = PHOTOS.slots[slot];
+  const m = k ? IMAGES[k] : undefined;
+  return k && m ? { key: k as ImageKey, alt: m.alt } : { key, alt };
+}
 
 /** Per-treatment thumbnail/card image and its alt, DIRECTION.md section 7. */
 export const TREATMENT_IMAGE: Record<string, { key: ImageKey; alt: string }> = {

@@ -54,6 +54,7 @@ export default function HomePage() {
 
       <Hero
         imageKey="hands-back-b"
+        slot="home.hero"
         eyebrow={hero.eyebrow}
         h1={<Rich text={hero.h1 ?? ""} />}
         lead={<Rich text={hero.lead ?? ""} />}
@@ -151,7 +152,7 @@ export default function HomePage() {
         <div className="container-x grid items-center gap-8 lg:grid-cols-12 lg:gap-12">
           <figure className="lg:col-span-5">
             <div className="overflow-hidden rounded-r-frame shadow-card">
-              <Img k="hands-back-a" sizes="(min-width:1280px) 480px, (min-width:1024px) 40vw, 100vw" className="aspect-square w-full object-cover" />
+              <Img k="hands-back-a" slot="home.our-roots" sizes="(min-width:1280px) 480px, (min-width:1024px) 40vw, 100vw" className="aspect-square w-full object-cover" />
             </div>
             <figcaption className="mt-3 text-sm text-ink-2">{roots.caption}</figcaption>
           </figure>
@@ -181,7 +182,7 @@ export default function HomePage() {
               </Reveal>
             </div>
             <div className="overflow-hidden rounded-r-frame shadow-card">
-              <Img k="purple-stones-candles" sizes="(min-width:1280px) 520px, (min-width:1024px) 45vw, 100vw" className="aspect-[16/9] w-full object-cover" />
+              <Img k="purple-stones-candles" slot="home.gift" sizes="(min-width:1280px) 520px, (min-width:1024px) 45vw, 100vw" className="aspect-[16/9] w-full object-cover" />
             </div>
           </div>
         </div>
@@ -192,7 +193,7 @@ export default function HomePage() {
         <div className="container-x">
           <div className="relative lg:mb-16">
             <div className="overflow-hidden rounded-r-frame shadow-card">
-              <Img k="room-pink-curtains" sizes="(min-width:1280px) 1104px, 100vw" className="aspect-[1600/700] w-full object-cover" />
+              <Img k="room-pink-curtains" slot="home.visit" sizes="(min-width:1280px) 1104px, 100vw" className="aspect-[1600/700] w-full object-cover" />
             </div>
             <div className="card mt-4 p-6 lg:absolute lg:-bottom-12 lg:left-8 lg:mt-0 lg:max-w-md xl:p-8">
               <p className="eyebrow">{visit.eyebrow}</p>

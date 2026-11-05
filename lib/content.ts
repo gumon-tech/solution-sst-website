@@ -4,6 +4,8 @@
 import { readFileSync } from "node:fs";
 import path from "node:path";
 import { DEPOSIT_LABEL, SITE, hoursSentence } from "@/lib/site";
+import { closuresForBuild } from "@/lib/closures-data";
+import { closuresLine } from "@/lib/hours-text";
 import { menuCheckedDate } from "@/lib/services";
 
 const CONTENT_DIR = path.join(process.cwd(), "content");
@@ -257,6 +259,8 @@ function resolve(key: string, ctx: Ctx): string {
   switch (key) {
     case "hours_sentence":
       return hoursSentence();
+    case "closures_line":
+      return closuresLine(closuresForBuild());
     case "address":
       return SITE.address;
     case "phone_display":

@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-05T17:05:59Z",
+  "updated_at": "2026-11-05T17:26:02Z",
   "promotions": [
     {
       "code": "P-BQTK",
@@ -15,6 +15,36 @@
       "ends": "2026-11-05",
       "ends_label": "Thursday 5 November 2026",
       "status": "ended"
+    },
+    {
+      "code": "P-SJ6Y",
+      "title": "Midweek Extra: 15 Minutes Free",
+      "eyebrow": "Seasonal offer",
+      "detail": "Book any massage of 60 minutes or longer that starts on a Tuesday, Wednesday or Friday between 12:00 and 15:00, and get 15 extra minutes at no extra cost. Write 'Midweek Extra' in your Treatwell booking note, mention it on WhatsApp, or tell us when you arrive.",
+      "points": [],
+      "offer": "Mention this offer on WhatsApp or when you arrive",
+      "message": "Hi Sri Siam, I'd like to book with the Midweek Extra: 15 Minutes Free offer.",
+      "image": null,
+      "illustrative": false,
+      "starts": "2026-11-10",
+      "ends": "2026-12-18",
+      "ends_label": "Friday 18 December 2026",
+      "status": "live"
+    },
+    {
+      "code": "P-4VNF",
+      "title": "Come Back Gift: Free 15-Minute Thai Foot Massage",
+      "eyebrow": "Seasonal offer",
+      "detail": "Book your next appointment with us directly, either at the desk before you leave or by WhatsApp, for any visit up to 31 January 2027. On that visit you get a free 15-minute Thai foot massage, or a 15-minute back and shoulder add-on, together with your treatment. One per client per visit.",
+      "points": [],
+      "offer": "Mention this offer on WhatsApp or when you arrive",
+      "message": "Hi Sri Siam, I'd like to book with the Come Back Gift: Free 15-Minute Thai Foot Massage offer.",
+      "image": null,
+      "illustrative": false,
+      "starts": "2026-11-27",
+      "ends": "2026-12-31",
+      "ends_label": "Thursday 31 December 2026",
+      "status": "live"
     }
   ]
 }

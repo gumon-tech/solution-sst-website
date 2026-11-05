@@ -46,7 +46,7 @@ We are at {{address}}, where Deptford meets Greenwich. Cutty Sark DLR, Greenwich
 - Link: Directions on Google Maps -> {{maps_url}}
 
 ### What are your opening hours?
-{{hours_sentence}} We work by appointment, so please message us before you come.
+{{hours_sentence}}{{closures_line}} We work by appointment, so please message us before you come.
 
 ### What should I wear?
 Thai Massage is performed with you wearing specially designed loose clothing. For any treatment, if you have a question about what to wear, ask us on WhatsApp when you book.

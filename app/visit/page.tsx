@@ -4,7 +4,7 @@ import { ActionView } from "@/components/Actions";
 import { WaLink } from "@/components/Button";
 import { ClosingBand } from "@/components/ClosingBand";
 import { CompactHero } from "@/components/CompactHero";
-import { HoursTable } from "@/components/HoursTable";
+import { ClosuresList, HoursTable } from "@/components/HoursTable";
 import { Img } from "@/components/Img";
 import { JsonLd } from "@/components/JsonLd";
 import { Reveal } from "@/components/Reveal";
@@ -62,6 +62,7 @@ export default function VisitPage() {
           <Reveal className="card p-6 xl:p-8">
             <h2 className="t-h3">{hoursSub.h3}</h2>
             <HoursTable className="mt-3" />
+            <ClosuresList />
             {hc.small && <p className="mt-4 text-sm text-ink-2">{hc.small}</p>}
           </Reveal>
           <Reveal i={1} className="card p-6 xl:p-8">
@@ -126,7 +127,7 @@ export default function VisitPage() {
       <section className="section-y" aria-label="The room">
         <div className="container-x">
           <div className="overflow-hidden rounded-r-frame shadow-card">
-            <Img k="room-pink-curtains" sizes="(min-width:1280px) 1104px, 100vw" className="aspect-[1600/700] w-full object-cover" />
+            <Img k="room-pink-curtains" slot="visit.room" sizes="(min-width:1280px) 1104px, 100vw" className="aspect-[1600/700] w-full object-cover" />
           </div>
         </div>
       </section>

@@ -1,6 +1,7 @@
 // JSON-LD builders. Facts come from lib/site.ts and prices from data/services.json only.
 // No aggregateRating and no review: the site quotes no reviews.
 import { DAYS, HOURS, SITE, absoluteUrl } from "@/lib/site";
+import { closuresForStructuredData } from "@/lib/closures-data";
 import { GROUPS, SERVICE_ROWS, formatPrice, type Treatment } from "@/lib/services";
 
 const BUSINESS_ID = `${SITE.url}/#business`;
@@ -25,6 +26,17 @@ function openingHours() {
   });
 }
 
+/** Google's "holiday hours": a closed day is opens 00:00 closes 00:00 (schema.org's way to say closed). */
+function specialOpeningHours() {
+  return closuresForStructuredData().map((c) => ({
+    "@type": "OpeningHoursSpecification",
+    validFrom: c.from,
+    validThrough: c.to,
+    opens: c.hours ? c.hours.opens : "00:00",
+    closes: c.hours ? c.hours.closes : "00:00",
+  }));
+}
+
 export function businessNode(extra: Record<string, unknown> = {}) {
   return {
     "@type": "DaySpa",
@@ -46,6 +58,7 @@ export function businessNode(extra: Record<string, unknown> = {}) {
     geo: { "@type": "GeoCoordinates", latitude: SITE.geo.latitude, longitude: SITE.geo.longitude },
     hasMap: SITE.mapsUrl,
     openingHoursSpecification: openingHours(),
+    ...(closuresForStructuredData().length ? { specialOpeningHoursSpecification: specialOpeningHours() } : {}),
     priceRange: priceRange(),
     paymentAccepted: "Cash, Credit Card, Debit Card",
     currenciesAccepted: "GBP",

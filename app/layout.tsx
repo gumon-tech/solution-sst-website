@@ -3,8 +3,10 @@ import { Cormorant_Garamond, Figtree } from "next/font/google";
 import "./globals.css";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
+import { NoticeBand } from "@/components/NoticeBand";
 import { RevealObserver } from "@/components/RevealObserver";
 import { StickyBar } from "@/components/StickyBar";
+import { noticeForBuild } from "@/lib/notice-data";
 import { ROBOTS } from "@/lib/seo";
 import { SITE } from "@/lib/site";
 
@@ -42,10 +44,11 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
-  themeColor: "#362140",
+  themeColor: "#5B1E70",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
+  const { notice, buildDay } = noticeForBuild();
   return (
     <html lang="en-GB" className={`${display.variable} ${body.variable}`} suppressHydrationWarning>
       <head>
@@ -57,6 +60,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           Skip to content
         </a>
         <Header />
+        <NoticeBand notice={notice} buildDay={buildDay} />
         <main id="main" className="overflow-x-clip">{children}</main>
         <Footer />
         <StickyBar />

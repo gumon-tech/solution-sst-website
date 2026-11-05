@@ -278,6 +278,108 @@ if (homeHtml && !/"@type":"DaySpa"/.test(homeHtml)) fail("/: no DaySpa JSON-LD")
   }
 }
 
+// ---- hours, closures, notice, extra FAQ, photos (written by the shop system; design: README "Data the shop system writes") ----
+{
+  const londonToday = new Intl.DateTimeFormat("en-CA", { timeZone: "Europe/London", year: "numeric", month: "2-digit", day: "2-digit" }).format(new Date());
+  const addDays = (day, n) => {
+    const d = new Date(`${day}T00:00:00Z`);
+    d.setUTCDate(d.getUTCDate() + n);
+    return d.toISOString().slice(0, 10);
+  };
+  const jsonOf = (name) => JSON.parse(read(path.join(root, "data", `${name}.json`)));
+  const ldOf = (html) => [...html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)].map((m) => JSON.parse(m[1]));
+  const DAYS = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
+
+  // hours: the /visit/ table and the DaySpa JSON-LD say what data/hours.json says.
+  const hours = jsonOf("hours").hours;
+  const visitHtml = pageFiles.get(path.join("visit", "index.html")) ?? "";
+  const rows = [...visitHtml.matchAll(/<tr[^>]*><th[^>]*>([^<]*)<\/th><td[^>]*>([^<]*)<\/td><\/tr>/g)].map((m) => [decodeEntities(m[1]).trim(), decodeEntities(m[2]).trim()]);
+  const wantRows = DAYS.map((d) => [d, hours[d] ? `${hours[d].opens}–${hours[d].closes}` : "Closed"]);
+  if (JSON.stringify(rows) !== JSON.stringify(wantRows)) fail(`/visit/: hours table ${JSON.stringify(rows)} differs from data/hours.json ${JSON.stringify(wantRows)}`);
+  if (homeHtml) {
+    const biz = ldOf(homeHtml).find((j) => j["@type"] === "DaySpa");
+    const got = {};
+    for (const spec of biz?.openingHoursSpecification ?? []) for (const d of spec.dayOfWeek) got[d] = `${spec.opens}-${spec.closes}`;
+    const want = Object.fromEntries(DAYS.filter((d) => hours[d]).map((d) => [d, `${hours[d].opens}-${hours[d].closes}`]));
+    if (JSON.stringify(got) !== JSON.stringify(want)) fail(`/: DaySpa openingHoursSpecification ${JSON.stringify(got)} differs from data/hours.json`);
+  }
+
+  // closures: live, not over, starting within 60 days: in the footer of every page and under the /visit/ table; every live one not over in JSON-LD.
+  const closures = jsonOf("closures").closures.filter((c) => c.status === "live" && c.to >= londonToday);
+  const shownCodes = closures.filter((c) => c.from <= addDays(londonToday, 60)).map((c) => c.code).sort().join();
+  const specWant = closures.map((c) => `${c.from}|${c.to}|${c.hours ? c.hours.opens : "00:00"}|${c.hours ? c.hours.closes : "00:00"}`).sort().join();
+  for (const [rel, html] of pageFiles) {
+    if (rel === "404.html" || rel === path.join("404", "index.html")) continue;
+    const foot = [...html.matchAll(/data-closure-foot="([^"]+)"/g)].map((m) => m[1]).sort().join();
+    if (foot !== shownCodes) fail(`${rel}: footer closures [${foot}] differ from the live closures [${shownCodes}]`);
+    const rowsHere = [...html.matchAll(/data-closure-row="([^"]+)"/g)].map((m) => m[1]).sort().join();
+    if (rel === path.join("visit", "index.html")) {
+      if (rowsHere !== shownCodes) fail(`/visit/: closures under the table [${rowsHere}] differ from the live closures [${shownCodes}]`);
+      if (shownCodes && !/id="closures"/.test(html)) fail('/visit/: closures are live but there is no id="closures" list');
+      if (!shownCodes && /id="closures"/.test(html)) fail('/visit/: id="closures" present while no closure is live');
+    } else if (rowsHere) fail(`${rel}: closure rows outside /visit/`);
+    for (const j of ldOf(html)) {
+      if (j["@type"] !== "DaySpa") continue;
+      const got = (j.specialOpeningHoursSpecification ?? []).map((x) => `${x.validFrom}|${x.validThrough}|${x.opens}|${x.closes}`).sort().join();
+      if (got !== specWant) fail(`${rel}: specialOpeningHoursSpecification [${got}] differs from the live closures [${specWant}]`);
+    }
+  }
+  const faqHtmlC = pageFiles.get(path.join("faq", "index.html")) ?? "";
+  const hoursAnswer = /What are your opening hours\?[\s\S]*?<\/p>/.exec(faqHtmlC)?.[0] ?? "";
+  if (closures.some((c) => c.from <= addDays(londonToday, 60)) !== /Please note:/.test(hoursAnswer)) fail('/faq/: the hours answer carries "Please note:" iff a closure is upcoming');
+
+  // notice: id="notice" on every page iff a notice is live today, with its exact text.
+  const notice = jsonOf("notice").notice;
+  const noticeLive = notice && notice.status === "live" && notice.starts <= londonToday && londonToday <= notice.ends;
+  for (const [rel, html] of pageFiles) {
+    const has = /id="notice"/.test(html);
+    if (noticeLive && !has) fail(`${rel}: a notice is live but the page has no id="notice" band`);
+    if (!noticeLive && has) fail(`${rel}: id="notice" band present while no notice is live`);
+    if (noticeLive && has) {
+      const band = /<div id="notice"[\s\S]*?<\/p><\/div>/.exec(html)?.[0] ?? "";
+      if (!stripTags(band).includes(notice.text)) fail(`${rel}: notice band does not carry the text of ${notice.code}`);
+    }
+  }
+
+  // extra FAQ: every live question in the page and in the FAQPage JSON-LD; nothing hidden anywhere.
+  const faq = jsonOf("faq-extra").questions;
+  if (faqHtmlC) {
+    const faqLd = ldOf(faqHtmlC).find((j) => j["@type"] === "FAQPage");
+    const asked = new Set((faqLd?.mainEntity ?? []).map((q) => q.name));
+    const text = stripTags(faqHtmlC.replace(/<script[\s\S]*?<\/script>/g, ""));
+    for (const q of faq) {
+      const live = q.status === "live";
+      if (live && !(asked.has(q.question) && text.includes(q.question) && text.includes(q.answer))) fail(`/faq/: live question ${q.code} missing from the page or the FAQPage JSON-LD`);
+      if (!live && (asked.has(q.question) || text.includes(q.answer))) fail(`/faq/: hidden question ${q.code} is shown`);
+    }
+    if (faq.some((q) => q.status === "live") !== /id="more-questions"/.test(faqHtmlC)) fail('/faq/: id="more-questions" group present iff an extra question is live');
+  }
+
+  // photos: a slot's photo is on the site; a retired photo is nowhere in it.
+  const photos = jsonOf("photos");
+  const allHtml = [...pageFiles.values()].join("\n");
+  for (const im of photos.images) {
+    const used = Object.values(photos.slots).includes(im.key);
+    const shown = allHtml.includes(`/img/${im.key}-800.webp`);
+    if (used && !shown) fail(`photo ${im.key} is set in a slot but no page shows it`);
+    if (!used && shown) fail(`photo ${im.key} is shown but no slot uses it`);
+  }
+
+  // build.json: the deploy marker (scripts/write-build-json.mjs), not in the sitemap.
+  const bj = path.join(OUT, "build.json");
+  if (!existsSync(bj)) fail("out/build.json is missing: run node scripts/write-build-json.mjs after next build");
+  else {
+    try {
+      const b = JSON.parse(read(bj));
+      if (typeof b.sha !== "string" || !b.sha || typeof b.built_at !== "string" || Number.isNaN(Date.parse(b.built_at))) fail("out/build.json needs sha and built_at");
+      for (const c of ["promotions", "hours", "closures", "notice", "faq-extra", "photos"]) if (!/^[0-9a-f]{64}$/.test(b.data?.[c] ?? "")) fail(`out/build.json: data.${c} is not a sha256`);
+    } catch (e) {
+      fail(`out/build.json does not parse (${e.message})`);
+    }
+    if (existsSync(path.join(OUT, "sitemap.xml")) && read(path.join(OUT, "sitemap.xml")).includes("build.json")) fail("sitemap.xml lists build.json");
+  }
+}
+
 // ---- result -----------------------------------------------------------------
 if (errors.length) {
   console.error(`check-site: ${errors.length} problem(s)\n- ` + errors.join("\n- "));

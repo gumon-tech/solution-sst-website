@@ -1,0 +1,117 @@
+{
+  "_note": "The fixed list of places on the site a bot-added photo may fill. Read by validate-photos.mjs, lib/images.ts and the shop bot. Changing it is a human PR.",
+  "slots": [
+    {
+      "id": "home.hero",
+      "where": "Home page, top photo (portrait)"
+    },
+    {
+      "id": "home.our-roots",
+      "where": "Home page, Our roots (square)"
+    },
+    {
+      "id": "home.gift",
+      "where": "Home page, gift vouchers strip (16:9)"
+    },
+    {
+      "id": "home.visit",
+      "where": "Home page, Visit section (wide)"
+    },
+    {
+      "id": "about.hero",
+      "where": "About page, top photo (portrait)"
+    },
+    {
+      "id": "about.wat-pho",
+      "where": "About page, first section (square)"
+    },
+    {
+      "id": "about.space-1",
+      "where": "About page, The space, wide photo"
+    },
+    {
+      "id": "about.space-2",
+      "where": "About page, The space, second photo (3:4 on desktop)"
+    },
+    {
+      "id": "gift-vouchers.hero",
+      "where": "Gift vouchers page, top photo"
+    },
+    {
+      "id": "visit.room",
+      "where": "Visit page, The room (wide)"
+    },
+    {
+      "id": "treatment.thai-massage.card",
+      "where": "thai-massage: card on Home, row on the menu, 'You might also like' thumbnail (square crop)"
+    },
+    {
+      "id": "treatment.thai-massage.hero",
+      "where": "thai-massage: top photo of its page"
+    },
+    {
+      "id": "treatment.thai-massage.secondary",
+      "where": "thai-massage: second photo of its page (wide crop)"
+    },
+    {
+      "id": "treatment.aromatherapy-massage.card",
+      "where": "aromatherapy-massage: card on Home, row on the menu, 'You might also like' thumbnail (square crop)"
+    },
+    {
+      "id": "treatment.aromatherapy-massage.hero",
+      "where": "aromatherapy-massage: top photo of its page"
+    },
+    {
+      "id": "treatment.aromatherapy-massage.secondary",
+      "where": "aromatherapy-massage: second photo of its page (wide crop)"
+    },
+    {
+      "id": "treatment.hot-stone-massage.card",
+      "where": "hot-stone-massage: card on Home, row on the menu, 'You might also like' thumbnail (square crop)"
+    },
+    {
+      "id": "treatment.hot-stone-massage.hero",
+      "where": "hot-stone-massage: top photo of its page"
+    },
+    {
+      "id": "treatment.hot-stone-massage.secondary",
+      "where": "hot-stone-massage: second photo of its page (wide crop)"
+    },
+    {
+      "id": "treatment.lymphatic-drainage-massage.card",
+      "where": "lymphatic-drainage-massage: card on Home, row on the menu, 'You might also like' thumbnail (square crop)"
+    },
+    {
+      "id": "treatment.lymphatic-drainage-massage.hero",
+      "where": "lymphatic-drainage-massage: top photo of its page"
+    },
+    {
+      "id": "treatment.lymphatic-drainage-massage.secondary",
+      "where": "lymphatic-drainage-massage: second photo of its page (wide crop)"
+    },
+    {
+      "id": "treatment.thai-foot-massage.card",
+      "where": "thai-foot-massage: card on Home, row on the menu, 'You might also like' thumbnail (square crop)"
+    },
+    {
+      "id": "treatment.thai-foot-massage.hero",
+      "where": "thai-foot-massage: top photo of its page"
+    },
+    {
+      "id": "treatment.thai-foot-massage.secondary",
+      "where": "thai-foot-massage: second photo of its page (wide crop)"
+    },
+    {
+      "id": "treatment.back-neck-shoulders-massage.card",
+      "where": "back-neck-shoulders-massage: card on Home, row on the menu, 'You might also like' thumbnail (square crop)"
+    },
+    {
+      "id": "treatment.back-neck-shoulders-massage.hero",
+      "where": "back-neck-shoulders-massage: top photo of its page"
+    },
+    {
+      "id": "treatment.back-neck-shoulders-massage.secondary",
+      "where": "back-neck-shoulders-massage: second photo of its page (wide crop)"
+    }
+  ]
+}

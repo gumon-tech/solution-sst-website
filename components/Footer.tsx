@@ -2,6 +2,8 @@ import Link from "next/link";
 import { Phone } from "lucide-react";
 import { Ornament } from "@/components/Ornament";
 import { WaLink } from "@/components/Button";
+import { closuresForBuild } from "@/lib/closures-data";
+import { closureLabel } from "@/lib/hours-text";
 import { fill } from "@/lib/content";
 import { SITE, hoursCompact } from "@/lib/site";
 import { MSG, TAG, telHref } from "@/lib/whatsapp";
@@ -58,6 +60,11 @@ export function Footer() {
               {hoursCompact().map((h) => (
                 <span key={h} className="block">
                   {h}
+                </span>
+              ))}
+              {closuresForBuild().map((c) => (
+                <span key={c.code} data-closure-foot={c.code} className="mt-1 block font-medium text-cream">
+                  {closureLabel(c)}
                 </span>
               ))}
             </p>

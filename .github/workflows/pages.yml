@@ -33,6 +33,9 @@ jobs:
         run: npm run validate
       - name: Build
         run: npx --no-install next build
+      # out/build.json: the commit and a hash of each shop-system data file; the shop system reads it to confirm "live".
+      - name: Write build.json
+        run: node scripts/write-build-json.mjs
       - name: Check output
         run: node scripts/check-site.mjs
       # Old Wix URLs keep working after the shop's domain moves here: stubs go into out/
@@ -45,12 +48,22 @@ jobs:
   deploy:
     needs: build
     runs-on: ubuntu-latest
+    # GitHub's deploy step has stalled in updating_pages before (5 Nov 2026): bound it, and retry the deploy step once.
+    timeout-minutes: 15
     permissions:
       pages: write
       id-token: write
     environment:
       name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+      url: ${{ steps.deployment_retry.outputs.page_url || steps.deployment.outputs.page_url }}
     steps:
       - id: deployment
         uses: actions/deploy-pages@v4
+        with:
+          timeout: 360000
+      # One automatic retry, only of the deploy step (a build or check failure already stopped the build job above).
+      - id: deployment_retry
+        if: failure() && steps.deployment.outcome == 'failure'
+        uses: actions/deploy-pages@v4
+        with:
+          timeout: 360000

@@ -1,7 +1,7 @@
 import { existsSync } from "node:fs";
 import path from "node:path";
 import { fill, fmString, loadDoc, section, type Block, type Doc } from "@/lib/content";
-import { ALT_OVERRIDE, IMAGES, TREATMENT_IMAGE, type ImageKey } from "@/lib/images";
+import { ALT_OVERRIDE, IMAGES, TREATMENT_IMAGE, applySlot, type ImageKey } from "@/lib/images";
 import { getTreatment } from "@/lib/services";
 
 export function hasTreatmentFile(slug: string): boolean {
@@ -14,7 +14,9 @@ export function treatmentDoc(slug: string): Doc | null {
 
 /** Card/menu image for a slug. Unknown slugs (e.g. a future reflexology row) use foot-massage, per DIRECTION section 7. */
 export function imageFor(slug: string): { key: ImageKey; alt: string } {
-  return TREATMENT_IMAGE[slug] ?? { key: "foot-massage", alt: IMAGES["foot-massage"].alt };
+  const d = TREATMENT_IMAGE[slug] ?? { key: "foot-massage", alt: IMAGES["foot-massage"].alt };
+  const o = applySlot(`treatment.${slug}.card`, d.key, d.alt);
+  return { key: o.key, alt: o.alt ?? d.alt };
 }
 
 /** The one-line description used on cards and menu rows. */
@@ -62,16 +64,18 @@ export function treatmentCopy(slug: string): TreatmentCopy | null {
       ? ALT_OVERRIDE.lymphaticSecondary
       : IMAGES[secondaryImage].alt;
   const also = doc.fm["also_like"];
+  const hero = applySlot(`treatment.${slug}.hero`, heroImage, heroAlt);
+  const second = applySlot(`treatment.${slug}.secondary`, secondaryImage, secondaryAlt);
   return {
     doc,
     title: fmString(doc, "title"),
     description: fmString(doc, "description"),
     h1: fmString(doc, "h1"),
     card: fmString(doc, "card"),
-    heroImage,
-    heroAlt,
-    secondaryImage,
-    secondaryAlt,
+    heroImage: hero.key,
+    heroAlt: hero.alt ?? heroAlt,
+    secondaryImage: second.key,
+    secondaryAlt: second.alt ?? secondaryAlt,
     alsoLike: Array.isArray(also) ? also : [],
     hero: section(doc, "hero"),
     expect: section(doc, "what-to-expect"),

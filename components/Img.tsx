@@ -1,7 +1,9 @@
-import { IMAGES, type ImageKey } from "@/lib/images";
+import { IMAGES, applySlot, type ImageKey, type SlotId } from "@/lib/images";
 
 interface Props {
   k: ImageKey;
+  /** A named place data/photos.json may fill with another photo (scripts/lib/photo-slots.json). */
+  slot?: SlotId;
   /** Omit to use the alt from DIRECTION.md section 7; pass "" for decoration. */
   alt?: string;
   sizes: string;
@@ -15,7 +17,8 @@ interface Props {
 }
 
 /** Plain <img> with 800w/1600w srcset and intrinsic width/height so nothing shifts. */
-export function Img({ k, alt, sizes, priority = false, className, position, small = false }: Props) {
+export function Img({ k: defaultKey, slot, alt: defaultAlt, sizes, priority = false, className, position, small = false }: Props) {
+  const { key: k, alt } = applySlot(slot, defaultKey, defaultAlt);
   const m = IMAGES[k];
   const text = alt ?? m.alt;
   return (

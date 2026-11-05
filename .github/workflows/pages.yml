@@ -27,12 +27,10 @@ jobs:
           node-version: "22"
           cache: npm
       - run: npm ci
-      # A broken edit of data/services.json stops here and the live site stays as it was.
-      - name: Validate services.json
-        run: node scripts/validate-services.mjs
-      # A bad offer written by the shop system stops here and the live site stays as it was.
-      - name: Validate promotions.json
-        run: node scripts/validate-promotions.mjs
+      # Every validator and its tests (see "validate" in package.json). A broken edit of data/services.json, or a bad
+      # offer, hours, closure, notice, question or photo written by the shop system, stops here and the live site stays as it was.
+      - name: Validate data files and run the validator tests
+        run: npm run validate
       - name: Build
         run: npx --no-install next build
       - name: Check output

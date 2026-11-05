@@ -12,7 +12,7 @@ export interface Promotion {
   offer: string;
   /** Pre-filled WhatsApp text. The site adds the [web-PR] tag itself. */
   message: string;
-  /** Always null for offers the system writes; a path under /images/ otherwise. */
+  /** Always null for offers the system writes; a path under /img/ otherwise. */
   image: string | null;
   illustrative: boolean;
   /** YYYY-MM-DD, London. Shown from the start of this day. */

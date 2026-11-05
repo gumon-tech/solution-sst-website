@@ -1,32 +1,38 @@
-name: Merge shop system promotions
-# The shop's WhatsApp system (shop-agent, shop id sst) keeps at most ONE open pull request from a branch named
-# shop-agent/promotions-*; it rebuilds that branch from main plus every offer the shop manager has confirmed, or closes
-# it if the offers were withdrawn. This workflow merges that pull request by itself, and only if ALL hold:
-#   1. the pull request comes from a branch inside this repository named shop-agent/promotions-*
-#   2. against main it changes exactly one file, data/promotions.json (M, not added, renamed or deleted)
-#   3. `npm run check` passes on the merged result (services + promotions validation, build, site checks)
+name: Merge shop system data changes
+# The shop's WhatsApp system (shop-agent, shop id sst) keeps at most ONE open pull request per concern from a branch named
+# shop-agent/<concern>-<id>, with <concern> one of: promotions, hours, closures, notice, faq-extra, photos. It rebuilds that branch
+# from main plus every change the shop manager has confirmed. This workflow merges that pull request by itself, and only if ALL hold:
+#   1. the pull request comes from a branch inside this repository named shop-agent/<concern>-<id> with a known concern
+#   2. against main it changes only the files of that concern (set below, derived from the concern, never listed by the pull request):
+#        promotions, hours, closures, notice, faq-extra: exactly one file, data/<concern>.json (M, not added, renamed or deleted)
+#        photos: exactly one M data/photos.json, plus any number of new (A) public/img/sp-<slug>-800.webp and -1600.webp files;
+#                nothing else, no deleted, renamed or modified photo files
+#   3. `npm run check` passes on the merged result (every validator, the tests, build, site checks)
+#   4. scripts/check-shop-agent-diff.mjs passes: wording already on the site is not edited and no entry is removed
 # Anything else stays open for a person, and a comment says which stage failed (the shop system reads it and tells the manager).
 # Uses the built-in GITHUB_TOKEN only.
 #
 # Jobs, so a write token never meets npm:
 #   check  (check run name: "site-check") runs for EVERY pull request from a branch in this repository, so a ruleset on main can
 #          require it and a person's pull request (the web room) passes it too. permissions {}: checkout with no stored
-#          credentials, npm ci, npm run check. No token in its env or in .git/config. For shop-agent/promotions-* it also
-#          enforces rule 2.
-#   merge  needs check, only for shop-agent/promotions-* pull requests (and not drafts): no checkout, no npm.
+#          credentials, npm ci, npm run check. No token in its env or in .git/config. For shop-agent/* it also enforces rules 1, 2 and 4.
+#          Rule 2 runs before npm, so the scripts that run are always the ones on main (a shop-agent pull request cannot
+#          change a script, a workflow or the site, only data files and sp- photos).
+#   merge  needs check, only for shop-agent/* pull requests (and not drafts): no checkout, no npm.
 #          contents, pull-requests and actions write, used only by gh in single steps.
-#   report comments on a failed check of a shop-agent/promotions-* pull request.
+#   report comments on a failed check of a shop-agent/* pull request.
 #
 # pull_request_target is deliberate: the workflow definition always comes from main, so a pull request cannot edit this
-# file to skip a check. The pull request's own code is never trusted: rule 2 means it can only change a JSON data file,
-# and the scripts that read that file are the ones on main.
+# file to skip a check. The pull request's own code is never trusted: rule 2 means it can only change JSON data files and add
+# new sp- photo files, and the scripts that read them are the ones on main. (The only parser of a pull request's binary content is
+# sharp reading the new WebP files in the token-less check job.)
 #
 # A merge made with GITHUB_TOKEN does not start other workflows, so the merge job starts pages.yml by workflow_dispatch
 # (the one event GITHUB_TOKEN may trigger). If main has a ruleset that needs a review, the merge step fails and the pull
-# request waits for a person; the offer is then not on the site.
+# request waits for a person; the change is then not on the site.
 #
 # Failure comments carry a marker line the shop system parses:
-#   shop-agent-merge-failed stage=<check|merge|publish> sha=<pull request head> run=<url>
+#   shop-agent-merge-failed stage=<check|merge|publish> concern=<concern|unknown> sha=<pull request head> run=<url>
 # A run that was replaced by a newer commit on the pull request (the system edits its branch) stays silent.
 on:
   pull_request_target:
@@ -46,8 +52,11 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 15
     permissions: {}
+    outputs:
+      concern: ${{ steps.concern.outputs.concern }}
     env:
       SHA: ${{ github.event.pull_request.head.sha }}
+      HEAD_REF: ${{ github.event.pull_request.head.ref }}
     steps:
       - uses: actions/checkout@v4
         with:
@@ -55,16 +64,72 @@ jobs:
           fetch-depth: 2   # the merge commit and both parents
           persist-credentials: false
 
-      - name: Rule 2, only data/promotions.json changes, and this is the head that was reviewed
-        if: startsWith(github.event.pull_request.head.ref, 'shop-agent/promotions-')
+      # Rule 1. Always succeeds (so the concern is available to the report job); the next step fails on an unknown one.
+      - name: Rule 1, which concern is this shop-agent branch
+        id: concern
+        if: startsWith(github.event.pull_request.head.ref, 'shop-agent/')
+        run: |
+          name="${HEAD_REF#shop-agent/}"
+          concern=unknown
+          if printf '%s' "$name" | grep -Eq '^[A-Za-z0-9._-]+$'; then
+            case "$name" in
+              promotions-?*) concern=promotions ;;
+              hours-?*) concern=hours ;;
+              closures-?*) concern=closures ;;
+              notice-?*) concern=notice ;;
+              faq-extra-?*) concern=faq-extra ;;
+              photos-?*) concern=photos ;;
+            esac
+          fi
+          echo "concern=$concern" >> "$GITHUB_OUTPUT"
+          echo "concern: $concern"
+
+      - name: Rule 1, the concern is known
+        if: startsWith(github.event.pull_request.head.ref, 'shop-agent/')
+        env:
+          CONCERN: ${{ steps.concern.outputs.concern }}
+        run: |
+          if [ "$CONCERN" = unknown ]; then
+            echo "::error::branch shop-agent/<concern>-<id> needs a concern of promotions, hours, closures, notice, faq-extra or photos"
+            exit 1
+          fi
+
+      - name: Rule 2, only the files of this concern change, and this is the head that was reviewed
+        if: startsWith(github.event.pull_request.head.ref, 'shop-agent/')
+        env:
+          CONCERN: ${{ steps.concern.outputs.concern }}
         run: |
           changed=$(git diff --name-status HEAD^1 HEAD)
           printf 'Changed against main:\n%s\n' "$changed"
-          want=$(printf 'M\tdata/promotions.json')
-          if [ "$changed" != "$want" ]; then
-            echo "::error::this pull request must change exactly data/promotions.json and nothing else"
-            exit 1
-          fi
+          case "$CONCERN" in
+            promotions|hours|closures|notice|faq-extra)
+              want=$(printf 'M\tdata/%s.json' "$CONCERN")
+              if [ "$changed" != "$want" ]; then
+                echo "::error::this pull request must change exactly data/$CONCERN.json and nothing else"
+                exit 1
+              fi
+              ;;
+            photos)
+              modified=0
+              bad=0
+              while IFS=$(printf '\t') read -r status file extra; do
+                if [ "$status" = M ] && [ "$file" = data/photos.json ] && [ -z "$extra" ]; then
+                  modified=$((modified + 1))
+                elif [ "$status" = A ] && [ -z "$extra" ] && printf '%s' "$file" | grep -Eq '^public/img/sp-[a-z0-9-]{3,40}-(800|1600)\.webp$'; then
+                  :
+                else
+                  echo "::error::not allowed in a photos pull request: $status $file"
+                  bad=1
+                fi
+              done <<EOF
+          $changed
+          EOF
+              if [ "$bad" != 0 ] || [ "$modified" != 1 ]; then
+                echo "::error::a photos pull request must modify data/photos.json once and may only add public/img/sp-<slug>-800.webp and -1600.webp files"
+                exit 1
+              fi
+              ;;
+          esac
           test "$(git rev-parse HEAD^2)" = "$SHA"
 
       - uses: actions/setup-node@v4
@@ -77,10 +142,16 @@ jobs:
       - name: Rule 3, npm run check
         run: npm run check
 
+      - name: Rule 4, wording already on the site is not edited and nothing is removed
+        if: startsWith(github.event.pull_request.head.ref, 'shop-agent/')
+        env:
+          CONCERN: ${{ steps.concern.outputs.concern }}
+        run: node scripts/check-shop-agent-diff.mjs "$CONCERN"
+
   merge:
     needs: check
     if: >-
-      startsWith(github.event.pull_request.head.ref, 'shop-agent/promotions-') &&
+      startsWith(github.event.pull_request.head.ref, 'shop-agent/') &&
       github.event.pull_request.draft == false
     runs-on: ubuntu-latest
     timeout-minutes: 10
@@ -92,6 +163,7 @@ jobs:
       REPO: ${{ github.repository }}
       PR: ${{ github.event.pull_request.number }}
       SHA: ${{ github.event.pull_request.head.sha }}
+      CONCERN: ${{ needs.check.outputs.concern }}
       RUN: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
     steps:
       - name: Merge (squash, only if the head is still the one that was checked)
@@ -113,20 +185,20 @@ jobs:
         run: |
           head=$(gh pr view "$PR" --repo "$REPO" --json headRefOid --jq .headRefOid)
           if [ "$head" != "$SHA" ]; then echo "replaced by a newer commit, staying silent"; exit 0; fi
-          gh pr comment "$PR" --repo "$REPO" --body "Automatic merge did not happen: GitHub refused the merge. shop-agent-merge-failed stage=merge sha=$SHA run=$RUN"
+          gh pr comment "$PR" --repo "$REPO" --body "Automatic merge did not happen: GitHub refused the merge. shop-agent-merge-failed stage=merge concern=${CONCERN:-unknown} sha=$SHA run=$RUN"
 
       - name: Comment if starting the site publish failed (the merge itself worked)
         if: failure() && steps.publish.outcome == 'failure'
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          gh pr comment "$PR" --repo "$REPO" --body "Merged, but starting the Pages workflow failed, so the site shows this at the next nightly rebuild or when someone runs the workflow. shop-agent-merge-failed stage=publish sha=$SHA run=$RUN"
+          gh pr comment "$PR" --repo "$REPO" --body "Merged, but starting the Pages workflow failed, so the site shows this at the next nightly rebuild or when someone runs the workflow. shop-agent-merge-failed stage=publish concern=${CONCERN:-unknown} sha=$SHA run=$RUN"
 
   report:
     needs: check
     if: >-
       always() && needs.check.result == 'failure' &&
-      startsWith(github.event.pull_request.head.ref, 'shop-agent/promotions-')
+      startsWith(github.event.pull_request.head.ref, 'shop-agent/')
     runs-on: ubuntu-latest
     timeout-minutes: 5
     permissions:
@@ -135,6 +207,7 @@ jobs:
       REPO: ${{ github.repository }}
       PR: ${{ github.event.pull_request.number }}
       SHA: ${{ github.event.pull_request.head.sha }}
+      CONCERN: ${{ needs.check.outputs.concern }}
       RUN: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
     steps:
       - name: Comment that the checks failed
@@ -143,4 +216,4 @@ jobs:
         run: |
           head=$(gh pr view "$PR" --repo "$REPO" --json headRefOid --jq .headRefOid)
           if [ "$head" != "$SHA" ]; then echo "replaced by a newer commit, staying silent"; exit 0; fi
-          gh pr comment "$PR" --repo "$REPO" --body "Automatic merge did not happen: the checks failed (changed files or npm run check). shop-agent-merge-failed stage=check sha=$SHA run=$RUN"
+          gh pr comment "$PR" --repo "$REPO" --body "Automatic merge did not happen: the checks failed (concern, changed files, npm run check or the diff rules). shop-agent-merge-failed stage=check concern=${CONCERN:-unknown} sha=$SHA run=$RUN"

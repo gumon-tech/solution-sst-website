@@ -49,7 +49,11 @@ const cases = [
   ["old private number", file([{ ...good, detail: "Call 07497 493585" }]), false],
   ["tag typed into the text", file([{ ...good, message: "Hi [web-X]" }]), false],
   ["invented service price", file([{ ...good, detail: "Thai massage only £29 this month" }]), false],
-  ["missing image file", file([{ ...good, image: "/images/nope.jpg" }]), false],
+  ["missing image file", file([{ ...good, image: "/img/nope.jpg" }]), false],
+  ["old /images/ path is not valid", file([{ ...good, image: "/images/foot-massage-800.webp" }]), false],
+  ["existing photo under /img/ is valid", file([{ ...good, image: "/img/foot-massage-800.webp" }]), true],
+  ["review wording", file([{ ...good, detail: "Our five star reviews say it all" }]), false],
+  ["rating wording", file([{ ...good, eyebrow: "Top rated" }]), false],
   ["unknown file key", file([good], { secret: "x" }), false],
 ];
 let failed = 0;

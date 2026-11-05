@@ -28,7 +28,9 @@ public/img/                 the shop's own photos from its Wix site, WebP 800 an
 
 The shop manager confirms an offer in WhatsApp chat; the shop system (shop-agent, shop id `sst`) then keeps at most one open pull request from a branch named `shop-agent/promotions-*`, rebuilt from main plus every confirmed offer (or closed if the offers were withdrawn before it merged). It changes only `data/promotions.json`. `.github/workflows/auto-merge-shop-agent.yml` merges it by itself when the branch prefix, the one-file rule (`git diff --name-status HEAD^1 HEAD` is exactly `M data/promotions.json`) and `npm run check` all hold, then starts `pages.yml` (a merge by `GITHUB_TOKEN` does not trigger it). Anything else stays open for a person.
 
-The workflow has a `check` job with no token (checkout without stored credentials, `npm ci`, `npm run check`) and a separate `merge` job that never runs npm. A failure leaves a comment ending `shop-agent-merge-failed stage=<check|merge|publish> sha=<head> run=<url>`; the shop system reads it and tells the manager.
+The workflow has a `check` job with no token (checkout without stored credentials, `npm ci`, `npm run check`) and a separate `merge` job that never runs npm. A failure leaves a comment ending `shop-agent-merge-failed stage=<check|merge|publish> concern=<concern|unknown> sha=<head> run=<url>`; the shop system reads it and tells the manager.
+
+The workflow is generalised to branches `shop-agent/<concern>-<id>` with `<concern>` one of `promotions|hours|closures|notice|faq-extra|photos`. The allowed file set is derived from the concern (a shell `case`), an unknown concern stays open with a `stage=check` comment, and `scripts/check-shop-agent-diff.mjs <concern>` rejects edits to wording that is already on the site and removals. The shared text rules are in `scripts/lib/public-text.mjs` (exported for the bot to `scripts/lib/public-text.json` by `node scripts/lib/export-public-text.mjs`; `npm run check` fails if the JSON is stale). `npm run validate` runs every validator and test; `pages.yml` runs it too.
 
 - The home page shows an offers section, anchor `#promotions`, only for offers with `status: "live"` and today (London) between `starts` and `ends`. No live offer means no section and no anchor. Ended offers are not written into the HTML; the browser also hides an offer whose last day has passed since the build, and `pages.yml` rebuilds every night just after midnight London.
 - Schema (one object per offer, no other keys): `code` (`P-AB12`), `title`, `eyebrow`, `detail`, `points[]`, `offer`, `message`, `image` (`null` for system offers), `illustrative`, `starts`, `ends` (YYYY-MM-DD), `ends_label` (e.g. `Monday 30 November 2026`), `status` (`live`, `ended`, `draft`). File level: `updated_at`, optional `note`. The Book button is `message` plus the tag `[web-PR]`, added by `lib/whatsapp.ts`.
@@ -39,8 +41,7 @@ The workflow has a `check` job with no token (checkout without stored credential
 
 ```bash
 npm ci
-node scripts/validate-services.mjs
-node scripts/validate-promotions.mjs
+npm run validate     # every validator and its tests
 npx next build
 node scripts/check-site.mjs
 node scripts/build-redirect-stubs.mjs

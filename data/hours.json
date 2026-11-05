@@ -1,0 +1,30 @@
+{
+  "updated_at": "2026-11-06T09:00:00Z",
+  "hours": {
+    "Monday": null,
+    "Tuesday": {
+      "opens": "11:00",
+      "closes": "19:00"
+    },
+    "Wednesday": {
+      "opens": "11:00",
+      "closes": "19:00"
+    },
+    "Thursday": {
+      "opens": "11:00",
+      "closes": "19:00"
+    },
+    "Friday": {
+      "opens": "11:00",
+      "closes": "19:00"
+    },
+    "Saturday": {
+      "opens": "11:00",
+      "closes": "19:00"
+    },
+    "Sunday": {
+      "opens": "11:00",
+      "closes": "19:00"
+    }
+  }
+}

@@ -8,8 +8,8 @@
     "start": "next start",
     "lint": "eslint . --max-warnings=0",
     "og": "node scripts/make-og.mjs",
-    "validate": "node scripts/validate-services.mjs && node scripts/validate-promotions.mjs && node scripts/test-promotions.mjs && node scripts/test-public-text.mjs",
-    "check": "npm run validate && next build && node scripts/check-site.mjs"
+    "validate": "node scripts/validate-services.mjs && node scripts/validate-promotions.mjs && node scripts/validate-hours.mjs && node scripts/validate-closures.mjs && node scripts/validate-notice.mjs && node scripts/validate-faq-extra.mjs && node scripts/validate-photos.mjs && node scripts/test-promotions.mjs && node scripts/test-hours.mjs && node scripts/test-closures.mjs && node scripts/test-notice.mjs && node scripts/test-faq-extra.mjs && node scripts/test-photos.mjs && node scripts/test-hours-text.mjs && node scripts/test-public-text.mjs",
+    "check": "npm run validate && next build && node scripts/write-build-json.mjs && node scripts/check-site.mjs"
   },
   "dependencies": {
     "clsx": "^2.1.1",

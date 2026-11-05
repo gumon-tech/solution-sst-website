@@ -29,6 +29,7 @@ export default function GiftVouchersPage() {
 
       <Hero
         imageKey="purple-stones-candles"
+        slot="gift-vouchers.hero"
         mobile="stack"
         eyebrow={hero.eyebrow}
         h1={hero.h1}

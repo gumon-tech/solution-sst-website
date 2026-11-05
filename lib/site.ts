@@ -1,5 +1,7 @@
 // The one place the shop's facts live. Everything on the site that states an
 // address, a phone number, opening hours or the deposit reads it from here.
+import hoursFile from "@/data/hours.json";
+import { DAYS, hoursCompactLines, hoursText, type Day, type WeekHours } from "@/lib/hours-text";
 
 export const SITE = {
   /**
@@ -45,44 +47,20 @@ export const SITE = {
 
 export const DEPOSIT_LABEL = `£${SITE.depositGbp}`;
 
-export const DAYS = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"] as const;
-export type Day = (typeof DAYS)[number];
+export { DAYS };
+export type { Day };
 
-/** Open/close per day; null means closed. Confirmed 2026-10-31. */
-export const HOURS: Record<Day, { opens: string; closes: string } | null> = {
-  Monday: null,
-  Tuesday: { opens: "11:00", closes: "19:00" },
-  Wednesday: { opens: "11:00", closes: "19:00" },
-  Thursday: { opens: "11:00", closes: "19:00" },
-  Friday: { opens: "11:00", closes: "19:00" },
-  Saturday: { opens: "11:00", closes: "19:00" },
-  Sunday: { opens: "11:00", closes: "19:00" },
-};
+/** Open/close per day; null means closed. From data/hours.json (written by the shop system, validated by scripts/validate-hours.mjs). */
+export const HOURS: WeekHours = (hoursFile as { hours: WeekHours }).hours;
 
-/** "Open Tuesday to Sunday, 11:00 to 19:00. Closed on Mondays." built from HOURS. */
+/** "Open Tuesday to Sunday, 11:00 to 19:00. Closed on Mondays." Rules and examples: README, "The sentences". */
 export function hoursSentence(): string {
-  const open = DAYS.filter((d) => HOURS[d]);
-  const closed = DAYS.filter((d) => !HOURS[d]);
-  const same = open.every((d) => HOURS[d]!.opens === HOURS[open[0]]!.opens && HOURS[d]!.closes === HOURS[open[0]]!.closes);
-  const first = HOURS[open[0]]!;
-  const range = open.length > 1 ? `${open[0]} to ${open[open.length - 1]}` : open[0];
-  const hours = same ? `${first.opens} to ${first.closes}` : "see the table";
-  const closedText = closed.length ? ` Closed on ${closed.map((d) => `${d}s`).join(" and ")}.` : "";
-  return `Open ${range}, ${hours}.${closedText}`;
+  return hoursText(HOURS);
 }
 
-/** Compact one-liner for the footer: "Mon Closed · Tue–Sun 11:00–19:00". */
+/** Footer lines: "Mon Closed", "Tue–Sun 11:00–19:00". */
 export function hoursCompact(): string[] {
-  const short = (d: string) => d.slice(0, 3);
-  const open = DAYS.filter((d) => HOURS[d]);
-  const closed = DAYS.filter((d) => !HOURS[d]);
-  const parts: string[] = [];
-  if (closed.length) parts.push(`${closed.map(short).join(", ")} Closed`);
-  if (open.length) {
-    const h = HOURS[open[0]]!;
-    parts.push(`${short(open[0])}–${short(open[open.length - 1])} ${h.opens}–${h.closes}`);
-  }
-  return parts;
+  return hoursCompactLines(HOURS);
 }
 
 export function absoluteUrl(path: string): string {

@@ -1,3 +1,5 @@
+import { closuresForBuild } from "@/lib/closures-data";
+import { closureLabel } from "@/lib/hours-text";
 import { DAYS, HOURS } from "@/lib/site";
 
 /** Seven rows, Monday first, rendered from HOURS. */
@@ -19,5 +21,23 @@ export function HoursTable({ className = "" }: { className?: string }) {
         })}
       </tbody>
     </table>
+  );
+}
+
+/** Upcoming closures and changed hours under the table on /visit/ (data/closures.json). Nothing when there are none. */
+export function ClosuresList() {
+  const list = closuresForBuild();
+  if (list.length === 0) return null;
+  return (
+    <div id="closures" className="mt-5 rounded-r-md bg-plum-tint p-4">
+      <h3 className="eyebrow">Upcoming changes</h3>
+      <ul className="mt-2 space-y-1.5 text-ink">
+        {list.map((c) => (
+          <li key={c.code} data-closure-row={c.code}>
+            <span className="font-semibold">{c.label}:</span> {closureLabel(c)}
+          </li>
+        ))}
+      </ul>
+    </div>
   );
 }

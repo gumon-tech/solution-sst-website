@@ -1,6 +1,6 @@
 import type { CSSProperties, ReactNode } from "react";
 import { Img } from "@/components/Img";
-import type { ImageKey } from "@/lib/images";
+import type { ImageKey, SlotId } from "@/lib/images";
 
 /**
  * Image hero used by home, treatment pages, About and Gift vouchers.
@@ -12,6 +12,7 @@ import type { ImageKey } from "@/lib/images";
  */
 export function Hero({
   imageKey,
+  slot,
   alt,
   eyebrow,
   h1,
@@ -24,6 +25,7 @@ export function Hero({
   topSpace = "pt-[220px]",
 }: {
   imageKey: ImageKey;
+  slot?: SlotId;
   alt?: string;
   eyebrow: ReactNode;
   h1: ReactNode;
@@ -53,6 +55,7 @@ export function Hero({
           <div className="absolute inset-0 overflow-hidden lg:relative lg:inset-auto lg:rounded-r-frame lg:shadow-card">
             <Img
               k={imageKey}
+              slot={slot}
               alt={alt}
               priority
               position={position}

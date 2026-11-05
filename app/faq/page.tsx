@@ -9,6 +9,7 @@ import { Reveal } from "@/components/Reveal";
 import { Rich } from "@/components/Rich";
 import { SectionHead } from "@/components/SectionHead";
 import { fmString, loadDoc, plain, section } from "@/lib/content";
+import { liveFaqExtra } from "@/lib/faq-extra";
 import { pageMetadata } from "@/lib/seo";
 import { faqLd } from "@/lib/structured-data";
 
@@ -27,6 +28,9 @@ export default function FaqPage() {
   const still = section(doc, "still-a-question");
   const groups = GROUP_IDS.map((id) => section(doc, id));
   const pairs = groups.flatMap((g) => g.subs.map((s) => ({ q: plain(s.h3), a: plain(s.paras.join(" ")) })));
+  // Extra questions the shop system may add (data/faq-extra.json): their own group, and in the FAQPage JSON-LD. Empty: nothing.
+  const extra = liveFaqExtra();
+  for (const q of extra) pairs.push({ q: q.question, a: q.answer });
 
   return (
     <>
@@ -66,6 +70,12 @@ export default function FaqPage() {
                 />
               </div>
             ))}
+            {extra.length > 0 && (
+              <div id="more-questions">
+                <h2 className="t-h2 mb-5">More questions</h2>
+                <Accordion items={extra.map((q) => ({ q: q.question, a: <p data-faq-extra={q.code}>{q.answer}</p> }))} />
+              </div>
+            )}
           </div>
           <aside className="hidden xl:col-span-4 xl:block" aria-hidden="true">
             <div className="sticky top-28 overflow-hidden rounded-r-frame shadow-card">

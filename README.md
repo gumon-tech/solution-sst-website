@@ -2,7 +2,7 @@
 
 Website for Sri Siam Thai Therapy & Wellness (Thai massage, Greenwich, London), built and hosted by Gumon Technology.
 
-- Live: https://sst.gumon.io (GitHub Pages, custom domain via Cloudflare DNS `sst` CNAME `gumon-tech.github.io`, DNS only; HTTPS enforced)
+- Live: https://srisiamthaitherapyandwellness.co.uk (GitHub Pages, custom domain; DNS on Cloudflare in Gumon's account: apex A to the GitHub Pages IPs 185.199.108-111.153 and `www` CNAME `gumon-tech.github.io`, DNS only; HTTPS enforced). The Wix site was detached from the domain on 5 Nov 2026.
 - Public repository: never commit customer data, staff personal data or secrets.
 - Handover, open items and how to change things: [HANDOFF.md](HANDOFF.md)
 

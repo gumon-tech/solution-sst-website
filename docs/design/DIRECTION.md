@@ -391,7 +391,7 @@ Each treatment page carries three more, specific to it, in its own file.
 
 ## 11. Structured data summary
 
-- `/`, `/visit/`: `DaySpa` (`@id` `https://sst.gumon.io/#business`) with `name`, `url`, `logo`, `image`, `telephone` "+447903653786", `email`, `address` (PostalAddress: streetAddress "Unit 89 Corbridge Court, Glaisher Street", addressLocality "London", addressRegion "Greater London" optional, postalCode "SE8 3ET", addressCountry "GB"), `geo` (51.48263, -0.01891), `hasMap` (Maps URL), `openingHoursSpecification` from `HOURS`, `priceRange` "££", `paymentAccepted` "Cash, Credit Card, Debit Card", `currenciesAccepted` "GBP", `sameAs` [Maps URL]. No `aggregateRating`, no `review`.
+- `/`, `/visit/`: `DaySpa` (`@id` `https://srisiamthaitherapyandwellness.co.uk/#business`) with `name`, `url`, `logo`, `image`, `telephone` "+447903653786", `email`, `address` (PostalAddress: streetAddress "Unit 89 Corbridge Court, Glaisher Street", addressLocality "London", addressRegion "Greater London" optional, postalCode "SE8 3ET", addressCountry "GB"), `geo` (51.48263, -0.01891), `hasMap` (Maps URL), `openingHoursSpecification` from `HOURS`, `priceRange` "££", `paymentAccepted` "Cash, Credit Card, Debit Card", `currenciesAccepted` "GBP", `sameAs` [Maps URL]. No `aggregateRating`, no `review`.
 - `/treatments/`: `DaySpa` + `hasOfferCatalog` as section 5.2.
 - `/treatments/<slug>/`: `Service` (`serviceType` = name, `provider` → `#business`, `areaServed` "Greenwich, London", `offers` from the rows) + `FAQPage` + `BreadcrumbList`.
 - `/faq/`: `FAQPage`.

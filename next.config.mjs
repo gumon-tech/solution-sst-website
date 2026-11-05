@@ -1,5 +1,5 @@
 // next.config.mjs
-// Served from the custom domain sst.gumon.io, so basePath and assetPrefix stay empty.
+// Served from the custom domain srisiamthaitherapyandwellness.co.uk, so basePath and assetPrefix stay empty.
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   output: "export",

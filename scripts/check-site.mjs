@@ -15,7 +15,7 @@ const site = read(path.join(root, "lib/site.ts"));
 const indexable = /indexable:\s*(true|false)/.exec(site)?.[1] === "true";
 const deposit = Number(/depositGbp:\s*(\d+)/.exec(site)?.[1]);
 const WA_NUMBER = "447903653786";
-const SITE_URL = "https://sst.gumon.io";
+const SITE_URL = "https://srisiamthaitherapyandwellness.co.uk";
 
 const data = JSON.parse(read(path.join(root, "data/services.json")));
 const rows = data.services;
@@ -34,10 +34,17 @@ const fileFor = (route) => path.join(OUT, route, "index.html");
 for (const r of routes) if (!existsSync(fileFor(r))) fail(`missing page: ${r}`);
 for (const f of ["404.html", "robots.txt", "sitemap.xml"]) if (!existsSync(path.join(OUT, f))) fail(`missing out/${f}`);
 
+// ---- Wix deposit links (the redirect script is added later by build-redirect-stubs.mjs) --
+if (!/wixPaylinkBase:\s*"https:\/\/[^"]+\/_paylink"/.test(site)) fail("lib/site.ts: SITE.wixPaylinkBase missing or not an https .../_paylink URL");
+{
+  const nf404 = read(path.join(OUT, "404.html"));
+  if (nf404.includes("sst-404-redirect") && !nf404.includes('indexOf("/_paylink/")===0')) fail("out/404.html lacks the /_paylink/ redirect");
+}
+
 // ---- CNAME ------------------------------------------------------------------
 const cname = path.join(OUT, "CNAME");
 if (!existsSync(cname)) fail("out/CNAME is missing");
-else if (read(cname).trim() !== "sst.gumon.io") fail(`out/CNAME is "${read(cname).trim()}", expected sst.gumon.io`);
+else if (read(cname).trim() !== "srisiamthaitherapyandwellness.co.uk") fail(`out/CNAME is "${read(cname).trim()}", expected srisiamthaitherapyandwellness.co.uk`);
 
 // ---- walk out/ --------------------------------------------------------------
 const files = [];

@@ -3,7 +3,7 @@ slug: thai-foot-massage
 title: "Thai Foot Massage in Greenwich | Sri Siam"
 description: "A short Thai foot massage in Greenwich SE8 using pressure points and gentle stretching, drawing on reflexology. Easy to fit into a day. Book on WhatsApp."
 h1: "Thai Foot Massage in Greenwich"
-card: "A traditional Thai foot massage using pressure points and gentle stretching, drawing on reflexology."
+card: "A traditional Thai foot massage using pressure points and gentle stretching. Your feet may feel light and refreshed."
 hero_image: foot-massage
 secondary_image: orchid-stones
 also_like: [back-neck-shoulders-massage, thai-massage]
@@ -18,7 +18,7 @@ Eyebrow: Treatments · {{group}}
 
 # Thai Foot Massage in Greenwich
 
-Lead: Thai foot massage is a traditional Thai massage of the feet using pressure points and gentle stretching. It combines the soothing side of massage with techniques drawn from reflexology.
+Lead: A traditional Thai foot massage using pressure points and gentle stretching. It combines the soothing side of massage with techniques drawn from reflexology.
 
 ## options
 

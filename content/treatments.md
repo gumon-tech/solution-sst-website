@@ -1,14 +1,14 @@
 ---
 title: "Massage Menu & Prices in Greenwich | Sri Siam"
 description: "Every treatment we offer in Greenwich with durations and prices, exactly as on our booking calendar. Tap any option to book it on WhatsApp."
-h1: "Our massage menu"
+h1: "Our Thai treatments"
 ---
 
 ## hero
 
 Eyebrow: Treatments and prices
 
-# Our massage menu
+# Our Thai treatments
 
 Lead: Everything below is exactly what is on our booking calendar, in the lengths we offer it. Tap the length you want and WhatsApp opens with the booking message ready to send.
 

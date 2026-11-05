@@ -59,12 +59,12 @@ A few minutes early is ideal, so you have time to settle in before your treatmen
 ## Treatments
 
 ### Which massage should I choose?
-Choose by how you want it to feel. For traditional Thai, deep tissue and aroma techniques with yogic-style stretches, Thai Massage. For a gentle full-body massage with essential oils, Aromatherapy. For massage with gently warmed basalt stones, Hot Stone. For a gentle, rhythmic massage with light, flowing strokes, Lymphatic Drainage. If you are short of time, the Thai Foot Massage and the Back, Neck & Shoulders Massage focus on one area. Still unsure? Tell us on WhatsApp what you would like from the treatment and the team will suggest one.
+Choose by how you want it to feel. For a soothing combination of traditional Thai, deep tissue and aromatherapy techniques with yogic-style stretches, Thai Massage. For a gentle full-body massage with curated essential oils to soothe the senses, Aromatherapy. For warm stones combined with massage to help you unwind, Hot Stone. For a gentle, rhythmic massage with light, flowing strokes, Lymphatic Drainage. If you are short of time, the Thai Foot Massage and the Back, Neck & Shoulders Massage focus on one area. Still unsure? Tell us on WhatsApp what you would like from the treatment and the team will suggest one.
 
 - Link: See the treatment menu -> /treatments/
 
 ### What is the difference between Thai massage and aromatherapy massage?
-In Thai massage the therapist compresses and pulls the body with a series of yogic-style stretches, combining traditional Thai, deep tissue and aroma techniques, and you wear specially designed loose clothing. Aromatherapy massage is a gentle full-body massage that combines soothing Swedish massage techniques with essential oils.
+In Thai massage the therapist compresses and pulls the body with a series of yogic-style stretches, combining traditional Thai, deep tissue and aromatherapy techniques, and you wear specially designed loose clothing. Aromatherapy massage is a gentle full-body massage that combines soothing Swedish massage techniques with essential oils.
 
 ### Is massage suitable if I'm pregnant or have a health condition?
 Please tell us before you book if you are pregnant, or if you have a health condition, an injury or a recent operation, and the team will confirm the right treatment for you. If you are unsure whether massage is a good idea for you, ask your doctor first. We do not make health claims for any treatment; we can tell you exactly what each one involves.

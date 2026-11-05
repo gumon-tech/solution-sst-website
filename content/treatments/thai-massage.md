@@ -3,7 +3,7 @@ slug: thai-massage
 title: "Thai Massage in Greenwich | Sri Siam Thai Therapy"
 description: "Traditional Thai massage in Greenwich SE8: yogic-style stretches in loose clothing, by Thai therapists trained at Wat Pho, Bangkok. Book on WhatsApp."
 h1: "Thai Massage in Greenwich"
-card: "Traditional Thai, deep tissue and aroma techniques, with yogic-style stretches in loose clothing."
+card: "A soothing combination of traditional Thai, deep tissue and aromatherapy techniques."
 hero_image: hands-back-a
 secondary_image: room-pink-curtains
 also_like: [back-neck-shoulders-massage, hot-stone-massage]
@@ -18,7 +18,7 @@ Eyebrow: Treatments · {{group}}
 
 # Thai Massage in Greenwich
 
-Lead: Thai massage is a traditional technique in which your therapist compresses and pulls your body with a series of yogic-style stretches. Ours combines traditional Thai, deep tissue and aroma techniques, by Thai therapists trained at the renowned Wat Pho in Bangkok.
+Lead: Thai massage is a traditional technique in which your therapist compresses and pulls your body with a series of yogic-style stretches. Ours is a soothing combination of traditional Thai, deep tissue and aromatherapy techniques, by Thai therapists trained at the renowned Wat Pho in Bangkok.
 
 ## options
 
@@ -34,9 +34,9 @@ Eyebrow: Choose your length
 
 ## What to expect
 
-Thai massage is performed with you wearing specially designed loose clothing. If you have a question about what to wear, ask us on WhatsApp when you book.
+Thai massage is a soothing combination of traditional Thai, deep tissue and aromatherapy techniques. Your therapist compresses and pulls the body with a series of yogic-style stretches, a time-tested bodywork tradition.
 
-Your therapist compresses and pulls the body with a series of yogic-style stretches, bringing together traditional Thai, deep tissue and aroma techniques. It is a time-tested bodywork tradition, done with you wearing specially designed loose clothing.
+It is performed with you wearing specially designed loose clothing. If you have a question about what to wear, ask us on WhatsApp when you book.
 
 It can feel more active than a classic massage, with the stretching woven through the session, and a chance to step away from the pace of the day.
 

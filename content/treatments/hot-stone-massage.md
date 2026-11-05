@@ -3,7 +3,7 @@ slug: hot-stone-massage
 title: "Hot Stone Massage in Greenwich | Sri Siam"
 description: "Hot stone massage in Greenwich SE8: massage with gently warmed basalt stones that let your therapist work deeper. Choose your length and book on WhatsApp."
 h1: "Hot Stone Massage in Greenwich"
-card: "Massage combined with gently warmed basalt stones, so your therapist can work deeper."
+card: "Warm stones combined with massage to help you unwind, with gently warmed basalt stones."
 hero_image: therapist-hot-stone
 secondary_image: hot-stones-spine-a
 also_like: [aromatherapy-massage, thai-massage]
@@ -34,9 +34,9 @@ Eyebrow: Choose your length
 
 ## What to expect
 
-Warm stones are combined with massage. The stones are smooth basalt, gently warmed, and they allow your therapist to work deeper into the areas of concern.
+Warm stones combined with massage, to help you unwind. The stones are smooth basalt, gently warmed, and they allow your therapist to work deeper into the areas of concern.
 
-It can feel deeply warming and unhurried, a treatment to help you unwind. If anything ever feels too warm, tell your therapist straight away.
+It can feel deeply warming and unhurried. If anything ever feels too warm, tell your therapist straight away.
 
 ## focus
 

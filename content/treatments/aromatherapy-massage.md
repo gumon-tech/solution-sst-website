@@ -3,7 +3,7 @@ slug: aromatherapy-massage
 title: "Aromatherapy Massage in Greenwich | Sri Siam"
 description: "A gentle full-body massage in Greenwich SE8 that combines soothing Swedish massage techniques with essential oils. Choose your length and book on WhatsApp."
 h1: "Aromatherapy Massage in Greenwich"
-card: "A gentle full-body massage combining soothing Swedish techniques with essential oils."
+card: "A gentle full-body massage using curated essential oils and Swedish techniques to soothe the senses."
 hero_image: oils-stones
 secondary_image: purple-stones-still
 also_like: [hot-stone-massage, lymphatic-drainage-massage]
@@ -18,7 +18,7 @@ Eyebrow: Treatments · {{group}}
 
 # Aromatherapy Massage in Greenwich
 
-Lead: Aromatherapy massage is a gentle full-body massage that combines soothing Swedish massage techniques with essential oils.
+Lead: Aromatherapy massage is a gentle full-body massage using curated essential oils and soothing Swedish massage techniques to soothe the senses.
 
 ## options
 
@@ -34,7 +34,7 @@ Eyebrow: Choose your length
 
 ## What to expect
 
-Your therapist combines soothing Swedish massage techniques with essential oils in a gentle, full-body massage.
+Your therapist uses curated essential oils with soothing Swedish massage techniques in a gentle, full-body massage that soothes the senses.
 
 If you have an allergy or a sensitivity, for example to essential oils, tell us before you book.
 

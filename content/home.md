@@ -12,7 +12,7 @@ Eyebrow: Greenwich · London SE8
 
 # Traditional Thai massage in *Greenwich*, booked in a message
 
-Lead: Sri Siam is a calm Thai therapy space in Greenwich, with professional Thai therapists trained at the renowned Wat Pho in Bangkok. Tell us what you would like on WhatsApp and we will find you a time.
+Lead: At Sri Siam, we bring the authentic art of Thai massage to you. Trained at the renowned Wat Pho in Bangkok, our therapists combine traditional techniques with a modern touch to deliver exceptional care. Experience a tranquil escape in skilled hands, and book it in one WhatsApp message.
 
 - Button (primary, tag O): Book on WhatsApp
 - Button (ghost): See the menu -> /treatments/
@@ -57,9 +57,9 @@ We check the diary and offer you times that are actually free. Choose the one th
 
 Eyebrow: Our treatments
 
-## Massage, and only massage
+## Our specialised treatments
 
-Each treatment is listed with the lengths we offer. Everything below is exactly what is on our booking calendar.
+Each one is rooted in centuries of Thai tradition, and each is listed with the lengths we offer, exactly as on our booking calendar.
 
 Cards render one per treatment slug from `data/services.json`, in file order, using the `card` line from each `treatments/<slug>.md`. Each card: image, name, card line, option chips, "from £{{from_price}}", and:
 - Link: Details -> /treatments/{{slug}}/
@@ -76,11 +76,11 @@ Eyebrow: Our roots
 
 ## From Wat Pho, Bangkok, to Greenwich
 
-Our therapists trained at the renowned Wat Pho in Bangkok, the temple school of traditional Thai massage. They bring traditional techniques to Greenwich with a modern touch.
+Deeply rooted in the ancient traditions of Thailand, Sri Siam Thai Therapy & Wellness is a sanctuary dedicated to the art of Thai massage. Our therapists trained at the renowned Wat Pho in Bangkok, the temple school of traditional Thai massage, and bring its traditional techniques to Greenwich with a modern touch.
 
-Whether you come for a longer treatment or a short one between other things, the hope is simple: a calm, unhurried escape from the pace of the day.
+We believe in the power of intuitive touch, offering a serene escape in Greenwich, London.
 
-- Link: More about us -> /about/
+- Link: Our Thai roots and philosophy -> /about/
 
 ## gift-vouchers-strip
 
@@ -88,9 +88,9 @@ Whether you come for a longer treatment or a short one between other things, the
 
 Eyebrow: Gift vouchers
 
-## Give someone time to themselves
+## Give the gift of absolute tranquillity
 
-Message us with who it is for and what you have in mind. The team arranges the voucher with you on WhatsApp and explains how to pay and how they book.
+Our gift vouchers are the perfect gesture for birthdays, anniversaries or special celebrations. Message us with who it is for and what you have in mind, and the team arranges the voucher with you on WhatsApp.
 
 - Button (primary, tag G): Buy a voucher on WhatsApp
 
@@ -98,9 +98,9 @@ Message us with who it is for and what you have in mind. The team arranges the v
 
 [image: room-pink-curtains]
 
-Eyebrow: Visit us
+Eyebrow: Get in touch
 
-## Where Deptford meets Greenwich
+## Our oasis, where Deptford meets Greenwich
 
 Address card:
 - {{address}}

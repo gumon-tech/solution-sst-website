@@ -25,8 +25,8 @@ Address block (`<address>`): {{address}}
 Small line: We book by appointment through WhatsApp, so message us first and we will tell you when a therapist is free.
 
 ### Contact
-- WhatsApp: {{phone_display}} (link, tag C) — Message us to book or ask a question.
-- Phone: {{phone_display}} (link `{{phone_tel}}`) — Call it as a normal phone call. WhatsApp voice and video calls do not connect on this number.
+- WhatsApp messages: {{phone_display}} (link, tag C) — Message us to book or ask a question.
+- Call: {{phone_display}} (link `{{phone_tel}}`) — Phone calls only, no WhatsApp calls. WhatsApp voice and video calls do not connect on this number.
 - Email: {{email}}
 - Link: Read our reviews on Google -> {{maps_url}}
 

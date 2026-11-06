@@ -4,6 +4,7 @@
 import { existsSync, readdirSync, readFileSync, statSync } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { findMetadata } from "./lib/image-metadata.mjs";
 
 const root = path.join(path.dirname(fileURLToPath(import.meta.url)), "..");
 const OUT = path.join(root, "out");
@@ -29,7 +30,7 @@ if (!existsSync(OUT)) {
 }
 
 // ---- routes -----------------------------------------------------------------
-const routes = ["/", "/treatments/", "/gift-vouchers/", "/about/", "/visit/", "/faq/", "/careers/", "/privacy/", ...slugs.map((s) => `/treatments/${s}/`)];
+const routes = ["/", "/treatments/", "/gift-vouchers/", "/about/", "/visit/", "/tour/", "/faq/", "/careers/", "/privacy/", ...slugs.map((s) => `/treatments/${s}/`)];
 const fileFor = (route) => path.join(OUT, route, "index.html");
 for (const r of routes) if (!existsSync(fileFor(r))) fail(`missing page: ${r}`);
 for (const f of ["404.html", "robots.txt", "sitemap.xml"]) if (!existsSync(path.join(OUT, f))) fail(`missing out/${f}`);
@@ -444,6 +445,42 @@ if (homeHtml && !/"@type":"DaySpa"/.test(homeHtml)) fail("/: no DaySpa JSON-LD")
       const bad = decodeEntities(text).match(BAD);
       if (bad) fail(`${rel}: ${what} names the shop without the full "Sri Siam Thai Therapy & Wellness" (${bad.length}x)`);
     }
+  }
+}
+
+// ---- the shop tour (/tour/, data/tour.json, scripts/make-tour-images.mjs) --------------------------------
+// No EXIF, XMP or GPS in any published tour photo; every srcset file exists; the page shows every published shot with a button
+// that opens it; the home teaser links to it; the neighbouring business is never named.
+{
+  const tourDir = path.join(OUT, "img", "tour");
+  const srcDir = path.join(root, "public", "img", "tour");
+  const shipped = [...(existsSync(srcDir) ? readdirSync(srcDir).map((n) => path.join(srcDir, n)) : []), ...["room-daylight-800.webp", "room-daylight-1600.webp"].map((n) => path.join(root, "public", "img", n))];
+  for (const f of shipped) {
+    if (!existsSync(f)) {
+      fail(`missing photo ${path.relative(root, f)}`);
+      continue;
+    }
+    for (const m of findMetadata(readFileSync(f))) fail(`${path.relative(root, f)} carries metadata (${m}): strip it, the camera's location must not be published`);
+    if (f.endsWith("-960.jpg") && statSync(f).size > 250 * 1024) fail(`${path.relative(root, f)} is over 250 KB`);
+  }
+  if (existsSync(srcDir) && !existsSync(tourDir)) fail("out/img/tour is missing");
+  const tourHtml = pageFiles.get(path.join("tour", "index.html")) ?? "";
+  const tour = JSON.parse(read(path.join(root, "data/tour.json")));
+  const want = tour.zones.flatMap((z) => z.shots);
+  const buttons = [...tourHtml.matchAll(/<button\b[^>]*aria-label="(Open [^"]+ full screen)"/g)].length;
+  if (buttons !== want.length) fail(`/tour/: ${buttons} "Open ... full screen" buttons, expected ${want.length}`);
+  for (const z of tour.zones) if (!new RegExp(`<section[^>]*aria-labelledby="zone-${z.id}"`).test(tourHtml)) fail(`/tour/: zone ${z.id} has no labelled section`);
+  for (const s of want) if (!tourHtml.includes(`/img/tour/${s.photo}-`)) fail(`/tour/: photo ${s.photo} is not on the page`);
+  if (!/<picture>/.test(tourHtml) || !/type="image\/avif"/.test(tourHtml) || !/type="image\/webp"/.test(tourHtml)) fail("/tour/: pictures lack AVIF and WebP sources");
+  if (homeHtml && !/<a\b[^>]*href="\/tour\/"/.test(homeHtml)) fail("/: no link to /tour/ (the home teaser)");
+  for (const [rel, html] of pageFiles) {
+    for (const m of html.matchAll(/srcSet="([^"]+)"|srcset="([^"]+)"/g)) {
+      for (const part of (m[1] ?? m[2]).split(",")) {
+        const u = part.trim().split(/\s+/)[0];
+        if (u.startsWith("/img/") && !internalExists(u)) fail(`${rel}: srcset file ${u} does not exist`);
+      }
+    }
+    if (/carnaby/i.test(stripTags(html.replace(/<script[\s\S]*?<\/script>/g, "")) + " " + [...html.matchAll(/\balt="([^"]*)"/g)].map((x) => x[1]).join(" "))) fail(`${rel}: names the neighbouring business in text or alt`);
   }
 }
 

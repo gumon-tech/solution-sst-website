@@ -53,7 +53,7 @@ Line under the cards: For door-to-door directions from wherever you are, open ou
 
 ## the-room
 
-[image: room-pink-curtains]
+[image: room-daylight]
 
 ## before-you-come
 

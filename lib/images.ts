@@ -15,7 +15,8 @@ type BuiltInKey =
   | "orchid-stones"
   | "purple-stones-still"
   | "purple-stones-candles"
-  | "room-pink-curtains";
+  | "room-pink-curtains"
+  | "room-daylight";
 
 /** A built-in photo, or one the shop system added (key sp-<slug>, data/photos.json). */
 export type ImageKey = BuiltInKey | `sp-${string}`;
@@ -41,6 +42,8 @@ const BUILT_IN: Record<BuiltInKey, ImageMeta> = {
   "purple-stones-still": { w: 1024, h: 1536, w800: 533, h800: 800, alt: "Black stones on a rolled towel, a lit candle and white flowers against a purple wall" },
   "purple-stones-candles": { w: 1600, h: 900, w800: 800, h800: 450, alt: "Black stones, tealights and purple orchids on purple silk" },
   "room-pink-curtains": { w: 1600, h: 700, w800: 800, h800: 350, alt: "A treatment bed between pink and lilac curtains" },
+  // The shop's own photo of its treatment room (6 Nov 2026, scripts/make-tour-images.mjs "siteImages"). The "1600" file is the full 1080 px the source allows.
+  "room-daylight": { w: 1080, h: 472, w800: 800, h800: 350, alt: "The treatment room by day: a worktop with brass bowls and a green lamp, a chair with a blue cushion, a tiled border on the wall and the end of the bed" },
 };
 
 interface PhotoEntry extends ImageMeta {

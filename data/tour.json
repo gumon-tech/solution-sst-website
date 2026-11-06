@@ -1,0 +1,278 @@
+{
+  "_note": "The shop tour (/tour/). `photos` drives scripts/make-tour-images.mjs (crop and tone, from the untouched originals in assets/photos/original/); `zones` is the copy, in walking order. Run `node scripts/make-tour-images.mjs` after changing a photo entry. Natural edits only: light, colour cast, straightening, cropping. Nothing added, removed or generated.",
+  "photos": [
+    {
+      "key": "entrance",
+      "source": "2026-11-06/sst-20261106-144353-12.jpg",
+      "publish": true,
+      "crop": [200, 0, 810, 1080],
+      "rotate": 0,
+      "tone": {
+        "wb": [1, 1, 1],
+        "normalise": [1, 99],
+        "gamma": 1,
+        "brightness": 1,
+        "saturation": 1
+      },
+      "edits": "Cropped to 3:4 around the corner entrance and A-board; light stretched slightly."
+    },
+    {
+      "key": "reception",
+      "source": "2026-11-06/sst-20261106-144353-15.jpg",
+      "publish": true,
+      "crop": [0, 200, 1080, 675],
+      "rotate": 0,
+      "tone": {
+        "wb": [1, 1, 1],
+        "normalise": [1, 99],
+        "gamma": 1,
+        "brightness": 1,
+        "saturation": 1
+      },
+      "edits": "Cropped to 16:10 (desk and doorway); light stretched slightly."
+    },
+    {
+      "key": "room-day",
+      "source": "2026-11-06/sst-20261106-144353-14.jpg",
+      "publish": true,
+      "crop": [0, 60, 1080, 675],
+      "rotate": 0,
+      "tone": {
+        "wb": [1, 1, 1],
+        "normalise": [1, 99],
+        "gamma": 1,
+        "brightness": 1,
+        "saturation": 1
+      },
+      "edits": "Cropped to 16:10; light stretched slightly."
+    },
+    {
+      "key": "room-chair",
+      "source": "2026-11-06/sst-20261106-125547-07.jpg",
+      "publish": true,
+      "crop": [0, 300, 1080, 1440],
+      "rotate": 0,
+      "tone": {
+        "wb": [1, 1, 1],
+        "normalise": [1, 99],
+        "gamma": 1,
+        "brightness": 1,
+        "saturation": 1
+      },
+      "edits": "Cropped to 3:4 from the tall frame; light stretched slightly."
+    },
+    {
+      "key": "room-curtain",
+      "source": "2026-11-06/sst-20261106-144403-17.jpg",
+      "publish": true,
+      "crop": [270, 0, 810, 1080],
+      "rotate": 0,
+      "tone": {
+        "wb": [1, 1, 1],
+        "normalise": [1, 99],
+        "gamma": 1,
+        "brightness": 1,
+        "saturation": 1
+      },
+      "edits": "Cropped to 3:4; light stretched slightly."
+    },
+    {
+      "key": "candle-shelf",
+      "source": "2026-11-06/sst-20261106-144030-10.jpg",
+      "publish": true,
+      "crop": [0, 100, 1080, 675],
+      "rotate": 0,
+      "tone": {
+        "wb": [0.88, 0.94, 1.15],
+        "normalise": [1, 99],
+        "gamma": 1.2,
+        "brightness": 1,
+        "saturation": 1
+      },
+      "edits": "Cropped to 16:10; strong yellow cast reduced about 12 percent, midtones lifted a little."
+    },
+    {
+      "key": "candle-bed",
+      "source": "2026-11-06/sst-20261106-144030-08.jpg",
+      "publish": true,
+      "crop": [270, 0, 810, 1080],
+      "rotate": 0,
+      "tone": {
+        "wb": [0.95, 0.99, 1.06],
+        "normalise": [1, 99],
+        "gamma": 1.3,
+        "brightness": 1,
+        "saturation": 1
+      },
+      "edits": "Cropped to 3:4; orange cast reduced a little (candle glow kept), midtones lifted."
+    },
+    {
+      "key": "candle-evening",
+      "source": "2026-11-06/sst-20261106-125147-01.jpg",
+      "publish": true,
+      "crop": [0, 250, 1080, 1440],
+      "rotate": 0,
+      "tone": {
+        "wb": [0.96, 0.99, 1.06],
+        "normalise": [1, 99],
+        "gamma": 1.35,
+        "brightness": 1,
+        "saturation": 1
+      },
+      "edits": "Cropped to 3:4 from the tall frame; orange cast reduced a little, midtones lifted."
+    },
+    {
+      "key": "detail-corner",
+      "source": "2026-11-06/sst-20261106-125147-02.jpg",
+      "publish": true,
+      "crop": [0, 300, 1080, 1440],
+      "rotate": 0,
+      "tone": {
+        "wb": [1, 1, 1],
+        "normalise": [1, 99],
+        "gamma": 1,
+        "brightness": 1,
+        "saturation": 1
+      },
+      "edits": "Cropped to 3:4 from the tall frame; light stretched slightly."
+    },
+    {
+      "key": "detail-lamps",
+      "source": "2026-11-06/sst-20261106-125448-06.jpg",
+      "publish": true,
+      "crop": [0, 250, 1080, 1440],
+      "rotate": 0,
+      "tone": {
+        "wb": [0.86, 0.95, 1.25],
+        "normalise": [1, 99],
+        "gamma": 1.25,
+        "brightness": 1,
+        "saturation": 1
+      },
+      "edits": "Cropped to 3:4 from the tall frame; yellow cast reduced about 15 percent, midtones lifted a little."
+    },
+    {
+      "key": "certificates",
+      "source": "2026-11-06/sst-20261106-125335-05.jpg",
+      "publish": false,
+      "crop": [0, 0, 1080, 1440],
+      "rotate": 0,
+      "tone": {
+        "wb": [1, 1, 1],
+        "normalise": [1, 99],
+        "gamma": 1,
+        "brightness": 1,
+        "saturation": 1
+      },
+      "edits": "NOT PUBLISHED: the certificates show a therapist's full name and photograph, and staff names are not on the site until the shop agrees (shop system team_sync is off). Set publish to true and add a shot in zones if the shop agrees."
+    }
+  ],
+  "zones": [
+    {
+      "id": "finding-us",
+      "kicker": "Finding us",
+      "title": "From the pavement",
+      "intro": "Corbridge Court is a brick block on Glaisher Street, with the entrance on the ground floor at the corner. A purple A-board stands on the pavement beside the door.",
+      "shots": [
+        {
+          "photo": "entrance",
+          "caption": "The ground-floor entrance at the corner of Corbridge Court.",
+          "alt": "A four-storey brick building seen from the pavement, with a white ground-floor corner entrance and a small purple A-board standing beside the door."
+        }
+      ]
+    },
+    {
+      "id": "inside-the-door",
+      "kicker": "Inside the door",
+      "title": "Reception and waiting",
+      "intro": "Past the entrance is a reception and waiting area with chairs. The way through to the treatment room is the doorway on the right.",
+      "shots": [
+        {
+          "photo": "reception",
+          "caption": "The reception and waiting area inside the entrance.",
+          "alt": "A bright reception area with a pale blue front desk, a white orchid on the counter, white chairs and a tiled floor, and a doorway leading off to the right."
+        }
+      ]
+    },
+    {
+      "id": "treatment-room",
+      "kicker": "The treatment room",
+      "title": "The room by day",
+      "intro": "One bed, a wall unit with a worktop, a chair and framed pictures, seen here in daylight.",
+      "shots": [
+        {
+          "photo": "room-day",
+          "caption": "The bed, the wall unit and the pictures by day.",
+          "alt": "A treatment room with a bed made up in white paper with a purple towel, a white wall unit and worktop beside a cushioned chair, and framed pictures on the wall."
+        },
+        {
+          "photo": "room-chair",
+          "caption": "The chair and the end of the bed, in daylight.",
+          "alt": "A treatment-room corner with a purple towel over the end of the bed, a folding chair with a blue cushion, white cupboards and two framed pictures."
+        },
+        {
+          "photo": "room-curtain",
+          "caption": "The bed against the patterned curtain, with framed certificates on the wall.",
+          "alt": "A single bed with white paper and a purple pillow towel beside a wall of patterned sheer curtain, with a row of framed certificates on the white wall above."
+        }
+      ]
+    },
+    {
+      "id": "by-candlelight",
+      "kicker": "By candlelight",
+      "title": "The same room, lights low",
+      "intro": "With the main lights off, the room is lit by candles and a few small coloured lamps.",
+      "shots": [
+        {
+          "photo": "candle-shelf",
+          "caption": "The wall unit, with candles, coloured lamps and small figures on top.",
+          "alt": "A white wall unit with tiny lights and small Buddha figures along the top, and teal and pink lamps glowing on the worktop below."
+        },
+        {
+          "photo": "candle-bed",
+          "caption": "The bed in candlelight, with a framed picture of candles behind.",
+          "alt": "A dimly lit corner of the room with a bed in the foreground, a framed picture of candles and stones on the wall and a warm glow low beside the bed."
+        },
+        {
+          "photo": "candle-evening",
+          "caption": "The bed and the wall unit with the lights low.",
+          "alt": "A dim room with the bed in the foreground, a wall clock on the pale wall and a white cabinet with small candles on top in the far corner."
+        }
+      ]
+    },
+    {
+      "id": "details",
+      "kicker": "Details",
+      "title": "Small touches",
+      "intro": "Flowers, framed pictures, candles and lamps around the room.",
+      "shots": [
+        {
+          "photo": "detail-corner",
+          "caption": "A corner with a chair, pink flowers and framed pictures.",
+          "alt": "A white chair with a blue patterned cushion beside a worktop with pink flowers in a vase, below two framed pictures, with a candle glowing low on the right."
+        },
+        {
+          "photo": "detail-lamps",
+          "caption": "Candles, a blue lamp and small figures along the wall unit.",
+          "alt": "A white wall unit with candles and small figures along the top, and a bright blue lamp glowing on the worktop beneath it."
+        }
+      ]
+    }
+  ],
+  "siteImages": [
+    {
+      "key": "room-daylight",
+      "source": "2026-11-06/sst-20261106-144353-14.jpg",
+      "crop": [0, 400, 1080, 472],
+      "rotate": 0,
+      "tone": {
+        "wb": [1, 1, 1],
+        "normalise": [1, 99],
+        "gamma": 1,
+        "brightness": 1,
+        "saturation": 1
+      },
+      "edits": "Cropped to 16:7 (wide band); light stretched slightly. For the Visit page room photo and the home Visit banner."
+    }
+  ]
+}

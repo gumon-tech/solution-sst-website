@@ -173,13 +173,14 @@ Static export; every route has a trailing slash (`trailingSlash: true`).
 | `/gift-vouchers/` | Vouchers by WhatsApp | Massage Gift Vouchers in Greenwich \| Sri Siam (45) | Give someone an hour to themselves at Sri Siam in Greenwich. Message us on WhatsApp with the treatment or amount in mind and we arrange the voucher. (148) |
 | `/about/` | Wat Pho roots, the space | About Sri Siam Thai Therapy & Wellness, Greenwich (49) | A small Thai massage room in Greenwich SE8, run by Thai therapists trained at Wat Pho in Bangkok, the temple school of traditional Thai massage. (144) |
 | `/visit/` | Address, hours, map, stations, calling | Find Us in Greenwich SE8 \| Sri Siam Thai Therapy (48) | Sri Siam is at Unit 89 Corbridge Court, Glaisher Street, Greenwich SE8 3ET, a short walk from Cutty Sark DLR, Greenwich and Deptford stations. Hours, map. (154) |
+| `/tour/` | Photo tour: entrance, reception, treatment room by day and by candlelight (the shop's own photos, 6 Nov 2026; `content/tour.md` + `data/tour.json`) | Tour the Shop \| Sri Siam Thai Therapy & Wellness (48) | Look around Sri Siam Thai Therapy & Wellness in Greenwich, Cutty Sark before you visit: the entrance, reception and treatment room, by day and by candlelight. |
 | `/faq/` | Questions and answers | Questions & Answers \| Sri Siam Thai Therapy (43) | How to book, the deposit, paying on the day, moving a booking, what to wear and who should check with a doctor first. Ask us anything else on WhatsApp. (151) |
 | `/privacy/` | Short privacy notice | Privacy Notice \| Sri Siam Thai Therapy (38) | How Sri Siam Thai Therapy & Wellness handles the details you send us on WhatsApp and when you book. No cookies, no tracking on this website. (140) |
 | `/404` (`not-found.tsx`) | Not found | Page Not Found \| Sri Siam Thai Therapy (38) | — (noindex) |
 
 Also: `robots.ts` (noindex for now: `Disallow: /` **and** `<meta name="robots" content="noindex">` on every page until the lead flips one constant `SITE.indexable`), `sitemap.ts` (generated now, served when indexable), `/llms.txt` optional (**OPEN**, not required).
 
-Header nav (all pages): Treatments · About · Gift Vouchers · Visit · FAQ · [Book on WhatsApp]. On 390px the nav collapses into a full-screen menu (plum) opened by a 44px "Menu" button; the Book button stays visible in the header beside it.
+Header nav (all pages): Treatments · About · Gift Vouchers · Visit · Tour · FAQ · [Book on WhatsApp]. On 390px the nav collapses into a full-screen menu (plum) opened by a 44px "Menu" button; the Book button stays visible in the header beside it.
 
 Footer (all pages, plum-deep): logo on cream circle, name, address (one constant), hours block, WhatsApp number (linked, tag F) with the line "Call it as a normal phone call, or message us on WhatsApp", email, "Read our reviews on Google" (Maps link), "Directions" (Maps link), nav links, Privacy. Legal line: "© {year} Sri Siam Thai Therapy & Wellness. Website by Gumon Technology." (the README says the site is built and hosted by Gumon Technology; keep it to that one line).
 
@@ -324,7 +325,8 @@ Files already converted by the lead: `/img/<key>-800.webp` and `/img/<key>-1600.
 | purple-stones-still | "How booking works" band texture (decorative, `alt=""`); 404 background (decorative); closing band texture (decorative) | "" |
 | purple-stones-candles | `/gift-vouchers/` hero; home vouchers strip; OG image source | "Black stones, tealights and purple orchids on purple silk" |
 | room-wood-purple (removed 2026-11-05, not the shop's room) | `/about/` hero; home "Visit" alternative on 390 | "The treatment room at Sri Siam: wood-panelled walls with carved Thai ornaments, two beds with rolled towels and orchid petals, lit in soft purple" |
-| room-pink-curtains | Home "Visit"; `/visit/` "The room"; `/about/` "the space" | "A treatment bed between pink and lilac curtains in the Sri Siam room" |
+| room-pink-curtains | `/treatments/thai-massage/` secondary (since 7 Nov 2026 no longer on Home "Visit", `/visit/` or `/about/`) | "A treatment bed between pink and lilac curtains" |
+| room-daylight | Home "Visit"; `/visit/` "The room"; `/about/` "the space" (the shop's own photo of its treatment room, 6 Nov 2026, made by `scripts/make-tour-images.mjs`) | "The treatment room by day: a worktop with brass bowls and a green lamp, a chair with a blue cushion, a tiled border on the wall and the end of the bed" |
 
 Reflexology: the Treatwell group is "Reflexology & Lymphatic Massages" but only lymphatic drainage sits in it today. If a reflexology row appears in the JSON later, use `foot-massage` for it until the shop supplies a photo (**OPEN**).
 
@@ -357,6 +359,7 @@ The register is independent of Taitam-D's (different shop, different counts). Th
 | **F** | Footer WhatsApp number link (every page) | `Hi Sri Siam, I'd like to book a massage please. [web-F]` |
 | **E** | 404 page button | `Hi Sri Siam, I'd like to book a massage please. [web-E]` |
 | **CR** | `/careers/` buttons (hero and "How to apply") | `Hi Sri Siam, I'd like to apply for a therapist role please. [web-CR]` |
+| **TR** | `/tour/` Book button (the closing block) | `Hi Sri Siam Thai Therapy & Wellness, I'd like to book a massage please. [web-TR]` |
 | **PR** | Book button on an offer card in the home-page offers section (`#promotions`, only when an offer is live; text is the offer's own `message` from `data/promotions.json`) | `<offer message> [web-PR]` e.g. `Hi Sri Siam, I'd like to book with the Autumn offer. [web-PR]` |
 
 Article rule for `{{name}}`: "an" before Aromatherapy Massage, "a" before everything else; implement as a tiny helper (`/^[aeiou]/i`) so a renamed row stays grammatical.

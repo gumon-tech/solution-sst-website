@@ -20,6 +20,8 @@ export const TAG = {
   footer: "F",
   notFound: "E",
   careers: "CR",
+  /** The Book button on /tour/. */
+  tour: "TR",
   /** The Book button on an offer card (data/promotions.json). */
   offer: "PR",
 } as const;

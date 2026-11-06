@@ -94,9 +94,19 @@ Our gift vouchers are the perfect gesture for birthdays, anniversaries or specia
 
 - Button (primary, tag G): Buy a voucher on WhatsApp
 
+## tour-teaser
+
+Eyebrow: Inside the shop
+
+## Tour the shop
+
+See the entrance, the reception area and the treatment room before you come, in photos taken by the shop itself.
+
+- Button (secondary): Tour the shop -> /tour/
+
 ## visit
 
-[image: room-pink-curtains]
+[image: room-daylight]
 
 Eyebrow: Get in touch
 

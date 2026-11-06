@@ -29,7 +29,7 @@ Whether you want to unwind or simply take some time for yourself, we welcome you
 
 ## the-space
 
-[image: room-pink-curtains]
+[image: room-daylight]
 [image: oils-stones]
 
 Eyebrow: Our philosophy

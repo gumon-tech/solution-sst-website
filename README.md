@@ -27,6 +27,10 @@ lib/whatsapp.ts             wa.me links and the [web-X] source tags (register in
 lib/structured-data.ts      DaySpa, Service/Offer, FAQPage, BreadcrumbList JSON-LD
 docs/design/DIRECTION.md    research, design tokens, layouts, motion, WhatsApp register
 public/img/                 the shop's own photos from its Wix site, WebP 800 and 1600 wide
+public/img/tour/            the /tour/ photos, made from assets/photos/original/ (AVIF, WebP, JPEG at 480 and 960 wide)
+assets/photos/original/     README only in git; the owner's originals live in OneDrive (see its README)
+data/tour.json              /tour/ zones, captions, alt text and the crop/tone recipe per photo (human-edited)
+scripts/make-tour-images.mjs  rebuilds public/img/tour/ and data/tour-sizes.json from the originals (npm run tour-images)
 ```
 
 ## Data the shop system writes
@@ -203,6 +207,10 @@ node scripts/write-build-json.mjs
 node scripts/check-site.mjs
 node scripts/build-redirect-stubs.mjs
 ```
+
+### The shop tour (`/tour/`)
+
+Photos are the shop's own (6 Nov 2026), edited only naturally: crop, light, colour cast, straightening; nothing added, removed or generated, and the neighbouring business's signage is left as photographed (it is never named in copy or alt). To change a photo or add one: copy the originals from Gumon's OneDrive (`10-Work/SST-Sri-Siam-Thai-Therapy/originals/`, never into git: this repository is public and they show phone numbers and staff names) into the gitignored `assets/photos/original/`, put any new original in OneDrive first, edit its entry in `data/tour.json` (`photos`: source, crop `[x, y, w, h]` in source pixels, optional `rotate` degrees, `tone`; `zones`: caption and alt), run `npm run tour-images`, then `npm run check`. `publish: false` keeps a photo out of the site (photo 03, whose A-board shows the old phone number at full size). `redact` pixelates printed text that must not be published (the old number on the A-board in `entrance`); it is the only edit that hides anything. Output never exceeds the crop's own width, strips all metadata, and `check-site.mjs` fails on any EXIF, XMP or GPS in `public/img/tour/` or `room-daylight-*`, a JPEG over 250 KB, a missing srcset file, a tour photo without its open-full-screen button, or the neighbouring business named anywhere. `scripts/validate-tour.mjs` applies the shared public-text rules to every caption and alt (alt 10 to 160 characters, different from the caption). The lightbox (`components/Lightbox.tsx`) is hand-written: dialog, Esc, arrows, swipe, focus trap, focus returned to the thumbnail, scroll lock. The Book button uses tag `TR`.
 
 `check-site.mjs` fails the build on: a missing route, wrong CNAME, the old private number, a wa.me link to another number or without a tag, menu prices that differ from `services.json`, missing titles/descriptions, missing noindex while `indexable` is false, emoji, or unparseable JSON-LD. Pushing to `main` runs the same steps in `.github/workflows/pages.yml` and deploys.
 

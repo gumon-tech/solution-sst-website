@@ -7,6 +7,7 @@ export const STATIC_ROUTES = [
   "/gift-vouchers/",
   "/about/",
   "/visit/",
+  "/tour/",
   "/faq/",
   "/careers/",
   "/privacy/",

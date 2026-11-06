@@ -65,7 +65,7 @@ export default function AboutPage() {
           </div>
           <div className="mt-8 grid gap-4 lg:grid-cols-3 lg:gap-6 xl:mt-12">
             <div className="overflow-hidden rounded-r-frame shadow-card lg:col-span-2">
-              <Img k="room-pink-curtains" slot="about.space-1" sizes="(min-width:1280px) 730px, (min-width:1024px) 60vw, 100vw" className="aspect-[1600/700] h-full w-full object-cover lg:aspect-auto" />
+              <Img k="room-daylight" slot="about.space-1" sizes="(min-width:1280px) 730px, (min-width:1024px) 60vw, 100vw" className="aspect-[1600/700] h-full w-full object-cover lg:aspect-auto" />
             </div>
             <div className="overflow-hidden rounded-r-frame shadow-card">
               <Img k="oils-stones" slot="about.space-2" sizes="(min-width:1280px) 360px, (min-width:1024px) 30vw, 100vw" className="aspect-[4/3] w-full object-cover lg:aspect-[3/4]" />

@@ -127,7 +127,7 @@ export default function VisitPage() {
       <section className="section-y" aria-label="The room">
         <div className="container-x">
           <div className="overflow-hidden rounded-r-frame shadow-card">
-            <Img k="room-pink-curtains" slot="visit.room" sizes="(min-width:1280px) 1104px, 100vw" className="aspect-[1600/700] w-full object-cover" />
+            <Img k="room-daylight" slot="visit.room" sizes="(min-width:1280px) 1104px, 100vw" className="aspect-[1600/700] w-full object-cover" />
           </div>
         </div>
       </section>

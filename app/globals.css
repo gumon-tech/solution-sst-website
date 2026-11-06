@@ -340,3 +340,16 @@ body {
     display: none;
   }
 }
+
+/* Tour lightbox: a short fade in; the reduced-motion rule above switches it off. */
+@keyframes lb-fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.lb-fade {
+  animation: lb-fade 200ms ease-out both;
+}

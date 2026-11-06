@@ -9,6 +9,7 @@ import { Reveal } from "@/components/Reveal";
 import { PromoCards } from "@/components/PromoCards";
 import { Paras, Rich } from "@/components/Rich";
 import { SectionHead } from "@/components/SectionHead";
+import { TourTeaser } from "@/components/TourTeaser";
 import { TreatmentCard } from "@/components/TreatmentCard";
 import { fmString, loadDoc, section, trailingActions } from "@/lib/content";
 import { promotionsForBuild } from "@/lib/promotions-data";
@@ -34,6 +35,7 @@ export default function HomePage() {
   const prev = section(doc, "treatments-preview");
   const roots = section(doc, "our-roots");
   const gift = section(doc, "gift-vouchers-strip");
+  const tourTeaser = section(doc, "tour-teaser");
   const visit = section(doc, "visit");
 
   const { promos, buildDay } = promotionsForBuild();
@@ -188,12 +190,15 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* Tour the shop: four photos and a link to /tour/ */}
+      <TourTeaser copy={tourTeaser} />
+
       {/* Visit */}
       <section className="pb-14 xl:pb-24" aria-labelledby="visit-h">
         <div className="container-x">
           <div className="relative lg:mb-16">
             <div className="overflow-hidden rounded-r-frame shadow-card">
-              <Img k="room-pink-curtains" slot="home.visit" sizes="(min-width:1280px) 1104px, 100vw" className="aspect-[1600/700] w-full object-cover" />
+              <Img k="room-daylight" slot="home.visit" sizes="(min-width:1280px) 1104px, 100vw" className="aspect-[1600/700] w-full object-cover" />
             </div>
             <div className="card mt-4 p-6 lg:absolute lg:-bottom-12 lg:left-8 lg:mt-0 lg:max-w-md xl:p-8">
               <p className="eyebrow">{visit.eyebrow}</p>

@@ -4,7 +4,7 @@
 
 - Wordmark line 1: Sri Siam
 - Wordmark line 2: Thai Therapy & Wellness
-- Nav: Treatments -> /treatments/ · About -> /about/ · Gift Vouchers -> /gift-vouchers/ · Visit -> /visit/ · FAQ -> /faq/
+- Nav: Treatments -> /treatments/ · About -> /about/ · Gift Vouchers -> /gift-vouchers/ · Visit -> /visit/ · Tour -> /tour/ · FAQ -> /faq/
 - Button (primary, tag N): Book on WhatsApp
 - Mobile menu button label: Menu (aria-label "Open menu" / "Close menu")
 - Mobile menu footer line: {{hours_sentence}}
@@ -44,7 +44,7 @@ Column 3 (contact):
 - Email: {{email}}
 - Link: Read our reviews on Google -> {{maps_url}}
 
-Column 4 (pages): Treatments · About · Gift Vouchers · Visit · FAQ · Careers · Privacy
+Column 4 (pages): Treatments · About · Gift Vouchers · Visit · Tour · FAQ · Careers · Privacy
 
 Legal line: © {{year}} Sri Siam Thai Therapy & Wellness. Website by Gumon Technology.
 

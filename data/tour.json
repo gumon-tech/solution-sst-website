@@ -282,7 +282,7 @@
     {
       "key": "certificates",
       "source": "2026-11-06/sst-20261106-125335-05.jpg",
-      "publish": false,
+      "publish": true,
       "crop": [
         0,
         0,
@@ -304,7 +304,7 @@
         "brightness": 1,
         "saturation": 1
       },
-      "edits": "NOT PUBLISHED: the certificates show a therapist's full name and photograph, and staff names are not on the site until the shop agrees (shop system team_sync is off). Set publish to true and add a shot in zones if the shop agrees."
+      "edits": "Full frame; light stretched slightly. Published with the shop's agreement (7 Nov 2026), although it shows a therapist's name and photograph."
     }
   ],
   "zones": [
@@ -384,8 +384,13 @@
       "id": "details",
       "kicker": "Details",
       "title": "Small touches",
-      "intro": "Flowers, framed pictures, candles and lamps around the room.",
+      "intro": "Flowers, framed pictures, candles, lamps and the certificates on the wall.",
       "shots": [
+        {
+          "photo": "certificates",
+          "caption": "Framed training certificates on the treatment-room wall.",
+          "alt": "Ten framed certificates and diplomas hung in three rows on a plain white wall."
+        },
         {
           "photo": "detail-corner",
           "caption": "A corner with a chair, pink flowers and framed pictures.",

@@ -10,7 +10,7 @@ Source: the WhatsApp chat with the owner, read from WhatsApp Desktop on komphet-
 
 | Folder | What it is | On the site? |
 |---|---|---|
-| `2026-11-06/` `sst-20261106-<time>-NN.jpg` (19) | The premises: building and entrance (03, 12, 13), reception and waiting area inside the entrance (15), the treatment room by day (07, 14, 16, 17, 18, 19) and by candlelight (01, 02, 04, 06, 08, 09, 10, 11), framed certificates (05). Near-duplicates: 08/09, 10/11, 12/13, 14/16/19, 17/18. | Yes: `/tour/`, the home teaser and the room photo (see `data/tour.json`). 03 and 05 are not published. |
+| `2026-11-06/` `sst-20261106-<time>-NN.jpg` (19) | The premises: building and entrance (03, 12, 13), reception and waiting area inside the entrance (15), the treatment room by day (07, 14, 16, 17, 18, 19) and by candlelight (01, 02, 04, 06, 08, 09, 10, 11), framed certificates (05). Near-duplicates: 08/09, 10/11, 12/13, 14/16/19, 17/18. | Yes: `/tour/`, the home teaser and the room photo (see `data/tour.json`). 03 is not published (old phone number on the A-board); 05 is published with the shop's agreement. |
 | `2026-10-23/`, `2026-10-30/`, `2026-11-05/` `sst-material-*.jpg` (9) | The shop's business cards, menu posters, logo art and promotion designs | No. Reference only. |
 
 Not saved anywhere on purpose: the chat's screenshots (customer messages, a login).

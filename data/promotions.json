@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-05T17:51:48Z",
+  "updated_at": "2026-11-09T06:33:25Z",
   "promotions": [
     {
       "code": "P-BQTK",
@@ -74,7 +74,7 @@
       "starts": "2026-11-05",
       "ends": "2026-12-18",
       "ends_label": "Friday 18 December 2026",
-      "status": "live"
+      "status": "ended"
     },
     {
       "code": "P-WFXT",
@@ -104,6 +104,21 @@
       "starts": "2026-11-05",
       "ends": "2026-12-31",
       "ends_label": "Thursday 31 December 2026",
+      "status": "live"
+    },
+    {
+      "code": "P-M7QK",
+      "title": "Midweek 10% Off",
+      "eyebrow": "Seasonal offer",
+      "detail": "Get 10% off any massage of 60 minutes or longer that starts on a Tuesday, Wednesday or Friday between 12:00 and 15:00. Write 'Midweek 10% Off' in your Treatwell booking note, mention it on WhatsApp, or tell us when you arrive. Cannot be combined with other offers.",
+      "points": [],
+      "offer": "Mention this offer on WhatsApp or when you arrive",
+      "message": "Hi Sri Siam Thai Therapy & Wellness, I'd like to book with the Midweek 10% Off offer.",
+      "image": null,
+      "illustrative": false,
+      "starts": "2026-11-09",
+      "ends": "2026-12-18",
+      "ends_label": "Friday 18 December 2026",
       "status": "live"
     }
   ]

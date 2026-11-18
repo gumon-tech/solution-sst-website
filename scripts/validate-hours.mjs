@@ -1,5 +1,6 @@
 // Fails the build when data/hours.json is malformed. Written by the shop system (branch shop-agent/hours-*).
 // No rule here depends on today's date. Plain Node, no dependencies. Optional argument: another file to check.
+import { readdirSync, readFileSync } from "node:fs";
 import path from "node:path";
 import { ROOT, isObject, isTimestamp, loadJsonOrExit, makeReporter } from "./lib/public-text.mjs";
 
@@ -38,5 +39,13 @@ else {
     }
     if (open === 0) fail("hours: at least one day must be open");
   }
+}
+// The hours are never typed into the copy (content/*.md, data/copy.json), so an hours pull request cannot leave stale wording:
+// use {{hours_sentence}}. A clock time anywhere in the copy is a build error.
+const contentDir = path.join(ROOT, "content");
+for (const rel of [...readdirSync(contentDir).filter((f) => f.endsWith(".md")), ...readdirSync(path.join(contentDir, "treatments")).map((f) => `treatments/${f}`)]) {
+  readFileSync(path.join(contentDir, rel), "utf8").split("\n").forEach((line, i) => {
+    if (/\b\d{1,2}[:.][0-5]\d\b/.test(line)) fail(`content/${rel}:${i + 1}: a clock time typed into the copy (opening hours come only from data/hours.json via {{hours_sentence}})`);
+  });
 }
 finish("hours.json OK");

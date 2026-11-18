@@ -1,12 +1,20 @@
 // Reads the copy in content/*.md at build time (server components only) and
 // fills {{placeholders}} from lib/site.ts and data/services.json. The markdown
 // is the single source of customer-facing words; nothing is retyped in code.
+// The shop system may replace a fixed list of pieces of it: text slots
+// (data/copy.json, slot list scripts/lib/copy-slots.json) and page titles and
+// descriptions (data/seo.json, pages scripts/lib/seo-pages.json). A null value
+// keeps the markdown, so with every value null the site is the markdown alone.
 import { readFileSync } from "node:fs";
 import path from "node:path";
 import { DEPOSIT_LABEL, SITE, hoursSentence } from "@/lib/site";
 import { closuresForBuild } from "@/lib/closures-data";
 import { closuresLine } from "@/lib/hours-text";
 import { menuCheckedDate } from "@/lib/services";
+import copyData from "@/data/copy.json";
+import seoData from "@/data/seo.json";
+import copySlotList from "@/scripts/lib/copy-slots.json";
+import seoPageList from "@/scripts/lib/seo-pages.json";
 
 const CONTENT_DIR = path.join(process.cwd(), "content");
 
@@ -158,6 +166,59 @@ const SECTION_ID_RE = /^##\s+([a-z0-9]+(?:-[a-z0-9]+)*)(?:\s+\([^)]*\))?\s*$/;
 
 const cache = new Map<string, Doc>();
 
+interface CopySlot {
+  file: string;
+  section?: string;
+  field: string;
+}
+const COPY_SLOTS = copySlotList.slots as Record<string, CopySlot>;
+const COPY = copyData.slots as Record<string, string | null>;
+const SEO_PAGES = seoPageList.pages as Record<string, string>;
+const SEO = seoData.pages as Record<string, { title: string | null; description: string | null }>;
+
+/**
+ * Puts the non-null values of data/copy.json and data/seo.json into a parsed file. Every slot's target must exist even
+ * when its value is null, so a slot list that no longer matches the markdown is a build error, not a silent no-op.
+ */
+function applyShopText(relPath: string, doc: Doc): void {
+  for (const [key, slot] of Object.entries(COPY_SLOTS)) {
+    if (slot.file !== relPath) continue;
+    const value = COPY[key] ?? null;
+    const where = `copy slot "${key}" (scripts/lib/copy-slots.json) -> ${relPath}`;
+    const p = slot.field.split(".");
+    if (p[0] === "fm" && p.length === 2) {
+      if (typeof doc.fm[p[1]] !== "string") throw new Error(`${where}: front matter "${p[1]}" missing`);
+      if (value !== null) doc.fm[p[1]] = value;
+      continue;
+    }
+    const b = slot.section ? doc.sections[slot.section] : undefined;
+    if (!b) throw new Error(`${where}: section "${slot.section}" missing`);
+    if (p.length === 1 && (p[0] === "eyebrow" || p[0] === "h1" || p[0] === "lead")) {
+      const f = p[0];
+      if (b[f] === undefined) throw new Error(`${where}: ${f} missing`);
+      if (value !== null) b[f] = value;
+    } else if (p.length === 2 && p[0] === "paras") {
+      const i = Number(p[1]);
+      if (!(i < b.paras.length)) throw new Error(`${where}: paragraph ${i} missing`);
+      if (value !== null) b.paras[i] = value;
+    } else if (p.length === 4 && p[0] === "subs" && p[2] === "paras") {
+      const sub = b.subs[Number(p[1])];
+      const i = Number(p[3]);
+      if (!sub || !(i < sub.paras.length)) throw new Error(`${where}: card ${p[1]} paragraph ${i} missing`);
+      if (value !== null) sub.paras[i] = value;
+    } else throw new Error(`${where}: unknown field "${slot.field}"`);
+  }
+  for (const [route, file] of Object.entries(SEO_PAGES)) {
+    if (file !== relPath) continue;
+    const o = SEO[route];
+    if (!o) throw new Error(`data/seo.json: page ${route} missing`);
+    for (const k of ["title", "description"] as const) {
+      if (typeof doc.fm[k] !== "string") throw new Error(`seo page ${route} -> ${relPath}: front matter "${k}" missing`);
+      if (o[k] !== null) doc.fm[k] = o[k];
+    }
+  }
+}
+
 export function loadDoc(relPath: string): Doc {
   const hit = cache.get(relPath);
   if (hit) return hit;
@@ -179,6 +240,7 @@ export function loadDoc(relPath: string): Doc {
   }
   done();
   const doc: Doc = { fm, sections, preamble: parseBlock("preamble", pre) };
+  applyShopText(relPath, doc);
   cache.set(relPath, doc);
   return doc;
 }

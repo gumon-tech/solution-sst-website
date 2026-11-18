@@ -1,0 +1,19 @@
+{
+  "_note": "Pages whose <title> and meta description the shop system may set through data/seo.json (README, \"seo\"), and the content file that holds their front-matter fallback. Changing it is a human PR.",
+  "pages": {
+    "/": "home.md",
+    "/treatments/": "treatments.md",
+    "/gift-vouchers/": "gift-vouchers.md",
+    "/about/": "about.md",
+    "/visit/": "visit.md",
+    "/tour/": "tour.md",
+    "/faq/": "faq.md",
+    "/careers/": "careers.md",
+    "/treatments/thai-massage/": "treatments/thai-massage.md",
+    "/treatments/aromatherapy-massage/": "treatments/aromatherapy-massage.md",
+    "/treatments/hot-stone-massage/": "treatments/hot-stone-massage.md",
+    "/treatments/lymphatic-drainage-massage/": "treatments/lymphatic-drainage-massage.md",
+    "/treatments/thai-foot-massage/": "treatments/thai-foot-massage.md",
+    "/treatments/back-neck-shoulders-massage/": "treatments/back-neck-shoulders-massage.md"
+  }
+}

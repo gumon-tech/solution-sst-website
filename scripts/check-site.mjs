@@ -373,7 +373,7 @@ if (homeHtml && !/"@type":"DaySpa"/.test(homeHtml)) fail("/: no DaySpa JSON-LD")
     try {
       const b = JSON.parse(read(bj));
       if (typeof b.sha !== "string" || !b.sha || typeof b.built_at !== "string" || Number.isNaN(Date.parse(b.built_at))) fail("out/build.json needs sha and built_at");
-      for (const c of ["promotions", "hours", "closures", "notice", "faq-extra", "photos"]) if (!/^[0-9a-f]{64}$/.test(b.data?.[c] ?? "")) fail(`out/build.json: data.${c} is not a sha256`);
+      for (const c of ["promotions", "hours", "closures", "notice", "faq-extra", "photos", "services", "copy", "seo"]) if (!/^[0-9a-f]{64}$/.test(b.data?.[c] ?? "")) fail(`out/build.json: data.${c} is not a sha256`);
     } catch (e) {
       fail(`out/build.json does not parse (${e.message})`);
     }
@@ -481,6 +481,40 @@ if (homeHtml && !/"@type":"DaySpa"/.test(homeHtml)) fail("/: no DaySpa JSON-LD")
       }
     }
     if (/carnaby/i.test(stripTags(html.replace(/<script[\s\S]*?<\/script>/g, "")) + " " + [...html.matchAll(/\balt="([^"]*)"/g)].map((x) => x[1]).join(" "))) fail(`${rel}: names the neighbouring business in text or alt`);
+  }
+}
+
+// ---- copy and seo (data/copy.json, data/seo.json, written by the shop system; README "copy" and "seo") ---------------------
+// Every set text slot is on its page and every set title/description is the page's; no page carries Thai script.
+{
+  const seoPages = JSON.parse(read(path.join(root, "scripts/lib/seo-pages.json"))).pages;
+  const routeOf = Object.fromEntries(Object.entries(seoPages).map(([r, f]) => [f, r]));
+  const pageOf = (route) => pageFiles.get(route === "/" ? "index.html" : path.join(route.slice(1), "index.html"));
+  const visible = (html) => stripTags(html.replace(/<script[\s\S]*?<\/script>/g, "").replace(/<style[\s\S]*?<\/style>/g, ""));
+  const slots = JSON.parse(read(path.join(root, "scripts/lib/copy-slots.json"))).slots;
+  const copy = JSON.parse(read(path.join(root, "data/copy.json"))).slots;
+  for (const [key, value] of Object.entries(copy)) {
+    if (value === null) continue;
+    const route = routeOf[slots[key]?.file];
+    const html = route && pageOf(route);
+    if (!html) fail(`copy slot ${key}: no page for ${slots[key]?.file}`);
+    else if (!visible(html).includes(value)) fail(`copy slot ${key}: its text is not on ${route}`);
+  }
+  const seo = JSON.parse(read(path.join(root, "data/seo.json"))).pages;
+  for (const [route, o] of Object.entries(seo)) {
+    const html = pageOf(route);
+    if (!html) {
+      fail(`seo: no page ${route}`);
+      continue;
+    }
+    const title = decodeEntities(/<title>([\s\S]*?)<\/title>/.exec(html)?.[1] ?? "");
+    const desc = decodeEntities(/<meta name="description" content="([^"]*)"/.exec(html)?.[1] ?? "");
+    if (o.title !== null && title !== o.title) fail(`seo ${route}: <title> is "${title}", data/seo.json says "${o.title}"`);
+    if (o.description !== null && desc !== o.description) fail(`seo ${route}: meta description differs from data/seo.json`);
+  }
+  for (const [rel, html] of pageFiles) {
+    const text = visible(html) + " " + (/<title>([\s\S]*?)<\/title>/.exec(html)?.[1] ?? "") + " " + [...html.matchAll(/<meta [^>]*content="([^"]*)"/g)].map((m) => m[1]).join(" ");
+    if (/[\u0E00-\u0E7F]/.test(text)) fail(`${rel}: Thai script on the page (the public text is English)`);
   }
 }
 

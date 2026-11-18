@@ -14,7 +14,7 @@ if (!existsSync(path.join(root, "out"))) {
 }
 const sha = process.env.GITHUB_SHA || spawnSync("git", ["rev-parse", "HEAD"], { cwd: root, encoding: "utf8" }).stdout.trim() || "unknown";
 const data = {};
-for (const c of ["promotions", "hours", "closures", "notice", "faq-extra", "photos"]) {
+for (const c of ["promotions", "hours", "closures", "notice", "faq-extra", "photos", "services", "copy", "seo"]) {
   data[c] = createHash("sha256").update(readFileSync(path.join(root, "data", `${c}.json`))).digest("hex");
 }
 writeFileSync(path.join(root, "out/build.json"), JSON.stringify({ sha, built_at: new Date().toISOString(), data }, null, 2) + "\n");

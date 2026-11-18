@@ -1,14 +1,18 @@
 name: Merge shop system data changes
 # The shop's WhatsApp system (shop-agent, shop id sst) keeps at most ONE open pull request per concern from a branch named
-# shop-agent/<concern>-<id>, with <concern> one of: promotions, hours, closures, notice, faq-extra, photos. It rebuilds that branch
+# shop-agent/<concern>-<id>, with <concern> one of: promotions, hours, closures, notice, faq-extra, photos, services, copy, seo.
+# It rebuilds that branch
 # from main plus every change the shop manager has confirmed. This workflow merges that pull request by itself, and only if ALL hold:
 #   1. the pull request comes from a branch inside this repository named shop-agent/<concern>-<id> with a known concern
 #   2. against main it changes only the files of that concern (set below, derived from the concern, never listed by the pull request):
-#        promotions, hours, closures, notice, faq-extra: exactly one file, data/<concern>.json (M, not added, renamed or deleted)
+#        promotions, hours, closures, notice, faq-extra, services, copy, seo: exactly one file, data/<concern>.json
+#                (M, not added, renamed or deleted). copy and seo hold text that replaces named pieces of content/*.md;
+#                the markdown itself, the slot lists and every other file are a person's change.
 #        photos: exactly one M data/photos.json, plus any number of new (A) public/img/sp-<slug>-800.webp and -1600.webp files;
 #                nothing else, no deleted, renamed or modified photo files
 #   3. `npm run check` passes on the merged result (every validator, the tests, build, site checks)
-#   4. scripts/check-shop-agent-diff.mjs passes: wording already on the site is not edited and no entry is removed
+#   4. scripts/check-shop-agent-diff.mjs passes: wording already on the site is not edited and no entry is removed;
+#      services: no treatment added or removed, no reorder, no price moved by more than half; copy and seo: values only, same keys
 # Anything else stays open for a person, and a comment says which stage failed (the shop system reads it and tells the manager).
 # Uses the built-in GITHUB_TOKEN only.
 #
@@ -79,6 +83,9 @@ jobs:
               notice-?*) concern=notice ;;
               faq-extra-?*) concern=faq-extra ;;
               photos-?*) concern=photos ;;
+              services-?*) concern=services ;;
+              copy-?*) concern=copy ;;
+              seo-?*) concern=seo ;;
             esac
           fi
           echo "concern=$concern" >> "$GITHUB_OUTPUT"
@@ -90,7 +97,7 @@ jobs:
           CONCERN: ${{ steps.concern.outputs.concern }}
         run: |
           if [ "$CONCERN" = unknown ]; then
-            echo "::error::branch shop-agent/<concern>-<id> needs a concern of promotions, hours, closures, notice, faq-extra or photos"
+            echo "::error::branch shop-agent/<concern>-<id> needs a concern of promotions, hours, closures, notice, faq-extra, photos, services, copy or seo"
             exit 1
           fi
 
@@ -102,7 +109,7 @@ jobs:
           changed=$(git diff --name-status HEAD^1 HEAD)
           printf 'Changed against main:\n%s\n' "$changed"
           case "$CONCERN" in
-            promotions|hours|closures|notice|faq-extra)
+            promotions|hours|closures|notice|faq-extra|services|copy|seo)
               want=$(printf 'M\tdata/%s.json' "$CONCERN")
               if [ "$changed" != "$want" ]; then
                 echo "::error::this pull request must change exactly data/$CONCERN.json and nothing else"

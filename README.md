@@ -13,14 +13,18 @@ Next.js 15 (App Router) + React 19 + TypeScript + Tailwind 3, static export to `
 ## Where things live
 
 ```
-data/services.json          every service, length and price, copied from Treatwell (venue 528970); the only source
+data/services.json          every service, length and price, copied from Treatwell (venue 528970); the only source (a person or the shop system)
 data/promotions.json        live offers, written only by the shop's WhatsApp system (see "Data the shop system writes")
 data/hours.json             weekly opening hours (same system)
 data/closures.json          closed days and changed-hours days (same system)
 data/notice.json            one site-wide notice (same system)
 data/faq-extra.json         extra FAQ questions (same system)
 data/photos.json            photos the system added and which slot shows them (same system)
-content/*.md                every word of customer-facing copy, read at build time
+data/copy.json              text that replaces named pieces of content/*.md, null = the markdown (same system)
+data/seo.json               page titles and meta descriptions, null = the front matter (same system)
+scripts/lib/copy-slots.json the fixed list of copy slots and where each one points (human-edited)
+scripts/lib/seo-pages.json  the pages data/seo.json may retitle (human-edited)
+content/*.md                every word of customer-facing copy, read at build time (never edited by the shop system)
 content/_booking-terms.md   the only place deposit, paying and changes are worded
 lib/site.ts                 name, address, phone, deposit, Maps link, the indexable switch; hours come from data/hours.json via lib/hours-text.ts
 lib/whatsapp.ts             wa.me links and the [web-X] source tags (register in docs/design/DIRECTION.md section 8)
@@ -37,7 +41,7 @@ scripts/make-tour-images.mjs  rebuilds public/img/tour/ and data/tour-sizes.json
 
 The shop manager confirms a change in WhatsApp chat; the shop system (shop-agent, shop id `sst`) then keeps at most one open pull request per concern from a branch `shop-agent/<concern>-<id>`, rebuilt from main plus every confirmed change (or closed if they were withdrawn before it merged). `.github/workflows/auto-merge-shop-agent.yml` merges it by itself when the branch, the file rule, `npm run check` and the diff rules all hold, then starts `pages.yml` (a merge by `GITHUB_TOKEN` does not trigger it). Anything else stays open for a person. Who may ask for what (management or shop manager) is enforced by the bot, not the site.
 
-One concern = one data file = one branch prefix = one validator:
+One concern = one data file = one branch prefix = one validator. The shop system never edits `content/*.md`, code, styles, the slot lists or any other file: managers change the site's words, prices, hours and photos only through the data files below.
 
 | Concern | Branch | Files the pull request may change | Validator and test |
 |---|---|---|---|
@@ -46,9 +50,12 @@ One concern = one data file = one branch prefix = one validator:
 | closures | `shop-agent/closures-<id>` | `M data/closures.json` only | `validate-closures.mjs`, `test-closures.mjs` |
 | notice | `shop-agent/notice-<id>` | `M data/notice.json` only | `validate-notice.mjs`, `test-notice.mjs` |
 | faq-extra | `shop-agent/faq-extra-<id>` | `M data/faq-extra.json` only | `validate-faq-extra.mjs`, `test-faq-extra.mjs` |
+| services | `shop-agent/services-<id>` | `M data/services.json` only | `validate-services.mjs`, `test-services.mjs` |
+| copy | `shop-agent/copy-<id>` | `M data/copy.json` only | `validate-copy.mjs`, `test-copy.mjs` |
+| seo | `shop-agent/seo-<id>` | `M data/seo.json` only | `validate-seo.mjs`, `test-copy.mjs` |
 | photos | `shop-agent/photos-<id>` | exactly one `M data/photos.json`, plus new files `A public/img/sp-<slug>-800.webp` and `A public/img/sp-<slug>-1600.webp` (no D, no R, no M of a photo file, nothing else) | `validate-photos.mjs`, `test-photos.mjs` |
 
-Files must exist on main first (a person creates them), so `A data/<concern>.json` is never valid. `<id>` is `[A-Za-z0-9._-]+`. An unknown concern stays open.
+Files must exist on main first (a person creates them), so `A data/<concern>.json` is never valid. `<id>` is `[A-Za-z0-9._-]+`. An unknown concern stays open. `scripts/test-workflow-rules.mjs` (in `npm run check`) runs rules 1 and 2 straight from the workflow file, and rule 4, against real merge commits in a throwaway repository.
 
 ### Workflow
 
@@ -57,7 +64,7 @@ A `check` job (check run name `site-check`) with no token (checkout without stor
 Failure marker, last line of the comment the workflow posts on the pull request (the bot parses it):
 
 ```
-shop-agent-merge-failed stage=<check|merge|publish> concern=<promotions|hours|closures|notice|faq-extra|photos|unknown> sha=<pull request head sha> run=<url of the workflow run>
+shop-agent-merge-failed stage=<check|merge|publish> concern=<promotions|hours|closures|notice|faq-extra|photos|services|copy|seo|unknown> sha=<pull request head sha> run=<url of the workflow run>
 ```
 
 `stage=check`: unknown concern, wrong files, a validator, the build, check-site or a diff rule failed (the run log says which). `stage=merge`: GitHub refused the merge (the pull request stays open). `stage=publish`: merged, but starting `pages.yml` failed (the site updates at the next nightly rebuild). A run replaced by a newer commit on the branch stays silent. `concern=unknown` appears when the branch name has no known concern.
@@ -66,7 +73,7 @@ Confirming "live": `pages.yml` writes `out/build.json` (below). The bot tells th
 
 ### build.json
 
-`scripts/write-build-json.mjs` runs after `next build` (in `npm run check` and in `pages.yml`) and writes `out/build.json`: `{"sha": <GITHUB_SHA or git rev-parse HEAD>, "built_at": <UTC ISO>, "data": {"promotions": <sha256 of data/promotions.json>, "hours": ..., "closures": ..., "notice": ..., "faq-extra": ..., "photos": ...}}`. No secrets; not in the sitemap; `check-site.mjs` fails if it is missing or does not parse. A test with no visible change: merge a promotion with `status: "draft"` (or a future `starts`) through the whole pipeline, then read `build.json`.
+`scripts/write-build-json.mjs` runs after `next build` (in `npm run check` and in `pages.yml`) and writes `out/build.json`: `{"sha": <GITHUB_SHA or git rev-parse HEAD>, "built_at": <UTC ISO>, "data": {"promotions": <sha256 of data/promotions.json>, "hours": ..., "closures": ..., "notice": ..., "faq-extra": ..., "photos": ..., "services": ..., "copy": ..., "seo": ...}}`. No secrets; not in the sitemap; `check-site.mjs` fails if it is missing or does not parse. A test with no visible change: merge a promotion with `status: "draft"` (or a future `starts`) through the whole pipeline, then read `build.json`.
 
 ### Shared text rules
 
@@ -83,6 +90,8 @@ Compares `data/<concern>.json` at `HEAD^1` (main) with `HEAD` (the merge result)
 - faq-extra: `status`
 - photos `images`: `status` (the `slots` map is free)
 - hours and notice have no list: the whole object may be replaced (the validator holds the rules)
+- services: see "services" below
+- copy and seo: values only. Every key of `slots` (copy) and every page and its `title`/`description` keys (seo) stay exactly as on main: no key added or removed (the lists are a person's change)
 
 ### promotions (`data/promotions.json`)
 
@@ -175,9 +184,42 @@ Footer lines (`hoursCompact()`): closed days first (`Mon, Thu Closed`), then one
 
 `{{closures_line}}` (FAQ hours answer): empty when there is no upcoming closure, otherwise ` Please note: <closureLabel>; <closureLabel>.` with a leading space, e.g. ` Please note: Closed Thursday 24 December to Monday 4 January.` Upcoming = live, not finished on the build day (London), starting within 60 days, earliest first.
 
-### Not in this release
+### services (`data/services.json`)
 
-`services` (prices, lengths, new treatments) is not chat-editable: TODO after the Treatwell write test on Monday 9 Nov 2026. `data/services.json` stays a human-only file.
+The menu: one row per length of a treatment, `{"group", "slug", "name", "option", "duration_min", "price_gbp"}` and no other key; file keys `_about`, `source`, `read_at` (shown as "Menu checked <date>" on `/treatments/`), `currency` (`"GBP"`), `services`. Row order is the order on the site. The bot should change Treatwell first and then this file, the same day, so the two agree.
+
+Validator (every edit, a person's too): `option` names its own length (`30 minutes`, `1 hour`, `90 minutes`, `2 hours`, `1 hour 30 minutes`); `duration_min` 10 to 240; `price_gbp` above 0, at most 1000, pounds and pence (two decimals at most); a slug has one name and one group; no repeated slug+length; `name`, `group`, `option` plain one-line text (60, 60, 30 characters) passing the shared rules except the health list (the menu's own names include "Lymphatic Drainage").
+
+Diff rules for the shop system (`checkServices` in `scripts/lib/shop-agent-diff.mjs`); a length is identified by slug + `duration_min`:
+
+- may: change any row's `price_gbp`, `duration_min`, `option` and `name`; add a length to an existing treatment (anywhere in the list); remove a length (discontinued); move a treatment to another group that is already on the menu; change `read_at`
+- may not: add a treatment (a new slug needs its page, copy and photo slots: a person adds it), remove a treatment's last length (its page and the links to it go: a person does it), rename a slug, reorder treatments or the lengths that stay, introduce a new group, change `_about`, `source` or `currency`, add a health word to a name that the old name did not have, or move a price by more than 50% of the old price for the same length (a new length must be between half the treatment's lowest price and twice its highest). These guard typos; a bigger real change is merged by a person.
+
+Everything else follows: menu prices, option buttons and the Service JSON-LD come from the file (check-site compares them). A live promotion whose text names a price that no longer exists fails `validate-promotions.mjs`, so the services pull request stays open until the promotion is changed too. Copy that describes lengths in words ("one of the two shortest treatments") is a person's to update.
+
+### copy (`data/copy.json`)
+
+Text slots: named pieces of `content/*.md` the managers may reword. The list is `scripts/lib/copy-slots.json` (a human change, like the photo slots): each slot has `kind` (`line` or `paragraph`), `max` characters, and where it points (`file`, `section`, `field`: `eyebrow`, `h1`, `lead`, `paras.N`, `subs.N.paras.M` for the Nth card's paragraph, or `fm.h1` for a treatment page's heading). `node scripts/lib/copy-text.mjs` prints the markdown wording of every slot (what the site shows while the slot is null), for the bot to show the manager.
+
+```json
+{"updated_at": "2026-11-19T09:00:00Z", "slots": {"home.hero.eyebrow": null, "home.hero.lead": "Trained at Wat Pho ...", "...": null}}
+```
+
+- Every slot of the list is present, each `null` (the markdown stays) or a string; no other key. Setting a value back to `null` restores the markdown.
+- A value: plain text on one line, no spaces at either end, no double spaces; `line` at least 2 characters, `paragraph` at least 20, both at most the slot's `max`. Refused: markdown or markup (the characters `*`, `_`, `#`, backtick, `[`, `]`, `{`, `}`, `<`, `>`, `~`, backslash and `|`, and `->`; regex `MARKUP` in `scripts/lib/copy-rules.mjs`), so no `{{placeholders}}`, no HTML and no emphasis; opening times and weekday names (hours come only from `data/hours.json`); typed treatment lengths ("90 minutes"; walking minutes such as "a 9-minute walk" or "11 minutes away" are fine); any money (`£`, `€`, `$`, `%`, "20 pounds", "discount", "half price", "free of charge": prices come only from `data/services.json`, offers from `data/promotions.json`); deposit, paying, cancelling, refund, terms, privacy, consent and health-safety words (pregnant, doctor, condition, operation: that wording stays in the core copy); "Greenwich" not followed by ", Cutty Sark" (except "Greenwich station"); the neighbouring business's name; and everything the shared text rules refuse (emoji, Thai, links, emails, phone numbers, `[web-`, the short shop name, health and review wording). For the health test only, "therapist(s)" and a service's own name from `data/services.json` are ignored.
+- The lists: no slot points into `privacy.md`, `_booking-terms.md` or `README.md`, or at text holding `{{deposit}}` or `{{booking_terms...}}`; the health-safety cards ("Tell us about your health"), "Running late?", the gift voucher paying step and the photo note on `/tour/` are left out on purpose. `validate-copy.mjs` fails if a slot points at text that does not exist, and so does the build.
+- `check-site` fails when a set value is not in its page's visible text (so a slot cannot silently do nothing).
+- With every value `null` the built site is the markdown alone (checked 19 Nov 2026: every built file identical apart from Next's build id).
+
+Slots (59): `<page>.hero.eyebrow` (line, 60), `<page>.hero.h1` (line, 100), `<page>.hero.lead` (paragraph, 400) for `home about treatments gift-vouchers visit tour faq careers`; `home.how-booking-works.body`, `.step-1`, `.step-2`; `home.treatments-preview.body`; `home.our-roots.body-1`, `.body-2`; `home.gift-vouchers.body`; `home.tour-teaser.body`; `about.wat-pho.body-1`, `.body-2`; `about.the-space.body-1`, `.body-2`; `about.how-we-work.massage-only`; `visit.getting-here.cutty-sark-dlr`, `.greenwich-station`, `.deptford-station`; `visit.before-you-come.arrive-early`; `gift-vouchers.how-it-works.step-1`, `.step-3`; `tour.visit.lead`; `careers.how-to-apply.step-1`, `.step-2`, `.step-3`; `treatment.<slug>.h1` (line, 80) and `treatment.<slug>.intro` (paragraph, 400; also the Service description in the JSON-LD) for each of the six slugs. Headings set through a slot lose the markdown's italic accent (values are plain text).
+
+### seo (`data/seo.json`)
+
+`{"updated_at": ..., "pages": {"/": {"title": null, "description": null}, "/treatments/thai-massage/": {...}, ...}}`: exactly the routes of `scripts/lib/seo-pages.json` (every page but `/privacy/` and the 404), each with both keys. `null` keeps the page's front matter; a string replaces the `<title>`, `og:title`, `twitter:title` (title) or the meta, OG and Twitter description. Title 10 to 60 characters (`|` allowed), description 50 to 155; otherwise the same rules as a copy value. Several front-matter titles on main are longer than 60; that is fine until the bot replaces them. `check-site` fails when a set value is not the page's own.
+
+### Not the shop system's
+
+`content/*.md` itself (structure, buttons and their tags, links, placeholders, images), `content/privacy.md`, `content/_booking-terms.md` (deposit, paying, moving, cancelling), the core FAQ, new treatments and pages, the slot lists, code, styles and config are changed by a person in a pull request.
 
 ### Workflow self-tests (what must stay open, what must merge)
 
@@ -196,6 +238,11 @@ Throwaway pull requests from branches in this repository; each must stay open wi
 | `shop-agent/hours-x` | `M data/hours.json` valid | merges, Pages deploys, `build.json` sha equals the merge commit |
 | `shop-agent/photos-x` | `M data/photos.json` plus a valid new `sp-` pair, listed in `images` | merges |
 | `shop-agent/promotions-x` | `M data/promotions.json` with a `draft` offer appended | merges, no visible change |
+| `shop-agent/services-x` | `M data/services.json` with one price changed by a few pounds | merges; menu, treatment page and JSON-LD show the new price |
+| `shop-agent/services-x` | `M data/services.json` plus any other file, or a new slug, or a price moved by more than half | open, `stage=check concern=services` |
+| `shop-agent/copy-x` | `M data/copy.json` with `home.hero.lead` set | merges; the home lead changes, nothing else |
+| `shop-agent/copy-x` | `M content/home.md`, or `data/copy.json` plus `content/privacy.md`, a new file, a new slot key, a link, a price or a health claim in a value | open, `stage=check concern=copy` |
+| `shop-agent/seo-x` | `M data/seo.json` with one title set | merges; that page's `<title>` changes |
 
 ## Build and check
 

@@ -1,0 +1,61 @@
+{
+  "updated_at": "2026-11-19T09:00:00Z",
+  "pages": {
+    "/": {
+      "title": null,
+      "description": null
+    },
+    "/treatments/": {
+      "title": null,
+      "description": null
+    },
+    "/gift-vouchers/": {
+      "title": null,
+      "description": null
+    },
+    "/about/": {
+      "title": null,
+      "description": null
+    },
+    "/visit/": {
+      "title": null,
+      "description": null
+    },
+    "/tour/": {
+      "title": null,
+      "description": null
+    },
+    "/faq/": {
+      "title": null,
+      "description": null
+    },
+    "/careers/": {
+      "title": null,
+      "description": null
+    },
+    "/treatments/thai-massage/": {
+      "title": null,
+      "description": null
+    },
+    "/treatments/aromatherapy-massage/": {
+      "title": null,
+      "description": null
+    },
+    "/treatments/hot-stone-massage/": {
+      "title": null,
+      "description": null
+    },
+    "/treatments/lymphatic-drainage-massage/": {
+      "title": null,
+      "description": null
+    },
+    "/treatments/thai-foot-massage/": {
+      "title": null,
+      "description": null
+    },
+    "/treatments/back-neck-shoulders-massage/": {
+      "title": null,
+      "description": null
+    }
+  }
+}

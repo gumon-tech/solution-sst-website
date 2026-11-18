@@ -35,7 +35,7 @@ Column 2 (visit):
 - Heading: Visit
 - {{address}}
 - Link: Directions on Google Maps -> {{maps_url}}
-- {{hours_table}} (compact: "Mon Closed · Tue–Sun 11:00–19:00" is acceptable on phones if rendered from data)
+- {{hours_table}} (compact lines from data/hours.json: closed days first, then one line per run of days with the same hours)
 
 Column 3 (contact):
 - Heading: Contact
@@ -48,15 +48,12 @@ Column 4 (pages): Treatments · About · Gift Vouchers · Visit · Tour · FAQ �
 
 Legal line: © {{year}} Sri Siam Thai Therapy & Wellness. Website by Gumon Technology.
 
-## hours (data, confirmed 2026-10-31)
+## hours (data/hours.json)
 
-Rendered from `lib/site.ts`, never typed in prose.
+The opening hours live only in `data/hours.json` (changed by the shop system through an hours pull request) and are rendered by `lib/hours-text.ts`; they are never typed in prose, so nothing here goes stale when they change.
 
-- Monday: Closed
-- Tuesday to Sunday: 11:00 to 19:00
-
-Sentence form (`{{hours_sentence}}`): Open Tuesday to Sunday, 11:00 to 19:00. Closed on Mondays.
-Table form (`{{hours_table}}`): seven rows, Monday first, Monday reads "Closed".
+Sentence form: {{hours_sentence}}
+Table form: {{hours_table}}, seven rows, Monday first; a closed day reads "Closed".
 
 ## phone line (used wherever the number is offered for calling)
 

@@ -1,0 +1,471 @@
+{
+  "_note": "The fixed list of text slots the shop system may fill through data/copy.json (README, \"copy\"). Each slot replaces one piece of a content/*.md file when its value is not null. Read by lib/content.ts, validate-copy.mjs, check-site.mjs and the shop bot. Changing it is a human PR; never add a slot whose text holds deposit, booking-terms, payment, privacy or health-safety wording.",
+  "slots": {
+    "home.hero.eyebrow": {
+      "kind": "line",
+      "max": 60,
+      "file": "home.md",
+      "section": "hero",
+      "field": "eyebrow",
+      "where": "Home: small line above the main heading"
+    },
+    "home.hero.h1": {
+      "kind": "line",
+      "max": 100,
+      "file": "home.md",
+      "section": "hero",
+      "field": "h1",
+      "where": "Home: main heading"
+    },
+    "home.hero.lead": {
+      "kind": "paragraph",
+      "max": 400,
+      "file": "home.md",
+      "section": "hero",
+      "field": "lead",
+      "where": "Home: paragraph under the main heading"
+    },
+    "about.hero.eyebrow": {
+      "kind": "line",
+      "max": 60,
+      "file": "about.md",
+      "section": "hero",
+      "field": "eyebrow",
+      "where": "About: small line above the main heading"
+    },
+    "about.hero.h1": {
+      "kind": "line",
+      "max": 100,
+      "file": "about.md",
+      "section": "hero",
+      "field": "h1",
+      "where": "About: main heading"
+    },
+    "about.hero.lead": {
+      "kind": "paragraph",
+      "max": 400,
+      "file": "about.md",
+      "section": "hero",
+      "field": "lead",
+      "where": "About: paragraph under the main heading"
+    },
+    "treatments.hero.eyebrow": {
+      "kind": "line",
+      "max": 60,
+      "file": "treatments.md",
+      "section": "hero",
+      "field": "eyebrow",
+      "where": "Treatments menu: small line above the main heading"
+    },
+    "treatments.hero.h1": {
+      "kind": "line",
+      "max": 100,
+      "file": "treatments.md",
+      "section": "hero",
+      "field": "h1",
+      "where": "Treatments menu: main heading"
+    },
+    "treatments.hero.lead": {
+      "kind": "paragraph",
+      "max": 400,
+      "file": "treatments.md",
+      "section": "hero",
+      "field": "lead",
+      "where": "Treatments menu: paragraph under the main heading"
+    },
+    "gift-vouchers.hero.eyebrow": {
+      "kind": "line",
+      "max": 60,
+      "file": "gift-vouchers.md",
+      "section": "hero",
+      "field": "eyebrow",
+      "where": "Gift vouchers: small line above the main heading"
+    },
+    "gift-vouchers.hero.h1": {
+      "kind": "line",
+      "max": 100,
+      "file": "gift-vouchers.md",
+      "section": "hero",
+      "field": "h1",
+      "where": "Gift vouchers: main heading"
+    },
+    "gift-vouchers.hero.lead": {
+      "kind": "paragraph",
+      "max": 400,
+      "file": "gift-vouchers.md",
+      "section": "hero",
+      "field": "lead",
+      "where": "Gift vouchers: paragraph under the main heading"
+    },
+    "visit.hero.eyebrow": {
+      "kind": "line",
+      "max": 60,
+      "file": "visit.md",
+      "section": "hero",
+      "field": "eyebrow",
+      "where": "Visit: small line above the main heading"
+    },
+    "visit.hero.h1": {
+      "kind": "line",
+      "max": 100,
+      "file": "visit.md",
+      "section": "hero",
+      "field": "h1",
+      "where": "Visit: main heading"
+    },
+    "visit.hero.lead": {
+      "kind": "paragraph",
+      "max": 400,
+      "file": "visit.md",
+      "section": "hero",
+      "field": "lead",
+      "where": "Visit: paragraph under the main heading"
+    },
+    "tour.hero.eyebrow": {
+      "kind": "line",
+      "max": 60,
+      "file": "tour.md",
+      "section": "hero",
+      "field": "eyebrow",
+      "where": "Tour: small line above the main heading"
+    },
+    "tour.hero.h1": {
+      "kind": "line",
+      "max": 100,
+      "file": "tour.md",
+      "section": "hero",
+      "field": "h1",
+      "where": "Tour: main heading"
+    },
+    "tour.hero.lead": {
+      "kind": "paragraph",
+      "max": 400,
+      "file": "tour.md",
+      "section": "hero",
+      "field": "lead",
+      "where": "Tour: paragraph under the main heading"
+    },
+    "faq.hero.eyebrow": {
+      "kind": "line",
+      "max": 60,
+      "file": "faq.md",
+      "section": "hero",
+      "field": "eyebrow",
+      "where": "FAQ: small line above the main heading"
+    },
+    "faq.hero.h1": {
+      "kind": "line",
+      "max": 100,
+      "file": "faq.md",
+      "section": "hero",
+      "field": "h1",
+      "where": "FAQ: main heading"
+    },
+    "faq.hero.lead": {
+      "kind": "paragraph",
+      "max": 400,
+      "file": "faq.md",
+      "section": "hero",
+      "field": "lead",
+      "where": "FAQ: paragraph under the main heading"
+    },
+    "careers.hero.eyebrow": {
+      "kind": "line",
+      "max": 60,
+      "file": "careers.md",
+      "section": "hero",
+      "field": "eyebrow",
+      "where": "Careers: small line above the main heading"
+    },
+    "careers.hero.h1": {
+      "kind": "line",
+      "max": 100,
+      "file": "careers.md",
+      "section": "hero",
+      "field": "h1",
+      "where": "Careers: main heading"
+    },
+    "careers.hero.lead": {
+      "kind": "paragraph",
+      "max": 400,
+      "file": "careers.md",
+      "section": "hero",
+      "field": "lead",
+      "where": "Careers: paragraph under the main heading"
+    },
+    "home.how-booking-works.body": {
+      "kind": "paragraph",
+      "max": 400,
+      "file": "home.md",
+      "section": "how-booking-works",
+      "field": "paras.0",
+      "where": "Home, How booking works: paragraph under the heading"
+    },
+    "home.how-booking-works.step-1": {
+      "kind": "paragraph",
+      "max": 300,
+      "file": "home.md",
+      "section": "how-booking-works",
+      "field": "subs.0.paras.0",
+      "where": "Home, How booking works: step 1 text"
+    },
+    "home.how-booking-works.step-2": {
+      "kind": "paragraph",
+      "max": 300,
+      "file": "home.md",
+      "section": "how-booking-works",
+      "field": "subs.1.paras.0",
+      "where": "Home, How booking works: step 2 text"
+    },
+    "home.treatments-preview.body": {
+      "kind": "paragraph",
+      "max": 400,
+      "file": "home.md",
+      "section": "treatments-preview",
+      "field": "paras.0",
+      "where": "Home, Our treatments: paragraph under the heading"
+    },
+    "home.our-roots.body-1": {
+      "kind": "paragraph",
+      "max": 700,
+      "file": "home.md",
+      "section": "our-roots",
+      "field": "paras.0",
+      "where": "Home, Our roots: first paragraph"
+    },
+    "home.our-roots.body-2": {
+      "kind": "paragraph",
+      "max": 700,
+      "file": "home.md",
+      "section": "our-roots",
+      "field": "paras.1",
+      "where": "Home, Our roots: second paragraph"
+    },
+    "home.gift-vouchers.body": {
+      "kind": "paragraph",
+      "max": 500,
+      "file": "home.md",
+      "section": "gift-vouchers-strip",
+      "field": "paras.0",
+      "where": "Home, Gift vouchers strip: paragraph"
+    },
+    "home.tour-teaser.body": {
+      "kind": "paragraph",
+      "max": 400,
+      "file": "home.md",
+      "section": "tour-teaser",
+      "field": "paras.0",
+      "where": "Home, Tour the shop: paragraph"
+    },
+    "about.wat-pho.body-1": {
+      "kind": "paragraph",
+      "max": 700,
+      "file": "about.md",
+      "section": "wat-pho",
+      "field": "paras.0",
+      "where": "About, Trained at Wat Pho: first paragraph"
+    },
+    "about.wat-pho.body-2": {
+      "kind": "paragraph",
+      "max": 700,
+      "file": "about.md",
+      "section": "wat-pho",
+      "field": "paras.1",
+      "where": "About, Trained at Wat Pho: second paragraph"
+    },
+    "about.the-space.body-1": {
+      "kind": "paragraph",
+      "max": 700,
+      "file": "about.md",
+      "section": "the-space",
+      "field": "paras.0",
+      "where": "About, More than a spa: first paragraph"
+    },
+    "about.the-space.body-2": {
+      "kind": "paragraph",
+      "max": 700,
+      "file": "about.md",
+      "section": "the-space",
+      "field": "paras.1",
+      "where": "About, More than a spa: second paragraph"
+    },
+    "about.how-we-work.massage-only": {
+      "kind": "paragraph",
+      "max": 300,
+      "file": "about.md",
+      "section": "how-we-work",
+      "field": "subs.0.paras.0",
+      "where": "About, How we work: first card text"
+    },
+    "visit.getting-here.cutty-sark-dlr": {
+      "kind": "paragraph",
+      "max": 300,
+      "file": "visit.md",
+      "section": "getting-here",
+      "field": "subs.0.paras.0",
+      "where": "Visit, Getting here: Cutty Sark DLR card"
+    },
+    "visit.getting-here.greenwich-station": {
+      "kind": "paragraph",
+      "max": 300,
+      "file": "visit.md",
+      "section": "getting-here",
+      "field": "subs.1.paras.0",
+      "where": "Visit, Getting here: Greenwich station card"
+    },
+    "visit.getting-here.deptford-station": {
+      "kind": "paragraph",
+      "max": 300,
+      "file": "visit.md",
+      "section": "getting-here",
+      "field": "subs.2.paras.0",
+      "where": "Visit, Getting here: Deptford station card"
+    },
+    "visit.before-you-come.arrive-early": {
+      "kind": "paragraph",
+      "max": 300,
+      "file": "visit.md",
+      "section": "before-you-come",
+      "field": "subs.0.paras.0",
+      "where": "Visit, Before you come: Arrive a few minutes early card"
+    },
+    "gift-vouchers.how-it-works.step-1": {
+      "kind": "paragraph",
+      "max": 300,
+      "file": "gift-vouchers.md",
+      "section": "how-it-works",
+      "field": "subs.0.paras.0",
+      "where": "Gift vouchers, How it works: step 1 text"
+    },
+    "gift-vouchers.how-it-works.step-3": {
+      "kind": "paragraph",
+      "max": 300,
+      "file": "gift-vouchers.md",
+      "section": "how-it-works",
+      "field": "subs.2.paras.0",
+      "where": "Gift vouchers, How it works: step 3 text"
+    },
+    "tour.visit.lead": {
+      "kind": "paragraph",
+      "max": 400,
+      "file": "tour.md",
+      "section": "visit",
+      "field": "lead",
+      "where": "Tour, Visit us: paragraph"
+    },
+    "careers.how-to-apply.step-1": {
+      "kind": "paragraph",
+      "max": 300,
+      "file": "careers.md",
+      "section": "how-to-apply",
+      "field": "subs.0.paras.0",
+      "where": "Careers, How to apply: first card text"
+    },
+    "careers.how-to-apply.step-2": {
+      "kind": "paragraph",
+      "max": 300,
+      "file": "careers.md",
+      "section": "how-to-apply",
+      "field": "subs.1.paras.0",
+      "where": "Careers, How to apply: second card text"
+    },
+    "careers.how-to-apply.step-3": {
+      "kind": "paragraph",
+      "max": 300,
+      "file": "careers.md",
+      "section": "how-to-apply",
+      "field": "subs.2.paras.0",
+      "where": "Careers, How to apply: third card text"
+    },
+    "treatment.thai-massage.h1": {
+      "kind": "line",
+      "max": 80,
+      "file": "treatments/thai-massage.md",
+      "field": "fm.h1",
+      "where": "Treatment page thai-massage: main heading"
+    },
+    "treatment.thai-massage.intro": {
+      "kind": "paragraph",
+      "max": 400,
+      "file": "treatments/thai-massage.md",
+      "section": "hero",
+      "field": "lead",
+      "where": "Treatment page thai-massage: paragraph under the heading (also the Service description in search results)"
+    },
+    "treatment.aromatherapy-massage.h1": {
+      "kind": "line",
+      "max": 80,
+      "file": "treatments/aromatherapy-massage.md",
+      "field": "fm.h1",
+      "where": "Treatment page aromatherapy-massage: main heading"
+    },
+    "treatment.aromatherapy-massage.intro": {
+      "kind": "paragraph",
+      "max": 400,
+      "file": "treatments/aromatherapy-massage.md",
+      "section": "hero",
+      "field": "lead",
+      "where": "Treatment page aromatherapy-massage: paragraph under the heading (also the Service description in search results)"
+    },
+    "treatment.hot-stone-massage.h1": {
+      "kind": "line",
+      "max": 80,
+      "file": "treatments/hot-stone-massage.md",
+      "field": "fm.h1",
+      "where": "Treatment page hot-stone-massage: main heading"
+    },
+    "treatment.hot-stone-massage.intro": {
+      "kind": "paragraph",
+      "max": 400,
+      "file": "treatments/hot-stone-massage.md",
+      "section": "hero",
+      "field": "lead",
+      "where": "Treatment page hot-stone-massage: paragraph under the heading (also the Service description in search results)"
+    },
+    "treatment.lymphatic-drainage-massage.h1": {
+      "kind": "line",
+      "max": 80,
+      "file": "treatments/lymphatic-drainage-massage.md",
+      "field": "fm.h1",
+      "where": "Treatment page lymphatic-drainage-massage: main heading"
+    },
+    "treatment.lymphatic-drainage-massage.intro": {
+      "kind": "paragraph",
+      "max": 400,
+      "file": "treatments/lymphatic-drainage-massage.md",
+      "section": "hero",
+      "field": "lead",
+      "where": "Treatment page lymphatic-drainage-massage: paragraph under the heading (also the Service description in search results)"
+    },
+    "treatment.thai-foot-massage.h1": {
+      "kind": "line",
+      "max": 80,
+      "file": "treatments/thai-foot-massage.md",
+      "field": "fm.h1",
+      "where": "Treatment page thai-foot-massage: main heading"
+    },
+    "treatment.thai-foot-massage.intro": {
+      "kind": "paragraph",
+      "max": 400,
+      "file": "treatments/thai-foot-massage.md",
+      "section": "hero",
+      "field": "lead",
+      "where": "Treatment page thai-foot-massage: paragraph under the heading (also the Service description in search results)"
+    },
+    "treatment.back-neck-shoulders-massage.h1": {
+      "kind": "line",
+      "max": 80,
+      "file": "treatments/back-neck-shoulders-massage.md",
+      "field": "fm.h1",
+      "where": "Treatment page back-neck-shoulders-massage: main heading"
+    },
+    "treatment.back-neck-shoulders-massage.intro": {
+      "kind": "paragraph",
+      "max": 400,
+      "file": "treatments/back-neck-shoulders-massage.md",
+      "section": "hero",
+      "field": "lead",
+      "where": "Treatment page back-neck-shoulders-massage: paragraph under the heading (also the Service description in search results)"
+    }
+  }
+}

@@ -673,20 +673,18 @@ for (const [rel, html] of pageFiles) {
   const marketing = /^### Marketing messages\n+(.+)$/m.exec(terms)?.[1]?.trim();
   if (!sentence || !marketing) fail("content/_booking-terms.md: marketing_notice sentence or Marketing messages section missing");
   else {
-    const NOTICE = "By booking, you agree that Sri Siam Thai Therapy & Wellness may send you occasional news and offers about our treatments by email and WhatsApp. You can stop at any time.";
+    const NOTICE = "By booking, you agree that Sri Siam Thai Therapy & Wellness may send you occasional news and offers about our treatments by email and WhatsApp.";
     if (sentence !== NOTICE) fail("content/_booking-terms.md: the marketing notice sentence is not the agreed wording");
     const needNotice = ["index.html", path.join("treatments", "index.html"), ...slugs.map((sl) => path.join("treatments", sl, "index.html"))];
     for (const rel of needNotice) {
       const html = pageFiles.get(rel);
       if (!html) continue;
       if (!stripTags(html).includes(NOTICE)) fail(`${rel}: the marketing notice sentence is missing`);
-      const boxes = [...html.matchAll(/<input\b[^>]*type="checkbox"[^>]*>/g)].map((m) => m[0]);
-      if (boxes.length < 1) fail(`${rel}: no marketing opt-out checkbox`);
-      if (!stripTags(html).includes("Please don't send me news and offers")) fail(`${rel}: the opt-out checkbox label is missing`);
     }
-    // Never pre-ticked, on any page.
+    // No tickbox anywhere: customers opt out with STOP or the unsubscribe link.
     for (const [rel, html] of pageFiles) {
-      for (const m of html.matchAll(/<input\b[^>]*>/g)) if (/\schecked(\s|=|\/|>)/.test(m[0])) fail(`${rel}: an input has a checked attribute (the opt-out box must never be pre-ticked)`);
+      if (/<input\b[^>]*type="checkbox"/.test(html)) fail(`${rel}: contains a checkbox input (the marketing opt-out box was removed)`);
+      if (/don't send me news and offers/i.test(stripTags(html)) || /don&#x27;t send me news and offers/i.test(html)) fail(`${rel}: still mentions the removed opt-out box`);
     }
     const termsHtml = pageFiles.get(path.join("terms", "index.html"));
     if (termsHtml) {

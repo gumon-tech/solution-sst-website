@@ -30,7 +30,7 @@ Please message us as early as you can and the team will help.
 
 ### Marketing messages
 
-**Marketing messages.** When you book or visit Sri Siam Thai Therapy & Wellness, we may send you news and offers about similar treatments from Sri Siam Thai Therapy & Wellness by email and WhatsApp. You can opt out at any time: tick "Please don't send me news and offers" when booking, reply STOP to any WhatsApp message, or use the unsubscribe link in any email. Opting out stops all marketing messages on every channel. We still send messages about your bookings.
+**Marketing messages.** When you book or visit Sri Siam Thai Therapy & Wellness, we may send you news and offers about similar treatments from Sri Siam Thai Therapy & Wellness by email and WhatsApp. You can opt out at any time: reply STOP to any WhatsApp message, or use the unsubscribe link in any email. Opting out stops all marketing messages on every channel. We still send messages about your bookings.
 
 ## booking_terms_lines
 
@@ -42,7 +42,6 @@ Three one-liners for the "Good to know" cards on `/treatments/` and `/about/`.
 
 ## marketing_notice
 
-Shown under the booking buttons on the home page, `/treatments/` and every treatment page (components/MarketingNotice.tsx). Wording agreed with the lead; change it only with them. The checkbox is never pre-ticked. Ticking it adds the sentence in `OPT_OUT_TEXT` (lib/whatsapp.ts) to the WhatsApp message.
+Shown as a plain paragraph under the booking buttons on the home page, `/treatments/` and every treatment page (components/MarketingNotice.tsx). Wording agreed with the lead; change it only with them. There is no tickbox: customers opt out with STOP or the unsubscribe link.
 
-- Sentence: By booking, you agree that Sri Siam Thai Therapy & Wellness may send you occasional news and offers about our treatments by email and WhatsApp. You can stop at any time.
-- Checkbox: Please don't send me news and offers
+- Sentence: By booking, you agree that Sri Siam Thai Therapy & Wellness may send you occasional news and offers about our treatments by email and WhatsApp.

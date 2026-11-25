@@ -349,7 +349,7 @@ function loadTerms() {
     out[`booking_terms_full.${key}`] = chunk.slice(nl).trim();
   }
   for (const l of part("marketing_notice").split("\n")) {
-    const m = /^- (Sentence|Checkbox):\s*(.*)$/.exec(l);
+    const m = /^- (Sentence):\s*(.*)$/.exec(l);
     if (m) out[`marketing_notice.${m[1].toLowerCase()}`] = m[2].trim();
   }
   const linesMap: Record<string, string> = { Deposit: "deposit", Paying: "paying", Changes: "changes" };

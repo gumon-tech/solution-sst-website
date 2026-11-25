@@ -124,7 +124,7 @@ export default function HomePage() {
           <Reveal className="mt-10">
             <ActionView action={trailingActions(how)[0]} variant="ghost" />
           </Reveal>
-          <MarketingNotice sentence={terms()["marketing_notice.sentence"]} label={terms()["marketing_notice.checkbox"]} tone="plum" className="mt-5" />
+          <MarketingNotice sentence={terms()["marketing_notice.sentence"]} tone="plum" className="mt-5" />
         </div>
       </section>
 

@@ -17,7 +17,7 @@ export const PHONE_LIKE = /(?<![\w])\+?\d[\d\s().-]{7,}\d/;
 export const PHONE_MIN_DIGITS = 9;
 export const OLD_NUMBER_FRAGMENTS = ["07497", "7497 493"];
 export const WEB_TAG = /\[web-/i;
-/** The opt-out sentence the site adds to a message when the visitor ticks the box (OPT_OUT_TEXT in lib/whatsapp.ts); never written in the text. */
+/** The old opt-out sentence (a tickbox that was removed): never written in the text, so it cannot be mistaken for a marker. */
 export const OPT_OUT = /please don['\u2019\u2018]t send me news and offers/i;
 // The health and medical claims the UK ASA / CAP code covers for massage (pain, sleep, immunity, tension, recovery,
 // conditions, treatment of illness). The site makes none (HANDOFF rules). Same list as HEALTH_CLAIMS in the shop system (website.py).
@@ -72,7 +72,7 @@ export function checkPublicText(t, facts, { money = "discount", allowTherapist =
   if (PHONE_LIKE.test(t) && t.replace(/\D/g, "").length >= PHONE_MIN_DIGITS) out.push(`phone-like number in ${head}`);
   if (OLD_NUMBER_FRAGMENTS.some((f) => t.includes(f))) out.push("the old private phone number");
   if (WEB_TAG.test(t)) out.push("the [web-X] tag is added by the site, not written in the text");
-  if (OPT_OUT.test(t)) out.push("the marketing opt-out sentence is added by the site when the visitor ticks the box, not written in the text");
+  if (OPT_OUT.test(t)) out.push("the marketing opt-out sentence is not used on this site: do not write it in the text");
   if (SHORT_NAME.test(t)) out.push(`the shop's short name in ${head} (always write "Sri Siam Thai Therapy & Wellness" in full)`);
   if (THAI.test(t)) out.push(`Thai script in ${head} (the public text is English)`);
   let healthText = scrubName(t, facts.shopName);

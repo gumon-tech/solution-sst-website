@@ -73,10 +73,10 @@ export const SITE = {
     /**
      * What happens to the IP address and browser details in the hosting's logs, completing the notice sentence
      * "It uses your IP address only briefly to prevent abuse and does not store it with the click reference; ...",
-     * e.g. "the hosting service's request logs keep them for 14 days". From KBOT (still being checked). check-site fails
+     * e.g. "the hosting service's request logs keep them for 14 days". From KBOT 25 Nov 2026: ingress access logs (IP, user-agent, time, path, status; no body) kept 365 days in Loki on rigel. check-site fails
      * while clickEndpoint is set and this is still "TBC".
      */
-    clickLogRetention: "TBC" as string,
+    clickLogRetention: "separately, its server security logs, which include IP address and browser type, are kept for 12 months" as string,
   },
 
   /** Date the privacy notice text last changed. */

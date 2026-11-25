@@ -42,13 +42,16 @@ export interface AdsConsentText {
 export interface AdsConsentProps {
   adsId: string;
   conversionLabel: string;
+  /** Optional value and ISO currency sent with each conversion. */
+  conversionValue?: number;
+  currency?: string;
   text: AdsConsentText;
   /** The site's own classes, so the banner looks like the rest of the site. Both buttons get the same one. */
   buttonClassName?: string;
   linkClassName?: string;
 }
 
-export function AdsConsentBanner({ adsId, conversionLabel, text, buttonClassName = "", linkClassName = "" }: AdsConsentProps) {
+export function AdsConsentBanner({ adsId, conversionLabel, conversionValue, currency, text, buttonClassName = "", linkClassName = "" }: AdsConsentProps) {
   const [open, setOpen] = useState(false);
   const [current, setCurrent] = useState<Choice | null>(null);
   const [reopened, setReopened] = useState(false);
@@ -114,7 +117,13 @@ export function AdsConsentBanner({ adsId, conversionLabel, text, buttonClassName
       if (!(a instanceof HTMLAnchorElement)) return;
       const tag = whatsAppSourceTag(a, TAG_AT_END);
       if (tag === null) return;
-      sendConversion(`${adsId}/${conversionLabel}`, tag ? { source_tag: tag } : {});
+      const params: Record<string, string | number> = {};
+      if (conversionValue !== undefined && currency) {
+        params.value = conversionValue;
+        params.currency = currency;
+      }
+      if (tag) params.source_tag = tag;
+      sendConversion(`${adsId}/${conversionLabel}`, params);
     };
     document.addEventListener("click", onActivate);
     document.addEventListener("auxclick", onActivate);
@@ -122,7 +131,7 @@ export function AdsConsentBanner({ adsId, conversionLabel, text, buttonClassName
       document.removeEventListener("click", onActivate);
       document.removeEventListener("auxclick", onActivate);
     };
-  }, [adsId, conversionLabel]);
+  }, [adsId, conversionLabel, conversionValue, currency]);
 
   // While open, keep focused elements clear of the banner (WCAG 2.4.11): scroll-padding-bottom makes the page
   // scroll a focused element above it, and the same space added under the page lets the last links get there.

@@ -66,7 +66,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         </a>
         {/* Off (renders nothing, loads nothing) while SITE.googleAds.id is empty. Early in the DOM so keyboard users meet it first. */}
         {ads.id && cookies ? (
-          <AdsConsent adsId={ads.id} conversionLabel={ads.conversionLabel} text={cookies.banner} buttonClassName="btn btn-primary" linkClassName="link" />
+          <AdsConsent adsId={ads.id} conversionLabel={ads.conversionLabel} conversionValue={ads.conversionValue} currency={ads.currency} text={cookies.banner} buttonClassName="btn btn-primary" linkClassName="link" />
         ) : null}
         <Header />
         <NoticeBand notice={notice} buildDay={buildDay} />

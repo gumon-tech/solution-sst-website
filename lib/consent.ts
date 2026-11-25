@@ -138,7 +138,7 @@ function hasClickId(url: string): boolean {
 }
 
 /** One conversion, only while the visitor has accepted. Never throws, never waits. */
-export function sendConversion(sendTo: string, params: Record<string, string>): void {
+export function sendConversion(sendTo: string, params: Record<string, string | number>): void {
   if (!granted || !loaded) return;
   try {
     gtag("event", "conversion", { ...params, send_to: sendTo, transport_type: "beacon" });

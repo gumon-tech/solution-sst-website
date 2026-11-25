@@ -45,8 +45,11 @@ export const SITE = {
    * conversion event on WhatsApp clicks. The privacy notice switches with it ({{#if google_ads}}).
    */
   googleAds: {
-    id: "" as string,
-    conversionLabel: "" as string,
+    id: "AW-18595100523" as string,
+    conversionLabel: "pffiCJ7Po78dEOvu6qJF" as string,
+    /** Value sent with each WhatsApp-click conversion, as set on the Ads conversion action "WhatsApp chat start (web)" (KMKT, 25 Nov 2026). */
+    conversionValue: 1,
+    currency: "GBP",
   },
 
   /** Date the privacy notice text last changed. */

@@ -2,6 +2,9 @@ import type { Config } from "tailwindcss";
 
 const config: Config = {
   content: ["./app/**/*.{ts,tsx}", "./components/**/*.{ts,tsx}", "./lib/**/*.{ts,tsx}"],
+  // Words in the cookie banner's code ("resize" events, "transform" in a comment) that are not classes on
+  // this site; without this they would add CSS to every page even while the banner is off.
+  blocklist: ["resize", "transform"],
   theme: {
     extend: {
       colors: {

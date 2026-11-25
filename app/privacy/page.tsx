@@ -1,7 +1,10 @@
 import type { Metadata } from "next";
+import { CookieSettingsButton } from "@/components/CookieConsent";
 import { Rich } from "@/components/Rich";
 import { fmString, loadDoc } from "@/lib/content";
 import { pageMetadata } from "@/lib/seo";
+import { sharedCopy } from "@/lib/shared";
+import { SITE } from "@/lib/site";
 
 const doc = loadDoc("privacy.md");
 
@@ -10,6 +13,9 @@ export const metadata: Metadata = pageMetadata({
   description: fmString(doc, "description"),
   path: "/privacy/",
 });
+
+/** A paragraph that is exactly this renders the "Cookie settings" control (privacy.md has it only inside {{#if google_ads}}). */
+const SETTINGS_BUTTON = "{{cookie_settings_button}}";
 
 interface Chunk {
   h2?: string;
@@ -33,11 +39,19 @@ export default function PrivacyPage() {
         <section key={c.h2 ?? i} className="mt-8">
           {c.h2 && <h2 className="t-h3">{c.h2}</h2>}
           <div className="prose-sst mt-3 space-y-4">
-            {c.paras.map((p, j) => (
-              <p key={j}>
-                <Rich text={p} />
-              </p>
-            ))}
+            {c.paras.map((p, j) =>
+              p === SETTINGS_BUTTON ? (
+                SITE.googleAds.id ? (
+                  <p key={j}>
+                    <CookieSettingsButton className="btn btn-secondary">{sharedCopy().cookies?.settings}</CookieSettingsButton>
+                  </p>
+                ) : null
+              ) : (
+                <p key={j}>
+                  <Rich text={p} />
+                </p>
+              ),
+            )}
           </div>
         </section>
       ))}

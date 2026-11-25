@@ -46,6 +46,9 @@ export function withArticle(name: string): string {
   return `${/^[aeiou]/i.test(name) ? "an" : "a"} ${name}`;
 }
 
+/** The tag at the end of a pre-filled message: " [web-X]" with X in group 1. Used by AdSource and the conversion hook. */
+export const TAG_AT_END = / \[web-([A-Z]{1,2})\]$/;
+
 /** https://wa.me/<digits>?text=<encoded message + " [web-X]"> */
 export function buildWhatsAppLink(message: string, tag: string): string {
   const text = `${message.trim()} [web-${tag}]`;

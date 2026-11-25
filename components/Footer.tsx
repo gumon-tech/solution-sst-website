@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Phone } from "lucide-react";
 import { Ornament } from "@/components/Ornament";
 import { WaLink } from "@/components/Button";
+import { CookieSettingsButton } from "@/components/CookieConsent";
 import { closuresForBuild } from "@/lib/closures-data";
 import { closureLabel } from "@/lib/hours-text";
 import { fill } from "@/lib/content";
@@ -114,6 +115,9 @@ export function Footer() {
           <p className="text-center text-sm text-gold-pale">
             <LegalLine text={fill(f.legal)} />
           </p>
+          {SITE.googleAds.id && c.cookies ? (
+            <CookieSettingsButton className="link inline-flex min-h-[44px] items-center text-sm">{c.cookies.settings}</CookieSettingsButton>
+          ) : null}
         </div>
       </div>
     </footer>

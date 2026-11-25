@@ -64,7 +64,7 @@ const newSlug = () => {
   s.services.push({ ...s.services[0], slug: "reflexology", name: "Reflexology" });
   return pretty(s);
 };
-const copyEdit = () => pretty({ ...copy, slots: { ...copy.slots, "home.hero.lead": "Trained at Wat Pho in Bangkok, our therapists bring traditional Thai massage to Greenwich, Cutty Sark." } });
+const copyEdit = () => pretty({ ...copy, slots: { ...copy.slots, "home.hero.lead": "We bring the traditional techniques of Thai massage to Greenwich, Cutty Sark, with a modern touch." } });
 const copyNewKey = () => pretty({ ...copy, slots: { ...copy.slots, "home.hero.subtitle": null } });
 const seoEdit = () => pretty({ ...seo, pages: { ...seo.pages, "/": { title: "Thai Massage | Sri Siam Thai Therapy & Wellness", description: null } } });
 const touch = (rel) => () => readFileSync(path.join(dir, rel), "utf8") + "\n";

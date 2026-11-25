@@ -1,6 +1,6 @@
 ---
 title: "Massage Gift Vouchers in Greenwich, Cutty Sark | Sri Siam Thai Therapy & Wellness"
-description: "Give someone time to themselves at Sri Siam Thai Therapy & Wellness in Greenwich, Cutty Sark. Message us on WhatsApp with what you have in mind and the team arranges the voucher."
+description: "Gift vouchers for Sri Siam Thai Therapy & Wellness in Greenwich, Cutty Sark. Message us on WhatsApp and the team arranges the voucher with you."
 h1: "Gift vouchers"
 ---
 

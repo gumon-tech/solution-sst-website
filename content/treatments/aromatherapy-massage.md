@@ -3,7 +3,7 @@ slug: aromatherapy-massage
 title: "Aromatherapy Massage in Greenwich, Cutty Sark | Sri Siam Thai Therapy & Wellness"
 description: "A gentle full-body massage in Greenwich, Cutty Sark that combines Swedish massage techniques with essential oils. Choose your length and book on WhatsApp."
 h1: "Aromatherapy Massage in Greenwich, Cutty Sark"
-card: "A gentle full-body massage using curated essential oils and Swedish techniques to soothe the senses."
+card: "A gentle full-body massage using curated essential oils and soothing Swedish massage techniques."
 hero_image: oils-stones
 secondary_image: purple-stones-still
 also_like: [hot-stone-massage, lymphatic-drainage-massage]
@@ -18,7 +18,7 @@ Eyebrow: Treatments · {{group}}
 
 # Aromatherapy Massage in Greenwich, Cutty Sark
 
-Lead: Aromatherapy massage is a gentle full-body massage using curated essential oils and soothing Swedish massage techniques to soothe the senses.
+Lead: Aromatherapy massage is a gentle full-body massage using curated essential oils and soothing Swedish massage techniques.
 
 ## options
 
@@ -34,7 +34,7 @@ Eyebrow: Choose your length
 
 ## What to expect
 
-Your therapist uses curated essential oils with soothing Swedish massage techniques in a gentle, full-body massage that soothes the senses.
+Your therapist uses curated essential oils with soothing Swedish massage techniques in a gentle, full-body massage.
 
 If you have an allergy or a sensitivity, for example to essential oils, tell us before you book.
 

@@ -39,7 +39,7 @@ else {
         continue;
       }
       if (v === null) continue;
-      for (const m of checkSlotText(v, facts, names, { min: MIN[s.kind] ?? 2, max: s.max })) fail(`slots.${k}: ${m}`);
+      for (const m of checkSlotText(v, facts, names, { min: MIN[s.kind] ?? 2, max: s.max, careers: s.file === "careers.md" })) fail(`slots.${k}: ${m}`);
     }
   }
 }

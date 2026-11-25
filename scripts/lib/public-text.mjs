@@ -21,6 +21,8 @@ export const WEB_TAG = /\[web-/i;
 // conditions, treatment of illness). The site makes none (HANDOFF rules). Same list as HEALTH_CLAIMS in the shop system (website.py).
 export const HEALTH = /\b(detox\w*|toxins?|circulation|pain\w*|ache\w*|headache\w*|stress\w*|swell\w*|immun\w*|inflammation|cure\w*|heal\w*|relie\w*|tension|sleep\w*|therap\w*|recover\w*|muscle\w*|well-?being|anxiety|depression|insomnia|arthritis|sciatica|migraines?|fatigue|injur\w*|rehab\w*|alleviat\w*|remed\w*|rheumat\w*|fibromyalgia|eczema|asthma|diabet\w*|cancer|covid|stiff\w*|sore\w*|cramp\w*|spasm\w*|chronic|symptom\w*|diagnos\w*|illness|disease|medical|clinical|physio\w*|chiropract\w*|osteo\w*|blood pressure|joints|posture|knot\w*|back problem\w*|lymph\w*|drainage|weight|slim\w*|digest\w*|energ\w*|hormon\w*|breath\w*|nerve\w*|tight\w*)\b/i;
 // No review claims: the site quotes no reviews, ratings or stars (DMCC Act 2024, HANDOFF rules).
+// Unconfirmed claim: no certificate on file for the therapist taking bookings (25 Nov 2026), so "Wat Pho" stays off the site.
+export const UNCONFIRMED = /\bwat pho\b/i;
 export const REVIEW_WORDS = /(\breviews?\b|\breviewed\b|\brated\b|\bratings?\b|\bstars?\b|★|⭐|\b5[- ]?stars?\b|\btestimonials?\b|\btrustpilot\b|\bgoogle reviews?\b)/i;
 
 // The shop is always named in full: "Sri Siam Thai Therapy & Wellness" (owner's rule, 6 Nov 2026). "Sri Siam" not followed by
@@ -73,6 +75,7 @@ export function checkPublicText(t, facts, { money = "discount", allowTherapist =
   let healthText = scrubName(t, facts.shopName);
   if (allowTherapist) healthText = healthText.replace(/\btherapists?\b/gi, " ");
   if (HEALTH.test(healthText)) out.push(`health-result wording in ${head} (the site makes no health claims)`);
+  if (UNCONFIRMED.test(t)) out.push(`"Wat Pho" in ${head}: unconfirmed claim, remove until a certificate is on file`);
   if (REVIEW_WORDS.test(t)) out.push(`review or rating wording in ${head} (the site makes no review claims)`);
   // Service prices come only from data/services.json. A discount amount ("£5 off") is fine.
   for (const m of t.matchAll(/£(\d+(?:\.\d+)?)/g)) {

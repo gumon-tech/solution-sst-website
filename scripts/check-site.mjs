@@ -518,6 +518,16 @@ if (homeHtml && !/"@type":"DaySpa"/.test(homeHtml)) fail("/: no DaySpa JSON-LD")
   }
 }
 
+// ---- unconfirmed claims (25 Nov 2026) ------------------------------------------
+// No certificate is on file for Wat Pho training, and one therapist takes bookings. Checked in the whole page
+// (visible text, title, meta, alt, JSON-LD). /careers/ may say "therapists" (a role you apply for), not "Wat Pho".
+for (const [rel, html] of pageFiles) {
+  const text = stripTags(html.replace(/<style[\s\S]*?<\/style>/g, "")) + " " + [...html.matchAll(/\b(?:alt|content|aria-label)="([^"]*)"/g)].map((m) => decodeEntities(m[1])).join(" ");
+  if (/\bwat pho\b/i.test(text)) fail(`${rel}: unconfirmed claim "Wat Pho": remove until a certificate is on file`);
+  const careers = rel === path.join("careers", "index.html");
+  if (!careers && /\btherapists\b/i.test(text)) fail(`${rel}: unconfirmed claim "therapists": one therapist takes bookings`);
+}
+
 // ---- result -----------------------------------------------------------------
 if (errors.length) {
   console.error(`check-site: ${errors.length} problem(s)\n- ` + errors.join("\n- "));

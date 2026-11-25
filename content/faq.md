@@ -34,7 +34,7 @@ Yes. {{booking_terms_full.deposit}}
 Message us on WhatsApp as soon as you know. The team will do its best for you, though we may need to shorten the treatment so the next guest is not kept waiting.
 
 ### Can I just walk in?
-We book by appointment through WhatsApp. If you are nearby and would like a treatment soon, message us first and we will tell you whether a therapist is free.
+We book by appointment through WhatsApp. If you are nearby and would like a treatment soon, message us first and we will tell you whether there is a free time.
 
 ## your-visit
 
@@ -59,7 +59,7 @@ A few minutes early is ideal, so you have time to settle in before your treatmen
 ## Treatments
 
 ### Which massage should I choose?
-Choose by how you want it to feel. For a soothing combination of traditional Thai, deep tissue and aromatherapy techniques with yogic-style stretches, Thai Massage. For a gentle full-body massage with curated essential oils to soothe the senses, Aromatherapy. For warm stones combined with massage to help you unwind, Hot Stone. For a gentle, rhythmic massage with light, flowing strokes, Lymphatic Drainage. If you are short of time, the Thai Foot Massage and the Back, Neck & Shoulders Massage focus on one area. Still unsure? Tell us on WhatsApp what you would like from the treatment and the team will suggest one.
+Choose by how you want it to feel. For a soothing combination of traditional Thai, deep tissue and aromatherapy techniques with yogic-style stretches, Thai Massage. For a gentle full-body massage with curated essential oils, Aromatherapy. For warm stones combined with massage, Hot Stone. For a gentle, rhythmic massage with light, flowing strokes, Lymphatic Drainage. If you are short of time, the Thai Foot Massage and the Back, Neck & Shoulders Massage focus on one area. Still unsure? Tell us on WhatsApp what you would like from the treatment and the team will suggest one.
 
 - Link: See the treatment menu -> /treatments/
 

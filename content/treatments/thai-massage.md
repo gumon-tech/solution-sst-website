@@ -1,7 +1,7 @@
 ---
 slug: thai-massage
 title: "Thai Massage in Greenwich, Cutty Sark | Sri Siam Thai Therapy & Wellness"
-description: "Traditional Thai massage in Greenwich, Cutty Sark: yogic-style stretches in loose clothing, by Thai therapists trained at Wat Pho, Bangkok. Book on WhatsApp."
+description: "Traditional Thai massage in Greenwich, Cutty Sark: compressions, pulls and yogic-style stretches in specially designed loose clothing. Book on WhatsApp."
 h1: "Thai Massage in Greenwich, Cutty Sark"
 card: "A soothing combination of traditional Thai, deep tissue and aromatherapy techniques."
 hero_image: hands-back-a
@@ -18,7 +18,7 @@ Eyebrow: Treatments · {{group}}
 
 # Thai Massage in Greenwich, Cutty Sark
 
-Lead: Thai massage is a traditional technique in which your therapist compresses and pulls your body with a series of yogic-style stretches. Ours is a soothing combination of traditional Thai, deep tissue and aromatherapy techniques, by Thai therapists trained at the renowned Wat Pho in Bangkok.
+Lead: Thai massage is a traditional technique in which your therapist compresses and pulls your body with a series of yogic-style stretches. Ours is a soothing combination of traditional Thai, deep tissue and aromatherapy techniques.
 
 ## options
 

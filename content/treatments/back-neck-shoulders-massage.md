@@ -3,7 +3,7 @@ slug: back-neck-shoulders-massage
 title: "Back, Neck & Shoulders Massage in Greenwich, Cutty Sark"
 description: "A short massage of the back, neck and shoulders in Greenwich, Cutty Sark, the upper body only. Easy to fit into a busy day. Book it on WhatsApp."
 h1: "Back, Neck & Shoulders Massage in Greenwich, Cutty Sark"
-card: "A shorter massage for the back, neck and shoulders. Afterwards you may feel relaxed, refreshed, lighter and calmer."
+card: "A shorter massage that spends its time on the upper body: the back, the neck and the shoulders."
 hero_image: hands-back-b
 secondary_image: purple-stones-candles
 also_like: [thai-massage, thai-foot-massage]
@@ -35,8 +35,6 @@ Eyebrow: Choose your length
 ## What to expect
 
 Your therapist massages your back, neck and shoulders. It is the treatment to look at when you do not have time for a full-body massage but would like some time for your upper body.
-
-After a back, neck and shoulders massage you may feel relaxed, refreshed, lighter and calmer.
 
 ## focus
 

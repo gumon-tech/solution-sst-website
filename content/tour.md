@@ -23,7 +23,7 @@ Caption: Opening hours
 
 ## Visit us in Greenwich, Cutty Sark
 
-Lead: We book by appointment through WhatsApp, so message us first and we will tell you when a therapist is free.
+Lead: We book by appointment through WhatsApp, so message us first and we will offer you times that are free.
 
 - Button (primary, tag TR): Book on WhatsApp
 - Button (secondary): Directions on Google Maps -> {{maps_url}}

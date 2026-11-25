@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Award, Clock, MapPin } from "lucide-react";
+import { Clock, Leaf, MapPin } from "lucide-react";
 import { ActionView } from "@/components/Actions";
 import { ClosingBand } from "@/components/ClosingBand";
 import { Hero } from "@/components/Hero";
@@ -26,7 +26,7 @@ export const metadata: Metadata = pageMetadata({
   path: "/",
 });
 
-const FACT_ICONS = [MapPin, Clock, Award];
+const FACT_ICONS = [MapPin, Clock, Leaf];
 
 export default function HomePage() {
   const hero = section(doc, "hero");

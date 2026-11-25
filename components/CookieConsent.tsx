@@ -1,39 +1,51 @@
 "use client";
 
-import { lazy, Suspense, type ComponentProps, type ReactNode } from "react";
+import { lazy, Suspense, type ComponentType, type ReactNode } from "react";
+import type { AdsConsentProps } from "@/components/AdsConsentBanner";
+import { openCookieSettings } from "@/lib/consent-open";
 
 /**
  * Entry points for the cookie banner and the consent-gated Google Ads tag. Shop-neutral (reused on
- * other shop sites): the Ads id, the conversion label and every word come in as props.
+ * other shop sites): the Ads id, the conversion label, the words and the button classes come in as props.
  *
- * - <AdsConsent>: the banner, the gtag loader and the WhatsApp conversion hook. Code-split, so its code
- *   (components/AdsConsentBanner.tsx, lib/consent.ts) is fetched only where it is rendered; render it
- *   only when the shop has an Ads id.
- * - <CookieSettingsButton>: reopens the banner so a visitor can change their mind. Put one in the
- *   footer of every page and one on the privacy notice.
+ * process.env.NEXT_PUBLIC_GOOGLE_ADS_ID is set at build time by next.config.mjs from lib/site.ts
+ * (SITE.googleAds.id). When it is "", the bundler drops both branches below that hold the banner, so
+ * no banner code, gtag loader or consent CSS (AdsConsentBanner.module.css) is built at all.
+ *
+ * - <AdsConsent>: the banner, the gtag loader and the WhatsApp conversion hook, lazy-loaded.
+ * - <CookieSettingsButton>: reopens the banner so a visitor can change their mind. One in the footer
+ *   of every page and one on the privacy notice. A click before the banner has loaded is kept.
  */
-const Banner = lazy(() => import("@/components/AdsConsentBanner").then((m) => ({ default: m.AdsConsentBanner })));
+const Banner = process.env.NEXT_PUBLIC_GOOGLE_ADS_ID
+  ? lazy(() => import("@/components/AdsConsentBanner").then((m) => ({ default: m.AdsConsentBanner })))
+  : null;
 
-export function AdsConsent(props: ComponentProps<typeof Banner>) {
-  return (
-    <Suspense fallback={null}>
-      <Banner {...props} />
-    </Suspense>
-  );
+export const AdsConsent: ComponentType<AdsConsentProps> = process.env.NEXT_PUBLIC_GOOGLE_ADS_ID
+  ? function AdsConsent(props: AdsConsentProps) {
+      if (!Banner) return null;
+      return (
+        <Suspense fallback={null}>
+          <Banner {...props} />
+        </Suspense>
+      );
+    }
+  : function AdsConsent() {
+      return null;
+    };
+
+interface SettingsProps {
+  className?: string;
+  children: ReactNode;
 }
 
-/** Fired on window to reopen the banner. detail: the control, so focus can go back to it. */
-export const CONSENT_OPEN_EVENT = "ads-consent:open";
-
-export function CookieSettingsButton({ className, children }: { className?: string; children: ReactNode }) {
-  return (
-    <button
-      type="button"
-      data-cookie-settings=""
-      className={className}
-      onClick={(e) => window.dispatchEvent(new CustomEvent(CONSENT_OPEN_EVENT, { detail: e.currentTarget }))}
-    >
-      {children}
-    </button>
-  );
-}
+export const CookieSettingsButton: ComponentType<SettingsProps> = process.env.NEXT_PUBLIC_GOOGLE_ADS_ID
+  ? function CookieSettingsButton({ className, children }: SettingsProps) {
+      return (
+        <button type="button" data-cookie-settings="" className={className} onClick={(e) => openCookieSettings(e.currentTarget)}>
+          {children}
+        </button>
+      );
+    }
+  : function CookieSettingsButton() {
+      return null;
+    };

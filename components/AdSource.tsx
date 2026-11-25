@@ -2,7 +2,8 @@
 
 import { usePathname } from "next/navigation";
 import { useEffect } from "react";
-import { TAG } from "@/lib/whatsapp";
+import { landingUrl } from "@/lib/landing";
+import { TAG, TAG_AT_END } from "@/lib/whatsapp";
 
 /**
  * Tag [web-AD]: when the visit started on a page whose address carries `gclid`
@@ -18,15 +19,13 @@ let fromAd: boolean | null = null;
 
 function visitFromAd(): boolean {
   if (fromAd === null) {
-    const p = new URLSearchParams(window.location.search);
+    const p = new URL(landingUrl()).searchParams;
     fromAd =
       p.has("gclid") ||
       (p.get("utm_source")?.toLowerCase() === "google" && p.get("utm_medium")?.toLowerCase() === "cpc");
   }
   return fromAd;
 }
-
-const TAG_AT_END = / \[web-[A-Z]{1,2}\]$/;
 
 function retag(a: HTMLAnchorElement) {
   let u: URL;

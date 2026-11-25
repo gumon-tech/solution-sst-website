@@ -7,6 +7,8 @@
 //   grant() is called (a visitor's Accept, now or stored from an earlier visit).
 // - The first command ever pushed to dataLayer is the consent default (all
 //   denied); gtag.js is requested only after the consent update to granted.
+// - Accept means measurement only: ad_storage and ad_user_data are granted;
+//   ad_personalization (remarketing) and analytics_storage stay denied.
 // - deny() sets everything back to denied, stops conversion events and deletes
 //   the Google Ads cookies (and _gcl_ storage) on this domain and its parents.
 // - Every access to localStorage is wrapped: if storage fails, there is no
@@ -18,12 +20,13 @@ export type Choice = "granted" | "denied";
 export const CONSENT_STORAGE_KEY = "ads-consent:v1";
 /** How long a choice is remembered; after this the banner asks again. Keep the privacy notice in step. */
 export const CONSENT_MAX_AGE_DAYS = 182;
-/** The source tag at the end of a pre-filled WhatsApp message, e.g. "... please. [web-T]" gives "T". */
-export const SOURCE_TAG_AT_END = /\[web-([A-Z]{1,2})\]$/;
+/** Google Ads tag ids look like AW-123456789. The same rule is in next.config.mjs and scripts/check-site.mjs. */
+export const ADS_ID = /^AW-\d+$/;
+/** Ad click references Google adds to a landing address. */
+const CLICK_IDS = ["gclid", "gbraid", "wbraid"];
 
 const DAY_MS = 86_400_000;
 const AD_KEY = /^(_gcl_|_gac_)/;
-const ADS_ID = /^[A-Z]{1,3}-[A-Za-z0-9_-]+$/;
 
 const DENIED = {
   ad_storage: "denied",
@@ -31,11 +34,13 @@ const DENIED = {
   ad_personalization: "denied",
   analytics_storage: "denied",
 } as const;
+// Measurement only (the banner and the privacy notice say so). For remarketing, ad_personalization would be
+// "granted" here, and the banner text and the privacy notice would have to say that Google uses it for ads.
 const GRANTED = {
   ad_storage: "granted",
   ad_user_data: "granted",
-  ad_personalization: "granted",
-  analytics_storage: "granted",
+  ad_personalization: "denied",
+  analytics_storage: "denied",
 } as const;
 
 declare global {
@@ -94,8 +99,12 @@ export function isValidAdsId(id: string): boolean {
   return ADS_ID.test(id);
 }
 
-/** Accept: consent update to granted, then (once per page) request gtag.js and configure the Ads account. */
-export function grant(adsId: string): void {
+/**
+ * Accept: consent update to granted, then (once per page) request gtag.js and configure the Ads account.
+ * landingUrl: the address the visit opened on; passed as page_location when it carries an ad click
+ * reference, so an Accept given after an in-site page change still links the ad click.
+ */
+export function grant(adsId: string, landingUrl?: string): void {
   if (!isValidAdsId(adsId)) return;
   start();
   gtag("consent", "update", GRANTED);
@@ -103,7 +112,9 @@ export function grant(adsId: string): void {
   if (loaded) return;
   loaded = true;
   gtag("js", new Date());
-  gtag("config", adsId);
+  const page = landingUrl && hasClickId(landingUrl) ? landingUrl : null;
+  if (page) gtag("config", adsId, { page_location: page });
+  else gtag("config", adsId);
   const s = document.createElement("script");
   s.async = true;
   s.src = `https://www.googletagmanager.com/gtag/js?id=${encodeURIComponent(adsId)}`;
@@ -115,6 +126,15 @@ export function deny(): void {
   granted = false;
   if (started) gtag("consent", "update", DENIED);
   clearAdStorage();
+}
+
+function hasClickId(url: string): boolean {
+  try {
+    const p = new URL(url).searchParams;
+    return CLICK_IDS.some((k) => p.has(k));
+  } catch {
+    return false;
+  }
 }
 
 /** One conversion, only while the visitor has accepted. Never throws, never waits. */
@@ -162,12 +182,12 @@ export function clearAdStorage(): void {
   }
 }
 
-/** The [web-X] tag of a wa.me link as it is now (after any rewrite), or null if it is not a WhatsApp link. */
-export function whatsAppSourceTag(a: HTMLAnchorElement): string | null {
+/** The source tag of a wa.me link as it is now (after any rewrite): "" if it has none, null if it is not a WhatsApp link. */
+export function whatsAppSourceTag(a: HTMLAnchorElement, tagAtEnd: RegExp): string | null {
   try {
     const u = new URL(a.href);
     if (u.hostname !== "wa.me") return null;
-    return SOURCE_TAG_AT_END.exec(u.searchParams.get("text") ?? "")?.[1] ?? "";
+    return tagAtEnd.exec(u.searchParams.get("text") ?? "")?.[1] ?? "";
   } catch {
     return null;
   }

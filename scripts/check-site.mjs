@@ -528,19 +528,27 @@ for (const [rel, html] of pageFiles) {
   if (!careers && /\btherapists\b/i.test(text)) fail(`${rel}: unconfirmed claim "therapists": one therapist takes bookings`);
 }
 
-// ---- Google Ads tag and cookie banner (lib/site.ts googleAds, components/AdsConsent.tsx, lib/consent.ts) ----
-// id empty: the site carries no trace of it. id set: no page asks Google for anything before consent (the loader
-// lives only in client JS), the consent default is pushed before any config, and "Cookie settings" is on every page.
+// ---- Google Ads tag and cookie banner (lib/site.ts googleAds, components/CookieConsent.tsx, AdsConsentBanner.tsx, lib/consent.ts) ----
+// id empty: no file in out/ carries any trace of it (no loader, no consent code, no banner CSS) and the privacy
+// notice says no cookies. id set: no page asks Google for anything before consent (the loader lives only in a
+// lazy client chunk), the consent default is pushed before the update and the config, Accept is measurement
+// only, "Cookie settings" is in every footer and in the notice, and the notice describes the tag.
 {
   const adsId = /googleAds:\s*\{\s*id:\s*"([^"]*)"/.exec(site)?.[1];
   const adsLabel = /googleAds:\s*\{[^}]*conversionLabel:\s*"([^"]*)"/.exec(site)?.[1];
+  const privHtml = pageFiles.get(path.join("privacy", "index.html")) ?? "";
+  const privText = stripTags(privHtml.replace(/<script[\s\S]*?<\/script>/g, "").replace(/<style[\s\S]*?<\/style>/g, ""));
+  const assets = files.filter((f) => /\.(html|js|css)$/.test(f)).map((f) => [path.relative(OUT, f), read(f)]);
   if (adsId === undefined || adsLabel === undefined) fail("lib/site.ts: googleAds { id, conversionLabel } not found");
   else if (!adsId) {
-    for (const [rel, html] of pageFiles) {
-      if (/googletagmanager/i.test(html)) fail(`${rel}: mentions googletagmanager while googleAds.id is empty`);
-      if (/gtag/i.test(html)) fail(`${rel}: mentions gtag while googleAds.id is empty`);
-      if (/data-cookie-settings|ads-consent/.test(html)) fail(`${rel}: cookie banner or Cookie settings control while googleAds.id is empty`);
+    // Case-sensitive on purpose: Next's own runtime has "gTag" in it.
+    const TRACE = /[Gg]oogle[Tt]ag[Mm]anager|gtag|ads-consent|AdsConsentBanner|data-cookie-settings|"consent","(?:default|update)"|banner-rise|cookie_settings_button|\{\{#if|\{\{\/if\}\}|\{\{else\}\}/;
+    for (const [rel, t] of assets) {
+      const m = TRACE.exec(t);
+      if (m) fail(`${rel}: contains "${m[0]}" while googleAds.id is empty (the banner and loader must not be built)`);
     }
+    for (const w of ["Google Ads tag", "Cookie settings"]) if (privText.includes(w)) fail(`/privacy/: says "${w}" while googleAds.id is empty`);
+    if (!privText.includes("This website does not use cookies, analytics or any other tracking.")) fail("/privacy/: lacks the no-cookies sentence while googleAds.id is empty");
   } else {
     if (!/^AW-\d+$/.test(adsId)) fail(`lib/site.ts: googleAds.id "${adsId}" is not AW-<digits>`);
     for (const [rel, html] of pageFiles) {
@@ -551,10 +559,11 @@ for (const [rel, html] of pageFiles) {
       const foot = /<footer[\s\S]*?<\/footer>/.exec(html)?.[0] ?? "";
       if (!foot.includes("data-cookie-settings")) fail(`${rel}: footer has no Cookie settings control`);
     }
-    const priv = pageFiles.get(path.join("privacy", "index.html")) ?? "";
-    if (priv.replace(/<footer[\s\S]*?<\/footer>/, "").split("data-cookie-settings").length < 2) fail("/privacy/: no Cookie settings control in the notice itself");
-    const js = files.filter((f) => f.endsWith(".js")).map((f) => [path.relative(OUT, f), read(f)]);
-    const loaders = js.filter(([, t]) => t.includes("googletagmanager.com/gtag/js"));
+    if (privHtml.replace(/<footer[\s\S]*?<\/footer>/, "").split("data-cookie-settings").length < 2) fail("/privacy/: no Cookie settings control in the notice itself");
+    for (const w of ["Google Ads tag", "Cookie settings", "only with your consent"]) if (!privText.includes(w)) fail(`/privacy/: lacks "${w}" while googleAds.id is set`);
+    if (privText.includes("does not use cookies")) fail("/privacy/: still says the site does not use cookies while googleAds.id is set");
+    if (/cookie_settings_button|\{\{#if|\{\{\/if\}\}|\{\{else\}\}/.test(privHtml)) fail("/privacy/: a conditional-copy marker leaked into the page");
+    const loaders = assets.filter(([rel, t]) => rel.endsWith(".js") && t.includes("googletagmanager.com/gtag/js"));
     if (loaders.length !== 1) fail(`expected the gtag.js loader in exactly one JS file, found ${loaders.length}`);
     for (const [rel, t] of loaders) {
       const def = t.indexOf('"consent","default"');
@@ -564,6 +573,12 @@ for (const [rel, html] of pageFiles) {
       if (def < 0 || upd < 0 || cfg < 0) fail(`${rel}: consent default, consent update or config call not found`);
       else if (!(def < upd && upd < cfg && cfg < load)) fail(`${rel}: expected consent default, then consent update, then config, then the gtag.js request`);
       if (!/ad_storage:"denied",ad_user_data:"denied",ad_personalization:"denied",analytics_storage:"denied"/.test(t)) fail(`${rel}: consent default is not all four denied`);
+      if (!/ad_storage:"granted",ad_user_data:"granted",ad_personalization:"denied",analytics_storage:"denied"/.test(t)) fail(`${rel}: Accept must grant ad_storage and ad_user_data only (measurement, no remarketing, no analytics)`);
+      if (/ad_personalization:"granted"|analytics_storage:"granted"/.test(t)) fail(`${rel}: grants ad_personalization or analytics_storage`);
+    }
+    for (const [rel, t] of assets) {
+      if (rel.endsWith(".html") || loaders.some(([l]) => l === rel)) continue;
+      if (t.includes("googletagmanager")) fail(`${rel}: mentions googletagmanager outside the lazy loader chunk`);
     }
   }
 }

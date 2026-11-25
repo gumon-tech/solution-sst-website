@@ -1,5 +1,6 @@
 // Pulls the header, footer, sticky bar and closing band copy out of content/_shared.md.
 import { loadDoc, section, type Block } from "@/lib/content";
+import { SITE } from "@/lib/site";
 
 function after(block: Block, prefix: string): string {
   const stripped = block.lines.map((l) => l.replace(/^-\s+/, ""));
@@ -13,13 +14,31 @@ export interface NavItem {
   href: string;
 }
 
+function cookieCopy(cookie: Block) {
+  const [privacyLabel, privacyHref] = after(cookie, "Privacy link:").split(" -> ").map((x) => x.trim());
+  return {
+    banner: {
+      label: after(cookie, "Region label:"),
+      body: after(cookie, "Text:"),
+      privacyLabel,
+      privacyHref,
+      accept: after(cookie, "Accept button:"),
+      reject: after(cookie, "Reject button:"),
+      nowAccepted: after(cookie, "After accepting:"),
+      nowRejected: after(cookie, "After rejecting:"),
+    },
+    settings: after(cookie, "Settings button:"),
+  };
+}
+
 export function sharedCopy() {
   const doc = loadDoc("_shared.md");
   const header = section(doc, "header");
   const sticky = section(doc, "sticky-bar");
   const closing = section(doc, "closing-band");
   const footer = section(doc, "footer");
-  const cookie = section(doc, "cookie-banner");
+  // Only needed (and only required to exist) while the Google Ads tag is configured.
+  const cookie = SITE.googleAds.id ? section(doc, "cookie-banner") : null;
 
   const nav: NavItem[] = after(header, "Nav:")
     .split(" · ")
@@ -37,8 +56,6 @@ export function sharedCopy() {
     .map((s) => s.trim());
 
   const headings = footer.lines.filter((l) => l.startsWith("- Heading:")).map((l) => l.replace("- Heading:", "").trim());
-
-  const [privacyLabel, privacyHref] = after(cookie, "Privacy link:").split(" -> ").map((x) => x.trim());
 
   const sub = closing.subs[0];
   return {
@@ -69,19 +86,7 @@ export function sharedCopy() {
       pages: col4,
       legal: after(footer, "Legal line:"),
     },
-    /** Words for components/AdsConsent.tsx (used only when SITE.googleAds.id is set). */
-    cookies: {
-      banner: {
-        label: after(cookie, "Region label:"),
-        body: after(cookie, "Text:"),
-        privacyLabel,
-        privacyHref,
-        accept: after(cookie, "Accept button:"),
-        reject: after(cookie, "Reject button:"),
-        nowAccepted: after(cookie, "After accepting:"),
-        nowRejected: after(cookie, "After rejecting:"),
-      },
-      settings: after(cookie, "Settings button:"),
-    },
+    /** Words for the cookie banner and Cookie settings (components/CookieConsent.tsx); null while SITE.googleAds.id is empty. */
+    cookies: cookie ? cookieCopy(cookie) : null,
   };
 }

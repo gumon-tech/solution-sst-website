@@ -14,8 +14,8 @@ export const metadata: Metadata = pageMetadata({
   path: "/privacy/",
 });
 
-/** The h2 in privacy.md under which the "Cookie settings" control is shown. */
-const WEBSITE_SECTION = "This website";
+/** A paragraph that is exactly this renders the "Cookie settings" control (privacy.md has it only inside {{#if google_ads}}). */
+const SETTINGS_BUTTON = "{{cookie_settings_button}}";
 
 interface Chunk {
   h2?: string;
@@ -39,18 +39,20 @@ export default function PrivacyPage() {
         <section key={c.h2 ?? i} className="mt-8">
           {c.h2 && <h2 className="t-h3">{c.h2}</h2>}
           <div className="prose-sst mt-3 space-y-4">
-            {c.paras.map((p, j) => (
-              <p key={j}>
-                <Rich text={p} />
-              </p>
-            ))}
+            {c.paras.map((p, j) =>
+              p === SETTINGS_BUTTON ? (
+                SITE.googleAds.id ? (
+                  <p key={j}>
+                    <CookieSettingsButton className="btn btn-secondary">{sharedCopy().cookies?.settings}</CookieSettingsButton>
+                  </p>
+                ) : null
+              ) : (
+                <p key={j}>
+                  <Rich text={p} />
+                </p>
+              ),
+            )}
           </div>
-          {/* The control the "This website" section points to (only while the Google Ads tag is configured). */}
-          {c.h2 === WEBSITE_SECTION && SITE.googleAds.id ? (
-            <p className="mt-4">
-              <CookieSettingsButton className="btn btn-secondary">{sharedCopy().cookies.settings}</CookieSettingsButton>
-            </p>
-          ) : null}
         </section>
       ))}
     </article>

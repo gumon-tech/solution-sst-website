@@ -48,7 +48,7 @@ Column 4 (pages): Treatments · About · Gift Vouchers · Visit · Tour · FAQ �
 
 Legal line: © {{year}} Sri Siam Thai Therapy & Wellness. Website by Gumon Technology.
 
-## cookie-banner (only when lib/site.ts googleAds.id is set; the settings button sits in the footer of every page and on the privacy notice)
+## cookie-banner (read only when lib/site.ts googleAds.id is set, and may be left out otherwise; the settings button sits in the footer of every page and on the privacy notice)
 
 - Region label: Cookie choice
 - Text: We would like to use Google Ads cookies to see which of our ads lead people to our WhatsApp buttons. Nothing from Google loads unless you accept.

@@ -38,11 +38,11 @@ export const SITE = {
   depositGbp: 15,
 
   /**
-   * Google Ads tag (gtag.js), behind the cookie banner (components/AdsConsent.tsx, lib/consent.ts).
-   * id "" = off: no banner, no "Cookie settings" control, nothing from Google, no change to the site.
-   * id set (e.g. "AW-123456789", the shop's Google Ads tag id): the banner asks first and
-   * gtag.js is requested only after Accept. conversionLabel "" = no conversion event on WhatsApp clicks.
-   * The privacy notice (content/privacy.md, "This website") describes the configured state.
+   * Google Ads tag (gtag.js), behind the cookie banner (components/CookieConsent.tsx, lib/consent.ts).
+   * id "" = off: no banner, no "Cookie settings" control, nothing from Google; the banner code is not
+   * even built (next.config.mjs reads this id). id set (AW-<digits>, the shop's Google Ads tag id):
+   * the banner asks first and gtag.js is requested only after Accept. conversionLabel "" = no
+   * conversion event on WhatsApp clicks. The privacy notice switches with it ({{#if google_ads}}).
    */
   googleAds: {
     id: "" as string,

@@ -219,11 +219,57 @@ function applyShopText(relPath: string, doc: Doc): void {
   }
 }
 
+// ------------------------------------------------------------- conditional copy
+
+/**
+ * Copy that depends on the site's configuration. In the body, a block between lines that are exactly
+ * `{{#if <name>}}` and `{{/if}}`, with an optional `{{else}}`, is kept only when the condition holds
+ * (no nesting). In the front matter, `<key>_if_<name>:` replaces `<key>` when the condition holds.
+ * google_ads: SITE.googleAds.id is set (the Google Ads tag and cookie banner are on).
+ */
+const CONDITIONS: Record<string, () => boolean> = {
+  google_ads: () => SITE.googleAds.id !== "",
+};
+
+function condition(relPath: string, name: string): boolean {
+  const c = CONDITIONS[name];
+  if (!c) throw new Error(`${relPath}: unknown condition "${name}"`);
+  return c();
+}
+
+function applyConditions(relPath: string, fm: Doc["fm"], body: string): string {
+  for (const key of Object.keys(fm)) {
+    const m = /^(.+)_if_([a-z0-9_]+)$/.exec(key);
+    if (!m) continue;
+    if (condition(relPath, m[2])) fm[m[1]] = fm[key];
+    delete fm[key];
+  }
+  const out: string[] = [];
+  let state: { keep: boolean; inElse: boolean } | null = null;
+  body.split("\n").forEach((line, i) => {
+    const t = line.trim();
+    const open = /^\{\{#if ([a-z0-9_]+)\}\}$/.exec(t);
+    if (open) {
+      if (state) throw new Error(`${relPath}:${i + 1}: nested {{#if}}`);
+      state = { keep: condition(relPath, open[1]), inElse: false };
+    } else if (t === "{{else}}") {
+      if (!state || state.inElse) throw new Error(`${relPath}:${i + 1}: {{else}} without {{#if}}`);
+      state = { keep: !state.keep, inElse: true };
+    } else if (t === "{{/if}}") {
+      if (!state) throw new Error(`${relPath}:${i + 1}: {{/if}} without {{#if}}`);
+      state = null;
+    } else if (!state || state.keep) out.push(line);
+  });
+  if (state) throw new Error(`${relPath}: {{#if}} without {{/if}}`);
+  return out.join("\n");
+}
+
 export function loadDoc(relPath: string): Doc {
   const hit = cache.get(relPath);
   if (hit) return hit;
   const src = readFileSync(path.join(CONTENT_DIR, relPath), "utf8");
-  const { fm, body } = parseFrontMatter(src);
+  const { fm, body: rawBody } = parseFrontMatter(src);
+  const body = applyConditions(relPath, fm, rawBody);
   const sections: Record<string, Block> = {};
   const pre: string[] = [];
   let cur: { id: string; lines: string[] } | null = null;

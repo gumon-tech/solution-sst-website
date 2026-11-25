@@ -341,52 +341,6 @@ body {
   }
 }
 
-/* Cookie banner (components/AdsConsent.tsx). Fixed, so it never moves page content. On phones it sits
-   above the sticky WhatsApp bar (76px + safe area, see StickyBar.tsx) and is capped so it never reaches
-   the sticky header (64px, 80px from xl); z-30 keeps the header (z-50), sticky bar (z-40), mobile menu
-   and lightbox above it if a tiny viewport ever makes them meet. Both choices share one class: equal
-   size and equal weight. */
-.consent-banner {
-  @apply fixed inset-x-3 z-30 mx-auto max-w-[560px] overflow-y-auto rounded-r-md border border-stone bg-cream p-4 text-ink shadow-card;
-  bottom: calc(76px + env(safe-area-inset-bottom) + 8px);
-  max-height: calc(100dvh - 65px - 76px - env(safe-area-inset-bottom) - 16px);
-  animation: rise 320ms var(--ease-out) both;
-}
-@media (min-width: 768px) {
-  .consent-banner {
-    bottom: 16px;
-    max-height: calc(100dvh - 65px - 32px);
-  }
-}
-@media (min-width: 1280px) {
-  .consent-banner {
-    max-height: calc(100dvh - 81px - 32px);
-  }
-}
-.consent-banner:focus {
-  outline: none;
-}
-.consent-banner:focus-visible {
-  outline: 2px solid var(--plum-mid);
-  outline-offset: 2px;
-}
-.consent-body {
-  font-size: 15px;
-  line-height: 1.5;
-}
-.consent-link {
-  @apply link;
-}
-.consent-now {
-  @apply mt-2 text-sm text-ink-2;
-}
-.consent-actions {
-  @apply mt-3 grid grid-cols-2 gap-3;
-}
-.consent-btn {
-  @apply btn btn-primary w-full;
-}
-
 /* Tour lightbox: a short fade in; the reduced-motion rule above switches it off. */
 @keyframes lb-fade {
   from {

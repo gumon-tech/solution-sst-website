@@ -53,6 +53,7 @@ export const viewport: Viewport = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   const { notice, buildDay } = noticeForBuild();
   const ads = SITE.googleAds;
+  const cookies = sharedCopy().cookies;
   return (
     <html lang="en-GB" className={`${display.variable} ${body.variable}`} suppressHydrationWarning>
       <head>
@@ -64,7 +65,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           Skip to content
         </a>
         {/* Off (renders nothing, loads nothing) while SITE.googleAds.id is empty. Early in the DOM so keyboard users meet it first. */}
-        {ads.id ? <AdsConsent adsId={ads.id} conversionLabel={ads.conversionLabel} text={sharedCopy().cookies.banner} /> : null}
+        {ads.id && cookies ? (
+          <AdsConsent adsId={ads.id} conversionLabel={ads.conversionLabel} text={cookies.banner} buttonClassName="btn btn-primary" linkClassName="link" />
+        ) : null}
         <Header />
         <NoticeBand notice={notice} buildDay={buildDay} />
         <main id="main" className="overflow-x-clip">{children}</main>

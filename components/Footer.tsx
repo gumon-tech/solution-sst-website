@@ -115,7 +115,7 @@ export function Footer() {
           <p className="text-center text-sm text-gold-pale">
             <LegalLine text={fill(f.legal)} />
           </p>
-          {SITE.googleAds.id ? (
+          {SITE.googleAds.id && c.cookies ? (
             <CookieSettingsButton className="link inline-flex min-h-[44px] items-center text-sm">{c.cookies.settings}</CookieSettingsButton>
           ) : null}
         </div>

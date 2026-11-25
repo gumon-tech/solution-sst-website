@@ -49,35 +49,6 @@ export function withArticle(name: string): string {
 /** The tag at the end of a pre-filled message: " [web-X]" with X in group 1. Used by AdSource and the conversion hook. */
 export const TAG_AT_END = / \[web-([A-Z]{1,2})\]$/;
 
-/**
- * The visitor ticked "Please don't send me news and offers" (components/MarketingNotice.tsx): this sentence goes
- * into every WhatsApp message directly before the final tag, as "<message> <OPT_OUT_TEXT> [web-X]". It is not a
- * new tag. Everything (insert, remove, the bot-facing format in README "Marketing opt-out") derives from this constant.
- */
-export const OPT_OUT_TEXT = "Please don't send me news and offers.";
-
-/** Any final source tag: " [web-X]", " [web-AD]" or " [web-AD-XXXXXXXX]" (with the ad click code). */
-const ANY_TAG_AT_END = / \[web-[A-Z]{1,2}(?:-[A-Z0-9]{8})?\]$/;
-
-/** Put OPT_OUT_TEXT before the final tag. Text without a final tag, or already marked, is returned unchanged. */
-export function insertOptOut(text: string): string {
-  const m = ANY_TAG_AT_END.exec(text);
-  if (!m) return text;
-  const body = text.slice(0, m.index);
-  if (body.endsWith(` ${OPT_OUT_TEXT}`)) return text;
-  return `${body} ${OPT_OUT_TEXT}${m[0]}`;
-}
-
-/** Take OPT_OUT_TEXT out again: exactly the inverse of insertOptOut. */
-export function removeOptOut(text: string): string {
-  const m = ANY_TAG_AT_END.exec(text);
-  if (!m) return text;
-  const body = text.slice(0, m.index);
-  const marker = ` ${OPT_OUT_TEXT}`;
-  if (!body.endsWith(marker)) return text;
-  return `${body.slice(0, -marker.length)}${m[0]}`;
-}
-
 /** https://wa.me/<digits>?text=<encoded message + " [web-X]"> */
 export function buildWhatsAppLink(message: string, tag: string): string {
   const text = `${message.trim()} [web-${tag}]`;

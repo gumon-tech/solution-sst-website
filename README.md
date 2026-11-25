@@ -60,18 +60,9 @@ When on: a visit whose landing address has `gclid`, `gbraid` or `wbraid` is an a
 
 ## Marketing opt-out
 
-UK soft opt-in (PECR reg 22). Under the booking buttons on the home page, `/treatments/` and every treatment page the site shows a notice and an unticked box, "Please don't send me news and offers" (wording in `content/_booking-terms.md`, `## marketing_notice`; component `components/MarketingNotice.tsx`). The full terms are on `/terms/` (`#marketing`) and the privacy notice has a "Marketing messages" section.
+UK soft opt-in (PECR reg 22). Under the booking buttons on the home page, `/treatments/` and every treatment page the site shows one static sentence (`content/_booking-terms.md`, `## marketing_notice`; `components/MarketingNotice.tsx`): "By booking, you agree that Sri Siam Thai Therapy & Wellness may send you occasional news and offers about our treatments by email and WhatsApp." The full terms are on `/terms/` (`#marketing`) and the privacy notice has a "Marketing messages" section.
 
-There is no form, so the choice travels in the WhatsApp message. When the visitor ticks the box, every wa.me message gets one sentence directly before the final source tag:
-
-```
-<message> Please don't send me news and offers. [web-X]
-```
-
-- The sentence is the single constant `OPT_OUT_TEXT` in `lib/whatsapp.ts` (`insertOptOut` / `removeOptOut` there are the only code that adds or removes it). To change the marker, change that constant; nothing else needs editing. Bot side: treat a message containing it as "do not send this customer marketing, on any channel", record it, and keep sending booking messages.
-- It is not a tag: the tag stays last (`[web-X]`, `[web-AD]` or `[web-AD-XXXXXXXX]`), so parsers that read the end of the message are unaffected. Unticked, the message is byte-for-byte what it was before.
-- State is in page memory only (no cookie, no web storage, nothing sent anywhere); it lasts through in-app page changes and ends on a full reload. Without JavaScript the notice is shown and the box is disabled.
-- Tests: `scripts/test-marketing-optout.mjs` (in `npm run validate`); `scripts/check-site.mjs` checks the notice on the three surfaces and that no input is pre-ticked. `/terms/` is not in `scripts/lib/seo-pages.json` or the copy slots: the shop system must not edit terms wording.
+There is no tickbox and no opt-out marker in the WhatsApp message (an earlier tickbox was removed on 26 Nov 2026). Customers opt out by replying STOP to any WhatsApp message or with the unsubscribe link in any email. WhatsApp messages from the site are unchanged: `<message> [web-X]`. The validators still reject the old sentence "Please don't send me news and offers" in text the shop system writes. `scripts/check-site.mjs` checks the notice on the three surfaces and that no checkbox exists. `/terms/` is not in `scripts/lib/seo-pages.json` or the copy slots: the shop system must not edit terms wording.
 
 ## Data the shop system writes
 

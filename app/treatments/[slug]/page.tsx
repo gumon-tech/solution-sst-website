@@ -115,7 +115,7 @@ export default async function TreatmentPage({ params }: { params: Promise<{ slug
             <p className="mt-4 max-w-lg text-ink-2">
               <Rich text={options.paras.find((p) => p.includes("booking_terms_short")) ?? ""} />
             </p>
-            <MarketingNotice sentence={terms()["marketing_notice.sentence"]} label={terms()["marketing_notice.checkbox"]} className="mt-4" />
+            <MarketingNotice sentence={terms()["marketing_notice.sentence"]} className="mt-4" />
             {askAction && (
               <p className="mt-2">
                 <ActionView action={askAction} name={t.name} />

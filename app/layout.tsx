@@ -2,7 +2,6 @@ import type { Metadata, Viewport } from "next";
 import { Cormorant_Garamond, Figtree } from "next/font/google";
 import "./globals.css";
 import { AdSource } from "@/components/AdSource";
-import { MarketingOptOutSync } from "@/components/MarketingNotice";
 import { AdsConsent } from "@/components/CookieConsent";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
@@ -76,7 +75,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <StickyBar />
         <RevealObserver />
         <AdSource />
-        <MarketingOptOutSync />
       </body>
     </html>
   );

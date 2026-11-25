@@ -37,6 +37,18 @@ export const SITE = {
   /** Pounds. Rendered "£15" via depositLabel(). */
   depositGbp: 15,
 
+  /**
+   * Google Ads tag (gtag.js), behind the cookie banner (components/AdsConsent.tsx, lib/consent.ts).
+   * id "" = off: no banner, no "Cookie settings" control, nothing from Google, no change to the site.
+   * id set (e.g. "AW-123456789", the shop's Google Ads tag id): the banner asks first and
+   * gtag.js is requested only after Accept. conversionLabel "" = no conversion event on WhatsApp clicks.
+   * The privacy notice (content/privacy.md, "This website") describes the configured state.
+   */
+  googleAds: {
+    id: "" as string,
+    conversionLabel: "" as string,
+  },
+
   /** Date the privacy notice text last changed. */
   privacyUpdated: "25 November 2026",
   /** Shown in the footer legal line. */

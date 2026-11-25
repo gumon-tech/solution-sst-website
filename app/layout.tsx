@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Cormorant_Garamond, Figtree } from "next/font/google";
 import "./globals.css";
 import { AdSource } from "@/components/AdSource";
+import { AdsConsent } from "@/components/CookieConsent";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import { NoticeBand } from "@/components/NoticeBand";
@@ -9,6 +10,7 @@ import { RevealObserver } from "@/components/RevealObserver";
 import { StickyBar } from "@/components/StickyBar";
 import { noticeForBuild } from "@/lib/notice-data";
 import { ROBOTS } from "@/lib/seo";
+import { sharedCopy } from "@/lib/shared";
 import { SITE } from "@/lib/site";
 
 const display = Cormorant_Garamond({
@@ -50,6 +52,7 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   const { notice, buildDay } = noticeForBuild();
+  const ads = SITE.googleAds;
   return (
     <html lang="en-GB" className={`${display.variable} ${body.variable}`} suppressHydrationWarning>
       <head>
@@ -60,6 +63,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <a href="#main" className="skip-link">
           Skip to content
         </a>
+        {/* Off (renders nothing, loads nothing) while SITE.googleAds.id is empty. Early in the DOM so keyboard users meet it first. */}
+        {ads.id ? <AdsConsent adsId={ads.id} conversionLabel={ads.conversionLabel} text={sharedCopy().cookies.banner} /> : null}
         <Header />
         <NoticeBand notice={notice} buildDay={buildDay} />
         <main id="main" className="overflow-x-clip">{children}</main>

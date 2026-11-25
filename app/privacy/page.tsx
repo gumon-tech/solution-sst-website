@@ -1,7 +1,10 @@
 import type { Metadata } from "next";
+import { CookieSettingsButton } from "@/components/CookieConsent";
 import { Rich } from "@/components/Rich";
 import { fmString, loadDoc } from "@/lib/content";
 import { pageMetadata } from "@/lib/seo";
+import { sharedCopy } from "@/lib/shared";
+import { SITE } from "@/lib/site";
 
 const doc = loadDoc("privacy.md");
 
@@ -10,6 +13,9 @@ export const metadata: Metadata = pageMetadata({
   description: fmString(doc, "description"),
   path: "/privacy/",
 });
+
+/** The h2 in privacy.md under which the "Cookie settings" control is shown. */
+const WEBSITE_SECTION = "This website";
 
 interface Chunk {
   h2?: string;
@@ -39,6 +45,12 @@ export default function PrivacyPage() {
               </p>
             ))}
           </div>
+          {/* The control the "This website" section points to (only while the Google Ads tag is configured). */}
+          {c.h2 === WEBSITE_SECTION && SITE.googleAds.id ? (
+            <p className="mt-4">
+              <CookieSettingsButton className="btn btn-secondary">{sharedCopy().cookies.settings}</CookieSettingsButton>
+            </p>
+          ) : null}
         </section>
       ))}
     </article>

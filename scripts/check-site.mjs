@@ -528,6 +528,46 @@ for (const [rel, html] of pageFiles) {
   if (!careers && /\btherapists\b/i.test(text)) fail(`${rel}: unconfirmed claim "therapists": one therapist takes bookings`);
 }
 
+// ---- Google Ads tag and cookie banner (lib/site.ts googleAds, components/AdsConsent.tsx, lib/consent.ts) ----
+// id empty: the site carries no trace of it. id set: no page asks Google for anything before consent (the loader
+// lives only in client JS), the consent default is pushed before any config, and "Cookie settings" is on every page.
+{
+  const adsId = /googleAds:\s*\{\s*id:\s*"([^"]*)"/.exec(site)?.[1];
+  const adsLabel = /googleAds:\s*\{[^}]*conversionLabel:\s*"([^"]*)"/.exec(site)?.[1];
+  if (adsId === undefined || adsLabel === undefined) fail("lib/site.ts: googleAds { id, conversionLabel } not found");
+  else if (!adsId) {
+    for (const [rel, html] of pageFiles) {
+      if (/googletagmanager/i.test(html)) fail(`${rel}: mentions googletagmanager while googleAds.id is empty`);
+      if (/gtag/i.test(html)) fail(`${rel}: mentions gtag while googleAds.id is empty`);
+      if (/data-cookie-settings|ads-consent/.test(html)) fail(`${rel}: cookie banner or Cookie settings control while googleAds.id is empty`);
+    }
+  } else {
+    if (!/^AW-\d+$/.test(adsId)) fail(`lib/site.ts: googleAds.id "${adsId}" is not AW-<digits>`);
+    for (const [rel, html] of pageFiles) {
+      if (/googletagmanager|googleadservices|doubleclick\.net|google-analytics/i.test(html)) fail(`${rel}: the built HTML references a Google tag host (it may load only after Accept, from client JS)`);
+      for (const m of html.matchAll(/<script\b[^>]*\bsrc="([^"]*)"/g)) {
+        if (!m[1].startsWith("/_next/")) fail(`${rel}: script from ${m[1]} (only the site's own /_next/ scripts may be in the HTML)`);
+      }
+      const foot = /<footer[\s\S]*?<\/footer>/.exec(html)?.[0] ?? "";
+      if (!foot.includes("data-cookie-settings")) fail(`${rel}: footer has no Cookie settings control`);
+    }
+    const priv = pageFiles.get(path.join("privacy", "index.html")) ?? "";
+    if (priv.replace(/<footer[\s\S]*?<\/footer>/, "").split("data-cookie-settings").length < 2) fail("/privacy/: no Cookie settings control in the notice itself");
+    const js = files.filter((f) => f.endsWith(".js")).map((f) => [path.relative(OUT, f), read(f)]);
+    const loaders = js.filter(([, t]) => t.includes("googletagmanager.com/gtag/js"));
+    if (loaders.length !== 1) fail(`expected the gtag.js loader in exactly one JS file, found ${loaders.length}`);
+    for (const [rel, t] of loaders) {
+      const def = t.indexOf('"consent","default"');
+      const upd = t.indexOf('"consent","update"');
+      const cfg = t.indexOf('"config"');
+      const load = t.indexOf("googletagmanager.com/gtag/js");
+      if (def < 0 || upd < 0 || cfg < 0) fail(`${rel}: consent default, consent update or config call not found`);
+      else if (!(def < upd && upd < cfg && cfg < load)) fail(`${rel}: expected consent default, then consent update, then config, then the gtag.js request`);
+      if (!/ad_storage:"denied",ad_user_data:"denied",ad_personalization:"denied",analytics_storage:"denied"/.test(t)) fail(`${rel}: consent default is not all four denied`);
+    }
+  }
+}
+
 // ---- result -----------------------------------------------------------------
 if (errors.length) {
   console.error(`check-site: ${errors.length} problem(s)\n- ` + errors.join("\n- "));

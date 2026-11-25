@@ -1,6 +1,6 @@
 ---
 title: "Privacy Notice | Sri Siam Thai Therapy & Wellness"
-description: "How Sri Siam Thai Therapy & Wellness handles the details you send us on WhatsApp and when you book. No cookies, no tracking on this website."
+description: "How Sri Siam Thai Therapy & Wellness handles your WhatsApp messages and bookings, and the Google Ads cookies this website uses only if you accept."
 h1: "Privacy notice"
 ---
 
@@ -12,9 +12,15 @@ Sri Siam Thai Therapy & Wellness, {{address}}, is the data controller for the pe
 
 ## This website
 
-This website does not use cookies, analytics or any other tracking. It does not ask you to fill in a form or create an account. The site is hosted on GitHub Pages, which keeps standard technical server logs under GitHub's own privacy statement.
+This website does not ask you to fill in a form or create an account. It is hosted on GitHub Pages, which keeps standard technical server logs under GitHub's own privacy statement.
 
-The booking buttons on this site open WhatsApp on your device with a short message already typed. Each message ends with a short code, such as [web-T], that tells us which part of the website you came from. If you reached this website from one of our Google ads, the code is [web-AD] instead, wherever you click. The site works that out from the web address you arrived on and keeps it only while the page is open in your browser: it is not stored on your device, and the website does not send it to us, to Google or to anyone else. Google keeps its own record of clicks on its ads under Google's privacy policy; this website adds nothing to it. Nothing is sent until you press send, and this website does not know whether you did.
+We use the Google Ads tag, provided by Google, to measure which of our Google ads lead people to tap a WhatsApp button on this website. It loads only if you click Accept on the cookie banner. If you click Reject, or do not choose, nothing from Google loads and this website sets no cookies.
+
+If you accept, the tag sets Google advertising cookies on your device, such as _gcl_au and _gcl_aw, which last up to 90 days. It sends Google details of your visit, such as the pages you view, your browser and device, and each tap on a WhatsApp button with the short code described below, but not your message. Google uses this information under its own privacy policy, may also use it to decide which ads to show you, and may process it outside the UK.
+
+Your choice is kept in your browser on this device for six months, and then we ask again. It is not sent to us. You can change your mind at any time with the Cookie settings button at the bottom of every page or below. If you change to Reject, this website stops using the Google Ads tag and deletes the Google Ads cookies it set. Cookies that Google keeps on its own websites are managed in your browser or your Google account.
+
+The booking buttons on this site open WhatsApp on your device with a short message already typed. Each message ends with a short code, such as [web-T], that tells us which part of the website you came from. If you reached this website from one of our Google ads, the code is [web-AD] instead, wherever you click. The site works that out from the web address you arrived on and keeps it only while the page is open in your browser: the website does not store it on your device or send it to us or anyone else. Separately, if you have accepted cookies, the Google Ads tag reads the ad click reference that Google adds to that web address. Nothing reaches us until you press send in WhatsApp, and this website does not know whether you did.
 
 ## When you message us on WhatsApp
 

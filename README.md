@@ -8,7 +8,7 @@ Website for Sri Siam Thai Therapy & Wellness (Thai massage, Greenwich, London), 
 
 ## Stack
 
-Next.js 15 (App Router) + React 19 + TypeScript + Tailwind 3, static export to `out/`. No cookies, analytics or third-party scripts; fonts are self-hosted by `next/font`. Motion is CSS plus one IntersectionObserver and is off under `prefers-reduced-motion`.
+Next.js 15 (App Router) + React 19 + TypeScript + Tailwind 3, static export to `out/`. No cookies, analytics or third-party scripts unless the Google Ads tag is configured (below); fonts are self-hosted by `next/font`. Motion is CSS plus one IntersectionObserver and is off under `prefers-reduced-motion`.
 
 ## Where things live
 
@@ -28,6 +28,7 @@ content/*.md                every word of customer-facing copy, read at build ti
 content/_booking-terms.md   the only place deposit, paying and changes are worded
 lib/site.ts                 name, address, phone, deposit, Maps link, the indexable switch; hours come from data/hours.json via lib/hours-text.ts
 lib/whatsapp.ts             wa.me links and the [web-X] source tags (register in docs/design/DIRECTION.md section 8)
+lib/consent.ts              consent-gated Google Ads tag (gtag.js, Consent Mode v2); shop-neutral, with components/CookieConsent.tsx and AdsConsentBanner.tsx
 lib/structured-data.ts      DaySpa, Service/Offer, FAQPage, BreadcrumbList JSON-LD
 docs/design/DIRECTION.md    research, design tokens, layouts, motion, WhatsApp register
 public/img/                 the shop's own photos from its Wix site, WebP 800 and 1600 wide
@@ -36,6 +37,12 @@ assets/photos/original/     README only in git; the owner's originals live in On
 data/tour.json              /tour/ zones, captions, alt text and the crop/tone recipe per photo (human-edited)
 scripts/make-tour-images.mjs  rebuilds public/img/tour/ and data/tour-sizes.json from the originals (npm run tour-images)
 ```
+
+## Google Ads tag and cookie banner
+
+Off while `SITE.googleAds.id` in `lib/site.ts` is `""`: no banner, no "Cookie settings" control, nothing from Google, and the banner/loader chunk is never requested (`check-site` fails if any page mentions gtag or googletagmanager). To turn it on, set `id` (`AW-<digits>`) and `conversionLabel` in one person's pull request, together with the privacy notice wording.
+
+When set: `components/CookieConsent.tsx` lazy-loads the banner (`AdsConsentBanner.tsx`, words from `content/_shared.md` section `cookie-banner`). Accept and Reject are the same size and style; the choice is kept in `localStorage` key `ads-consent:v1` for 182 days (storage that fails means no choice and nothing loads). Nothing is requested from Google before Accept. On Accept, `lib/consent.ts` pushes the consent default (all four denied), the update to granted, then `js` and `config`, then requests `gtag.js`; a stored Accept does the same on page load. On Reject or withdrawal: consent update to denied, no more events, and `_gcl_*`/`_gac_*` cookies (this host and parent domains) and `_gcl_*` storage keys are deleted. A click on any wa.me link while accepted sends `conversion` to `<id>/<conversionLabel>` with `source_tag` (the `[web-X]` after the AdSource rewrite) and `transport_type: beacon`, never delaying WhatsApp. "Cookie settings" sits in the footer of every page and under "This website" on `/privacy/`. The same three files are meant to be copied to the other shop sites; only `lib/site.ts`, the copy and the `.consent-*` styles in `app/globals.css` are per shop.
 
 ## Data the shop system writes
 

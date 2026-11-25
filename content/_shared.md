@@ -48,6 +48,17 @@ Column 4 (pages): Treatments · About · Gift Vouchers · Visit · Tour · FAQ �
 
 Legal line: © {{year}} Sri Siam Thai Therapy & Wellness. Website by Gumon Technology.
 
+## cookie-banner (only when lib/site.ts googleAds.id is set; the settings button sits in the footer of every page and on the privacy notice)
+
+- Region label: Cookie choice
+- Text: We would like to use Google Ads cookies to see which of our ads lead people to our WhatsApp buttons. Nothing from Google loads unless you accept.
+- Privacy link: Privacy notice -> /privacy/
+- Accept button: Accept
+- Reject button: Reject
+- After accepting: You have accepted these cookies.
+- After rejecting: You have rejected these cookies.
+- Settings button: Cookie settings
+
 ## hours (data/hours.json)
 
 The opening hours live only in `data/hours.json` (changed by the shop system through an hours pull request) and are rendered by `lib/hours-text.ts`; they are never typed in prose, so nothing here goes stale when they change.

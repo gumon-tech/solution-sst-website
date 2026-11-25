@@ -19,6 +19,7 @@ export function sharedCopy() {
   const sticky = section(doc, "sticky-bar");
   const closing = section(doc, "closing-band");
   const footer = section(doc, "footer");
+  const cookie = section(doc, "cookie-banner");
 
   const nav: NavItem[] = after(header, "Nav:")
     .split(" · ")
@@ -36,6 +37,8 @@ export function sharedCopy() {
     .map((s) => s.trim());
 
   const headings = footer.lines.filter((l) => l.startsWith("- Heading:")).map((l) => l.replace("- Heading:", "").trim());
+
+  const [privacyLabel, privacyHref] = after(cookie, "Privacy link:").split(" -> ").map((x) => x.trim());
 
   const sub = closing.subs[0];
   return {
@@ -65,6 +68,20 @@ export function sharedCopy() {
       reviews: footer.actions.find((a) => a.label.startsWith("Read our reviews"))?.label ?? "Read our reviews on Google",
       pages: col4,
       legal: after(footer, "Legal line:"),
+    },
+    /** Words for components/AdsConsent.tsx (used only when SITE.googleAds.id is set). */
+    cookies: {
+      banner: {
+        label: after(cookie, "Region label:"),
+        body: after(cookie, "Text:"),
+        privacyLabel,
+        privacyHref,
+        accept: after(cookie, "Accept button:"),
+        reject: after(cookie, "Reject button:"),
+        nowAccepted: after(cookie, "After accepting:"),
+        nowRejected: after(cookie, "After rejecting:"),
+      },
+      settings: after(cookie, "Settings button:"),
     },
   };
 }

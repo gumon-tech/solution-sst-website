@@ -47,7 +47,7 @@ function retag(a: HTMLAnchorElement) {
   if (process.env.NEXT_PUBLIC_CLICK_REF_ENDPOINT) {
     // The button's own tag, sent by lib/clickref.ts as "surface".
     const own = TAG_AT_END.exec(text)?.[1];
-    if (own && own !== TAG.ad && !a.dataset.waTag) a.dataset.waTag = own;
+    if (own && own !== TAG.ad) a.dataset.waTag = own;
   }
   const next = text.replace(TAG_AT_END, ` [web-${TAG.ad}]`);
   if (next === text) return;

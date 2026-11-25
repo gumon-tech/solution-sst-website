@@ -31,6 +31,8 @@ export interface ClickRefConfig {
   adTag: string;
 }
 
+/** Fired on window by lib/consent.ts writeChoice right after a choice is written in this page. */
+const CONSENT_CHANGE_EVENT = "ads-consent:change";
 /** 27 characters: no vowels, no 0 1 I L O. The bot's parser: [2-9BCDFGHJKMNPQRSTVWXZ]{8}. */
 export const CODE_ALPHABET = "23456789BCDFGHJKMNPQRSTVWXZ";
 const CODE_LENGTH = 8;
@@ -133,8 +135,9 @@ function retag(a: HTMLAnchorElement): void {
   const w = waText(a);
   const m = w && TAG_END.exec(w.text);
   if (!w || !m) return;
-  // The button's own tag, sent as "surface". components/AdSource.tsx normally records it first.
-  if (!a.dataset.waTag && m[1] !== cfg.adTag) a.dataset.waTag = m[1];
+  // The button's own tag, sent as "surface" (components/AdSource.tsx records it too). A visible tag other than
+  // the ad tag is always the button's own, so it wins over anything recorded before.
+  if (m[1] !== cfg.adTag) a.dataset.waTag = m[1];
   const next = w.text.replace(TAG_END, ` [web-${code ? `${cfg.adTag}-${code}` : cfg.adTag}]`);
   if (next === w.text) return;
   // Same encoding as buildWhatsAppLink (encodeURIComponent, not form encoding).
@@ -158,8 +161,9 @@ function send(a: HTMLAnchorElement): void {
   if (!cfg || !c || !k || sent.has(k) || !consented()) return;
   const w = waText(a);
   if (!w || !w.text.endsWith(` [web-${cfg.adTag}-${k}]`)) return;
-  const own = a.dataset.waTag ?? "";
-  const surface = SURFACE.test(own) ? own : cfg.adTag;
+  // Unknown surface: send nothing rather than a guess.
+  const surface = a.dataset.waTag ?? "";
+  if (!SURFACE.test(surface)) return;
   const body = JSON.stringify({ v: 1, site: cfg.site, code: k, kind: c.kind, id: c.id, surface, landed: landedAt(), consent: CONSENT, cv: cfg.cv });
   if (new TextEncoder().encode(body).length > MAX_BODY_BYTES) return;
   sent.add(k);
@@ -185,12 +189,8 @@ function onPress(e: MouseEvent): void {
   if (a instanceof HTMLAnchorElement) send(a);
 }
 
-// A choice on the banner (Accept, Reject, or a change through Cookie settings) is a click: look again once its
-// handlers have run. A choice made in another tab arrives as a storage event.
-function onAnyClick(): void {
-  setTimeout(update, 0);
-}
-
+// A choice in this page (lib/consent.ts writeChoice) fires CONSENT_CHANGE_EVENT; one made in another tab arrives
+// as a storage event.
 function onStorage(e: StorageEvent): void {
   if (e.key === CONSENT_STORAGE_KEY || e.key === null) update();
 }
@@ -208,7 +208,7 @@ export function startClickRef(config: ClickRefConfig): void {
     document.addEventListener("contextmenu", onActivateCapture, true);
     document.addEventListener("click", onPress);
     document.addEventListener("auxclick", onPress);
-    document.addEventListener("click", onAnyClick);
+    window.addEventListener(CONSENT_CHANGE_EVENT, update);
     window.addEventListener("storage", onStorage);
     update();
   }

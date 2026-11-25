@@ -4,6 +4,7 @@
 import { existsSync, readdirSync, readFileSync, statSync } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { consentVersion } from "./lib/consent-version.mjs";
 import { findMetadata } from "./lib/image-metadata.mjs";
 
 const root = path.join(path.dirname(fileURLToPath(import.meta.url)), "..");
@@ -596,28 +597,56 @@ for (const [rel, html] of pageFiles) {
   const endpoint = /clickEndpoint:\s*"([^"]*)"/.exec(site)?.[1];
   const siteId = /siteId:\s*"([^"]*)"/.exec(site)?.[1];
   const retention = /clickRetention:\s*"([^"]*)"/.exec(site)?.[1];
+  const logRetention = /clickLogRetention:\s*"([^"]*)"/.exec(site)?.[1];
+  // This shop's id everywhere: the shop bot's SHOP_ID (shop-agent, k8s namespace shop-sst), named in README and in
+  // .github/workflows/auto-merge-shop-agent.yml. The click reference must use it and only this shop's endpoint.
+  const SHOP_ID = "sst";
+  // Endpoints of the other shops' bots (design section 4): this site must never post to them.
+  const OTHER_SHOP_HOSTS = ["pel-bot.gumon.io", "shop-agent.taitam-d.com", "taitam-d.com"];
   const adsId = /googleAds:\s*\{\s*id:\s*"([^"]*)"/.exec(site)?.[1];
   const privHtml = pageFiles.get(path.join("privacy", "index.html")) ?? "";
   const privText = stripTags(privHtml.replace(/<script[\s\S]*?<\/script>/g, "").replace(/<style[\s\S]*?<\/style>/g, ""));
   const assets = files.filter((f) => /\.(html|js|css)$/.test(f)).map((f) => [path.relative(OUT, f), read(f)]);
   const SECTION = "Linking a booking to one of our ads";
-  if (endpoint === undefined || siteId === undefined || retention === undefined) fail("lib/site.ts: googleAds { clickEndpoint, siteId, clickRetention } not found");
+  if (endpoint === undefined || siteId === undefined || retention === undefined || logRetention === undefined) fail("lib/site.ts: googleAds { clickEndpoint, siteId, clickRetention, clickLogRetention } not found");
   else if (!endpoint) {
-    const TRACE = /clickref|CLICK_REF|23456789BCDFGHJKMNPQRSTVWXZ|2-9BCDFGHJKMNPQRSTVWXZ|waTag|wa-tag|ads-consent:change|click_retention|click_ref|google_ads_only|booking system|Linking a booking/;
+    const TRACE = /clickref|CLICK_REF|23456789BCDFGHJKMNPQRSTVWXZ|2-9BCDFGHJKMNPQRSTVWXZ|waTag|wa-tag|ads-consent:change|click_retention|click_log_retention|click_ref|google_ads_only|booking system|Linking a booking/;
     for (const [rel, t] of assets) {
       const m = TRACE.exec(t);
       if (m) fail(`${rel}: contains "${m[0]}" while googleAds.clickEndpoint is empty (the click reference must not be built)`);
     }
     if (adsId && !assets.some(([rel, t]) => rel.endsWith(".js") && t.includes('"ads-consent:v1"'))) fail('consent key "ads-consent:v1" not found in the client JS while googleAds.clickEndpoint is empty');
   } else {
-    const shared = read(path.join(root, "content/_shared.md"));
-    const versions = [...shared.matchAll(/^- Text version:\s*(.*?)\s*$/gm)].map((m) => m[1]);
-    const cv = versions.length === 1 ? versions[0] : "";
+    let cv = "";
+    try {
+      cv = consentVersion(root, siteId, retention, logRetention);
+    } catch (e) {
+      fail(String(e.message ?? e));
+    }
     if (!adsId) fail("lib/site.ts: googleAds.clickEndpoint is set but googleAds.id is empty (the click reference needs the consent banner)");
     if (!/^https:\/\/[A-Za-z0-9.-]+(:\d+)?\/[A-Za-z0-9._~\/-]*$/.test(endpoint)) fail(`lib/site.ts: googleAds.clickEndpoint "${endpoint}" is not an https URL with a path (http://localhost is for local tests only)`);
-    if (!/^[a-z0-9-]{1,32}$/.test(siteId)) fail(`lib/site.ts: googleAds.siteId "${siteId}" is not [a-z0-9-]{1,32}`);
-    if (!retention.trim() || /\bTBC\b/i.test(retention)) fail(`lib/site.ts: googleAds.clickRetention is "${retention}": set the real retention (from KBOT) before turning the click reference on`);
-    if (!/^[A-Za-z0-9._-]{1,32}$/.test(cv)) fail(`content/_shared.md: needs exactly one "- Text version:" line of [A-Za-z0-9._-]{1,32} (found ${versions.length})`);
+    if (siteId !== SHOP_ID) fail(`lib/site.ts: googleAds.siteId "${siteId}" is not this shop's id "${SHOP_ID}"`);
+    const workflow = read(path.join(root, ".github/workflows/auto-merge-shop-agent.yml"));
+    if (!workflow.includes(`shop id ${SHOP_ID}`)) fail(`auto-merge-shop-agent.yml no longer names shop id ${SHOP_ID}: check SHOP_ID in check-site`);
+    let host = "";
+    let where = "";
+    try {
+      const u = new URL(endpoint);
+      host = u.hostname.toLowerCase();
+      where = `${host}${u.pathname}`;
+    } catch {
+      // reported by the https rule
+    }
+    if (!new RegExp(`(^|[./-])${SHOP_ID}([./-]|$)`).test(where)) fail(`lib/site.ts: googleAds.clickEndpoint "${endpoint}" does not name this shop ("${SHOP_ID}" in its host or path)`);
+    for (const h of OTHER_SHOP_HOSTS) if (host === h || host.endsWith(`.${h}`)) fail(`lib/site.ts: googleAds.clickEndpoint "${endpoint}" belongs to another shop (${h})`);
+    for (const [name, v] of [["clickRetention", retention], ["clickLogRetention", logRetention]]) {
+      if (!v.trim() || /\bTBC\b/i.test(v)) fail(`lib/site.ts: googleAds.${name} is "${v}": set the real value (from KBOT) before turning the click reference on`);
+    }
+    if (!/^[A-Za-z0-9._-]{1,32}$/.test(cv)) fail(`consent text version "${cv}" is not [A-Za-z0-9._-]{1,32}`);
+    // The banner (rendered in the browser from the props in every page) must say what is shared and with whom.
+    for (const [rel, html] of pageFiles) {
+      for (const w of ["booking system", "click reference"]) if (!html.includes(w)) fail(`${rel}: the cookie banner text lacks "${w}" while the click reference is on`);
+    }
     for (const [rel, html] of pageFiles) if (html.includes(endpoint)) fail(`${rel}: the HTML contains the click-reference endpoint (it belongs in client JS only)`);
     if (!assets.some(([rel, t]) => rel.endsWith(".js") && t.includes(endpoint))) fail("the click-reference endpoint is not in the client JS");
     const chunks = assets.filter(([rel, t]) => rel.endsWith(".js") && t.includes("clickref-v1|"));
@@ -632,8 +661,8 @@ for (const [rel, html] of pageFiles) {
     }
     if (cv && !assets.some(([rel, t]) => rel.endsWith(".js") && t.includes(cv))) fail(`consent text version "${cv}" not found in the client JS`);
     if (assets.some(([rel, t]) => rel.endsWith(".js") && t.includes('"ads-consent:v1"'))) fail('consent key is still "ads-consent:v1" while the click reference is on (it must carry the text version)');
-    for (const w of [SECTION, "our booking system", "Gumon Technology", "only with your consent", "Cookie settings", retention]) if (!privText.includes(w)) fail(`/privacy/: lacks "${w}" while googleAds.clickEndpoint is set`);
-    if (/click_retention|\bTBC\b/.test(privText)) fail("/privacy/: has an unfilled click-reference retention");
+    for (const w of [SECTION, "our booking system", "Gumon Technology", "only with your consent", "Cookie settings", "IP address", "before it is reported to Google", retention, logRetention]) if (!privText.includes(w)) fail(`/privacy/: lacks "${w}" while googleAds.clickEndpoint is set`);
+    if (/click_retention|click_log_retention|\bTBC\b/.test(privText)) fail("/privacy/: has an unfilled click-reference retention");
   }
 }
 

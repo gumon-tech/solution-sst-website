@@ -50,14 +50,13 @@ Legal line: © {{year}} Sri Siam Thai Therapy & Wellness. Website by Gumon Techn
 
 ## cookie-banner (read only when lib/site.ts googleAds.id is set, and may be left out otherwise; the settings button sits in the footer of every page and on the privacy notice)
 
-Text version (only while lib/site.ts googleAds.clickEndpoint is set, so only in the click_ref branch): sent as "cv" with every ad click reference (lib/clickref.ts) and part of the browser's consent key, so a new version asks everyone again. Change it whenever any wording in this section changes while the click reference is on. Up to 32 of A-Z a-z 0-9 . _ -, one line only.
+While the ad click reference is on (lib/site.ts googleAds.clickEndpoint set), the consent text version ("cv") is worked out from this section as shown then, plus the click-reference wording of the privacy notice (scripts/lib/consent-version.mjs). Any change to them gives a new version, which asks everyone again; there is nothing to bump by hand.
 
 - Region label: Cookie choice
 
 {{#if click_ref}}
 
 - Text: We would like to use Google Ads cookies to see which of our ads lead people to our WhatsApp buttons. If you came from one of our ads, we also share its click reference with our booking system when you tap a WhatsApp button, so we can tell Google when it led to a booking. Nothing from Google loads and nothing is shared unless you accept.
-- Text version: sst-2026-11-25-cr
 
 {{else}}
 

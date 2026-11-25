@@ -389,6 +389,8 @@ function resolve(key: string, ctx: Ctx): string {
       return SITE.privacyUpdated;
     case "click_retention":
       return SITE.googleAds.clickRetention;
+    case "click_log_retention":
+      return SITE.googleAds.clickLogRetention;
     case "menu_checked_date":
       return menuCheckedDate();
     case "year":

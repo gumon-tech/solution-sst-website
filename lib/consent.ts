@@ -76,7 +76,32 @@ export function writeChoice(choice: Choice): boolean {
   } catch {
     return false;
   }
+  if (process.env.NEXT_PUBLIC_CLICK_REF_ENDPOINT) choiceWritten();
   return readChoice() === choice;
+}
+
+// ---- ad click reference (lib/clickref.ts) ------------------------------------------
+// Built only while NEXT_PUBLIC_CLICK_REF_ENDPOINT is set; otherwise the call above is dropped at build time.
+
+/** Deletes choices stored under any other ads-consent:* key (older text versions), then tells lib/clickref.ts. */
+function choiceWritten(): void {
+  try {
+    const store = window.localStorage;
+    const old: string[] = [];
+    for (let i = 0; i < store.length; i++) {
+      const k = store.key(i);
+      if (k && k.startsWith("ads-consent:") && k !== CONSENT_STORAGE_KEY) old.push(k);
+    }
+    old.forEach((k) => store.removeItem(k));
+  } catch {
+    // storage blocked: nothing to delete
+  }
+  try {
+    // "ads-consent:change" on window, so lib/clickref.ts follows Accept and Reject in this page at once.
+    window.dispatchEvent(new Event("ads-consent:change"));
+  } catch {
+    // never let this get in the way of the choice itself
+  }
 }
 
 // ---- gtag ------------------------------------------------------------------------

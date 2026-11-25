@@ -58,7 +58,7 @@ export const SITE = {
      * and a WhatsApp press posts the code and the click reference there (once per page load). Needs id set.
      * Never another shop's address. next.config.mjs reads it into NEXT_PUBLIC_CLICK_REF_ENDPOINT.
      */
-    clickEndpoint: "" as string,
+    clickEndpoint: "https://sst-shop-agent.gumon.io/m/click" as string,
     /**
      * This shop's id, equal to the bot's SHOP_ID (shop-agent shop id; check-site pins it): sent as "site", mixed into
      * the code and the consent text version, and must appear in clickEndpoint's host or path. Up to 20 of a-z 0-9 -.

@@ -18,7 +18,7 @@ for (const [route, file] of Object.entries(pages)) {
   const f = path.join(ROOT, "content", file);
   if (!existsSync(f)) fail(`seo-pages.json: ${route} -> content/${file} missing`);
   else if (!/^title:/m.test(readFileSync(f, "utf8")) || !/^description:/m.test(readFileSync(f, "utf8"))) fail(`seo-pages.json: content/${file} has no title or description front matter`);
-  if (/privacy|_booking-terms|README/.test(file)) fail(`seo-pages.json: ${file} is never changed by the shop system`);
+  if (/privacy|terms|README/.test(file)) fail(`seo-pages.json: ${file} is never changed by the shop system`);
 }
 
 if (!isObject(data)) fail("file must be an object");

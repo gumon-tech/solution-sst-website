@@ -77,13 +77,17 @@ To run your booking we keep your name, your phone number, the treatment and leng
 
 If you choose to tell us about your health so that we can check a treatment is right for you, we use that information only for that purpose, on the basis of your explicit consent. You can withdraw that consent at any time by telling us.
 
+## Marketing messages
+
+If you book or visit, we may send you occasional news and offers about similar treatments by WhatsApp, and by email if you gave us your email address when booking or paying, as our booking terms explain. We do this because you are our customer (the 'soft opt-in' allowed by the UK's Privacy and Electronic Communications Regulations), and only for our own treatments. You can opt out at any time: tick the box when booking, reply STOP to any WhatsApp message, or use the unsubscribe link in any email. We keep a record that you opted out so we do not message you again.
+
 ## Deposits and payment
 
 Deposits and advance payments are taken through a secure payment link from Wix Payments. We do not see or store your full card details. Payments at the shop are taken by card or in cash.
 
 ## Why we are allowed to use your details
 
-We use your details to take and run your booking because that is needed to provide the treatment you asked for. We answer enquiries that are not yet a booking because we have a legitimate interest in replying to people who contact us. We keep payment records because the law requires us to keep accounts. Health information is only used with your explicit consent, as described above.
+We use your details to take and run your booking because that is needed to provide the treatment you asked for. We answer enquiries that are not yet a booking because we have a legitimate interest in replying to people who contact us. We keep payment records because the law requires us to keep accounts. We send news and offers about our own treatments to people who have booked or visited, because we have a legitimate interest in keeping our customers informed, and you can opt out at any time. Health information is only used with your explicit consent, as described above.
 
 {{#if google_ads}}
 
@@ -99,7 +103,7 @@ We send ad click references to our booking system and report bookings from our a
 
 ## How long we keep your details
 
-We keep booking details and WhatsApp messages only for as long as we need them to run and account for your bookings, and then delete them. Payment records are kept for as long as the law requires for our accounts.
+We keep booking details and WhatsApp messages only for as long as we need them to run and account for your bookings, and then delete them. If you have booked or visited, we keep your name and contact details to send you news and offers until you opt out. When you opt out, we keep only the contact detail and the date, so that we do not message you again. Payment records are kept for as long as the law requires for our accounts.
 
 ## Your rights
 

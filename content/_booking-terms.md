@@ -10,7 +10,7 @@ A {{deposit}} deposit secures your booking. We send a secure payment link on Wha
 
 ## booking_terms_full
 
-Used on `/faq/` (the deposit and paying answers) and in the "Good to know" band on `/treatments/`.
+Used on `/faq/` (the deposit and paying answers), in the "Good to know" band on `/treatments/`, and in full on `/terms/` (which adds the Marketing messages section).
 
 ### Deposit
 
@@ -28,6 +28,10 @@ If you need to move your booking and give us at least 24 hours' notice, your dep
 
 Please message us as early as you can and the team will help.
 
+### Marketing messages
+
+**Marketing messages.** When you book or visit Sri Siam Thai Therapy & Wellness, we may send you news and offers about similar treatments from Sri Siam Thai Therapy & Wellness by email and WhatsApp. You can opt out at any time: tick "Please don't send me news and offers" when booking, reply STOP to any WhatsApp message, or use the unsubscribe link in any email. Opting out stops all marketing messages on every channel. We still send messages about your bookings.
+
 ## booking_terms_lines
 
 Three one-liners for the "Good to know" cards on `/treatments/` and `/about/`.
@@ -35,3 +39,10 @@ Three one-liners for the "Good to know" cards on `/treatments/` and `/about/`.
 - Deposit: A {{deposit}} deposit secures your booking and comes off your bill at the shop.
 - Paying: Pay the rest at the shop on the day, by card or cash, or pay in full online if you prefer.
 - Changes: Need to move it? Give us at least 24 hours' notice and your deposit moves with you. Anything else, message us as early as you can.
+
+## marketing_notice
+
+Shown under the booking buttons on the home page, `/treatments/` and every treatment page (components/MarketingNotice.tsx). Wording agreed with the lead; change it only with them. The checkbox is never pre-ticked. Ticking it adds the sentence in `OPT_OUT_TEXT` (lib/whatsapp.ts) to the WhatsApp message.
+
+- Sentence: By booking, you agree that Sri Siam Thai Therapy & Wellness may send you occasional news and offers about our treatments by email and WhatsApp. You can stop at any time.
+- Checkbox: Please don't send me news and offers

@@ -115,7 +115,9 @@ export function AdsConsentBanner({ adsId, conversionLabel, conversionValue, curr
       if (e.type === "auxclick" && e.button !== 1) return;
       const a = (e.target as Element | null)?.closest?.("a");
       if (!(a instanceof HTMLAnchorElement)) return;
-      const tag = whatsAppSourceTag(a, TAG_AT_END);
+      // With the ad click reference on (lib/clickref.ts), an ad visit's tag may carry its code, " [web-AD-K7M2Q9XP]":
+      // source_tag stays "AD". The code grammar is the same on every shop site.
+      const tag = whatsAppSourceTag(a, process.env.NEXT_PUBLIC_CLICK_REF_ENDPOINT ? / \[web-([A-Z]{1,2})(?:-[2-9BCDFGHJKMNPQRSTVWXZ]{8})?\]$/ : TAG_AT_END);
       if (tag === null) return;
       const params: Record<string, string | number> = {};
       if (conversionValue !== undefined && currency) {

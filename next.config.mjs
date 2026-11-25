@@ -1,6 +1,8 @@
 // next.config.mjs
 // Served from the custom domain srisiamthaitherapyandwellness.co.uk, so basePath and assetPrefix stay empty.
 import { readFileSync } from "node:fs";
+import { fileURLToPath } from "node:url";
+import { consentVersion } from "./scripts/lib/consent-version.mjs";
 
 // The Google Ads tag id (lib/site.ts SITE.googleAds.id), inlined into client code at build time so that,
 // while it is "", the cookie banner and gtag loader are dropped from the build (components/CookieConsent.tsx).
@@ -9,13 +11,39 @@ const adsId = /googleAds:\s*\{\s*id:\s*"([^"]*)"/.exec(site)?.[1];
 if (adsId === undefined) throw new Error("next.config.mjs: googleAds.id not found in lib/site.ts");
 if (adsId && !/^AW-\d+$/.test(adsId)) throw new Error(`next.config.mjs: googleAds.id "${adsId}" is not AW-<digits>`);
 
+// Ad click reference (lib/site.ts googleAds.clickEndpoint, lib/clickref.ts). While the endpoint is "", all three
+// values below are "" and every branch that uses them is dropped from the build (nothing of it ships).
+// The consent text version (scripts/lib/consent-version.mjs: a hash of the click-reference banner text and
+// notice wording) is sent with each click reference and names the browser's consent key, so new words ask everyone again.
+const clickEndpoint = /clickEndpoint:\s*"([^"]*)"/.exec(site)?.[1];
+const siteId = /siteId:\s*"([^"]*)"/.exec(site)?.[1];
+if (clickEndpoint === undefined || siteId === undefined) throw new Error("next.config.mjs: googleAds.clickEndpoint or siteId not found in lib/site.ts");
+let cv = "";
+if (clickEndpoint) {
+  if (!adsId) throw new Error("next.config.mjs: googleAds.clickEndpoint needs googleAds.id (the consent banner) to be set");
+  // https only; plain http only for a receiver on this machine (local tests; check-site refuses it).
+  if (!/^https:\/\/[A-Za-z0-9.-]+(:\d+)?\/[A-Za-z0-9._~\/-]*$/.test(clickEndpoint) && !/^http:\/\/(localhost|127\.0\.0\.1)(:\d+)?\/[A-Za-z0-9._~\/-]*$/.test(clickEndpoint)) {
+    throw new Error(`next.config.mjs: googleAds.clickEndpoint "${clickEndpoint}" is not an https URL with a path`);
+  }
+  if (!/^[a-z0-9-]{1,20}$/.test(siteId)) throw new Error(`next.config.mjs: googleAds.siteId "${siteId}" is not [a-z0-9-]{1,20}`);
+  const retention = /clickRetention:\s*"([^"]*)"/.exec(site)?.[1] ?? "";
+  const logRetention = /clickLogRetention:\s*"([^"]*)"/.exec(site)?.[1] ?? "";
+  cv = consentVersion(fileURLToPath(new URL(".", import.meta.url)), siteId, retention, logRetention);
+  if (!/^[A-Za-z0-9._-]{1,32}$/.test(cv)) throw new Error(`next.config.mjs: consent text version "${cv}" is not [A-Za-z0-9._-]{1,32}`);
+}
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   output: "export",
   distDir: process.env.NEXT_DIST_DIR || ".next",
   trailingSlash: true,
   images: { unoptimized: true },
-  env: { NEXT_PUBLIC_GOOGLE_ADS_ID: adsId },
+  env: {
+    NEXT_PUBLIC_GOOGLE_ADS_ID: adsId,
+    NEXT_PUBLIC_CLICK_REF_ENDPOINT: clickEndpoint,
+    NEXT_PUBLIC_CLICK_REF_SITE: clickEndpoint ? siteId : "",
+    NEXT_PUBLIC_CONSENT_VERSION: cv,
+  },
 };
 
 export default nextConfig;

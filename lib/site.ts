@@ -50,6 +50,33 @@ export const SITE = {
     /** Value sent with each WhatsApp-click conversion, as set on the Ads conversion action "WhatsApp chat start (web)" (KMKT, 25 Nov 2026). */
     conversionValue: 1,
     currency: "GBP",
+    /**
+     * Ad click reference ("option B", lib/clickref.ts). "" = off: nothing of it is built, messages from an ad
+     * visit end [web-AD] and the privacy notice and banner keep today's words ({{#if click_ref}}). Set to this
+     * shop's own bot address (https, write-only route that always answers 204) to turn it on: then, on a visit
+     * that landed with gclid, gbraid or wbraid and only after Accept, WhatsApp messages end [web-AD-<8-char code>]
+     * and a WhatsApp press posts the code and the click reference there (once per page load). Needs id set.
+     * Never another shop's address. next.config.mjs reads it into NEXT_PUBLIC_CLICK_REF_ENDPOINT.
+     */
+    clickEndpoint: "" as string,
+    /**
+     * This shop's id, equal to the bot's SHOP_ID (shop-agent shop id; check-site pins it): sent as "site", mixed into
+     * the code and the consent text version, and must appear in clickEndpoint's host or path. Up to 20 of a-z 0-9 -.
+     */
+    siteId: "sst",
+    /**
+     * When the bot deletes a click reference, completing the privacy-notice sentence "We delete the ad click
+     * reference ...". Values from KBOT (25 Nov 2026); change them only together with the bot.
+     * check-site fails while clickEndpoint is set and this is still "TBC".
+     */
+    clickRetention: "within 8 days if you do not message us, otherwise 90 days after your visit or sooner once it has been reported to Google" as string,
+    /**
+     * What happens to the IP address and browser details in the hosting's logs, completing the notice sentence
+     * "It uses your IP address only briefly to prevent abuse and does not store it with the click reference; ...",
+     * e.g. "the hosting service's request logs keep them for 14 days". From KBOT (still being checked). check-site fails
+     * while clickEndpoint is set and this is still "TBC".
+     */
+    clickLogRetention: "TBC" as string,
   },
 
   /** Date the privacy notice text last changed. */

@@ -21,17 +21,43 @@ We use the Google Ads tag, provided by Google, to measure which of our Google ad
 
 If you accept, the tag sets Google advertising cookies on your device, such as _gcl_au and _gcl_aw, which last up to 90 days. It sends Google your IP address and details of your visit, such as the pages you view, your browser and device, and each tap on a WhatsApp button with the short code described below, but not your message. Google handles this under its own privacy policy and may process it outside the UK. The tag is set up so that Google does not use it to personalise the ads you see.
 
+{{else}}
+
+This website does not use cookies, analytics or any other tracking. It does not ask you to fill in a form or create an account. The site is hosted on GitHub Pages, which keeps standard technical server logs under GitHub's own privacy statement.
+
+The booking buttons on this site open WhatsApp on your device with a short message already typed. Each message ends with a short code, such as [web-T], that tells us which part of the website you came from. If you reached this website from one of our Google ads, the code is [web-AD] instead, wherever you click. The site works that out from the web address you arrived on and keeps it only while the page is open in your browser: it is not stored on your device, and the website does not send it to us, to Google or to anyone else. Google keeps its own record of clicks on its ads under Google's privacy policy; this website adds nothing to it. Nothing is sent until you press send, and this website does not know whether you did.
+
+{{/if}}
+
+{{#if google_ads_only}}
+
 Your choice is kept in your browser on this device for six months, and then we ask again. It is not sent to us. You can change your mind at any time with the Cookie settings button just below, which is also at the bottom of every page. If you change to Reject, this website stops using the Google Ads tag and deletes the Google Ads cookies it set. Cookies that Google keeps on its own websites are managed in your browser or your Google account.
 
 {{cookie_settings_button}}
 
 The booking buttons on this site open WhatsApp on your device with a short message already typed. Each message ends with a short code, such as [web-T], that tells us which part of the website you came from. If you reached this website from one of our Google ads, the code is [web-AD] instead, wherever you click. The site works that out from the web address you arrived on and keeps it only while the page is open in your browser: the website does not store it on your device or send it to us or anyone else. Separately, if you have accepted cookies, the Google Ads tag reads the ad click reference that Google adds to that web address. Nothing reaches us until you press send in WhatsApp, and this website does not know whether you did.
 
-{{else}}
+{{/if}}
 
-This website does not use cookies, analytics or any other tracking. It does not ask you to fill in a form or create an account. The site is hosted on GitHub Pages, which keeps standard technical server logs under GitHub's own privacy statement.
+{{#if click_ref}}
 
-The booking buttons on this site open WhatsApp on your device with a short message already typed. Each message ends with a short code, such as [web-T], that tells us which part of the website you came from. If you reached this website from one of our Google ads, the code is [web-AD] instead, wherever you click. The site works that out from the web address you arrived on and keeps it only while the page is open in your browser: it is not stored on your device, and the website does not send it to us, to Google or to anyone else. Google keeps its own record of clicks on its ads under Google's privacy policy; this website adds nothing to it. Nothing is sent until you press send, and this website does not know whether you did.
+Your choice is kept in your browser on this device for six months, and then we ask again. It is not sent to us, except with an ad click reference as described in the next section. You can change your mind at any time with the Cookie settings button just below, which is also at the bottom of every page. If you change to Reject, this website stops using the Google Ads tag and deletes the Google Ads cookies it set. Cookies that Google keeps on its own websites are managed in your browser or your Google account.
+
+{{cookie_settings_button}}
+
+The booking buttons on this site open WhatsApp on your device with a short message already typed. Each message ends with a short code, such as [web-T], that tells us which part of the website you came from. If you reached this website from one of our Google ads, the code is [web-AD] instead, wherever you click. The site works that out from the web address you arrived on and keeps it only while the page is open in your browser: the website does not store it on your device. If you have clicked Accept, the Google Ads tag also reads the ad click reference that Google adds to that web address, and this website uses that reference as described in the next section. If you have not, nothing about your visit reaches us until you press send in WhatsApp, and this website does not know whether you did.
+
+## Linking a booking to one of our ads
+
+If you came to this website from one of our Google ads and clicked Accept, the code at the end of your WhatsApp message is slightly longer, such as [web-AD-K7M2Q9XP]. The website works it out from Google's reference for your ad click, which is in the web address you arrived on.
+
+When you tap a WhatsApp button, the website sends that code and the ad click reference to our booking system, which Gumon Technology runs for us. With them it sends which button you tapped, when your visit started and which version of the cookie banner you accepted. It does not send your name, your phone number or your message. As with any request over the internet, our booking system also receives your IP address and details of your browser. It uses your IP address only briefly to prevent abuse and does not store it with the click reference; {{click_log_retention}}. This website does not store the click reference on your device for this purpose; the Google Ads cookies described above are separate. If you clicked Reject, did not choose, or did not come from one of our ads, nothing is sent.
+
+When your message reaches us, the code links that ad click to your WhatsApp conversation with us and to any booking you make. If you go on to book or visit us, we use it to tell Google Ads, through Google's conversion upload, that the ad click led to a booking or a paid visit. For a booking we send Google the click reference, that a booking was made and its date and time. For a paid visit we send the click reference, the date and time of the visit and the amount you paid in pounds. Each goes with whether you gave consent. We never send Google your name, your phone number, your email address, your messages, the treatment you chose or anything about your health. Google handles this under its own privacy policy and may process it outside the UK. Our booking system may hold the click reference outside the UK, in the same way as your messages (see below).
+
+We delete the ad click reference {{click_retention}}. Without the click reference, the source of your enquiry (that it came from a Google ad, which campaign, and the date) stays in your customer record for as long as you are a customer, and we keep counts that contain no personal details. We do all of this only with your consent, which you give by clicking Accept.
+
+You can change your mind at any time with Cookie settings: if you choose Reject, the website stops sending click references at once and your messages end with [web-AD] again. To have a click reference we already hold deleted, or to stop a booking being reported to Google, ask us in the WhatsApp chat or email {{email}} before it is reported to Google: a report already sent to Google cannot be withdrawn there. You can also delete the code from the WhatsApp message before you send it; your booking is not affected. The click reference already sent is then not linked to a booking, and is deleted as described above.
 
 {{/if}}
 
@@ -62,6 +88,12 @@ We use your details to take and run your booking because that is needed to provi
 {{#if google_ads}}
 
 We use the Google Ads tag and its cookies only with your consent, which you give by clicking Accept on the cookie banner and can withdraw at any time with Cookie settings.
+
+{{/if}}
+
+{{#if click_ref}}
+
+We send ad click references to our booking system and report bookings from our ads to Google Ads only with your consent, which you give by clicking Accept on the cookie banner and can withdraw at any time with Cookie settings.
 
 {{/if}}
 

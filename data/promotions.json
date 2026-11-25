@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-09T06:33:25Z",
+  "updated_at": "2026-11-25T20:30:00Z",
   "promotions": [
     {
       "code": "P-BQTK",
@@ -119,6 +119,42 @@
       "starts": "2026-11-09",
       "ends": "2026-12-18",
       "ends_label": "Friday 18 December 2026",
+      "status": "live"
+    },
+    {
+      "code": "P-WR9N",
+      "title": "Winter Restore: Hot Stone + Traditional Thai Massage",
+      "eyebrow": "Winter offer",
+      "detail": "Warm heated stones and traditional Thai massage in one treatment. 90 minutes for £89. A 120-minute option is also available: book it on WhatsApp. Mention Winter Restore on WhatsApp or when you arrive.",
+      "points": [
+        "90 minutes: £89",
+        "120 minutes: also available, book on WhatsApp"
+      ],
+      "offer": "Mention Winter Restore on WhatsApp or when you arrive",
+      "message": "Hi Sri Siam Thai Therapy & Wellness, I'd like to book the Winter Restore offer, 90 minutes (Hot Stone + Traditional Thai Massage).",
+      "image": "/img/hot-stones-spine-a-800.webp",
+      "illustrative": true,
+      "starts": "2026-11-25",
+      "ends": "2027-02-28",
+      "ends_label": "Sunday 28 February 2027",
+      "status": "live"
+    },
+    {
+      "code": "P-WR2H",
+      "title": "Winter Restore: 120-Minute Option",
+      "eyebrow": "Winter offer",
+      "detail": "The Winter Restore treatment, Hot Stone + Traditional Thai Massage, is also available as a 120-minute session. Message us on WhatsApp to book it.",
+      "points": [
+        "120 minutes",
+        "Book on WhatsApp"
+      ],
+      "offer": "Mention Winter Restore on WhatsApp or when you arrive",
+      "message": "Hi Sri Siam Thai Therapy & Wellness, I'd like to book the Winter Restore offer, 120 minutes (Hot Stone + Traditional Thai Massage).",
+      "image": "/img/hot-stones-spine-b-800.webp",
+      "illustrative": true,
+      "starts": "2026-11-25",
+      "ends": "2027-02-28",
+      "ends_label": "Sunday 28 February 2027",
       "status": "live"
     }
   ]

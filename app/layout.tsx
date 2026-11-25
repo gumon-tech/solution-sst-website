@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Cormorant_Garamond, Figtree } from "next/font/google";
 import "./globals.css";
+import { AdSource } from "@/components/AdSource";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import { NoticeBand } from "@/components/NoticeBand";
@@ -65,6 +66,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Footer />
         <StickyBar />
         <RevealObserver />
+        <AdSource />
       </body>
     </html>
   );

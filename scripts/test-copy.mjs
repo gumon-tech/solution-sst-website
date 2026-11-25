@@ -14,7 +14,7 @@ const copy = (o = {}, extra = {}) => ({ ...empty, slots: { ...empty.slots, ...o 
 // What the site shows today, emphasis marks removed: the bot's starting point for an edit, so it must pass as it is.
 const current = copy(Object.fromEntries(Object.entries(slots).map(([k, s]) => [k, currentText(s).replace(/\*([^*]+)\*/g, "$1")])));
 const lead = (t) => copy({ "home.hero.lead": t });
-const ok = "Trained at Wat Pho in Bangkok, our therapists bring traditional Thai massage to Greenwich, Cutty Sark. Book it in one WhatsApp message.";
+const ok = "We bring the traditional techniques of Thai massage to Greenwich, Cutty Sark, with a modern touch. Book it in one WhatsApp message.";
 
 runCases("validate-copy.mjs", [
   ["every slot null (the site is the markdown)", empty, true],
@@ -35,6 +35,9 @@ runCases("validate-copy.mjs", [
   ["short shop name", lead("At Sri Siam we bring the art of Thai massage to Greenwich, Cutty Sark, in skilled hands."), false],
   ["Greenwich alone", lead("We bring the art of Thai massage to Greenwich, in skilled hands, booked in one message."), false],
   ["neighbouring business named", lead(`${ok} Find us inside Carnaby.`), false],
+  ["Wat Pho (unconfirmed claim)", lead("Trained at the renowned Wat Pho in Bangkok, we bring Thai massage to Greenwich, Cutty Sark."), false],
+  ["therapists, plural (one therapist takes bookings)", lead("Our therapists bring traditional Thai massage to Greenwich, Cutty Sark, in skilled hands."), false],
+  ["therapists, plural, on /careers/ (a role)", copy({ "careers.hero.lead": "We sometimes welcome Thai massage and spa therapists. Send us a message on WhatsApp." }), true],
   ["a price", lead(`${ok} From £59.`), false],
   ["a percentage offer", lead(`${ok} 20% off this week.`), false],
   ["a treatment length", lead(`${ok} Choose 90 minutes of calm.`), false],
@@ -61,11 +64,14 @@ runCases("validate-copy.mjs", [
 const pages = JSON.parse(readFileSync(path.join(here, "lib/seo-pages.json"), "utf8")).pages;
 const seoEmpty = { updated_at: "2026-11-19T09:00:00Z", pages: Object.fromEntries(Object.keys(pages).map((r) => [r, { title: null, description: null }])) };
 const seo = (route, o) => ({ ...seoEmpty, pages: { ...seoEmpty.pages, [route]: { ...seoEmpty.pages[route], ...o } } });
-const desc = "Traditional Thai massage in Greenwich, Cutty Sark, by therapists trained at Wat Pho. Book on WhatsApp.";
+const desc = "Traditional Thai massage in Greenwich, Cutty Sark: compressions, pulls and yogic-style stretches. Book on WhatsApp.";
 runCases("validate-seo.mjs", [
   ["every page null (front matter)", seoEmpty, true],
   ["a title and a description", seo("/", { title: "Thai Massage | Sri Siam Thai Therapy & Wellness", description: desc }), true],
   ["title only", seo("/tour/", { title: "Tour the Shop | Sri Siam Thai Therapy & Wellness" }), true],
+  ["description naming Wat Pho", seo("/", { description: "Traditional Thai massage in Greenwich, Cutty Sark, trained at Wat Pho in Bangkok. Book on WhatsApp." }), false],
+  ["description with therapists, plural", seo("/", { description: "Traditional Thai massage in Greenwich, Cutty Sark by Thai therapists. Book on WhatsApp today." }), false],
+  ["careers description with therapists, plural", seo("/careers/", { description: "Sri Siam Thai Therapy & Wellness sometimes welcomes Thai massage and spa therapists. Message us on WhatsApp." }), true],
   ["title over 60", seo("/", { title: "Thai Massage in Greenwich, Cutty Sark | Sri Siam Thai Therapy & Wellness" }), false],
   ["description over 155", seo("/", { description: `${desc} ${desc}` }), false],
   ["| outside a title", seo("/", { description: `${desc} | More` }), false],

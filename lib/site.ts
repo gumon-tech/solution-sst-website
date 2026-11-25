@@ -38,7 +38,7 @@ export const SITE = {
   depositGbp: 15,
 
   /** Date the privacy notice text last changed. */
-  privacyUpdated: "31 October 2026",
+  privacyUpdated: "25 November 2026",
   /** Shown in the footer legal line. */
   builtBy: "Gumon Technology",
   /** builtBy in the footer links here. */

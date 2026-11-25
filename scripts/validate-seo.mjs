@@ -40,7 +40,7 @@ else {
       for (const k of Object.keys(o)) if (!(k in LIMITS)) fail(`pages.${r}: unknown key "${k}"`);
       for (const [k, lim] of Object.entries(LIMITS)) {
         if (!(k in o)) fail(`pages.${r}: "${k}" missing (null keeps the page's own)`);
-        else if (o[k] !== null) for (const m of checkSlotText(o[k], facts, names, lim)) fail(`pages.${r}.${k}: ${m}`);
+        else if (o[k] !== null) for (const m of checkSlotText(o[k], facts, names, { ...lim, careers: r === "/careers/" })) fail(`pages.${r}.${k}: ${m}`);
       }
     }
   }

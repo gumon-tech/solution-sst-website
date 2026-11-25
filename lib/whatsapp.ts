@@ -24,6 +24,8 @@ export const TAG = {
   tour: "TR",
   /** The Book button on an offer card (data/promotions.json). */
   offer: "PR",
+  /** Replaces every other tag when the visit came from a Google Ads click (components/AdSource.tsx). */
+  ad: "AD",
 } as const;
 
 /** Per-treatment tag for the option buttons on a treatment page. */

@@ -3,7 +3,7 @@ slug: lymphatic-drainage-massage
 title: "Lymphatic Drainage Massage in Greenwich, Cutty Sark"
 description: "Lymphatic drainage massage in Greenwich, Cutty Sark: a gentle, rhythmic massage with light, flowing, precise strokes. Choose your length and book on WhatsApp."
 h1: "Lymphatic Drainage Massage in Greenwich, Cutty Sark"
-card: "A gentle, rhythmic massage with light, flowing strokes that may leave you feeling calm and refreshed."
+card: "A gentle, rhythmic massage with light, flowing strokes, given with precise, unhurried hands."
 hero_image: orchid-stones
 secondary_image: hands-back-b
 also_like: [aromatherapy-massage, thai-foot-massage]
@@ -36,7 +36,7 @@ Eyebrow: Choose your length
 
 If you are used to firmer massage, this may feel unexpectedly light. The strokes are gentle, precise and rhythmic, and they flow lightly from one to the next.
 
-It can feel calm and unhurried, and you may leave feeling calm and refreshed.
+It can feel calm and unhurried.
 
 ## focus
 
@@ -47,7 +47,7 @@ It can feel calm and unhurried, and you may leave feeling calm and refreshed.
 - A calm, unhurried treatment
 
 ### Good to know
-- Gentle by design; for deeper work, look at our Thai Massage or Hot Stone Massage
+- Gentle by design; for deep tissue techniques, look at our Thai Massage
 - If you are pregnant, or have a health condition, an injury or a recent operation, tell us before you book so the team can confirm the right treatment. If in doubt, ask your doctor first.
 - Ask us on WhatsApp if you would like to know more before you book
 

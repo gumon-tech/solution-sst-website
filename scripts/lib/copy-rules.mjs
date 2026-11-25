@@ -28,9 +28,9 @@ export function serviceNames(root = ROOT) {
 
 /**
  * Problems in one value, as short messages. Empty array = fine.
- * opts: { min, max, title: true for a page title (allows "|") }
+ * opts: { min, max, title: true for a page title (allows "|"), careers: true for /careers/ text (may say "therapists": a role) }
  */
-export function checkSlotText(t, facts, names, { min, max, title = false }) {
+export function checkSlotText(t, facts, names, { min, max, title = false, careers = false }) {
   if (typeof t !== "string") return ["must be a string or null"];
   const out = [];
   if (t !== t.trim()) out.push("no spaces at the start or end");
@@ -44,6 +44,7 @@ export function checkSlotText(t, facts, names, { min, max, title = false }) {
   if (RESERVED.test(t)) out.push("no deposit, paying, cancelling, privacy or health-safety wording (those stay in the core copy, changed by a person)");
   if (GREENWICH_ALONE.test(t.replace(GREENWICH_OK, ""))) out.push('"Greenwich" is always "Greenwich, Cutty Sark" (except "Greenwich station")');
   if (/carnaby/i.test(t)) out.push("the neighbouring business is never named");
+  if (!careers && /\btherapists\b/i.test(t)) out.push('"therapists": unconfirmed claim, one therapist takes bookings (only /careers/ may say it)');
   // The shared rules (emoji, Thai, links, emails, phone numbers, the [web-] tag, the short name, health and review words, any £).
   // "therapist" is a job, and a service's own name is the menu's wording: both are removed before the health test only.
   let healthSafe = t;

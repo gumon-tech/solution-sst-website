@@ -44,6 +44,7 @@ t("therapist allowed in alt", !bad("A therapist pressing along a client's back",
 t("no money mode", bad("Only £5 off", { money: "none" }));
 t("discount ok", !bad("Take £5 off"));
 t("invented price", bad("Thai massage £29 today"));
+t("Wat Pho (unconfirmed claim)", bad("Trained at Wat Pho, Bangkok"));
 
 // Diff rules.
 const promo = (o = {}) => ({ code: "P-AAAA", title: "T", detail: "D", status: "live", ends: "2026-11-30", ends_label: "Monday 30 November 2026", ...o });

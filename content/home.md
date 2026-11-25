@@ -1,6 +1,6 @@
 ---
 title: "Thai Massage in Greenwich, Cutty Sark | Sri Siam Thai Therapy & Wellness"
-description: "Thai massage, hot stone, aromatherapy and more in Greenwich, Cutty Sark SE8. Therapists trained at Wat Pho. Book on WhatsApp."
+description: "Traditional Thai massage, hot stone, aromatherapy and more in Greenwich, Cutty Sark SE8. Book on WhatsApp."
 h1: "Traditional Thai massage in Greenwich, Cutty Sark, booked in a message"
 ---
 
@@ -12,7 +12,7 @@ Eyebrow: Greenwich, Cutty Sark · London SE8
 
 # Traditional Thai massage in *Greenwich, Cutty Sark*, booked in a message
 
-Lead: At Sri Siam Thai Therapy & Wellness, we bring the authentic art of Thai massage to you. Trained at the renowned Wat Pho in Bangkok, our therapists combine traditional techniques with a modern touch to deliver exceptional care. Experience a tranquil escape in skilled hands, and book it in one WhatsApp message.
+Lead: At Sri Siam Thai Therapy & Wellness, we bring the authentic art of Thai massage to you. We combine traditional techniques with a modern touch to deliver exceptional care. Experience a tranquil escape in skilled hands, and book it in one WhatsApp message.
 
 - Button (primary, tag O): Book on WhatsApp
 - Button (ghost): See the menu -> /treatments/
@@ -20,7 +20,7 @@ Lead: At Sri Siam Thai Therapy & Wellness, we bring the authentic art of Thai ma
 Facts strip (three pills):
 - Unit 89 Corbridge Court, Glaisher Street, SE8 3ET
 - {{hours_sentence}}
-- Therapists trained at Wat Pho, Bangkok
+- Traditional Thai massage techniques
 
 ## offers
 
@@ -59,7 +59,7 @@ Eyebrow: Our treatments
 
 ## Our specialised treatments
 
-Each one is rooted in centuries of Thai tradition, and each is listed with the lengths we offer, exactly as on our booking calendar.
+Each treatment is listed with the lengths we offer, exactly as on our booking calendar.
 
 Cards render one per treatment slug from `data/services.json`, in file order, using the `card` line from each `treatments/<slug>.md`. Each card: image, name, card line, option chips, "from £{{from_price}}", and:
 - Link: Details -> /treatments/{{slug}}/
@@ -74,9 +74,9 @@ Caption: Traditional Thai massage techniques.
 
 Eyebrow: Our roots
 
-## From Wat Pho, Bangkok, to Greenwich, Cutty Sark
+## From Thailand to Greenwich, Cutty Sark
 
-Deeply rooted in the ancient traditions of Thailand, Sri Siam Thai Therapy & Wellness is a sanctuary dedicated to the art of Thai massage. Our therapists trained at the renowned Wat Pho in Bangkok, the temple school of traditional Thai massage, and bring its traditional techniques to Greenwich, Cutty Sark, with a modern touch.
+Deeply rooted in the ancient traditions of Thailand, Sri Siam Thai Therapy & Wellness is a sanctuary dedicated to the art of Thai massage. We bring the traditional techniques of Thai massage to Greenwich, Cutty Sark, with a modern touch.
 
 We believe in the power of intuitive touch, offering a serene escape in Greenwich, Cutty Sark, London.
 

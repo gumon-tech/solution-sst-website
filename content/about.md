@@ -1,6 +1,6 @@
 ---
 title: "About | Sri Siam Thai Therapy & Wellness, Greenwich, Cutty Sark"
-description: "Thai massage in Greenwich, Cutty Sark by professional Thai therapists trained at the renowned Wat Pho in Bangkok, the temple school of traditional Thai massage."
+description: "Sri Siam Thai Therapy & Wellness in Greenwich, Cutty Sark is founded on the principles of ancient Thai massage: traditional techniques with a modern touch."
 h1: "Sri Siam Thai Therapy & Wellness: Thai traditions in Greenwich, Cutty Sark"
 ---
 
@@ -19,11 +19,11 @@ Lead: Sri Siam Thai Therapy & Wellness is your sanctuary on Glaisher Street, whe
 [image: hands-back-b]
 Caption: Skilled hands, traditional techniques, a modern touch.
 
-Eyebrow: Our training
+Eyebrow: Our techniques
 
-## Trained at Wat Pho, Bangkok
+## Time-honoured Thai techniques
 
-Our professional Thai therapists trained at the renowned Wat Pho in Bangkok, the temple school of traditional Thai massage. They combine traditional techniques with a modern touch to deliver exceptional care, and our traditional treatments follow the time-honoured techniques of Thai massage.
+We combine traditional techniques with a modern touch to deliver exceptional care, and our treatments follow the time-honoured techniques of Thai massage.
 
 Whether you want to unwind or simply take some time for yourself, we welcome you to our modern sanctuary of peace to experience the art of traditional wellness. Alongside Thai Massage, our menu includes Aromatherapy, Hot Stone and Lymphatic Drainage Massage, a Thai Foot Massage and a Back, Neck & Shoulders Massage, each listed with the lengths we offer.
 

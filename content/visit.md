@@ -22,7 +22,7 @@ Address block (`<address>`): {{address}}
 ### Opening hours
 {{hours_table}}
 
-Small line: We book by appointment through WhatsApp, so message us first and we will tell you when a therapist is free.
+Small line: We book by appointment through WhatsApp, so message us first and we will offer you times that are free.
 
 ### Contact
 - WhatsApp messages: {{phone_display}} (link, tag C) — Message us to book or ask a question.

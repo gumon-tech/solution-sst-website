@@ -263,7 +263,7 @@
       "file": "about.md",
       "section": "wat-pho",
       "field": "paras.0",
-      "where": "About, Trained at Wat Pho: first paragraph"
+      "where": "About, Our techniques: first paragraph"
     },
     "about.wat-pho.body-2": {
       "kind": "paragraph",
@@ -271,7 +271,7 @@
       "file": "about.md",
       "section": "wat-pho",
       "field": "paras.1",
-      "where": "About, Trained at Wat Pho: second paragraph"
+      "where": "About, Our techniques: second paragraph"
     },
     "about.the-space.body-1": {
       "kind": "paragraph",

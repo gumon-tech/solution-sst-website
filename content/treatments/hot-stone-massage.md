@@ -1,9 +1,9 @@
 ---
 slug: hot-stone-massage
 title: "Hot Stone Massage in Greenwich, Cutty Sark | Sri Siam Thai Therapy & Wellness"
-description: "Hot stone massage in Greenwich, Cutty Sark: with gently warmed basalt stones that let your therapist work deeper. Choose your length and book on WhatsApp."
+description: "Hot stone massage in Greenwich, Cutty Sark: an indulgent massage with gently warmed basalt stones. Choose your length and book on WhatsApp."
 h1: "Hot Stone Massage in Greenwich, Cutty Sark"
-card: "Warm stones combined with massage to help you unwind, with gently warmed basalt stones."
+card: "An indulgent massage with smooth, gently warmed basalt stones."
 hero_image: therapist-hot-stone
 secondary_image: hot-stones-spine-a
 also_like: [aromatherapy-massage, thai-massage]
@@ -18,7 +18,7 @@ Eyebrow: Treatments · {{group}}
 
 # Hot Stone Massage in Greenwich, Cutty Sark
 
-Lead: Hot stone massage is an indulgent massage that uses gently warmed basalt stones to allow your therapist to work deeper into the areas of concern.
+Lead: Hot stone massage is an indulgent massage that combines massage with gently warmed basalt stones.
 
 ## options
 
@@ -34,7 +34,7 @@ Eyebrow: Choose your length
 
 ## What to expect
 
-Warm stones combined with massage, to help you unwind. The stones are smooth basalt, gently warmed, and they allow your therapist to work deeper into the areas of concern.
+Warm stones combined with massage. The stones are smooth basalt, gently warmed.
 
 It can feel deeply warming and unhurried. If anything ever feels too warm, tell your therapist straight away.
 
@@ -43,7 +43,6 @@ It can feel deeply warming and unhurried. If anything ever feels too warm, tell 
 ### What it focuses on
 - Massage combined with warm stones
 - Smooth basalt stones, gently warmed
-- Deeper work into the areas of concern
 - An indulgent, unhurried treatment
 
 ### Good to know
@@ -65,7 +64,7 @@ The stones are gently warmed. If anything feels too warm at any point, tell your
 Smooth basalt stones, gently warmed.
 
 ### How is hot stone massage different from other massages?
-It combines with gently warmed basalt stones, which allow your therapist to work deeper into the areas of concern. Choose the length that suits you from the options above.
+It combines massage with gently warmed basalt stones. Choose the length that suits you from the options above.
 
 ## also-like
 

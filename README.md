@@ -58,6 +58,21 @@ Shop isolation: `check-site` pins this shop's id (`SHOP_ID = "sst"`, the shop-ag
 
 When on: a visit whose landing address has `gclid`, `gbraid` or `wbraid` is an ad visit (`[web-AD]`, `components/AdSource.tsx`, which also keeps each button's own tag in `data-wa-tag`). AdSource then lazy-loads `lib/clickref.ts`, which does nothing unless the click id (gclid first, then wbraid, then gbraid) matches `[A-Za-z0-9_-]{20,256}`. While the stored choice is Accept (read fresh through `lib/consent.ts`; re-checked on the event `writeChoice` fires in this page and on storage events from other tabs), every WhatsApp message ends `[web-AD-<code>]`; on Reject or withdrawal it goes back to `[web-AD]` at once. Code: `SHA-256("clickref-v1|" + siteId + "|" + kind + "|" + id)`, character i (0..7) = `"23456789BCDFGHJKMNPQRSTVWXZ"[digest[i] % 27]`. On a WhatsApp press whose message carries the code, one POST per code per page load: `fetch(endpoint, {method: "POST", keepalive: true, credentials: "omit", headers: {"Content-Type": "text/plain"}, body})`, response not read, navigation never delayed; body (at most 768 bytes) `{"v":1,"site","code","kind","id","surface" (the button's own tag, from data-wa-tag; nothing is sent if it is unknown),"landed" (performance.timeOrigin, epoch ms),"consent":{"ad_user_data":"granted","ad_personalization":"denied"},"cv"}`. The click id and code stay in page memory only. The WhatsApp-click conversion keeps `source_tag` "AD" for coded tags. Shop-neutral: `lib/clickref.ts`; per shop: the three `lib/site.ts` values, the banner text and version, the notice wording.
 
+## Marketing opt-out
+
+UK soft opt-in (PECR reg 22). Under the booking buttons on the home page, `/treatments/` and every treatment page the site shows a notice and an unticked box, "Please don't send me news and offers" (wording in `content/_booking-terms.md`, `## marketing_notice`; component `components/MarketingNotice.tsx`). The full terms are on `/terms/` (`#marketing`) and the privacy notice has a "Marketing messages" section.
+
+There is no form, so the choice travels in the WhatsApp message. When the visitor ticks the box, every wa.me message gets one sentence directly before the final source tag:
+
+```
+<message> Please don't send me news and offers. [web-X]
+```
+
+- The sentence is the single constant `OPT_OUT_TEXT` in `lib/whatsapp.ts` (`insertOptOut` / `removeOptOut` there are the only code that adds or removes it). To change the marker, change that constant; nothing else needs editing. Bot side: treat a message containing it as "do not send this customer marketing, on any channel", record it, and keep sending booking messages.
+- It is not a tag: the tag stays last (`[web-X]`, `[web-AD]` or `[web-AD-XXXXXXXX]`), so parsers that read the end of the message are unaffected. Unticked, the message is byte-for-byte what it was before.
+- State is in page memory only (no cookie, no web storage, nothing sent anywhere); it lasts through in-app page changes and ends on a full reload. Without JavaScript the notice is shown and the box is disabled.
+- Tests: `scripts/test-marketing-optout.mjs` (in `npm run validate`); `scripts/check-site.mjs` checks the notice on the three surfaces and that no input is pre-ticked. `/terms/` is not in `scripts/lib/seo-pages.json` or the copy slots: the shop system must not edit terms wording.
+
 ## Data the shop system writes
 
 The shop manager confirms a change in WhatsApp chat; the shop system (shop-agent, shop id `sst`) then keeps at most one open pull request per concern from a branch `shop-agent/<concern>-<id>`, rebuilt from main plus every confirmed change (or closed if they were withdrawn before it merged). `.github/workflows/auto-merge-shop-agent.yml` merges it by itself when the branch, the file rule, `npm run check` and the diff rules all hold, then starts `pages.yml` (a merge by `GITHUB_TOKEN` does not trigger it). Anything else stays open for a person. Who may ask for what (management or shop manager) is enforced by the bot, not the site.

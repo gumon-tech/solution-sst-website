@@ -339,6 +339,7 @@ function loadTerms() {
     "Paying the rest": "paying",
     "Moving your booking": "moving",
     "Cancelling, or changes at short notice": "cancelling",
+    "Marketing messages": "marketing",
   };
   for (const chunk of full.split(/^### /m).slice(1)) {
     const nl = chunk.indexOf("\n");
@@ -346,6 +347,10 @@ function loadTerms() {
     const key = fullMap[head];
     if (!key) throw new Error(`_booking-terms.md: unexpected heading "${head}"`);
     out[`booking_terms_full.${key}`] = chunk.slice(nl).trim();
+  }
+  for (const l of part("marketing_notice").split("\n")) {
+    const m = /^- (Sentence|Checkbox):\s*(.*)$/.exec(l);
+    if (m) out[`marketing_notice.${m[1].toLowerCase()}`] = m[2].trim();
   }
   const linesMap: Record<string, string> = { Deposit: "deposit", Paying: "paying", Changes: "changes" };
   for (const l of part("booking_terms_lines").split("\n")) {

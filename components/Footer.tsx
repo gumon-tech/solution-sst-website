@@ -18,6 +18,7 @@ const PAGE_HREF: Record<string, string> = {
   Tour: "/tour/",
   FAQ: "/faq/",
   Careers: "/careers/",
+  "Booking terms": "/terms/",
   Privacy: "/privacy/",
 };
 

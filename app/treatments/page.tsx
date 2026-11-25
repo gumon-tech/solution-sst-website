@@ -4,6 +4,7 @@ import { CompactHero } from "@/components/CompactHero";
 import { JsonLd } from "@/components/JsonLd";
 import { MenuRow } from "@/components/MenuRow";
 import { Reveal } from "@/components/Reveal";
+import { MarketingNotice } from "@/components/MarketingNotice";
 import { Rich } from "@/components/Rich";
 import { SectionHead } from "@/components/SectionHead";
 import { ActionView } from "@/components/Actions";
@@ -36,6 +37,7 @@ export default function TreatmentsPage() {
         <p className="hero-rise mt-3 text-sm text-ink-2" style={{ "--i": 2 } as React.CSSProperties}>
           {fill(hero.small ?? "")}
         </p>
+        <MarketingNotice sentence={terms()["marketing_notice.sentence"]} label={terms()["marketing_notice.checkbox"]} className="mt-4" />
         <ul className="mt-6 flex flex-wrap gap-2" aria-label="Menu sections">
           {GROUPS.map((g) => (
             <li key={g.anchor}>

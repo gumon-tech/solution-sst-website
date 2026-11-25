@@ -7,11 +7,12 @@ import { Img } from "@/components/Img";
 import { JsonLd } from "@/components/JsonLd";
 import { Reveal } from "@/components/Reveal";
 import { PromoCards } from "@/components/PromoCards";
+import { MarketingNotice } from "@/components/MarketingNotice";
 import { Paras, Rich } from "@/components/Rich";
 import { SectionHead } from "@/components/SectionHead";
 import { TourTeaser } from "@/components/TourTeaser";
 import { TreatmentCard } from "@/components/TreatmentCard";
-import { fmString, loadDoc, section, trailingActions } from "@/lib/content";
+import { fmString, loadDoc, section, terms, trailingActions } from "@/lib/content";
 import { promotionsForBuild } from "@/lib/promotions-data";
 import { pageMetadata } from "@/lib/seo";
 import { TREATMENTS } from "@/lib/services";
@@ -122,6 +123,7 @@ export default function HomePage() {
           </ol>
           <Reveal className="mt-10">
             <ActionView action={trailingActions(how)[0]} variant="ghost" />
+            <MarketingNotice sentence={terms()["marketing_notice.sentence"]} label={terms()["marketing_notice.checkbox"]} tone="plum" className="mt-5" />
           </Reveal>
         </div>
       </section>

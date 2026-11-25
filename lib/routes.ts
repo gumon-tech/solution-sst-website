@@ -11,6 +11,7 @@ export const STATIC_ROUTES = [
   "/faq/",
   "/careers/",
   "/privacy/",
+  "/terms/",
 ] as const;
 
 export function allRoutes(): string[] {

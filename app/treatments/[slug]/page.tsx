@@ -10,9 +10,10 @@ import { JsonLd } from "@/components/JsonLd";
 import { SITE } from "@/lib/site";
 import { OptionButtons } from "@/components/OptionButtons";
 import { Reveal } from "@/components/Reveal";
+import { MarketingNotice } from "@/components/MarketingNotice";
 import { Paras, Rich } from "@/components/Rich";
 import { SectionHead } from "@/components/SectionHead";
-import { fill, plain } from "@/lib/content";
+import { fill, plain, terms } from "@/lib/content";
 import { pageMetadata } from "@/lib/seo";
 import { TREATMENTS, getTreatment, priceLabel } from "@/lib/services";
 import { breadcrumbLd, faqLd, serviceLd } from "@/lib/structured-data";
@@ -114,6 +115,7 @@ export default async function TreatmentPage({ params }: { params: Promise<{ slug
             <p className="mt-4 max-w-lg text-ink-2">
               <Rich text={options.paras.find((p) => p.includes("booking_terms_short")) ?? ""} />
             </p>
+            <MarketingNotice sentence={terms()["marketing_notice.sentence"]} label={terms()["marketing_notice.checkbox"]} className="mt-4" />
             {askAction && (
               <p className="mt-2">
                 <ActionView action={askAction} name={t.name} />

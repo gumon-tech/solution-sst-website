@@ -31,7 +31,7 @@ if (!existsSync(OUT)) {
 }
 
 // ---- routes -----------------------------------------------------------------
-const routes = ["/", "/treatments/", "/gift-vouchers/", "/about/", "/visit/", "/tour/", "/faq/", "/careers/", "/privacy/", ...slugs.map((s) => `/treatments/${s}/`)];
+const routes = ["/", "/treatments/", "/gift-vouchers/", "/about/", "/visit/", "/tour/", "/faq/", "/careers/", "/privacy/", "/terms/", ...slugs.map((s) => `/treatments/${s}/`)];
 const fileFor = (route) => path.join(OUT, route, "index.html");
 for (const r of routes) if (!existsSync(fileFor(r))) fail(`missing page: ${r}`);
 for (const f of ["404.html", "robots.txt", "sitemap.xml"]) if (!existsSync(path.join(OUT, f))) fail(`missing out/${f}`);
@@ -663,6 +663,38 @@ for (const [rel, html] of pageFiles) {
     if (assets.some(([rel, t]) => rel.endsWith(".js") && t.includes('"ads-consent:v1"'))) fail('consent key is still "ads-consent:v1" while the click reference is on (it must carry the text version)');
     for (const w of [SECTION, "our booking system", "Gumon Technology", "only with your consent", "Cookie settings", "IP address", "before it is reported to Google", retention, logRetention]) if (!privText.includes(w)) fail(`/privacy/: lacks "${w}" while googleAds.clickEndpoint is set`);
     if (/click_retention|click_log_retention|\bTBC\b/.test(privText)) fail("/privacy/: has an unfilled click-reference retention");
+  }
+}
+
+// ---- marketing notice (UK soft opt-in, PECR reg 22) and /terms/ -------------
+{
+  const terms = read(path.join(root, "content/_booking-terms.md"));
+  const sentence = /^- Sentence:\s*(.+)$/m.exec(terms)?.[1]?.trim();
+  const marketing = /^### Marketing messages\n+(.+)$/m.exec(terms)?.[1]?.trim();
+  if (!sentence || !marketing) fail("content/_booking-terms.md: marketing_notice sentence or Marketing messages section missing");
+  else {
+    const NOTICE = "By booking, you agree that Sri Siam Thai Therapy & Wellness may send you occasional news and offers about our treatments by email and WhatsApp. You can stop at any time.";
+    if (sentence !== NOTICE) fail("content/_booking-terms.md: the marketing notice sentence is not the agreed wording");
+    const needNotice = ["index.html", path.join("treatments", "index.html"), ...slugs.map((sl) => path.join("treatments", sl, "index.html"))];
+    for (const rel of needNotice) {
+      const html = pageFiles.get(rel);
+      if (!html) continue;
+      if (!stripTags(html).includes(NOTICE)) fail(`${rel}: the marketing notice sentence is missing`);
+      const boxes = [...html.matchAll(/<input\b[^>]*type="checkbox"[^>]*>/g)].map((m) => m[0]);
+      if (boxes.length < 1) fail(`${rel}: no marketing opt-out checkbox`);
+      if (!stripTags(html).includes("Please don't send me news and offers")) fail(`${rel}: the opt-out checkbox label is missing`);
+    }
+    // Never pre-ticked, on any page.
+    for (const [rel, html] of pageFiles) {
+      for (const m of html.matchAll(/<input\b[^>]*>/g)) if (/\schecked(\s|=|\/|>)/.test(m[0])) fail(`${rel}: an input has a checked attribute (the opt-out box must never be pre-ticked)`);
+    }
+    const termsHtml = pageFiles.get(path.join("terms", "index.html"));
+    if (termsHtml) {
+      if (!/id="marketing"/.test(termsHtml)) fail('/terms/: no id="marketing" section');
+      const text = stripTags(termsHtml);
+      if (!text.includes(marketing.replace(/\*\*/g, "").replace(/\s+/g, " "))) fail("/terms/: the Marketing messages text is missing or changed");
+      for (const w of ["Deposit", "Paying the rest", "Moving your booking", "Cancelling"]) if (!text.includes(w)) fail(`/terms/: lacks "${w}"`);
+    }
   }
 }
 

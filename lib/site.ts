@@ -80,7 +80,7 @@ export const SITE = {
   },
 
   /** Date the privacy notice text last changed. */
-  privacyUpdated: "25 November 2026",
+  privacyUpdated: "26 November 2026",
   /** Shown in the footer legal line. */
   builtBy: "Gumon Technology",
   /** builtBy in the footer links here. */

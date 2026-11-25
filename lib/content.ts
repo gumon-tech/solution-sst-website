@@ -226,9 +226,13 @@ function applyShopText(relPath: string, doc: Doc): void {
  * `{{#if <name>}}` and `{{/if}}`, with an optional `{{else}}`, is kept only when the condition holds
  * (no nesting). In the front matter, `<key>_if_<name>:` replaces `<key>` when the condition holds.
  * google_ads: SITE.googleAds.id is set (the Google Ads tag and cookie banner are on).
+ * click_ref: google_ads and SITE.googleAds.clickEndpoint is set (the ad click reference is on, lib/clickref.ts).
+ * google_ads_only: google_ads without click_ref.
  */
 const CONDITIONS: Record<string, () => boolean> = {
   google_ads: () => SITE.googleAds.id !== "",
+  click_ref: () => SITE.googleAds.id !== "" && SITE.googleAds.clickEndpoint !== "",
+  google_ads_only: () => SITE.googleAds.id !== "" && SITE.googleAds.clickEndpoint === "",
 };
 
 function condition(relPath: string, name: string): boolean {
@@ -383,6 +387,8 @@ function resolve(key: string, ctx: Ctx): string {
       return DEPOSIT_LABEL;
     case "privacy_updated_date":
       return SITE.privacyUpdated;
+    case "click_retention":
+      return SITE.googleAds.clickRetention;
     case "menu_checked_date":
       return menuCheckedDate();
     case "year":

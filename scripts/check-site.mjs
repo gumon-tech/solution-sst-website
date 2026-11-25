@@ -563,7 +563,10 @@ for (const [rel, html] of pageFiles) {
     for (const w of ["Google Ads tag", "Cookie settings", "only with your consent"]) if (!privText.includes(w)) fail(`/privacy/: lacks "${w}" while googleAds.id is set`);
     if (privText.includes("does not use cookies")) fail("/privacy/: still says the site does not use cookies while googleAds.id is set");
     if (/cookie_settings_button|\{\{#if|\{\{\/if\}\}|\{\{else\}\}/.test(privHtml)) fail("/privacy/: a conditional-copy marker leaked into the page");
-    const loaders = assets.filter(([rel, t]) => rel.endsWith(".js") && t.includes("googletagmanager.com/gtag/js"));
+    // With the ad click reference on, lib/clickref.ts reads the stored choice through lib/consent.ts, so its lazy
+    // chunk carries a copy of that module (one instance at run time); it is checked in the click-reference block.
+    const clickRefChunk = (rel, t) => rel.endsWith(".js") && t.includes("clickref-v1|");
+    const loaders = assets.filter(([rel, t]) => rel.endsWith(".js") && t.includes("googletagmanager.com/gtag/js") && !clickRefChunk(rel, t));
     if (loaders.length !== 1) fail(`expected the gtag.js loader in exactly one JS file, found ${loaders.length}`);
     for (const [rel, t] of loaders) {
       const def = t.indexOf('"consent","default"');
@@ -577,9 +580,60 @@ for (const [rel, html] of pageFiles) {
       if (/ad_personalization:"granted"|analytics_storage:"granted"/.test(t)) fail(`${rel}: grants ad_personalization or analytics_storage`);
     }
     for (const [rel, t] of assets) {
-      if (rel.endsWith(".html") || loaders.some(([l]) => l === rel)) continue;
+      if (rel.endsWith(".html") || loaders.some(([l]) => l === rel) || clickRefChunk(rel, t)) continue;
       if (t.includes("googletagmanager")) fail(`${rel}: mentions googletagmanager outside the lazy loader chunk`);
     }
+  }
+}
+
+// ---- ad click reference (lib/site.ts googleAds.clickEndpoint, lib/clickref.ts, components/AdSource.tsx) ----
+// endpoint "": nothing of it is built (no code derivation, no click-reference chunk, no data-wa-tag, no consent
+// text version in the consent key) and the privacy notice and the banner keep today's words.
+// endpoint set: https only (http://localhost builds are for local tests and fail here), the Ads id is set, the
+// retention is filled in (not TBC), the endpoint is in client JS only (never in HTML), the code and the POST live
+// only in a lazy chunk, the consent key carries the text version, and the notice describes it all.
+{
+  const endpoint = /clickEndpoint:\s*"([^"]*)"/.exec(site)?.[1];
+  const siteId = /siteId:\s*"([^"]*)"/.exec(site)?.[1];
+  const retention = /clickRetention:\s*"([^"]*)"/.exec(site)?.[1];
+  const adsId = /googleAds:\s*\{\s*id:\s*"([^"]*)"/.exec(site)?.[1];
+  const privHtml = pageFiles.get(path.join("privacy", "index.html")) ?? "";
+  const privText = stripTags(privHtml.replace(/<script[\s\S]*?<\/script>/g, "").replace(/<style[\s\S]*?<\/style>/g, ""));
+  const assets = files.filter((f) => /\.(html|js|css)$/.test(f)).map((f) => [path.relative(OUT, f), read(f)]);
+  const SECTION = "Linking a booking to one of our ads";
+  if (endpoint === undefined || siteId === undefined || retention === undefined) fail("lib/site.ts: googleAds { clickEndpoint, siteId, clickRetention } not found");
+  else if (!endpoint) {
+    const TRACE = /clickref|CLICK_REF|23456789BCDFGHJKMNPQRSTVWXZ|2-9BCDFGHJKMNPQRSTVWXZ|waTag|wa-tag|ads-consent:change|click_retention|click_ref|google_ads_only|booking system|Linking a booking/;
+    for (const [rel, t] of assets) {
+      const m = TRACE.exec(t);
+      if (m) fail(`${rel}: contains "${m[0]}" while googleAds.clickEndpoint is empty (the click reference must not be built)`);
+    }
+    if (adsId && !assets.some(([rel, t]) => rel.endsWith(".js") && t.includes('"ads-consent:v1"'))) fail('consent key "ads-consent:v1" not found in the client JS while googleAds.clickEndpoint is empty');
+  } else {
+    const shared = read(path.join(root, "content/_shared.md"));
+    const versions = [...shared.matchAll(/^- Text version:\s*(.*?)\s*$/gm)].map((m) => m[1]);
+    const cv = versions.length === 1 ? versions[0] : "";
+    if (!adsId) fail("lib/site.ts: googleAds.clickEndpoint is set but googleAds.id is empty (the click reference needs the consent banner)");
+    if (!/^https:\/\/[A-Za-z0-9.-]+(:\d+)?\/[A-Za-z0-9._~\/-]*$/.test(endpoint)) fail(`lib/site.ts: googleAds.clickEndpoint "${endpoint}" is not an https URL with a path (http://localhost is for local tests only)`);
+    if (!/^[a-z0-9-]{1,32}$/.test(siteId)) fail(`lib/site.ts: googleAds.siteId "${siteId}" is not [a-z0-9-]{1,32}`);
+    if (!retention.trim() || /\bTBC\b/i.test(retention)) fail(`lib/site.ts: googleAds.clickRetention is "${retention}": set the real retention (from KBOT) before turning the click reference on`);
+    if (!/^[A-Za-z0-9._-]{1,32}$/.test(cv)) fail(`content/_shared.md: needs exactly one "- Text version:" line of [A-Za-z0-9._-]{1,32} (found ${versions.length})`);
+    for (const [rel, html] of pageFiles) if (html.includes(endpoint)) fail(`${rel}: the HTML contains the click-reference endpoint (it belongs in client JS only)`);
+    if (!assets.some(([rel, t]) => rel.endsWith(".js") && t.includes(endpoint))) fail("the click-reference endpoint is not in the client JS");
+    const chunks = assets.filter(([rel, t]) => rel.endsWith(".js") && t.includes("clickref-v1|"));
+    if (chunks.length !== 1) fail(`expected the code derivation in exactly one JS file, found ${chunks.length}`);
+    for (const [rel, t] of chunks) {
+      const base = path.basename(rel);
+      for (const [prel, html] of pageFiles) if (html.includes(base)) fail(`${prel}: loads ${base} directly (the click-reference chunk must be lazy)`);
+      for (const want of ['credentials:"omit"', "keepalive:!0", '"text/plain"', 'ad_user_data:"granted"', 'ad_personalization:"denied"', "23456789BCDFGHJKMNPQRSTVWXZ"]) {
+        if (!t.includes(want)) fail(`${rel}: click-reference chunk lacks ${want}`);
+      }
+      if (/ad_personalization:"granted"/.test(t)) fail(`${rel}: click-reference chunk says ad_personalization granted`);
+    }
+    if (cv && !assets.some(([rel, t]) => rel.endsWith(".js") && t.includes(cv))) fail(`consent text version "${cv}" not found in the client JS`);
+    if (assets.some(([rel, t]) => rel.endsWith(".js") && t.includes('"ads-consent:v1"'))) fail('consent key is still "ads-consent:v1" while the click reference is on (it must carry the text version)');
+    for (const w of [SECTION, "our booking system", "Gumon Technology", "only with your consent", "Cookie settings", retention]) if (!privText.includes(w)) fail(`/privacy/: lacks "${w}" while googleAds.clickEndpoint is set`);
+    if (/click_retention|\bTBC\b/.test(privText)) fail("/privacy/: has an unfilled click-reference retention");
   }
 }
 

@@ -50,6 +50,23 @@ export const SITE = {
     /** Value sent with each WhatsApp-click conversion, as set on the Ads conversion action "WhatsApp chat start (web)" (KMKT, 25 Nov 2026). */
     conversionValue: 1,
     currency: "GBP",
+    /**
+     * Ad click reference ("option B", lib/clickref.ts). "" = off: nothing of it is built, messages from an ad
+     * visit end [web-AD] and the privacy notice and banner keep today's words ({{#if click_ref}}). Set to this
+     * shop's own bot address (https, write-only route that always answers 204) to turn it on: then, on a visit
+     * that landed with gclid, gbraid or wbraid and only after Accept, WhatsApp messages end [web-AD-<8-char code>]
+     * and a WhatsApp press posts the code and the click reference there (once per page load). Needs id set.
+     * Never another shop's address. next.config.mjs reads it into NEXT_PUBLIC_CLICK_REF_ENDPOINT.
+     */
+    clickEndpoint: "" as string,
+    /** This shop's id, equal to the bot's SHOP_ID: sent as "site" and mixed into the code. Lowercase letters, digits, "-". */
+    siteId: "sst",
+    /**
+     * When the bot deletes a click reference, completing the privacy-notice sentence "We delete the ad click
+     * reference ...", e.g. "90 days after your ad click, or 7 days after it if you never message us". From KBOT.
+     * check-site fails while clickEndpoint is set and this is still "TBC".
+     */
+    clickRetention: "TBC" as string,
   },
 
   /** Date the privacy notice text last changed. */

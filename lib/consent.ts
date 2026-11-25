@@ -16,8 +16,12 @@
 
 export type Choice = "granted" | "denied";
 
-/** Per-origin, so the same key is safe on every shop's own domain. Bump the version to ask everyone again. */
-export const CONSENT_STORAGE_KEY = "ads-consent:v1";
+/**
+ * Per-origin, so the same key is safe on every shop's own domain. Bump the version to ask everyone again.
+ * With the ad click reference on (lib/clickref.ts), the key carries the consent text version instead
+ * (NEXT_PUBLIC_CONSENT_VERSION, from content/_shared.md), so an Accept counts only for the words it was given to.
+ */
+export const CONSENT_STORAGE_KEY = process.env.NEXT_PUBLIC_CONSENT_VERSION ? `ads-consent:${process.env.NEXT_PUBLIC_CONSENT_VERSION}` : "ads-consent:v1";
 /** How long a choice is remembered; after this the banner asks again. Keep the privacy notice in step. */
 export const CONSENT_MAX_AGE_DAYS = 182;
 /** Google Ads tag ids look like AW-123456789. The same rule is in next.config.mjs and scripts/check-site.mjs. */

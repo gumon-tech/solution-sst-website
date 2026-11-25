@@ -14,6 +14,10 @@ import { TAG, TAG_AT_END } from "@/lib/whatsapp";
  * sessionStorage, nothing sent anywhere. It survives the site's own in-app page
  * changes (next/link) and is decided once, from the address the visit opened on.
  * Without JavaScript the buttons keep their own tags. Register: DIRECTION.md section 8.
+ *
+ * Ad click reference (lib/site.ts googleAds.clickEndpoint set; every branch on NEXT_PUBLIC_CLICK_REF_ENDPOINT
+ * below is dropped from the build while it is ""): gbraid and wbraid also count as an ad visit, each button's
+ * own tag is kept in data-wa-tag, and lib/clickref.ts (loaded on an ad visit) adds the code after Accept.
  */
 let fromAd: boolean | null = null;
 
@@ -23,6 +27,9 @@ function visitFromAd(): boolean {
     fromAd =
       p.has("gclid") ||
       (p.get("utm_source")?.toLowerCase() === "google" && p.get("utm_medium")?.toLowerCase() === "cpc");
+    if (process.env.NEXT_PUBLIC_CLICK_REF_ENDPOINT) {
+      if (!fromAd) fromAd = p.has("gbraid") || p.has("wbraid");
+    }
   }
   return fromAd;
 }
@@ -37,6 +44,11 @@ function retag(a: HTMLAnchorElement) {
   if (u.hostname !== "wa.me") return;
   const text = u.searchParams.get("text");
   if (!text || !TAG_AT_END.test(text)) return;
+  if (process.env.NEXT_PUBLIC_CLICK_REF_ENDPOINT) {
+    // The button's own tag, sent by lib/clickref.ts as "surface".
+    const own = TAG_AT_END.exec(text)?.[1];
+    if (own && own !== TAG.ad && !a.dataset.waTag) a.dataset.waTag = own;
+  }
   const next = text.replace(TAG_AT_END, ` [web-${TAG.ad}]`);
   if (next === text) return;
   // Same encoding as buildWhatsAppLink (encodeURIComponent, not form encoding).
@@ -70,7 +82,22 @@ export function AdSource() {
 
   // Every page the visit reaches: rewrite the buttons on it.
   useEffect(() => {
-    if (visitFromAd()) retagAll();
+    if (visitFromAd()) {
+      retagAll();
+      if (process.env.NEXT_PUBLIC_CLICK_REF_ENDPOINT) {
+        // After the [web-AD] rewrite above, so the code is added to it (and only on an ad visit).
+        import("@/lib/clickref")
+          .then((m) =>
+            m.startClickRef({
+              endpoint: process.env.NEXT_PUBLIC_CLICK_REF_ENDPOINT ?? "",
+              site: process.env.NEXT_PUBLIC_CLICK_REF_SITE ?? "",
+              cv: process.env.NEXT_PUBLIC_CONSENT_VERSION ?? "",
+              adTag: TAG.ad,
+            }),
+          )
+          .catch(() => {});
+      }
+    }
   }, [pathname]);
 
   return null;

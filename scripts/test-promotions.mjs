@@ -47,6 +47,8 @@ const cases = [
   ["email", file([{ ...good, detail: "Write to a@b.co" }]), false],
   ["phone number", file([{ ...good, detail: "Ring 020 7946 0958 now" }]), false],
   ["old private number", file([{ ...good, detail: "Call 07497 493585" }]), false],
+  ["opt-out sentence typed into the message", file([{ ...good, message: "Hi, I'd like to book. Please don't send me news and offers." }]), false],
+  ["opt-out sentence, curly apostrophe, any case", file([{ ...good, detail: "PLEASE DON\u2019T SEND ME NEWS AND OFFERS" }]), false],
   ["tag typed into the text", file([{ ...good, message: "Hi [web-X]" }]), false],
   ["invented service price", file([{ ...good, detail: "Thai massage only £29 this month" }]), false],
   ["missing image file", file([{ ...good, image: "/img/nope.jpg" }]), false],

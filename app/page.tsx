@@ -123,8 +123,8 @@ export default function HomePage() {
           </ol>
           <Reveal className="mt-10">
             <ActionView action={trailingActions(how)[0]} variant="ghost" />
-            <MarketingNotice sentence={terms()["marketing_notice.sentence"]} label={terms()["marketing_notice.checkbox"]} tone="plum" className="mt-5" />
           </Reveal>
+          <MarketingNotice sentence={terms()["marketing_notice.sentence"]} label={terms()["marketing_notice.checkbox"]} tone="plum" className="mt-5" />
         </div>
       </section>
 

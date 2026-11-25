@@ -47,10 +47,12 @@ export default function TermsPage() {
 
       <article className="container-x max-w-[720px] pb-12 pt-4 xl:pb-20">
         {PARTS.map(([id, heading, key]) => (
-          <section key={id} id={id} className="mt-8 scroll-mt-24 first:mt-0" aria-labelledby={`${id}-h`}>
-            <h2 className="t-h3" id={`${id}-h`}>
-              {heading}
-            </h2>
+          <section key={id} id={id} className="mt-8 scroll-mt-24 first:mt-0" aria-label={heading}>
+            {id !== "marketing" && (
+              <h2 className="t-h3" id={`${id}-h`}>
+                {heading}
+              </h2>
+            )}
             <p className="prose-sst mt-3">
               <Para text={t[key]} />
             </p>

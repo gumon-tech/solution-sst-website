@@ -1,6 +1,6 @@
 // Tests the pure opt-out functions of lib/whatsapp.ts (insertOptOut, removeOptOut, OPT_OUT_TEXT).
 // Run: node scripts/test-marketing-optout.mjs
-import { mkdtempSync, readFileSync, writeFileSync } from "node:fs";
+import { mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import os from "node:os";
 import path from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
@@ -14,6 +14,7 @@ const dir = mkdtempSync(path.join(os.tmpdir(), "optout-"));
 writeFileSync(path.join(dir, "whatsapp.mjs"), js);
 const { insertOptOut, removeOptOut, OPT_OUT_TEXT, TAG_AT_END } = await import(pathToFileURL(path.join(dir, "whatsapp.mjs")).href);
 
+rmSync(dir, { recursive: true, force: true });
 let failed = 0;
 const eq = (name, got, want) => {
   if (got === want) console.log(`ok   ${name}`);

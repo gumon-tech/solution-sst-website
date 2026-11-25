@@ -79,7 +79,7 @@ If you choose to tell us about your health so that we can check a treatment is r
 
 ## Marketing messages
 
-If you book or visit, we may send you occasional news and offers about similar treatments by email and WhatsApp, as our booking terms explain. We do this because you are our customer (the 'soft opt-in' allowed by the UK's Privacy and Electronic Communications Regulations), and only for our own treatments. You can opt out at any time: tick the box when booking, reply STOP to any WhatsApp message, or use the unsubscribe link in any email. We keep a record that you opted out so we do not message you again.
+If you book or visit, we may send you occasional news and offers about similar treatments by WhatsApp, and by email if you gave us your email address when booking or paying, as our booking terms explain. We do this because you are our customer (the 'soft opt-in' allowed by the UK's Privacy and Electronic Communications Regulations), and only for our own treatments. You can opt out at any time: tick the box when booking, reply STOP to any WhatsApp message, or use the unsubscribe link in any email. We keep a record that you opted out so we do not message you again.
 
 ## Deposits and payment
 
@@ -103,7 +103,7 @@ We send ad click references to our booking system and report bookings from our a
 
 ## How long we keep your details
 
-We keep booking details and WhatsApp messages only for as long as we need them to run and account for your bookings, and then delete them. Payment records are kept for as long as the law requires for our accounts.
+We keep booking details and WhatsApp messages only for as long as we need them to run and account for your bookings, and then delete them. If you have booked or visited, we keep your name and contact details to send you news and offers until you opt out. When you opt out, we keep only the contact detail and the date, so that we do not message you again. Payment records are kept for as long as the law requires for our accounts.
 
 ## Your rights
 

@@ -21,7 +21,7 @@ for (const [key, s] of Object.entries(slots)) {
   if (!["line", "paragraph"].includes(s.kind) || !Number.isInteger(s.max)) fail(`copy-slots.json: ${key} needs kind line|paragraph and an integer max`);
   if (!existsSync(path.join(ROOT, "content", s.file ?? ""))) fail(`copy-slots.json: ${key} file content/${s.file} missing`);
   else if (typeof currentText(s) !== "string") fail(`copy-slots.json: ${key} points at ${s.file} ${s.section ?? ""} ${s.field}, which does not exist`);
-  else if (/^(privacy|_booking-terms|README)\.md$/.test(s.file)) fail(`copy-slots.json: ${key} points into ${s.file}, which the shop system never changes`);
+  else if (/^(privacy|terms|_booking-terms|README)\.md$/.test(s.file)) fail(`copy-slots.json: ${key} points into ${s.file}, which the shop system never changes`);
   else if (/\{\{\s*(deposit|booking_terms)/.test(currentText(s))) fail(`copy-slots.json: ${key} holds booking-terms wording`);
 }
 

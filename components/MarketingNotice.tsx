@@ -104,11 +104,13 @@ export function MarketingNotice({
   const ink = tone === "plum" ? "text-cream" : "text-ink";
   return (
     <div className={`max-w-xl ${ink} ${className}`} data-marketing-notice="">
-      <p>{sentence}</p>
+      <p id={`${id}-s`}>{sentence}</p>
       <div className="mt-1 flex items-center">
         <label htmlFor={id} className="-ml-3 flex min-h-[44px] cursor-pointer items-center gap-3 py-1 pl-3 pr-2">
           <input
             id={id}
+            aria-describedby={`${id}-s`}
+            autoComplete="off"
             type="checkbox"
             checked={checked}
             disabled={!ready}

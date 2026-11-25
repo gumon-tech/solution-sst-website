@@ -14,7 +14,7 @@ Sri Siam Thai Therapy & Wellness, {{address}}, is the data controller for the pe
 
 This website does not use cookies, analytics or any other tracking. It does not ask you to fill in a form or create an account. The site is hosted on GitHub Pages, which keeps standard technical server logs under GitHub's own privacy statement.
 
-The booking buttons on this site open WhatsApp on your device with a short message already typed. Each message ends with a short code, such as [web-T], that tells us which part of the website you came from. Nothing is sent until you press send, and this website does not know whether you did.
+The booking buttons on this site open WhatsApp on your device with a short message already typed. Each message ends with a short code, such as [web-T], that tells us which part of the website you came from. If you reached this website from one of our Google ads, the code is [web-AD] instead, wherever you click. The site works that out from the web address you arrived on and keeps it only while the page is open in your browser: it is not stored on your device, and the website does not send it to us, to Google or to anyone else. Google keeps its own record of clicks on its ads under Google's privacy policy; this website adds nothing to it. Nothing is sent until you press send, and this website does not know whether you did.
 
 ## When you message us on WhatsApp
 

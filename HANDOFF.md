@@ -18,6 +18,13 @@ adversarial review                      executor Opus 5.5    (fresh context: wor
 lead: data, images, redirects, fixes    Opus 5.5
 ```
 
+## Google Ads work (25 Nov 2026, room KSST, for room KMKT)
+
+- Live (#31): `[web-AD]` replaces every WhatsApp tag for a visit whose landing URL has `gclid` or `utm_source=google&utm_medium=cpc` (`components/AdSource.tsx`, page memory only, no cookie or storage; DIRECTION.md section 8; privacy notice says so). Checked live 25 Nov: `/?gclid=test` gives `[web-AD]` on every button, also after moving to `/treatments/`; a plain visit keeps the normal tags. KBOT told by Q-KSST-002 (machines/komphet-air/queue/KBOT); its current parser `\bweb-([A-Z]{1,2})\b` reads AD already.
+- Live (#31): ad landing-page wording for CAP 3.1/12.1. No plural "therapists" outside /careers/ (one therapist takes bookings), Wat Pho removed everywhere until a certificate is on file (old wording in commit 43e6944; put it back in the singular for whoever holds the certificate, and remove the check-site rule and `UNCONFIRMED` in `scripts/lib/public-text.mjs`), after-effect lines removed on all six treatment pages and the FAQ. check-site fails on "Wat Pho" anywhere and "therapists" outside /careers/; public-text (so the shop bot too, via `public-text.json`) refuses "Wat Pho". Made by executor opus/high, reviewed independently by opus/high (no blockers).
+- Not live, branch `ksst/consent-gtag` (worktree `../solution-sst-website-consent`): consent banner (Accept/Reject equal), Consent Mode v2 basic (gtag.js loads only after Accept), conversion event on WhatsApp clicks, privacy text. Dark while `SITE.googleAds.id` is empty. The owner approved gtag and the banner via KMKT on 25 Nov; deploy only when KMKT sends the Conversion ID and label.
+- Design for KMKT review, not built: click reference in the WhatsApp message (`[web-AD-XXXXXXXX]`, 8-character code), in the session notes folder `full-loop-web-design.md`. Wait for KMKT/KBOT before building.
+
 ## Offers from the shop system (added 31 Oct 2026, room KSST)
 
 `data/promotions.json` starts empty and nothing shows. The shop's WhatsApp system writes it by pull request after the manager confirms an offer in chat; `auto-merge-shop-agent.yml` merges it when the branch is `shop-agent/promotions-*`, only `data/promotions.json` changed, and `npm run check` passes, then dispatches `pages.yml`. Details and schema: README, "Promotions". Tag `PR` is registered in DIRECTION.md section 8.
